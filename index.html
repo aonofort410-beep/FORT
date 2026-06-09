@@ -59,26 +59,14 @@
   <header class="header" id="header">
     <div class="header__inner container">
       <!-- ロゴ（テキストロゴ。画像にする場合はここを<img>に） -->
-      <a href="#hero" class="header__logo" aria-label="株式会社FORT トップへ">FORT</a>
+      <a href="index.html" class="header__logo" aria-label="株式会社FORT トップへ">FORT</a>
 
-      <!-- PC用ナビゲーション -->
-      <nav class="nav" id="nav" aria-label="メインメニュー">
-        <ul class="nav__list">
-          <li><a href="#concept" class="nav__link">CONCEPT</a></li>
-          <li><a href="#why" class="nav__link">WHY FORT</a></li>
-          <li><a href="#works" class="nav__link">WORKS</a></li>
-          <li><a href="#lineup" class="nav__link">LINEUP</a></li>
-          <li><a href="#event" class="nav__link">EVENT</a></li>
-          <li><a href="staff.html" class="nav__link">STAFF</a></li>
-          <li><a href="#news" class="nav__link">NEWS</a></li>
-        </ul>
-        <!-- スマホメニュー内に表示するCTA -->
-        <a href="#reserve" class="nav__cta btn btn--accent">来場予約・お問い合わせ</a>
-      </nav>
-
-      <!-- スマホ用ハンバーガーボタン -->
-      <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
-        <span></span><span></span><span></span>
+      <!-- 右上の「MENU」ボタン（全ページの目次を開く）
+           ※ 目次の中身は script.js が自動で作ります -->
+      <button class="menu-toggle" id="menuToggle" type="button"
+              aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-toggle__txt">MENU</span>
       </button>
     </div>
   </header>
@@ -111,8 +99,8 @@
           性能とデザインを高いレベルで両立する住まいをご提案します。
         </p>
         <div class="hero__actions" data-reveal>
-          <a href="#works" class="btn btn--light">施工事例を見る</a>
-          <a href="#event" class="btn btn--accent">見学会を予約する</a>
+          <a href="works.html" class="btn btn--light">施工事例を見る</a>
+          <a href="event.html" class="btn btn--accent">見学会を予約する</a>
         </div>
       </div>
 
@@ -287,7 +275,7 @@
         </ul>
 
         <div class="section__more" data-reveal>
-          <a href="#" class="btn btn--outline">もっと施工事例を見る</a>
+          <a href="works.html" class="btn btn--outline">もっと施工事例を見る</a>
         </div>
       </div>
     </section>
@@ -317,7 +305,7 @@
                 土地・建物・外構まで含めて、わかりやすい価格設定。
                 FORTらしいデザイン性と暮らしやすさを大切にした住まい。
               </p>
-              <a href="#reserve" class="lineup__link">詳しく見る</a>
+              <a href="lineup.html#fort-style" class="lineup__link">詳しく見る</a>
             </div>
           </li>
           <!-- 商品2：FORT PRO -->
@@ -334,7 +322,7 @@
                 人気の間取りをベースに、自分たちらしくカスタマイズ。
                 性能・デザイン・価格のバランスを重視したスタンダードモデル。
               </p>
-              <a href="#reserve" class="lineup__link">詳しく見る</a>
+              <a href="lineup.html#fort-pro" class="lineup__link">詳しく見る</a>
             </div>
           </li>
           <!-- 商品3：FORT DESIGN -->
@@ -350,7 +338,7 @@
                 理想の暮らしをゼロから形にする住まい。
                 土地条件やライフスタイルに合わせた完全自由設計。
               </p>
-              <a href="#reserve" class="lineup__link">詳しく見る</a>
+              <a href="lineup.html#fort-design" class="lineup__link">詳しく見る</a>
             </div>
           </li>
         </ul>
@@ -597,10 +585,11 @@
         <ul class="footer__list">
           <li><a href="#concept">CONCEPT</a></li>
           <li><a href="#why">WHY FORT</a></li>
-          <li><a href="#works">WORKS</a></li>
-          <li><a href="#lineup">LINEUP</a></li>
-          <li><a href="#event">EVENT</a></li>
+          <li><a href="works.html">WORKS</a></li>
+          <li><a href="lineup.html">LINEUP</a></li>
+          <li><a href="event.html">EVENT</a></li>
           <li><a href="staff.html">STAFF</a></li>
+          <li><a href="company.html">COMPANY</a></li>
           <li><a href="#news">NEWS</a></li>
           <li><a href="#reserve">RESERVE</a></li>
         </ul>

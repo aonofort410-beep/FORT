@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+============================================================
+  株式会社FORT / EVENT（見学会・イベント）ページ
+  ------------------------------------------------------------
+  ・開催予定は <div class="schedule__item"> ... </div> を
+    コピー＆ペーストして追加・更新してください
+============================================================
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>見学会・イベント｜実際の住まいを体感する｜株式会社FORT（岡山・倉敷・福山）</title>
+  <meta name="description" content="株式会社FORTの完成見学会・モデルハウス見学のご案内。実際の住まいで、FORTのデザインと性能を体感いただけます。岡山・倉敷・福山エリアで開催。ご予約はこちらから。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.example-fort.co.jp/event.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="見学会・イベント｜株式会社FORT">
+  <meta property="og:description" content="完成見学会・モデルハウス見学で、FORTの住まいを体感してください。">
+  <meta property="og:image" content="images/ldk.jpg">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <a href="index.html" class="header__logo" aria-label="株式会社FORT トップへ">FORT</a>
+      <button class="menu-toggle" id="menuToggle" type="button"
+              aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-toggle__txt">MENU</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="subhero">
+      <div class="subhero__media">
+        <img src="images/ldk.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
+        <div class="subhero__overlay"></div>
+      </div>
+      <div class="container subhero__inner">
+        <p class="subhero__eyebrow" data-reveal>EVENT</p>
+        <h1 class="subhero__title" data-reveal>実際の住まいを体感する。</h1>
+        <nav class="breadcrumb" aria-label="現在地">
+          <a href="index.html">HOME</a><span>／</span><span>EVENT</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="page-lead" data-reveal>
+          写真やカタログだけでは伝わらない、空気感や心地よさ。<br>
+          FORTの家を、ぜひその目で、その肌で感じてください。
+        </p>
+
+        <!-- 2種類のイベント -->
+        <ul class="why__grid" style="grid-template-columns:1fr;">
+          <li class="why__card" data-reveal>
+            <span class="why__num">01</span>
+            <h2 class="why__card-title">完成見学会</h2>
+            <p class="why__card-text">
+              実際に建てられたお客様の家を、お引渡し前に特別に公開。
+              リアルな暮らしのサイズ感や、間取りの工夫を体感いただけます。
+              期間・場所限定の開催です。
+            </p>
+          </li>
+          <li class="why__card" data-reveal>
+            <span class="why__num">02</span>
+            <h2 class="why__card-title">モデルハウス見学</h2>
+            <p class="why__card-text">
+              FORTのデザインと性能を、いつでもご体感いただける常設の住まい。
+              ご家族のペースで、ゆっくりとご覧いただけます。ご予約優先でご案内します。
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 開催予定 -->
+    <section class="section section--gray">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>SCHEDULE</p>
+          <h2 class="section__title" data-reveal>開催予定</h2>
+        </header>
+
+        <!-- ▼ 開催予定を追加・更新するときはこの <div> をコピーしてください -->
+        <div class="schedule" data-reveal>
+          <div class="schedule__item">
+            <div class="schedule__meta">
+              <span class="schedule__date">6/14<span style="font-size:12px;">〜</span>6/15</span>
+              <span class="schedule__badge">完成見学会</span>
+              <span class="schedule__place">倉敷市</span>
+            </div>
+            <p class="schedule__title">中庭とつながるブラックモダンの家 完成見学会</p>
+          </div>
+          <div class="schedule__item">
+            <div class="schedule__meta">
+              <span class="schedule__date">毎週末</span>
+              <span class="schedule__badge">モデルハウス</span>
+              <span class="schedule__place">岡山市</span>
+            </div>
+            <p class="schedule__title">FORTモデルハウス 見学受付中（ご予約優先）</p>
+          </div>
+          <div class="schedule__item">
+            <div class="schedule__meta">
+              <span class="schedule__date">7/5<span style="font-size:12px;">〜</span>7/6</span>
+              <span class="schedule__badge">完成見学会</span>
+              <span class="schedule__place">福山市</span>
+            </div>
+            <p class="schedule__title">景色を楽しむリゾートスタイルの家 完成見学会</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="reserve section" id="reserve">
+      <div class="reserve__bg">
+        <img src="images/kitchen-view.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="reserve__overlay"></div>
+      </div>
+      <div class="container reserve__inner">
+        <p class="section__label section__label--light" data-reveal>RESERVE</p>
+        <h2 class="section__title section__title--light" data-reveal>見学会を予約する。</h2>
+        <p class="reserve__lead" data-reveal>ご予約は無料です。お子さま連れも歓迎。お気軽にお越しください。</p>
+        <ul class="reserve__actions" data-reveal>
+          <li><a href="index.html#reserve" class="btn btn--accent btn--block">完成見学会を予約</a></li>
+          <li><a href="index.html#reserve" class="btn btn--accent btn--block">モデルハウスを予約</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">資料請求</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">お問い合わせ</a></li>
+        </ul>
+        <p class="reserve__tel" data-reveal>
+          お電話でのご予約：<a href="tel:0000000000">000-000-0000</a>
+          <span class="reserve__tel-note">（受付時間 9:00〜18:00 / 水曜定休）</span>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo">FORT</p>
+        <p class="footer__copy-text">性能か、デザインか。<br>その選択をしなくていい家づくり。</p>
+      </div>
+      <nav class="footer__nav" aria-label="フッターメニュー">
+        <ul class="footer__list">
+          <li><a href="index.html#concept">CONCEPT</a></li>
+          <li><a href="index.html#why">WHY FORT</a></li>
+          <li><a href="works.html">WORKS</a></li>
+          <li><a href="lineup.html">LINEUP</a></li>
+          <li><a href="event.html">EVENT</a></li>
+          <li><a href="staff.html">STAFF</a></li>
+          <li><a href="company.html">COMPANY</a></li>
+          <li><a href="index.html#news">NEWS</a></li>
+          <li><a href="index.html#reserve">RESERVE</a></li>
+        </ul>
+      </nav>
+      <div class="footer__info">
+        <p>株式会社FORT</p>
+        <p>岡山県・倉敷市・福山市エリアで家づくりを行っています。</p>
+        <p>TEL：000-000-0000（9:00〜18:00 / 水曜定休）</p>
+      </div>
+    </div>
+    <p class="footer__copyright">© 2026 FORT Inc. All Rights Reserved.</p>
+  </footer>
+
+  <div class="floating-cta">
+    <a href="#reserve" class="floating-cta__btn floating-cta__btn--ghost">見学会予約</a>
+    <a href="index.html#reserve" class="floating-cta__btn floating-cta__btn--accent">資料請求・相談</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

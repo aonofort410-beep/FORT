@@ -162,6 +162,10 @@ ul { list-style: none; }
 }
 .btn--outline:hover { background: var(--c-black); color: var(--c-white); border-color: var(--c-black); }
 
+/* 暗い背景の上に置く枠線ボタン（目次メニュー内など） */
+.btn--outline-light { color: var(--c-white); border-color: rgba(255,255,255,.6); }
+.btn--outline-light:hover { background: var(--c-white); color: var(--c-black); border-color: var(--c-white); }
+
 /* 幅いっぱいのボタン */
 .btn--block { width: 100%; }
 
@@ -171,7 +175,7 @@ ul { list-style: none; }
 .header {
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: 100;
+  z-index: 300; /* 目次メニュー(200)より前面に置き、ロゴとMENUボタンを常に操作可能に */
   transition: background .4s, box-shadow .4s, padding .4s;
   padding-block: 18px;
 }
@@ -197,58 +201,125 @@ ul { list-style: none; }
   color: var(--c-white);
   transition: color .4s;
 }
-/* スクロール後・スマホメニュー表示時はロゴを黒に */
+/* スクロール後はロゴを黒に */
 .header.is-scrolled .header__logo { color: var(--c-black); }
+/* 目次メニューを開いている間は、暗い背景に合わせてロゴを白に戻す */
+body.menu-open .header__logo { color: var(--c-white); }
 
-/* --- PCナビ（スマホでは下のメディアクエリで隠す） --- */
-.nav { display: flex; align-items: center; gap: 28px; }
-.nav__list { display: flex; gap: 26px; }
-.nav__link {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+/* --- 右上の「MENU」ボタン（目次を開く） --- */
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 2px;
   color: var(--c-white);
-  position: relative;
+  transition: color .4s;
 }
-.header.is-scrolled .nav__link { color: var(--c-charcoal); }
-.nav__link::after {
-  content: "";
-  position: absolute;
-  left: 0; bottom: -6px;
-  width: 0; height: 1px;
-  background: var(--c-wood);
-  transition: width .3s;
-}
-.nav__link:hover::after,
-.nav__link.is-active::after { width: 100%; }
-.nav__link.is-active { color: var(--c-wood); }
+.header.is-scrolled .menu-toggle { color: var(--c-black); }
+body.menu-open .menu-toggle { color: var(--c-white); }
 
-.nav__cta { padding: 11px 22px; font-size: 13px; }
-
-/* --- ハンバーガー（スマホ用・初期は隠す） --- */
-.hamburger {
-  display: none;
+/* ボタン内の3本線 */
+.menu-toggle__bars {
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 30px; height: 30px;
-  background: none; border: none;
-  cursor: pointer;
-  z-index: 110;
+  width: 26px; height: 16px;
 }
-.hamburger span {
+.menu-toggle__bars span {
   display: block;
   width: 26px; height: 2px;
-  background: var(--c-white);
-  transition: transform .3s, opacity .3s, background .3s;
+  background: currentColor;
+  transition: transform .35s, opacity .35s;
 }
-.header.is-scrolled .hamburger span { background: var(--c-black); }
+/* 「MENU」の文字 */
+.menu-toggle__txt {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
 
-/* メニューが開いている時の× 印 */
-.hamburger.is-open span { background: var(--c-black); }
-.hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.is-open span:nth-child(2) { opacity: 0; }
-.hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* メニューを開いている時、3本線を×印に変形 */
+body.menu-open .menu-toggle__bars span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+body.menu-open .menu-toggle__bars span:nth-child(2) { opacity: 0; }
+body.menu-open .menu-toggle__bars span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* メニューを開いている間はヘッダー背景を透明に */
+body.menu-open .header { background: transparent; box-shadow: none; backdrop-filter: none; }
+
+/* ============================================================
+   4-2. 全ページメニュー（右上の目次 / 全画面オーバーレイ）
+   ※ 中身は script.js が自動生成します（1か所で管理できます）
+============================================================ */
+.gmenu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--c-black);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .4s ease, visibility .4s ease;
+  overflow-y: auto;
+}
+.gmenu.is-open { opacity: 1; visibility: visible; }
+
+.gmenu__panel {
+  min-height: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: 120px 24px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gmenu__list { display: grid; gap: 2px; }
+.gmenu__item a {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 6px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  color: var(--c-white);
+  /* 開いたとき1つずつ順番に現れる */
+  opacity: 0;
+  transform: translateY(14px);
+}
+.gmenu.is-open .gmenu__item a {
+  animation: gmenuIn .5s forwards;
+  animation-delay: calc(var(--i) * 0.05s + 0.15s);
+}
+.gmenu__item a:hover { color: var(--c-beige); padding-left: 16px; }
+.gmenu__item.is-active a { color: var(--c-wood); }
+.gmenu__num {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--c-greige);
+  min-width: 28px;
+}
+.gmenu__en {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 6vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.gmenu__ja { font-size: 12px; color: rgba(255,255,255,.7); letter-spacing: 0.06em; }
+
+.gmenu__foot {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.gmenu__cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.gmenu__company { font-size: 12px; line-height: 1.9; color: rgba(255,255,255,.6); }
+
+@keyframes gmenuIn {
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ============================================================
    5. 各セクション
@@ -698,36 +769,12 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   スマホ専用：ナビをスライドメニューに切り替え
-   （767px以下で適用）
+   メニュー（目次）を開いている間は背景をスクロールさせない
 ============================================================ */
+body.menu-open { overflow: hidden; }
+
+/* スマホでは画面下に固定CTAがあるので、その分だけ本文下に余白を足す */
 @media (max-width: 767px) {
-  .hamburger { display: flex; }
-
-  /* 普段は画面右外に隠しておき、開いたらスライドイン */
-  .nav {
-    position: fixed;
-    inset: 0 0 0 auto;
-    width: min(80%, 320px);
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 30px;
-    padding: 80px 40px;
-    background: var(--c-white);
-    box-shadow: -10px 0 40px rgba(0,0,0,.12);
-    transform: translateX(100%);
-    transition: transform .4s ease;
-  }
-  .nav.is-open { transform: translateX(0); }
-  .nav__list { flex-direction: column; gap: 24px; }
-  .nav__link { color: var(--c-charcoal); font-size: 15px; }
-  .nav__cta { width: 100%; }
-
-  /* メニューを開いた時、背景がスクロールしないように */
-  body.menu-open { overflow: hidden; }
-
-  /* 固定CTAの分だけ本文下に余白を足す */
   body { padding-bottom: 64px; }
 }
 
@@ -858,4 +905,146 @@ ul { list-style: none; }
   .teampoint__grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .member__grid { grid-template-columns: repeat(3, 1fr); gap: 26px; }
   .subhero { min-height: 52vh; }
+}
+
+/* ============================================================
+   10. 下層ページ共通パーツ（WORKS / LINEUP / EVENT / COMPANY）
+============================================================ */
+
+/* ページ冒頭の中央寄せリード文 */
+.page-lead {
+  max-width: 760px;
+  margin: 0 auto 50px;
+  text-align: center;
+  color: var(--t-sub);
+  font-size: clamp(14px, 3.6vw, 16px);
+  line-height: 2.1;
+}
+
+/* --- 施工事例ページ：カテゴリ絞り込みの見た目（静的） --- */
+.works-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+.works-filter a {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--c-gray);
+  color: var(--c-charcoal);
+  background: var(--c-white);
+  transition: background .3s, color .3s, border-color .3s;
+}
+.works-filter a:hover,
+.works-filter a.is-active { background: var(--c-wood); color: var(--c-white); border-color: var(--c-wood); }
+
+/* --- 商品詳細（LINEUP）：写真とテキストを交互に --- */
+.product {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.product + .product { margin-top: 72px; }
+.product__figure { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.product__figure img { aspect-ratio: 3 / 2; object-fit: cover; }
+.product__name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  font-weight: 600; color: var(--c-black); letter-spacing: 0.06em;
+}
+.product__type {
+  display: inline-block;
+  margin: 10px 0 16px;
+  font-size: 12px; font-weight: 700; color: var(--c-wood);
+  background: var(--c-light); padding: 5px 14px; border-radius: 999px;
+}
+.product__text { color: var(--t-sub); font-size: 14.5px; line-height: 2; margin-bottom: 18px; }
+.product__features { display: grid; gap: 10px; margin-bottom: 22px; }
+.product__features li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 14px; color: var(--c-charcoal);
+}
+.product__features li::before {
+  content: ""; position: absolute; left: 0; top: 9px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--c-beige);
+}
+
+/* --- イベント／見学会の開催スケジュール --- */
+.schedule {
+  background: var(--c-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.schedule__item {
+  display: grid;
+  gap: 6px 18px;
+  padding: 22px;
+  border-bottom: 1px solid var(--c-gray);
+}
+.schedule__item:last-child { border-bottom: none; }
+.schedule__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.schedule__date { font-family: var(--font-serif); font-size: 18px; color: var(--c-black); font-weight: 600; }
+.schedule__badge {
+  font-size: 10.5px; font-weight: 700; color: var(--c-white);
+  background: var(--c-wood); padding: 4px 12px; border-radius: 999px;
+}
+.schedule__place { font-size: 13px; color: var(--t-sub); }
+.schedule__title { font-size: 15px; font-weight: 700; color: var(--c-charcoal); line-height: 1.6; }
+
+/* --- 会社概要テーブル --- */
+.company-table {
+  width: 100%;
+  border-top: 1px solid var(--c-gray);
+  max-width: 860px;
+  margin-inline: auto;
+}
+.company-table div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  padding: 20px 4px;
+  border-bottom: 1px solid var(--c-gray);
+}
+.company-table dt {
+  font-size: 13px; font-weight: 700; color: var(--c-black);
+  letter-spacing: 0.04em;
+}
+.company-table dd { font-size: 14px; color: var(--t-sub); line-height: 1.9; }
+
+/* 地図などの埋め込み枠 */
+.map-frame {
+  margin-top: 40px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  aspect-ratio: 16 / 9;
+  background: var(--c-gray);
+}
+.map-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 代表メッセージ */
+.message__inner { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: center; }
+.message__figure { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.message__figure img { aspect-ratio: 4 / 3; object-fit: cover; }
+.message__text { color: var(--c-charcoal); font-size: 14.5px; line-height: 2.1; }
+.message__sign { margin-top: 20px; font-size: 13px; color: var(--t-sub); }
+.message__sign strong { font-family: var(--font-serif); font-size: 18px; color: var(--c-black); margin-left: 8px; }
+
+/* --- タブレット以上：下層ページの2カラム化 --- */
+@media (min-width: 768px) {
+  .product { grid-template-columns: 1fr 1fr; gap: 48px; }
+  /* 偶数番目の商品は写真を右に（左右交互レイアウト） */
+  .product:nth-child(even) .product__figure { order: 2; }
+  .company-table div { grid-template-columns: 220px 1fr; gap: 24px; align-items: baseline; }
+  .schedule__item { grid-template-columns: auto 1fr; align-items: center; }
+  .message__inner { grid-template-columns: 0.8fr 1.2fr; gap: 48px; }
 }

@@ -39,25 +39,14 @@
   <!-- ============================================================
        ヘッダー（TOPと共通。リンクは index.html の各セクションへ）
   ============================================================ -->
-  <header class="header is-scrolled" id="header">
+  <header class="header" id="header">
     <div class="header__inner container">
       <a href="index.html" class="header__logo" aria-label="株式会社FORT トップへ">FORT</a>
-
-      <nav class="nav" id="nav" aria-label="メインメニュー">
-        <ul class="nav__list">
-          <li><a href="index.html#concept" class="nav__link">CONCEPT</a></li>
-          <li><a href="index.html#why" class="nav__link">WHY FORT</a></li>
-          <li><a href="index.html#works" class="nav__link">WORKS</a></li>
-          <li><a href="index.html#lineup" class="nav__link">LINEUP</a></li>
-          <li><a href="index.html#event" class="nav__link">EVENT</a></li>
-          <li><a href="staff.html" class="nav__link is-active">STAFF</a></li>
-          <li><a href="index.html#news" class="nav__link">NEWS</a></li>
-        </ul>
-        <a href="index.html#reserve" class="nav__cta btn btn--accent">来場予約・お問い合わせ</a>
-      </nav>
-
-      <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
-        <span></span><span></span><span></span>
+      <!-- 右上の「MENU」ボタン（全ページの目次を開く） -->
+      <button class="menu-toggle" id="menuToggle" type="button"
+              aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-toggle__txt">MENU</span>
       </button>
     </div>
   </header>
@@ -292,10 +281,11 @@
         <ul class="footer__list">
           <li><a href="index.html#concept">CONCEPT</a></li>
           <li><a href="index.html#why">WHY FORT</a></li>
-          <li><a href="index.html#works">WORKS</a></li>
-          <li><a href="index.html#lineup">LINEUP</a></li>
-          <li><a href="index.html#event">EVENT</a></li>
+          <li><a href="works.html">WORKS</a></li>
+          <li><a href="lineup.html">LINEUP</a></li>
+          <li><a href="event.html">EVENT</a></li>
           <li><a href="staff.html">STAFF</a></li>
+          <li><a href="company.html">COMPANY</a></li>
           <li><a href="index.html#news">NEWS</a></li>
           <li><a href="index.html#reserve">RESERVE</a></li>
         </ul>

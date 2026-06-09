@@ -3,135 +3,147 @@
    ------------------------------------------------------------
    この1ファイルで以下の動きを管理しています：
    1. ヘッダー：スクロールすると背景を白くする
-   2. ハンバーガーメニュー：スマホでナビを開閉する
+   2. 全ページメニュー（右上MENUボタンで開く目次）を自動生成＆開閉
    3. スクロールで要素をふわっと表示する（reveal）
-   4. メニュー内リンクを押したら自動で閉じる
-   5. 現在のセクションに合わせてナビを光らせる（任意）
+   4. 画像が無いときの保険（フォールバック）
 
-   ※ 初心者の方へ：基本的にここを編集しなくても動きます。
+   ★ ページを増やしたときは、下の「MENU（メニュー項目）」に
+     1行追加するだけで、全ページの目次に反映されます。
 ============================================================ */
 
-// HTMLの読み込みが終わってから実行する（安全のため）
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* --------------------------------------------------------
-     よく使う要素を最初に取得しておく
-  -------------------------------------------------------- */
-  var header    = document.getElementById('header');
-  var hamburger = document.getElementById('hamburger');
-  var nav       = document.getElementById('nav');
-  var body      = document.body;
+  var header = document.getElementById('header');
+  var body   = document.body;
 
   /* --------------------------------------------------------
      1. ヘッダー：スクロール量で見た目を切り替える
-        60pxより下にスクロールしたら .is-scrolled を付ける
   -------------------------------------------------------- */
   function onScroll() {
-    if (window.scrollY > 60) {
-      header.classList.add('is-scrolled');
-    } else {
-      header.classList.remove('is-scrolled');
-    }
+    if (window.scrollY > 60) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
   }
-  // ページ表示時とスクロール時に判定
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
   /* --------------------------------------------------------
-     2. ハンバーガーメニューの開閉（スマホ用）
+     2. 全ページメニュー（目次）
+     ------------------------------------------------------------
+     ▼ MENU：サイトの全ページ一覧。
+       { en: 英語表記, ja: 日本語, href: リンク先 }
+       ページを増やしたらここに1行足してください。
   -------------------------------------------------------- */
+  var MENU = [
+    { en: 'HOME',     ja: 'トップ',             href: 'index.html' },
+    { en: 'CONCEPT',  ja: '私たちの想い',       href: 'index.html#concept' },
+    { en: 'WHY FORT', ja: '選ばれる理由',       href: 'index.html#why' },
+    { en: 'WORKS',    ja: '施工事例',           href: 'works.html' },
+    { en: 'LINEUP',   ja: '商品ラインナップ',   href: 'lineup.html' },
+    { en: 'EVENT',    ja: '見学会・イベント',   href: 'event.html' },
+    { en: 'STAFF',    ja: 'スタッフ紹介',       href: 'staff.html' },
+    { en: 'NEWS',     ja: 'お知らせ',           href: 'index.html#news' },
+    { en: 'COMPANY',  ja: '会社概要',           href: 'company.html' },
+    { en: 'CONTACT',  ja: 'ご予約・お問い合わせ', href: 'index.html#reserve' }
+  ];
+
+  // 今開いているページのファイル名（例：staff.html）を調べる
+  var currentFile = location.pathname.split('/').pop() || 'index.html';
+
+  // メニューの中身（HTML）を組み立てる
+  var itemsHtml = MENU.map(function (item, i) {
+    var num  = ('0' + (i + 1)).slice(-2);            // 01, 02, ...
+    var file = item.href.split('#')[0];              // リンク先のファイル名
+    var isActive = (file === currentFile && item.href.indexOf('#') === -1);
+    return ''
+      + '<li class="gmenu__item' + (isActive ? ' is-active' : '') + '" style="--i:' + i + '">'
+      +   '<a href="' + item.href + '">'
+      +     '<span class="gmenu__num">' + num + '</span>'
+      +     '<span class="gmenu__en">' + item.en + '</span>'
+      +     '<span class="gmenu__ja">' + item.ja + '</span>'
+      +   '</a>'
+      + '</li>';
+  }).join('');
+
+  // オーバーレイ（目次）本体を作ってページに追加
+  var overlay = document.createElement('div');
+  overlay.className = 'gmenu';
+  overlay.id = 'globalMenu';
+  overlay.setAttribute('aria-hidden', 'true');
+  overlay.innerHTML = ''
+    + '<div class="gmenu__panel">'
+    +   '<ul class="gmenu__list">' + itemsHtml + '</ul>'
+    +   '<div class="gmenu__foot">'
+    +     '<div class="gmenu__cta">'
+    +       '<a class="btn btn--accent" href="index.html#reserve">来場予約・お問い合わせ</a>'
+    +       '<a class="btn btn--outline btn--outline-light" href="index.html#reserve">資料請求</a>'
+    +     '</div>'
+    +     '<p class="gmenu__company">株式会社FORT｜岡山・倉敷・福山エリアの家づくり<br>TEL 000-000-0000（9:00〜18:00 / 水曜定休）</p>'
+    +   '</div>'
+    + '</div>';
+  body.appendChild(overlay);
+
+  // 開く・閉じるの処理
+  var toggle = document.getElementById('menuToggle');
+
+  function openMenu() {
+    overlay.classList.add('is-open');
+    body.classList.add('menu-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+  }
   function closeMenu() {
-    hamburger.classList.remove('is-open');
-    nav.classList.remove('is-open');
+    overlay.classList.remove('is-open');
     body.classList.remove('menu-open');
-    hamburger.setAttribute('aria-expanded', 'false');
+    overlay.setAttribute('aria-hidden', 'true');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
   }
-
   function toggleMenu() {
-    var willOpen = !nav.classList.contains('is-open');
-    hamburger.classList.toggle('is-open', willOpen);
-    nav.classList.toggle('is-open', willOpen);
-    body.classList.toggle('menu-open', willOpen);
-    // スクリーンリーダー向けに開閉状態を伝える
-    hamburger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    if (overlay.classList.contains('is-open')) closeMenu();
+    else openMenu();
   }
 
-  if (hamburger) {
-    hamburger.addEventListener('click', toggleMenu);
-  }
+  if (toggle) toggle.addEventListener('click', toggleMenu);
 
-  /* --------------------------------------------------------
-     4. メニュー内のリンクを押したらメニューを閉じる
-        （ページ内移動した後にメニューが開いたままになるのを防ぐ）
-  -------------------------------------------------------- */
-  nav.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', closeMenu);
+  // 背景（パネルの外）をクリックしたら閉じる
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeMenu();
   });
-
-  // 画面を広げてPC表示になったらメニュー状態をリセット
-  window.addEventListener('resize', function () {
-    if (window.innerWidth > 767) closeMenu();
+  // メニュー内のリンクを押したら閉じる
+  overlay.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+  // Escキーで閉じる
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
   });
 
   /* --------------------------------------------------------
      3. スクロールで要素をふわっと表示する（reveal）
-        data-reveal が付いた要素が画面に入ったら .is-visible を付与
-        → CSS側でフェードイン
   -------------------------------------------------------- */
   var revealTargets = document.querySelectorAll('[data-reveal]');
 
-  // IntersectionObserver が使えるブラウザなら効率的に監視
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target); // 一度表示したら監視終了
+          observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.12,        // 12%見えたら発火
-      rootMargin: '0px 0px -8% 0px'
-    });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
     revealTargets.forEach(function (el) { observer.observe(el); });
   } else {
-    // 古いブラウザ向けのフォールバック：すべて表示
     revealTargets.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
   /* --------------------------------------------------------
-     5. 現在地に合わせてナビを光らせる（スクロールスパイ）
-        各セクションが画面中央付近に来たら、対応するナビに .is-active
-  -------------------------------------------------------- */
-  var sections = document.querySelectorAll('main section[id]');
-  var navLinks = nav.querySelectorAll('.nav__link');
-
-  if ('IntersectionObserver' in window && navLinks.length) {
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var id = entry.target.getAttribute('id');
-          navLinks.forEach(function (link) {
-            var match = link.getAttribute('href') === '#' + id;
-            link.classList.toggle('is-active', match);
-          });
-        }
-      });
-    }, { rootMargin: '-45% 0px -45% 0px' });
-
-    sections.forEach(function (sec) { spy.observe(sec); });
-  }
-
-  /* --------------------------------------------------------
-     6. 画像の保険（フォールバック）
-        images/ フォルダの写真がまだ無い場合でも、
+     4. 画像の保険（フォールバック）
+        images/ の写真がまだ無い場合でも、
         「画像が壊れたアイコン」ではなく仮画像を表示する。
-        → 写真をアップロードすれば自動で本物に切り替わります。
   -------------------------------------------------------- */
   document.querySelectorAll('img[src^="images/"]').forEach(function (img) {
     img.addEventListener('error', function () {
-      // 二重に発火しないよう、一度だけ差し替える
       if (img.dataset.fallback) return;
       img.dataset.fallback = '1';
       img.src = 'https://placehold.co/1200x800/e7e3dc/b3a896?text=FORT';

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+============================================================
+  株式会社FORT / LINEUP（商品ラインナップ）ページ
+  ------------------------------------------------------------
+  ・3つの商品（FORT STYLE / PRO / DESIGN）を詳しく紹介します
+  ・各商品は <section class="product"> ... </section> です
+============================================================
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>商品ラインナップ｜建売・規格・自由設計｜株式会社FORT（岡山・倉敷・福山）</title>
+  <meta name="description" content="株式会社FORTの3つの商品ラインナップ。建売住宅「FORT STYLE」、規格・セミオーダー住宅「FORT PRO」、自由設計「FORT DESIGN」。予算とご希望に合わせて選べる家づくりをご提案します。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.example-fort.co.jp/lineup.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="商品ラインナップ｜株式会社FORT">
+  <meta property="og:description" content="建売・規格・自由設計の3つから、あなたらしい家づくりを選べます。">
+  <meta property="og:image" content="images/ldk.jpg">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <a href="index.html" class="header__logo" aria-label="株式会社FORT トップへ">FORT</a>
+      <button class="menu-toggle" id="menuToggle" type="button"
+              aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-toggle__txt">MENU</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="subhero">
+      <div class="subhero__media">
+        <img src="images/ldk.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
+        <div class="subhero__overlay"></div>
+      </div>
+      <div class="container subhero__inner">
+        <p class="subhero__eyebrow" data-reveal>LINEUP</p>
+        <h1 class="subhero__title" data-reveal>あなたらしい家づくりを選ぶ。</h1>
+        <nav class="breadcrumb" aria-label="現在地">
+          <a href="index.html">HOME</a><span>／</span><span>LINEUP</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="page-lead" data-reveal>
+          FORTには、ご予算やご希望のかたちに合わせて選べる3つの商品があります。<br>
+          どれを選んでも、FORTらしいデザインと性能はそのまま。
+          あなたの家づくりに、ちょうどいい答えを見つけてください。
+        </p>
+
+        <!-- ▼ 商品1：FORT STYLE -->
+        <article class="product" id="fort-style">
+          <figure class="product__figure" data-reveal>
+            <img src="images/exterior.jpg" alt="FORT STYLEの住まい" loading="lazy" decoding="async">
+          </figure>
+          <div data-reveal>
+            <h2 class="product__name">FORT STYLE</h2>
+            <span class="product__type">建売住宅</span>
+            <p class="product__text">
+              土地・建物・外構まで含めて、わかりやすい価格設定。
+              FORTらしいデザイン性と暮らしやすさを大切にした、すぐに住める住まいです。
+            </p>
+            <ul class="product__features">
+              <li>土地＋建物＋外構の総額がわかりやすい</li>
+              <li>完成した住まいを見てから決められる安心感</li>
+              <li>打ち合わせの手間が少なく、スピーディに入居可能</li>
+            </ul>
+            <a href="index.html#reserve" class="btn btn--accent">この商品について相談する</a>
+          </div>
+        </article>
+
+        <!-- ▼ 商品2：FORT PRO -->
+        <article class="product" id="fort-pro">
+          <figure class="product__figure" data-reveal>
+            <img src="images/hero.jpg" alt="FORT PROの住まい" loading="lazy" decoding="async">
+          </figure>
+          <div data-reveal>
+            <h2 class="product__name">FORT PRO</h2>
+            <span class="product__type">規格・セミオーダー住宅 ／ スタンダードモデル</span>
+            <p class="product__text">
+              人気の間取りをベースに、自分たちらしくカスタマイズできる住まい。
+              性能・デザイン・価格のバランスを重視した、FORTのスタンダードモデルです。
+            </p>
+            <ul class="product__features">
+              <li>実績のある間取りベースで、失敗しにくい</li>
+              <li>内装・設備を選んで“自分たちらしく”できる</li>
+              <li>コストと自由度のバランスがちょうどいい</li>
+            </ul>
+            <a href="index.html#reserve" class="btn btn--accent">この商品について相談する</a>
+          </div>
+        </article>
+
+        <!-- ▼ 商品3：FORT DESIGN -->
+        <article class="product" id="fort-design">
+          <figure class="product__figure" data-reveal>
+            <img src="images/kitchen-view.jpg" alt="FORT DESIGNの住まい" loading="lazy" decoding="async">
+          </figure>
+          <div data-reveal>
+            <h2 class="product__name">FORT DESIGN</h2>
+            <span class="product__type">自由設計</span>
+            <p class="product__text">
+              理想の暮らしをゼロから形にする住まい。
+              土地条件やライフスタイルに合わせた、完全自由設計でつくりあげます。
+            </p>
+            <ul class="product__features">
+              <li>間取り・デザインを一からプランニング</li>
+              <li>変形地や狭小地など、難しい土地にも対応</li>
+              <li>設計士とつくる、世界にひとつの住まい</li>
+            </ul>
+            <a href="index.html#reserve" class="btn btn--accent">この商品について相談する</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="reserve section" id="reserve">
+      <div class="reserve__bg">
+        <img src="images/hero.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="reserve__overlay"></div>
+      </div>
+      <div class="container reserve__inner">
+        <p class="section__label section__label--light" data-reveal>RESERVE &amp; CONTACT</p>
+        <h2 class="section__title section__title--light" data-reveal>どの商品が合うか、一緒に考えます。</h2>
+        <p class="reserve__lead" data-reveal>「うちの場合はどれ？」も大歓迎。スタッフがご予算とご希望をうかがいます。</p>
+        <ul class="reserve__actions" data-reveal>
+          <li><a href="event.html" class="btn btn--accent btn--block">見学会予約</a></li>
+          <li><a href="event.html" class="btn btn--accent btn--block">モデルハウス予約</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">資料請求</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo">FORT</p>
+        <p class="footer__copy-text">性能か、デザインか。<br>その選択をしなくていい家づくり。</p>
+      </div>
+      <nav class="footer__nav" aria-label="フッターメニュー">
+        <ul class="footer__list">
+          <li><a href="index.html#concept">CONCEPT</a></li>
+          <li><a href="index.html#why">WHY FORT</a></li>
+          <li><a href="works.html">WORKS</a></li>
+          <li><a href="lineup.html">LINEUP</a></li>
+          <li><a href="event.html">EVENT</a></li>
+          <li><a href="staff.html">STAFF</a></li>
+          <li><a href="company.html">COMPANY</a></li>
+          <li><a href="index.html#news">NEWS</a></li>
+          <li><a href="index.html#reserve">RESERVE</a></li>
+        </ul>
+      </nav>
+      <div class="footer__info">
+        <p>株式会社FORT</p>
+        <p>岡山県・倉敷市・福山市エリアで家づくりを行っています。</p>
+        <p>TEL：000-000-0000（9:00〜18:00 / 水曜定休）</p>
+      </div>
+    </div>
+    <p class="footer__copyright">© 2026 FORT Inc. All Rights Reserved.</p>
+  </footer>
+
+  <div class="floating-cta">
+    <a href="event.html" class="floating-cta__btn floating-cta__btn--ghost">見学会予約</a>
+    <a href="index.html#reserve" class="floating-cta__btn floating-cta__btn--accent">資料請求・相談</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

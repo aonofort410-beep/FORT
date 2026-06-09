@@ -123,4 +123,19 @@ document.addEventListener('DOMContentLoaded', function () {
     sections.forEach(function (sec) { spy.observe(sec); });
   }
 
+  /* --------------------------------------------------------
+     6. 画像の保険（フォールバック）
+        images/ フォルダの写真がまだ無い場合でも、
+        「画像が壊れたアイコン」ではなく仮画像を表示する。
+        → 写真をアップロードすれば自動で本物に切り替わります。
+  -------------------------------------------------------- */
+  document.querySelectorAll('img[src^="images/"]').forEach(function (img) {
+    img.addEventListener('error', function () {
+      // 二重に発火しないよう、一度だけ差し替える
+      if (img.dataset.fallback) return;
+      img.dataset.fallback = '1';
+      img.src = 'https://placehold.co/1200x800/e7e3dc/b3a896?text=FORT';
+    });
+  });
+
 });

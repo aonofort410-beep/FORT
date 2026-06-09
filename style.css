@@ -1,3 +1,6 @@
+/* ロゴ用のスラブセリフ体フォントを読み込み（FORTロゴの雰囲気に合わせる） */
+@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&display=swap");
+
 /* ============================================================
    株式会社FORT ブランドサイト / スタイルシート
    ------------------------------------------------------------
@@ -43,6 +46,7 @@
   /* フォント */
   --font-sans:  "Noto Sans JP", system-ui, sans-serif;
   --font-serif: "Noto Serif JP", serif;
+  --font-logo:  "Zilla Slab", "Noto Serif JP", serif; /* FORTロゴ用のスラブセリフ体 */
 }
 
 /* ============================================================
@@ -194,12 +198,25 @@ ul { list-style: none; }
 }
 
 .header__logo {
-  font-family: var(--font-serif);
-  font-size: 26px;
+  display: inline-flex;
+  flex-direction: column;
+  font-family: var(--font-logo);
+  font-size: 25px;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.34em;
+  line-height: 1;
   color: var(--c-white);
   transition: color .4s;
+}
+/* ロゴ下の「OKAYAMA・FUKUYAMA」 */
+.header__logo::after {
+  content: "OKAYAMA・FUKUYAMA";
+  font-family: var(--font-sans);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  margin-top: 5px;
+  opacity: .85;
 }
 /* スクロール後はロゴを黒に */
 .header.is-scrolled .header__logo { color: var(--c-black); }
@@ -651,10 +668,22 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
   padding-bottom: 40px;
 }
 .footer__logo {
-  font-family: var(--font-serif);
+  font-family: var(--font-logo);
   font-size: 26px; font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.32em;
+  margin-bottom: 6px;
+}
+/* フッターロゴ下の「OKAYAMA・FUKUYAMA」 */
+.footer__logo::after {
+  content: "OKAYAMA・FUKUYAMA";
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  margin-top: 6px;
   margin-bottom: 12px;
+  color: #b8b2a8;
 }
 .footer__copy-text { font-size: 13px; line-height: 1.9; color: #b8b2a8; }
 .footer__list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }

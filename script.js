@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
     +       '<a class="btn btn--accent" href="index.html#reserve">来場予約・お問い合わせ</a>'
     +       '<a class="btn btn--outline btn--outline-light" href="index.html#reserve">資料請求</a>'
     +     '</div>'
-    +     '<p class="gmenu__company">株式会社FORT｜岡山・倉敷・福山エリアの家づくり<br>TEL 000-000-0000（9:00〜18:00 / 水曜定休）</p>'
+    +     '<p class="gmenu__company">株式会社FORT｜岡山・倉敷・福山エリアの家づくり<br>岡山スタジオ 086-236-9600 ／ 福山スタジオ 084-982-7404（9:00〜18:00 / 水曜定休）</p>'
     +   '</div>'
     + '</div>';
   body.appendChild(overlay);

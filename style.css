@@ -1031,6 +1031,32 @@ body.menu-open { overflow: hidden; }
 }
 .map-frame img { width: 100%; height: 100%; object-fit: cover; }
 
+/* --- スタジオ（拠点）カード --- */
+.studio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+.studio-card__name {
+  font-family: var(--font-serif);
+  font-size: 19px; font-weight: 600; color: var(--c-black);
+  margin: 18px 0 8px; letter-spacing: 0.04em;
+}
+.studio-card__addr { font-size: 13.5px; color: var(--t-sub); line-height: 1.9; }
+.studio-card .map-frame { margin-top: 0; }
+
+/* スタジオ案内ページの基本情報リスト */
+.info-list { display: grid; gap: 12px; margin: 18px 0 24px; }
+.info-list div {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 14px;
+  font-size: 14px;
+  align-items: baseline;
+}
+.info-list dt { font-weight: 700; color: var(--c-black); }
+.info-list dd { color: var(--t-sub); line-height: 1.8; }
+
 /* 代表メッセージ */
 .message__inner { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: center; }
 .message__figure { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
@@ -1047,4 +1073,5 @@ body.menu-open { overflow: hidden; }
   .company-table div { grid-template-columns: 220px 1fr; gap: 24px; align-items: baseline; }
   .schedule__item { grid-template-columns: auto 1fr; align-items: center; }
   .message__inner { grid-template-columns: 0.8fr 1.2fr; gap: 48px; }
+  .studio-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
 }

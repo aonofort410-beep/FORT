@@ -41,11 +41,16 @@
 
 ---
 
-## 会社概要ページ（company.html）の写真
+## 会社概要・スタジオページの写真
 
 | ファイル名 | 使われる場所 |
 |---|---|
-| `company-message.jpg` | 代表メッセージの写真（推奨 800×600px） |
-| `company-map.jpg` | アクセスの地図（Googleマップのiframeに差し替え可） |
+| `company-message.jpg` | 会社概要：代表メッセージの写真（推奨 800×600px） |
+| `studio-okayama.jpg` | スタジオ案内：岡山スタジオの写真（推奨 1200×800px） |
+| `studio-fukuyama.jpg` | スタジオ案内：福山スタジオの写真（推奨 1200×800px） |
+| `map-okayama.jpg` | 岡山スタジオの地図（GoogleマップのiframeでもOK） |
+| `map-fukuyama.jpg` | 福山スタジオの地図（GoogleマップのiframeでもOK） |
 
 > 未配置の間は「FORT」の仮画像が表示されます。
+> 地図は画像でなく、Googleマップの「埋め込みコード(iframe)」を該当の `<img>` と
+> 差し替えると、実際に動かせる地図になります。

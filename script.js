@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { en: 'WORKS',    ja: '施工事例',           href: 'works.html' },
     { en: 'LINEUP',   ja: '商品ラインナップ',   href: 'lineup.html' },
     { en: 'EVENT',    ja: '見学会・イベント',   href: 'event.html' },
+    { en: 'STUDIO',   ja: 'スタジオ・モデルハウス', href: 'studio.html' },
     { en: 'STAFF',    ja: 'スタッフ紹介',       href: 'staff.html' },
     { en: 'NEWS',     ja: 'お知らせ',           href: 'index.html#news' },
     { en: 'COMPANY',  ja: '会社概要',           href: 'company.html' },

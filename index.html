@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<!--
+============================================================
+  株式会社FORT ブランドサイト / TOPページ
+  ------------------------------------------------------------
+  ・このファイルがページ本体（構造）です
+  ・見た目は style.css、動きは script.js で管理しています
+  ・写真はすべて仮画像（placehold.co）です。
+    画像を差し替えるときは <img> の src を書き換えてください。
+============================================================
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <!-- スマホ最優先のレスポンシブ設定 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== SEO / AIO 用のメタ情報 ===== -->
+  <title>株式会社FORT｜性能か、デザインか。その選択をしなくていい家づくり｜岡山・倉敷・福山の注文住宅</title>
+  <meta name="description" content="株式会社FORTは岡山・倉敷・福山エリアの工務店です。営業・設計・工務がひとつのチームとなり、性能とデザインを高いレベルで両立する住まいをご提案。施工事例・見学会予約・資料請求はこちらから。">
+  <meta name="keywords" content="FORT,フォート,注文住宅,工務店,岡山,倉敷,福山,デザイン住宅,高性能住宅,建売,規格住宅,自由設計">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.example-fort.co.jp/">
+
+  <!-- ===== OGP（SNSでシェアされた時の表示） ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="株式会社FORT｜性能か、デザインか。その選択をしなくていい家づくり">
+  <meta property="og:description" content="営業・設計・工務がひとつのチームとなり、性能とデザインを高いレベルで両立する住まいをご提案します。">
+  <meta property="og:image" content="https://placehold.co/1200x630/1f1d1a/efe9e1?text=FORT">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- ===== 構造化データ（検索エンジン・AIに会社情報を伝える） ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "株式会社FORT",
+    "description": "性能とデザインを両立する岡山・倉敷・福山エリアの工務店",
+    "areaServed": ["岡山県", "倉敷市", "福山市"],
+    "slogan": "性能か、デザインか。その選択をしなくていい家づくり。"
+  }
+  </script>
+
+  <!-- 自作のCSSを読み込み -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts（見出し=Noto Serif、本文=Noto Sans） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       ヘッダー（常に上部に固定されるナビゲーション）
+  ============================================================ -->
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <!-- ロゴ（テキストロゴ。画像にする場合はここを<img>に） -->
+      <a href="#hero" class="header__logo" aria-label="株式会社FORT トップへ">FORT</a>
+
+      <!-- PC用ナビゲーション -->
+      <nav class="nav" id="nav" aria-label="メインメニュー">
+        <ul class="nav__list">
+          <li><a href="#concept" class="nav__link">CONCEPT</a></li>
+          <li><a href="#why" class="nav__link">WHY FORT</a></li>
+          <li><a href="#works" class="nav__link">WORKS</a></li>
+          <li><a href="#lineup" class="nav__link">LINEUP</a></li>
+          <li><a href="#event" class="nav__link">EVENT</a></li>
+          <li><a href="#news" class="nav__link">NEWS</a></li>
+        </ul>
+        <!-- スマホメニュー内に表示するCTA -->
+        <a href="#reserve" class="nav__cta btn btn--accent">来場予約・お問い合わせ</a>
+      </nav>
+
+      <!-- スマホ用ハンバーガーボタン -->
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         1. ファーストビュー（ヒーロー）
+         背景に大きな写真/動画が入る想定
+    ============================================================ -->
+    <section class="hero" id="hero">
+      <div class="hero__media">
+        <!-- IMAGE: ヒーロー背景（推奨 2400×1500px・上質な住宅外観や内観）
+             動画にする場合は<img>を<video>に差し替えてください -->
+        <img class="hero__img"
+             src="https://placehold.co/2400x1500/2a2722/3a352f?text=FORT+HOUSE"
+             alt="FORTが手がける住まいの外観" loading="eager" decoding="async">
+        <div class="hero__overlay"></div>
+      </div>
+
+      <div class="hero__inner container">
+        <p class="hero__eyebrow" data-reveal>FORT｜岡山・倉敷・福山の家づくり</p>
+        <!-- ページで最も重要な見出し（h1は1ページに1つ） -->
+        <h1 class="hero__title" data-reveal>
+          性能か、デザインか。<br>
+          <span class="hero__title-accent">その選択をしなくていい</span>家づくり。
+        </h1>
+        <p class="hero__lead" data-reveal>
+          営業・設計・工務がひとつのチームとなり、<br>
+          性能とデザインを高いレベルで両立する住まいをご提案します。
+        </p>
+        <div class="hero__actions" data-reveal>
+          <a href="#works" class="btn btn--light">施工事例を見る</a>
+          <a href="#event" class="btn btn--accent">見学会を予約する</a>
+        </div>
+      </div>
+
+      <!-- スクロールを促すアイコン -->
+      <a href="#concept" class="hero__scroll" aria-label="下へスクロール">
+        <span class="hero__scroll-line"></span>
+        <span class="hero__scroll-text">SCROLL</span>
+      </a>
+    </section>
+
+    <!-- ============================================================
+         2. CONCEPT
+    ============================================================ -->
+    <section class="concept section" id="concept">
+      <div class="container concept__inner">
+        <p class="section__label" data-reveal>CONCEPT</p>
+        <h2 class="section__title" data-reveal>暮らしをデザインする。</h2>
+        <p class="concept__text" data-reveal>
+          FORTがつくるのは、単なる建物ではありません。<br>
+          家族の時間、趣味の時間、友人との時間。<br>
+          その先にある暮らしをデザインします。
+        </p>
+      </div>
+      <!-- IMAGE: コンセプトを象徴する暮らしの写真（推奨 1600×900px） -->
+      <figure class="concept__figure" data-reveal>
+        <img src="https://placehold.co/1600x900/e9e4dc/c9bfb1?text=LIFE+with+FORT"
+             alt="FORTの住まいで過ごす家族の暮らし" loading="lazy" decoding="async">
+      </figure>
+    </section>
+
+    <!-- ============================================================
+         3. WHY FORT（選ばれる理由を4枚のカードで）
+    ============================================================ -->
+    <section class="why section section--gray" id="why">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>WHY FORT</p>
+          <h2 class="section__title" data-reveal>FORTが選ばれる理由</h2>
+        </header>
+
+        <ul class="why__grid">
+          <!-- カード1 -->
+          <li class="why__card" data-reveal>
+            <span class="why__num">01</span>
+            <h3 class="why__card-title">性能とデザインの両立</h3>
+            <p class="why__card-text">
+              耐震・断熱などの住宅性能と、洗練されたデザイン。
+              どちらかを諦めるのではなく、両方を高いレベルで実現します。
+            </p>
+          </li>
+          <!-- カード2 -->
+          <li class="why__card" data-reveal>
+            <span class="why__num">02</span>
+            <h3 class="why__card-title">営業・設計・工務のチーム体制</h3>
+            <p class="why__card-text">
+              担当者まかせにせず、各分野のプロがチームで連携。
+              安心して家づくりを進められる体制を整えています。
+            </p>
+          </li>
+          <!-- カード3 -->
+          <li class="why__card" data-reveal>
+            <span class="why__num">03</span>
+            <h3 class="why__card-title">手の届く価格で実現</h3>
+            <p class="why__card-text">
+              ムダを省いた家づくりで、デザインと性能を
+              手の届く価格に。予算に合わせたご提案が可能です。
+            </p>
+          </li>
+          <!-- カード4 -->
+          <li class="why__card" data-reveal>
+            <span class="why__num">04</span>
+            <h3 class="why__card-title">建てた後も続く安心</h3>
+            <p class="why__card-text">
+              お引渡しはゴールではなくスタート。
+              定期点検やアフターサポートで、長く安心して暮らせます。
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. WORKS（施工事例を6件・写真主役のカード）
+    ============================================================ -->
+    <section class="works section" id="works">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>WORKS</p>
+          <h2 class="section__title" data-reveal>暮らしが見える施工事例</h2>
+        </header>
+
+        <ul class="works__grid">
+          <!-- 事例1 -->
+          <li class="works__card" data-reveal>
+            <a href="#" class="works__link">
+              <figure class="works__figure">
+                <!-- IMAGE: 施工事例写真（推奨 1000×750px） -->
+                <img src="https://placehold.co/1000x750/2c2a26/4a463f?text=WORKS+01"
+                     alt="中庭とつながるブラックモダンの家" loading="lazy" decoding="async">
+              </figure>
+              <div class="works__body">
+                <p class="works__cat">注文住宅</p>
+                <h3 class="works__card-title">中庭とつながるブラックモダンの家</h3>
+              </div>
+            </a>
+          </li>
+          <!-- 事例2 -->
+          <li class="works__card" data-reveal>
+            <a href="#" class="works__link">
+              <figure class="works__figure">
+                <img src="https://placehold.co/1000x750/d9d2c7/b3a896?text=WORKS+02"
+                     alt="家事ラク動線を追求した平屋" loading="lazy" decoding="async">
+              </figure>
+              <div class="works__body">
+                <p class="works__cat">平屋</p>
+                <h3 class="works__card-title">家事ラク動線を追求した平屋</h3>
+              </div>
+            </a>
+          </li>
+          <!-- 事例3 -->
+          <li class="works__card" data-reveal>
+            <a href="#" class="works__link">
+              <figure class="works__figure">
+                <img src="https://placehold.co/1000x750/3a3a3a/5e5e5e?text=WORKS+03"
+                     alt="景色を楽しむリゾートスタイルの家" loading="lazy" decoding="async">
+              </figure>
+              <div class="works__body">
+                <p class="works__cat">注文住宅</p>
+                <h3 class="works__card-title">景色を楽しむリゾートスタイルの家</h3>
+              </div>
+            </a>
+          </li>
+          <!-- 事例4 -->
+          <li class="works__card" data-reveal>
+            <a href="#" class="works__link">
+              <figure class="works__figure">
+                <img src="https://placehold.co/1000x750/e4ded4/c2b8a8?text=WORKS+04"
+                     alt="ホテルライクな二階建ての家" loading="lazy" decoding="async">
+              </figure>
+              <div class="works__body">
+                <p class="works__cat">二階建て</p>
+                <h3 class="works__card-title">ホテルライクな二階建ての家</h3>
+              </div>
+            </a>
+          </li>
+          <!-- 事例5 -->
+          <li class="works__card" data-reveal>
+            <a href="#" class="works__link">
+              <figure class="works__figure">
+                <img src="https://placehold.co/1000x750/cfc6b8/a89c87?text=WORKS+05"
+                     alt="家族が集まる開放的なLDKの家" loading="lazy" decoding="async">
+              </figure>
+              <div class="works__body">
+                <p class="works__cat">注文住宅</p>
+                <h3 class="works__card-title">家族が集まる開放的なLDKの家</h3>
+              </div>
+            </a>
+          </li>
+          <!-- 事例6 -->
+          <li class="works__card" data-reveal>
+            <a href="#" class="works__link">
+              <figure class="works__figure">
+                <img src="https://placehold.co/1000x750/302e2a/514d45?text=WORKS+06"
+                     alt="外からの視線を抑えたプライベートハウス" loading="lazy" decoding="async">
+              </figure>
+              <div class="works__body">
+                <p class="works__cat">プライベート設計</p>
+                <h3 class="works__card-title">外からの視線を抑えたプライベートハウス</h3>
+              </div>
+            </a>
+          </li>
+        </ul>
+
+        <div class="section__more" data-reveal>
+          <a href="#" class="btn btn--outline">もっと施工事例を見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. LINEUP（3つの商品）
+    ============================================================ -->
+    <section class="lineup section section--gray" id="lineup">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>LINEUP</p>
+          <h2 class="section__title" data-reveal>あなたらしい家づくりを選ぶ。</h2>
+        </header>
+
+        <ul class="lineup__grid">
+          <!-- 商品1：FORT STYLE -->
+          <li class="lineup__card" data-reveal>
+            <figure class="lineup__figure">
+              <!-- IMAGE: 商品イメージ（推奨 900×600px） -->
+              <img src="https://placehold.co/900x600/d7cfc2/b0a48f?text=FORT+STYLE"
+                   alt="FORT STYLEの住まい" loading="lazy" decoding="async">
+            </figure>
+            <div class="lineup__body">
+              <h3 class="lineup__name">FORT STYLE</h3>
+              <p class="lineup__type">建売住宅</p>
+              <p class="lineup__text">
+                土地・建物・外構まで含めて、わかりやすい価格設定。
+                FORTらしいデザイン性と暮らしやすさを大切にした住まい。
+              </p>
+              <a href="#reserve" class="lineup__link">詳しく見る</a>
+            </div>
+          </li>
+          <!-- 商品2：FORT PRO -->
+          <li class="lineup__card lineup__card--featured" data-reveal>
+            <span class="lineup__badge">STANDARD</span>
+            <figure class="lineup__figure">
+              <img src="https://placehold.co/900x600/2c2a26/4a463f?text=FORT+PRO"
+                   alt="FORT PROの住まい" loading="lazy" decoding="async">
+            </figure>
+            <div class="lineup__body">
+              <h3 class="lineup__name">FORT PRO</h3>
+              <p class="lineup__type">規格・セミオーダー住宅</p>
+              <p class="lineup__text">
+                人気の間取りをベースに、自分たちらしくカスタマイズ。
+                性能・デザイン・価格のバランスを重視したスタンダードモデル。
+              </p>
+              <a href="#reserve" class="lineup__link">詳しく見る</a>
+            </div>
+          </li>
+          <!-- 商品3：FORT DESIGN -->
+          <li class="lineup__card" data-reveal>
+            <figure class="lineup__figure">
+              <img src="https://placehold.co/900x600/3a3a3a/5e5e5e?text=FORT+DESIGN"
+                   alt="FORT DESIGNの住まい" loading="lazy" decoding="async">
+            </figure>
+            <div class="lineup__body">
+              <h3 class="lineup__name">FORT DESIGN</h3>
+              <p class="lineup__type">自由設計</p>
+              <p class="lineup__text">
+                理想の暮らしをゼロから形にする住まい。
+                土地条件やライフスタイルに合わせた完全自由設計。
+              </p>
+              <a href="#reserve" class="lineup__link">詳しく見る</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. EVENT
+    ============================================================ -->
+    <section class="event section" id="event">
+      <div class="container event__inner">
+        <div class="event__text">
+          <p class="section__label" data-reveal>EVENT</p>
+          <h2 class="section__title section__title--left" data-reveal>実際の住まいを体感する。</h2>
+          <p class="event__lead" data-reveal>
+            写真やカタログだけでは伝わらない、空気感や心地よさ。
+            FORTの家を、ぜひその目で、その肌で感じてください。
+          </p>
+          <ul class="event__list" data-reveal>
+            <li class="event__item">
+              <h3 class="event__item-title">完成見学会</h3>
+              <p class="event__item-text">実際に建てられたお客様の家を見学いただけます。</p>
+            </li>
+            <li class="event__item">
+              <h3 class="event__item-title">モデルハウス見学</h3>
+              <p class="event__item-text">FORTのデザインと性能を、いつでもご体感いただけます。</p>
+            </li>
+          </ul>
+          <div data-reveal>
+            <a href="#reserve" class="btn btn--accent">見学会を予約する</a>
+          </div>
+        </div>
+        <figure class="event__figure" data-reveal>
+          <!-- IMAGE: 見学会・モデルハウスの写真（推奨 1000×1200px） -->
+          <img src="https://placehold.co/1000x1200/e4ded4/c2b8a8?text=EVENT"
+               alt="FORTの完成見学会・モデルハウス" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. FORT FAMILY（お客様の声・引渡し）
+    ============================================================ -->
+    <section class="family section section--gray" id="family">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>FORT FAMILY</p>
+          <h2 class="section__title" data-reveal>建てた後も続くご縁。</h2>
+          <p class="section__desc" data-reveal>
+            家づくりは、お引渡しからが本当のスタート。
+            FORTで家を建てたご家族の声をご紹介します。
+          </p>
+        </header>
+
+        <ul class="family__grid">
+          <!-- 声1 -->
+          <li class="family__card" data-reveal>
+            <figure class="family__figure">
+              <!-- IMAGE: 引渡し写真・お客様写真（推奨 800×600px） -->
+              <img src="https://placehold.co/800x600/d9d2c7/b3a896?text=FAMILY+01"
+                   alt="FORTで家を建てたご家族" loading="lazy" decoding="async">
+            </figure>
+            <div class="family__body">
+              <p class="family__voice">「性能もデザインも妥協したくない、というワガママに、チーム全員で応えてくれました。」</p>
+              <p class="family__name">岡山市 ／ K様邸</p>
+            </div>
+          </li>
+          <!-- 声2 -->
+          <li class="family__card" data-reveal>
+            <figure class="family__figure">
+              <img src="https://placehold.co/800x600/cfc6b8/a89c87?text=FAMILY+02"
+                   alt="FORTで家を建てたご家族" loading="lazy" decoding="async">
+            </figure>
+            <div class="family__body">
+              <p class="family__voice">「初めての家づくりで不安でしたが、いつでも相談できる安心感がありました。」</p>
+              <p class="family__name">倉敷市 ／ S様邸</p>
+            </div>
+          </li>
+          <!-- 声3 -->
+          <li class="family__card" data-reveal>
+            <figure class="family__figure">
+              <img src="https://placehold.co/800x600/e4ded4/c2b8a8?text=FAMILY+03"
+                   alt="FORTで家を建てたご家族" loading="lazy" decoding="async">
+            </figure>
+            <div class="family__body">
+              <p class="family__voice">「住み始めてからの点検も丁寧で、ずっと付き合っていける会社だと感じます。」</p>
+              <p class="family__name">福山市 ／ T様邸</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. STAFF（チーム体制）
+    ============================================================ -->
+    <section class="staff section" id="staff">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>STAFF</p>
+          <h2 class="section__title" data-reveal>チームでつくる家づくり。</h2>
+          <p class="section__desc" data-reveal>
+            営業・設計・工務・総務。それぞれのプロがひとつのチームとなり、
+            あなたの家づくりを最初から最後まで支えます。
+          </p>
+        </header>
+
+        <ul class="staff__grid">
+          <li class="staff__card" data-reveal>
+            <figure class="staff__figure">
+              <!-- IMAGE: スタッフ写真（推奨 600×600px・正方形） -->
+              <img src="https://placehold.co/600x600/d7cfc2/b0a48f?text=SALES"
+                   alt="営業スタッフ" loading="lazy" decoding="async">
+            </figure>
+            <h3 class="staff__role">営業</h3>
+            <p class="staff__text">あなたの想いや予算を丁寧にうかがい、家づくりの入口をサポートします。</p>
+          </li>
+          <li class="staff__card" data-reveal>
+            <figure class="staff__figure">
+              <img src="https://placehold.co/600x600/2c2a26/4a463f?text=DESIGN"
+                   alt="設計スタッフ" loading="lazy" decoding="async">
+            </figure>
+            <h3 class="staff__role">設計</h3>
+            <p class="staff__text">暮らしやすさとデザインを両立した、あなただけのプランを描きます。</p>
+          </li>
+          <li class="staff__card" data-reveal>
+            <figure class="staff__figure">
+              <img src="https://placehold.co/600x600/3a3a3a/5e5e5e?text=WORKS"
+                   alt="工務スタッフ" loading="lazy" decoding="async">
+            </figure>
+            <h3 class="staff__role">工務</h3>
+            <p class="staff__text">確かな施工管理で、図面の上の理想を現実の住まいへと形にします。</p>
+          </li>
+          <li class="staff__card" data-reveal>
+            <figure class="staff__figure">
+              <img src="https://placehold.co/600x600/cfc6b8/a89c87?text=SUPPORT"
+                   alt="総務スタッフ" loading="lazy" decoding="async">
+            </figure>
+            <h3 class="staff__role">総務</h3>
+            <p class="staff__text">資金計画や各種手続きなど、見えない部分から家づくりを支えます。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. NEWS（お知らせ）
+    ============================================================ -->
+    <section class="news section section--gray" id="news">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>NEWS</p>
+          <h2 class="section__title" data-reveal>お知らせ</h2>
+        </header>
+
+        <ul class="news__list" data-reveal>
+          <li class="news__item">
+            <a href="#" class="news__link">
+              <time class="news__date" datetime="2026-06-07">2026.06.07</time>
+              <span class="news__tag news__tag--event">見学会</span>
+              <span class="news__title">【倉敷市】中庭のあるブラックモダンの家 完成見学会を開催します</span>
+            </a>
+          </li>
+          <li class="news__item">
+            <a href="#" class="news__link">
+              <time class="news__date" datetime="2026-06-01">2026.06.01</time>
+              <span class="news__tag news__tag--works">施工事例</span>
+              <span class="news__title">施工事例に「家事ラク動線を追求した平屋」を追加しました</span>
+            </a>
+          </li>
+          <li class="news__item">
+            <a href="#" class="news__link">
+              <time class="news__date" datetime="2026-05-20">2026.05.20</time>
+              <span class="news__tag news__tag--info">お知らせ</span>
+              <span class="news__title">夏季休業期間のご案内</span>
+            </a>
+          </li>
+          <li class="news__item">
+            <a href="#" class="news__link">
+              <time class="news__date" datetime="2026-05-10">2026.05.10</time>
+              <span class="news__tag news__tag--event">見学会</span>
+              <span class="news__title">【福山市】モデルハウス見学 予約受付を開始しました</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="section__more" data-reveal>
+          <a href="#" class="btn btn--outline">お知らせ一覧を見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         10. RESERVE（来場予約・資料請求などのCTA）
+    ============================================================ -->
+    <section class="reserve section" id="reserve">
+      <div class="reserve__bg">
+        <!-- IMAGE: 背景写真（推奨 2000×1200px・暗めの上質な住宅写真） -->
+        <img src="https://placehold.co/2000x1200/24221f/35312b?text=FORT"
+             alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="reserve__overlay"></div>
+      </div>
+
+      <div class="container reserve__inner">
+        <p class="section__label section__label--light" data-reveal>RESERVE &amp; CONTACT</p>
+        <h2 class="section__title section__title--light" data-reveal>まずはお気軽にご相談ください。</h2>
+        <p class="reserve__lead" data-reveal>
+          家づくりのこと、土地のこと、予算のこと。
+          どんな小さなことでも、お気軽にご相談ください。
+        </p>
+
+        <ul class="reserve__actions" data-reveal>
+          <li><a href="#" class="btn btn--accent btn--block">見学会予約</a></li>
+          <li><a href="#" class="btn btn--accent btn--block">モデルハウス予約</a></li>
+          <li><a href="#" class="btn btn--light btn--block">資料請求</a></li>
+          <li><a href="#" class="btn btn--light btn--block">お問い合わせ</a></li>
+        </ul>
+
+        <p class="reserve__tel" data-reveal>
+          お電話でのお問い合わせ：<a href="tel:0000000000">000-000-0000</a>
+          <span class="reserve__tel-note">（受付時間 9:00〜18:00 / 水曜定休）</span>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       フッター
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo">FORT</p>
+        <p class="footer__copy-text">性能か、デザインか。<br>その選択をしなくていい家づくり。</p>
+      </div>
+
+      <nav class="footer__nav" aria-label="フッターメニュー">
+        <ul class="footer__list">
+          <li><a href="#concept">CONCEPT</a></li>
+          <li><a href="#why">WHY FORT</a></li>
+          <li><a href="#works">WORKS</a></li>
+          <li><a href="#lineup">LINEUP</a></li>
+          <li><a href="#event">EVENT</a></li>
+          <li><a href="#news">NEWS</a></li>
+          <li><a href="#reserve">RESERVE</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__info">
+        <p>株式会社FORT</p>
+        <p>岡山県・倉敷市・福山市エリアで家づくりを行っています。</p>
+        <p>TEL：000-000-0000（9:00〜18:00 / 水曜定休）</p>
+      </div>
+    </div>
+
+    <p class="footer__copyright">© 2026 FORT Inc. All Rights Reserved.</p>
+  </footer>
+
+  <!-- ============================================================
+       スマホで常に表示する固定CTA（画面下に追従）
+  ============================================================ -->
+  <div class="floating-cta">
+    <a href="#event" class="floating-cta__btn floating-cta__btn--ghost">見学会予約</a>
+    <a href="#reserve" class="floating-cta__btn floating-cta__btn--accent">資料請求・相談</a>
+  </div>
+
+  <!-- 動きを管理するJavaScriptを読み込み -->
+  <script src="script.js"></script>
+</body>
+</html>

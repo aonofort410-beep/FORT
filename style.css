@@ -1,0 +1,732 @@
+/* ============================================================
+   株式会社FORT ブランドサイト / スタイルシート
+   ------------------------------------------------------------
+   構成：
+   1. カラーや余白などの基本設定（CSS変数）
+   2. リセット・共通ベース
+   3. 共通パーツ（ボタン・見出し・コンテナ）
+   4. ヘッダー / ナビ
+   5. 各セクション（ヒーロー〜RESERVE）
+   6. フッター・固定CTA
+   7. アニメーション
+   8. レスポンシブ（PC向けの上書き）
+
+   ※ 色を変えたいときは下の :root の値を書き換えるだけでOKです。
+============================================================ */
+
+/* ============================================================
+   1. 基本設定（CSS変数）
+============================================================ */
+:root {
+  /* ベースカラー */
+  --c-white:    #ffffff;
+  --c-light:    #f5f3ef; /* 明るいグレー（背景） */
+  --c-gray:     #e7e3dc; /* ライトグレー */
+  --c-charcoal: #3a3733; /* チャコールグレー（本文） */
+  --c-black:    #1f1d1a; /* ブラック */
+
+  /* アクセントカラー（ベージュ・グレージュ・木目系） */
+  --c-beige:    #c8b9a1; /* ベージュ */
+  --c-greige:   #b3a896; /* グレージュ */
+  --c-wood:     #a07d55; /* 木目系 */
+
+  /* テキスト色 */
+  --t-main:  #2c2a26;
+  --t-sub:   #6f6a62;
+  --t-light: #f3efe9;
+
+  /* レイアウト */
+  --container: 1160px;   /* コンテンツの最大幅 */
+  --radius: 10px;        /* 角丸 */
+  --shadow: 0 18px 40px rgba(31, 29, 26, 0.08);
+
+  /* フォント */
+  --font-sans:  "Noto Sans JP", system-ui, sans-serif;
+  --font-serif: "Noto Serif JP", serif;
+}
+
+/* ============================================================
+   2. リセット・共通ベース
+============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--t-main);
+  background: var(--c-white);
+  line-height: 1.9;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; width: 100%; height: auto; }
+
+a { color: inherit; text-decoration: none; transition: opacity .3s, color .3s; }
+ul { list-style: none; }
+
+/* ============================================================
+   3. 共通パーツ
+============================================================ */
+
+/* 中央寄せのコンテナ（左右に余白を確保） */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* セクション共通の上下余白（余白を大きめに） */
+.section { padding-block: 72px; }
+.section--gray { background: var(--c-light); }
+
+/* セクション見出しのまとまり */
+.section__head { text-align: center; margin-bottom: 44px; }
+
+/* 英語の小見出しラベル */
+.section__label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  color: var(--c-wood);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.section__label--light { color: var(--c-beige); }
+
+/* 日本語の大見出し（h2） */
+.section__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 5.2vw, 2.3rem);
+  line-height: 1.5;
+  color: var(--c-black);
+  letter-spacing: 0.04em;
+}
+.section__title--left { text-align: left; }
+.section__title--light { color: var(--c-white); }
+
+/* 見出し下の説明文 */
+.section__desc {
+  margin-top: 18px;
+  color: var(--t-sub);
+  font-size: 14px;
+}
+
+/* 「もっと見る」などのボタン配置 */
+.section__more { text-align: center; margin-top: 44px; }
+
+/* --- ボタン共通 --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 30px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform .3s, background .3s, color .3s, border-color .3s, box-shadow .3s;
+  text-align: center;
+}
+.btn:hover { transform: translateY(-3px); }
+
+/* アクセント（最も目立たせるCTA：木目色） */
+.btn--accent {
+  background: var(--c-wood);
+  color: var(--c-white);
+  box-shadow: 0 10px 24px rgba(160, 125, 85, 0.35);
+}
+.btn--accent:hover { background: #8c6a45; }
+
+/* 明るいボタン（白背景） */
+.btn--light {
+  background: var(--c-white);
+  color: var(--c-black);
+  border-color: var(--c-white);
+}
+.btn--light:hover { background: var(--c-light); }
+
+/* 枠線だけのボタン */
+.btn--outline {
+  background: transparent;
+  color: var(--c-black);
+  border-color: var(--c-charcoal);
+}
+.btn--outline:hover { background: var(--c-black); color: var(--c-white); border-color: var(--c-black); }
+
+/* 幅いっぱいのボタン */
+.btn--block { width: 100%; }
+
+/* ============================================================
+   4. ヘッダー / ナビゲーション
+============================================================ */
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  transition: background .4s, box-shadow .4s, padding .4s;
+  padding-block: 18px;
+}
+/* スクロールすると背景が白くなる（JSで .is-scrolled を付与） */
+.header.is-scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  padding-block: 12px;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--c-white);
+  transition: color .4s;
+}
+/* スクロール後・スマホメニュー表示時はロゴを黒に */
+.header.is-scrolled .header__logo { color: var(--c-black); }
+
+/* --- PCナビ（スマホでは下のメディアクエリで隠す） --- */
+.nav { display: flex; align-items: center; gap: 28px; }
+.nav__list { display: flex; gap: 26px; }
+.nav__link {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-white);
+  position: relative;
+}
+.header.is-scrolled .nav__link { color: var(--c-charcoal); }
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 0; height: 1px;
+  background: var(--c-wood);
+  transition: width .3s;
+}
+.nav__link:hover::after,
+.nav__link.is-active::after { width: 100%; }
+.nav__link.is-active { color: var(--c-wood); }
+
+.nav__cta { padding: 11px 22px; font-size: 13px; }
+
+/* --- ハンバーガー（スマホ用・初期は隠す） --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 30px; height: 30px;
+  background: none; border: none;
+  cursor: pointer;
+  z-index: 110;
+}
+.hamburger span {
+  display: block;
+  width: 26px; height: 2px;
+  background: var(--c-white);
+  transition: transform .3s, opacity .3s, background .3s;
+}
+.header.is-scrolled .hamburger span { background: var(--c-black); }
+
+/* メニューが開いている時の× 印 */
+.hamburger.is-open span { background: var(--c-black); }
+.hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================================================
+   5. 各セクション
+============================================================ */
+
+/* --- 1. ヒーロー（ファーストビュー） --- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  color: var(--c-white);
+  overflow: hidden;
+}
+.hero__media { position: absolute; inset: 0; z-index: -2; }
+.hero__img { width: 100%; height: 100%; object-fit: cover; }
+/* 写真の上にうっすら暗い膜をかけて文字を読みやすく */
+.hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(31,29,26,.55) 0%, rgba(31,29,26,.35) 50%, rgba(31,29,26,.6) 100%);
+}
+.hero__inner { padding-top: 90px; }
+.hero__eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+.hero__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 8vw, 3.6rem);
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 20px rgba(0,0,0,.25);
+}
+.hero__title-accent { color: var(--c-beige); }
+.hero__lead {
+  margin-top: 22px;
+  font-size: clamp(13px, 3.6vw, 16px);
+  line-height: 1.95;
+  font-weight: 400;
+  text-shadow: 0 1px 10px rgba(0,0,0,.3);
+}
+.hero__actions {
+  margin-top: 38px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* スクロール案内 */
+.hero__scroll {
+  position: absolute;
+  left: 50%; bottom: 26px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.hero__scroll-line {
+  width: 1px; height: 46px;
+  background: rgba(255,255,255,.6);
+  position: relative;
+  overflow: hidden;
+}
+/* 線の中を白い点が流れるアニメーション */
+.hero__scroll-line::after {
+  content: "";
+  position: absolute; top: -50%; left: 0;
+  width: 100%; height: 50%;
+  background: var(--c-white);
+  animation: scrollFlow 2s infinite;
+}
+.hero__scroll-text {
+  font-size: 10px; letter-spacing: 0.2em;
+  writing-mode: vertical-rl;
+}
+
+/* --- 2. CONCEPT --- */
+.concept { text-align: center; }
+.concept__text {
+  margin-top: 4px;
+  color: var(--t-sub);
+  font-size: clamp(14px, 3.8vw, 16px);
+  line-height: 2.2;
+}
+.concept__figure {
+  margin-top: 48px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.concept__figure img { aspect-ratio: 16 / 9; object-fit: cover; }
+
+/* --- 3. WHY FORT --- */
+.why__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+.why__card {
+  background: var(--c-white);
+  border-radius: var(--radius);
+  padding: 32px 26px;
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--c-beige);
+  transition: transform .35s, box-shadow .35s;
+}
+.why__card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(31,29,26,.12); }
+.why__num {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  color: var(--c-greige);
+  font-weight: 600;
+  line-height: 1;
+}
+.why__card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--c-black);
+  margin: 14px 0 10px;
+  line-height: 1.6;
+}
+.why__card-text { font-size: 13.5px; color: var(--t-sub); line-height: 1.95; }
+
+/* --- 4. WORKS --- */
+.works__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+.works__card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--c-white);
+  box-shadow: var(--shadow);
+}
+.works__figure { overflow: hidden; }
+.works__figure img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+.works__link:hover .works__figure img { transform: scale(1.06); }
+.works__body { padding: 18px 20px 22px; }
+.works__cat {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--c-wood);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.works__card-title { font-size: 15.5px; font-weight: 700; color: var(--c-black); line-height: 1.6; }
+
+/* --- 5. LINEUP --- */
+.lineup__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+.lineup__card {
+  position: relative;
+  background: var(--c-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .35s;
+}
+.lineup__card:hover { transform: translateY(-6px); }
+/* 真ん中のおすすめモデルだけ枠を強調 */
+.lineup__card--featured { outline: 2px solid var(--c-wood); }
+.lineup__badge {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  background: var(--c-wood); color: var(--c-white);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  padding: 5px 12px; border-radius: 999px;
+}
+.lineup__figure img { aspect-ratio: 3 / 2; object-fit: cover; }
+.lineup__body { padding: 24px 22px 28px; }
+.lineup__name {
+  font-family: var(--font-serif);
+  font-size: 22px; font-weight: 600;
+  color: var(--c-black); letter-spacing: 0.08em;
+}
+.lineup__type {
+  display: inline-block;
+  margin: 8px 0 14px;
+  font-size: 12px; font-weight: 700;
+  color: var(--c-wood);
+  background: var(--c-light);
+  padding: 4px 12px; border-radius: 999px;
+}
+.lineup__text { font-size: 13.5px; color: var(--t-sub); line-height: 1.95; }
+.lineup__link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 13px; font-weight: 700;
+  color: var(--c-black);
+  border-bottom: 1px solid var(--c-wood);
+  padding-bottom: 3px;
+}
+.lineup__link:hover { color: var(--c-wood); }
+
+/* --- 6. EVENT --- */
+.event__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: center;
+}
+.event__lead { margin: 18px 0 24px; color: var(--t-sub); font-size: 14px; }
+.event__list { display: grid; gap: 16px; margin-bottom: 30px; }
+.event__item {
+  background: var(--c-light);
+  border-left: 3px solid var(--c-wood);
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+.event__item-title { font-size: 16px; font-weight: 700; color: var(--c-black); margin-bottom: 4px; }
+.event__item-text { font-size: 13px; color: var(--t-sub); }
+.event__figure { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.event__figure img { aspect-ratio: 4 / 5; object-fit: cover; }
+
+/* --- 7. FORT FAMILY --- */
+.family__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+.family__card {
+  background: var(--c-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.family__figure img { aspect-ratio: 4 / 3; object-fit: cover; }
+.family__body { padding: 22px 22px 26px; }
+.family__voice {
+  font-size: 14.5px;
+  color: var(--c-charcoal);
+  line-height: 1.95;
+  font-weight: 500;
+}
+.family__name {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--t-sub);
+  letter-spacing: 0.06em;
+}
+
+/* --- 8. STAFF --- */
+.staff__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.staff__card { text-align: center; }
+.staff__figure {
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.staff__figure img { aspect-ratio: 1 / 1; object-fit: cover; }
+.staff__role {
+  font-family: var(--font-serif);
+  font-size: 17px; font-weight: 600;
+  color: var(--c-black);
+  margin-bottom: 6px;
+}
+.staff__text { font-size: 12.5px; color: var(--t-sub); line-height: 1.85; }
+
+/* --- 9. NEWS --- */
+.news__list {
+  background: var(--c-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.news__item { border-bottom: 1px solid var(--c-gray); }
+.news__item:last-child { border-bottom: none; }
+.news__link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 22px;
+}
+.news__link:hover { background: var(--c-light); }
+.news__date { font-size: 12px; color: var(--t-sub); letter-spacing: 0.05em; }
+.news__tag {
+  font-size: 10.5px; font-weight: 700;
+  color: var(--c-white);
+  padding: 3px 10px; border-radius: 999px;
+}
+.news__tag--event { background: var(--c-wood); }
+.news__tag--works { background: var(--c-greige); }
+.news__tag--info  { background: var(--c-charcoal); }
+.news__title { font-size: 13.5px; color: var(--c-charcoal); flex: 1 1 100%; line-height: 1.6; }
+
+/* --- 10. RESERVE --- */
+.reserve { position: relative; color: var(--c-white); overflow: hidden; padding-block: 84px; }
+.reserve__bg { position: absolute; inset: 0; z-index: -2; }
+.reserve__bg img { width: 100%; height: 100%; object-fit: cover; }
+.reserve__overlay { position: absolute; inset: 0; background: rgba(31,29,26,.7); }
+.reserve__inner { text-align: center; }
+.reserve__lead { margin: 18px auto 32px; max-width: 600px; font-size: 14px; color: var(--t-light); }
+.reserve__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  max-width: 520px;
+  margin-inline: auto;
+}
+.reserve__tel { margin-top: 30px; font-size: 14px; }
+.reserve__tel a { font-family: var(--font-serif); font-size: 22px; font-weight: 600; letter-spacing: 0.04em; }
+.reserve__tel-note { display: block; font-size: 11px; color: var(--t-light); margin-top: 4px; }
+
+/* ============================================================
+   6. フッター / 固定CTA
+============================================================ */
+.footer { background: var(--c-black); color: var(--t-light); padding-top: 56px; }
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 34px;
+  padding-bottom: 40px;
+}
+.footer__logo {
+  font-family: var(--font-serif);
+  font-size: 26px; font-weight: 600;
+  letter-spacing: 0.18em;
+  margin-bottom: 12px;
+}
+.footer__copy-text { font-size: 13px; line-height: 1.9; color: #b8b2a8; }
+.footer__list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.footer__list a { font-size: 13px; letter-spacing: 0.08em; }
+.footer__list a:hover { color: var(--c-beige); }
+.footer__info p { font-size: 12.5px; line-height: 1.9; color: #b8b2a8; }
+.footer__copyright {
+  text-align: center;
+  font-size: 11px;
+  color: #7a756c;
+  padding: 22px 0;
+  border-top: 1px solid #34312c;
+}
+
+/* スマホ画面下に追従する固定CTA */
+.floating-cta {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 90;
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 -4px 20px rgba(0,0,0,.08);
+}
+.floating-cta__btn {
+  flex: 1;
+  text-align: center;
+  padding: 13px 8px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 999px;
+}
+.floating-cta__btn--ghost { background: var(--c-light); color: var(--c-black); }
+.floating-cta__btn--accent { background: var(--c-wood); color: var(--c-white); }
+
+/* ============================================================
+   7. アニメーション（スクロールで要素がふわっと出る）
+============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ヒーローのスクロール線アニメ */
+@keyframes scrollFlow {
+  0%   { top: -50%; }
+  100% { top: 100%; }
+}
+
+/* 「動きを減らす」設定の人にはアニメを無効化（アクセシビリティ配慮） */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   8. レスポンシブ（画面が広いPC向けに上書き）
+   ※ ベースはスマホ。ここから画面サイズごとに調整します。
+============================================================ */
+
+/* --- タブレット以上（768px〜） --- */
+@media (min-width: 768px) {
+  body { font-size: 16px; }
+  .section { padding-block: 100px; }
+
+  /* WHY：2列 */
+  .why__grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+  /* WORKS：2列 */
+  .works__grid { grid-template-columns: repeat(2, 1fr); gap: 26px; }
+
+  /* LINEUP：3列 */
+  .lineup__grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+  /* EVENT：写真とテキストを横並び */
+  .event__inner { grid-template-columns: 1.1fr 0.9fr; gap: 50px; }
+
+  /* FAMILY：3列 */
+  .family__grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* STAFF：4列 */
+  .staff__grid { grid-template-columns: repeat(4, 1fr); gap: 22px; }
+
+  /* RESERVE：ボタン横4列 */
+  .reserve__actions { grid-template-columns: repeat(4, 1fr); max-width: 880px; }
+
+  /* フッター：3カラム */
+  .footer__inner { grid-template-columns: 1.4fr 1fr 1.2fr; }
+
+  /* スマホ用の固定CTAはPCでは不要 */
+  .floating-cta { display: none; }
+}
+
+/* --- PC（1024px〜） --- */
+@media (min-width: 1024px) {
+  .section { padding-block: 120px; }
+
+  /* WHY：4列に */
+  .why__grid { grid-template-columns: repeat(4, 1fr); }
+
+  /* WORKS：3列に */
+  .works__grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
+
+  .hero__lead { font-size: 17px; }
+}
+
+/* ============================================================
+   スマホ専用：ナビをスライドメニューに切り替え
+   （767px以下で適用）
+============================================================ */
+@media (max-width: 767px) {
+  .hamburger { display: flex; }
+
+  /* 普段は画面右外に隠しておき、開いたらスライドイン */
+  .nav {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(80%, 320px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 80px 40px;
+    background: var(--c-white);
+    box-shadow: -10px 0 40px rgba(0,0,0,.12);
+    transform: translateX(100%);
+    transition: transform .4s ease;
+  }
+  .nav.is-open { transform: translateX(0); }
+  .nav__list { flex-direction: column; gap: 24px; }
+  .nav__link { color: var(--c-charcoal); font-size: 15px; }
+  .nav__cta { width: 100%; }
+
+  /* メニューを開いた時、背景がスクロールしないように */
+  body.menu-open { overflow: hidden; }
+
+  /* 固定CTAの分だけ本文下に余白を足す */
+  body { padding-bottom: 64px; }
+}

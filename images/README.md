@@ -21,3 +21,20 @@
 
 > ※ 写真の形式は `.jpg` を想定しています。`.png` などで入れたい場合は教えてください。
 > ※ 1枚あたり 2〜3MB 以下に圧縮すると、サイトの表示が速くなります。
+
+---
+
+## スタッフページ（staff.html）の写真
+
+スタッフの顔写真は **正方形（推奨 800×800px）** がきれいに表示されます。
+未配置の間は「FORT」の仮画像が出ます。
+
+| ファイル名 | 部門 |
+|---|---|
+| `staff-sales-01.jpg` / `staff-sales-02.jpg` | 営業 |
+| `staff-design-01.jpg` / `staff-design-02.jpg` | 設計 |
+| `staff-construction-01.jpg` / `staff-construction-02.jpg` | 工務 |
+| `staff-admin-01.jpg` | 総務 |
+
+> スタッフを増やすときは、`staff.html` の `<li class="member"> … </li>` を
+> コピー＆ペーストして、名前・肩書き・紹介文・画像ファイル名を書き換えてください。

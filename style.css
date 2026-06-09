@@ -730,3 +730,132 @@ ul { list-style: none; }
   /* 固定CTAの分だけ本文下に余白を足す */
   body { padding-bottom: 64px; }
 }
+
+/* ============================================================
+   9. STAFF（スタッフ紹介）ページ専用スタイル
+   ※ このページ(staff.html)でだけ使うパーツです
+============================================================ */
+
+/* --- 下層ページ用の小さめのヒーロー --- */
+.subhero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 46vh;
+  padding-top: 90px;
+  color: var(--c-white);
+  overflow: hidden;
+}
+.subhero__media { position: absolute; inset: 0; z-index: -2; }
+.subhero__media img { width: 100%; height: 100%; object-fit: cover; }
+.subhero__overlay { position: absolute; inset: 0; background: rgba(31,29,26,.55); }
+.subhero__inner { padding-block: 40px; }
+.subhero__eyebrow {
+  font-size: 12px; letter-spacing: 0.28em; font-weight: 700;
+  color: var(--c-beige); margin-bottom: 12px;
+}
+.subhero__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 6vw, 2.8rem);
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 16px rgba(0,0,0,.3);
+}
+/* パンくずリスト */
+.breadcrumb { margin-top: 16px; font-size: 12px; letter-spacing: 0.06em; }
+.breadcrumb a { color: var(--c-beige); }
+.breadcrumb a:hover { opacity: .7; }
+.breadcrumb span { margin: 0 8px; color: rgba(255,255,255,.7); }
+
+/* --- イントロ --- */
+.staff-intro { text-align: center; }
+.staff-intro__text {
+  margin-top: 6px;
+  color: var(--t-sub);
+  font-size: clamp(14px, 3.6vw, 16px);
+  line-height: 2.2;
+}
+
+/* --- チームの強み（3カード） --- */
+.teampoint__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+.teampoint__card {
+  background: var(--c-white);
+  border-radius: var(--radius);
+  padding: 30px 26px;
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--c-beige);
+}
+.teampoint__num {
+  font-family: var(--font-serif);
+  font-size: 28px; font-weight: 600;
+  color: var(--c-greige); line-height: 1;
+}
+.teampoint__title { font-size: 16px; font-weight: 700; color: var(--c-black); margin: 12px 0 8px; }
+.teampoint__text { font-size: 13.5px; color: var(--t-sub); line-height: 1.95; }
+
+/* --- 部門の見出し --- */
+.dept__head {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--c-gray);
+}
+.dept__label { font-size: 12px; letter-spacing: 0.28em; font-weight: 700; color: var(--c-wood); margin-bottom: 10px; }
+.dept__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  color: var(--c-black);
+  letter-spacing: 0.06em;
+}
+.dept__desc { margin-top: 12px; color: var(--t-sub); font-size: 14px; }
+
+/* --- スタッフ個人カード --- */
+.member__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+.member {
+  background: var(--c-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .35s, box-shadow .35s;
+}
+.member:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(31,29,26,.12); }
+.member__figure { overflow: hidden; }
+.member__figure img { aspect-ratio: 1 / 1; object-fit: cover; transition: transform .6s ease; }
+.member:hover .member__figure img { transform: scale(1.05); }
+.member__body { padding: 20px 22px 26px; }
+.member__role {
+  display: inline-block;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--c-wood);
+  background: var(--c-light);
+  padding: 4px 12px; border-radius: 999px;
+  margin-bottom: 12px;
+}
+.member__name {
+  font-family: var(--font-serif);
+  font-size: 20px; font-weight: 600;
+  color: var(--c-black); letter-spacing: 0.04em;
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+}
+.member__name-en {
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 500;
+  color: var(--t-sub); letter-spacing: 0.08em;
+}
+.member__msg { margin-top: 14px; font-size: 13.5px; color: var(--c-charcoal); line-height: 1.95; }
+
+/* --- タブレット以上 --- */
+@media (min-width: 768px) {
+  .teampoint__grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .member__grid { grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .subhero { min-height: 52vh; }
+}

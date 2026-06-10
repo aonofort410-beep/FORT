@@ -61,13 +61,23 @@
       <!-- ロゴ（テキストロゴ。画像にする場合はここを<img>に） -->
       <a href="index.html" class="header__logo" aria-label="株式会社FORT トップへ">FORT</a>
 
-      <!-- 右上の「MENU」ボタン（全ページの目次を開く）
-           ※ 目次の中身は script.js が自動で作ります -->
-      <button class="menu-toggle" id="menuToggle" type="button"
-              aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
-        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
-        <span class="menu-toggle__txt">MENU</span>
-      </button>
+      <div class="header__right">
+        <!-- トップページ用のナビ項目（PCで表示・スマホでは目次MENUに集約） -->
+        <nav class="header-nav" aria-label="主要メニュー">
+          <a href="#concept" class="header-nav__link">FORTの考え方</a>
+          <a href="#works" class="header-nav__link">施工事例</a>
+          <a href="#event" class="header-nav__link">イベント</a>
+          <a href="#lineup" class="header-nav__link">ラインナップ</a>
+        </nav>
+
+        <!-- 右上の「MENU」ボタン（全ページの目次を開く）
+             ※ 目次の中身は script.js が自動で作ります -->
+        <button class="menu-toggle" id="menuToggle" type="button"
+                aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
+          <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="menu-toggle__txt">MENU</span>
+        </button>
+      </div>
     </div>
   </header>
 

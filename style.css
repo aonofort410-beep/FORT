@@ -223,6 +223,42 @@ ul { list-style: none; }
 /* 目次メニューを開いている間は、暗い背景に合わせてロゴを白に戻す */
 body.menu-open .header__logo { color: var(--c-white); }
 
+/* ヘッダー右側のまとまり（ナビ＋MENUボタン） */
+.header__right { display: flex; align-items: center; gap: 30px; }
+
+/* --- トップページ用ナビ項目（PCで表示） --- */
+.header-nav { display: none; align-items: center; gap: 28px; }
+.header-nav__link {
+  position: relative;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--c-white);
+  white-space: nowrap;
+  transition: color .3s;
+}
+/* ホバー時に下線がのびる */
+.header-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 0; height: 2px;
+  background: var(--c-wood);
+  transition: width .3s;
+}
+.header-nav__link:hover::after { width: 100%; }
+/* スクロール後は文字を黒に、目次を開いている間は白に */
+.header.is-scrolled .header-nav__link { color: var(--c-charcoal); }
+.header.is-scrolled .header-nav__link:hover { color: var(--c-wood); }
+body.menu-open .header-nav__link { color: var(--c-white); }
+/* 目次メニューが開いている間はナビを隠す（重なり防止） */
+body.menu-open .header-nav { opacity: 0; pointer-events: none; }
+
+/* 画面が広いときだけナビ項目を表示。狭いときは MENU(目次) に集約 */
+@media (min-width: 1000px) {
+  .header-nav { display: flex; }
+}
+
 /* --- 右上の「MENU」ボタン（目次を開く） --- */
 .menu-toggle {
   display: flex;

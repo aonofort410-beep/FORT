@@ -1272,7 +1272,7 @@ body.menu-open { overflow: hidden; }
 ============================================================ */
 .flow__list {
   list-style: none;
-  max-width: 760px;
+  max-width: 840px;
   margin-inline: auto;
   display: grid;
   gap: 0;
@@ -1280,36 +1280,57 @@ body.menu-open { overflow: hidden; }
 .flow__step {
   position: relative;
   display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 20px;
-  padding: 22px 0;
+  grid-template-columns: 92px 1fr;
+  gap: 26px;
+  padding: 30px 10px 30px 6px;
   align-items: start;
+  border-top: 1px solid var(--c-gray);
+  transition: background .35s ease;
 }
-/* ステップ同士をつなぐ縦線 */
-.flow__step::before {
-  content: "";
-  position: absolute;
-  left: 31px; top: 56px; bottom: -10px;
-  width: 2px;
-  background: var(--c-gray);
-}
-.flow__step:last-child::before { display: none; }
+.flow__step:last-child { border-bottom: 1px solid var(--c-gray); }
+/* ホバーでゴールドの淡い光がスッと差す */
+.flow__step:hover { background: linear-gradient(90deg, rgba(196,163,94,.10), rgba(196,163,94,0) 70%); }
+.flow__step:hover .flow__num { transform: translateY(-2px); }
+
+/* STEP + 大きなゴールドのグラデ数字 */
 .flow__num {
-  position: relative;
-  z-index: 1;
-  width: 64px; height: 64px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  background: var(--c-white);
-  border: 1.5px solid var(--c-gold);
+  display: block;
   font-family: var(--font-serif);
-  font-size: 19px; font-weight: 600; color: var(--c-gold-deep);
+  font-size: clamp(2.6rem, 8vw, 3.6rem);
+  font-weight: 600;
+  line-height: .85;
+  letter-spacing: 0.01em;
+  color: var(--c-gold-deep); /* 非対応ブラウザ用フォールバック */
+  background: linear-gradient(155deg, #d9bd83 0%, #b2914c 45%, #8c6f31 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform .35s ease;
+}
+.flow__num::before {
+  content: "STEP";
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--c-greige);
+  -webkit-text-fill-color: var(--c-greige);
+  margin-bottom: 8px;
 }
 .flow__title {
-  font-size: 16px; font-weight: 700; color: var(--c-black);
-  margin: 14px 0 6px;
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  font-weight: 600;
+  color: var(--c-black);
+  letter-spacing: 0.04em;
+  margin: 4px 0 8px;
 }
-.flow__text { font-size: 13.5px; color: var(--t-sub); line-height: 1.9; }
+.flow__text { font-size: 13.5px; color: var(--t-sub); line-height: 1.95; }
+
+@media (min-width: 768px) {
+  .flow__step { grid-template-columns: 130px 1fr; gap: 40px; align-items: center; padding-block: 34px; }
+}
 
 /* --- タブレット以上：下層ページの2カラム化 --- */
 @media (min-width: 768px) {

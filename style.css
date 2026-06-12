@@ -859,7 +859,7 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
   .family__grid { grid-template-columns: repeat(3, 1fr); }
 
   /* STAFF：4列 */
-  .staff__grid { grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .staff__grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
 
   /* RESERVE：ボタン横4列 */
   .reserve__actions { grid-template-columns: repeat(4, 1fr); max-width: 880px; }

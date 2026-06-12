@@ -63,7 +63,7 @@
 | `staff-nakao.jpg` | 中尾 実樹 |
 | `staff-sakamoto.jpg` | 坂本 薫 |
 | `staff-yamashita.jpg` | 山下 唯 |
-| `staff-furubayashi.jpg` | 古林 真希 |
+| `staff-kobayashi.jpg` | 古林 真希 |
 | `staff-matsukawa.jpg` | 松川 琳斗 |
 | `staff-murakami.jpg` | 村上 芽生 |
 | `staff-nagataki.jpg` | 長瀧 渉 |

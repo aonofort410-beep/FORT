@@ -1,0 +1,13 @@
+/*
+Theme Name: FORT
+Theme URI: https://www.fort410.com/
+Author: 株式会社FORT
+Description: 株式会社FORT 公式サイト用のオリジナルテーマ。施工事例・スタッフ・イベント・お知らせを管理画面から編集できます。グレー基調＋ゴールドの差し色のモダンデザイン。
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.5
+Requires PHP: 7.4
+Text Domain: fort
+*/
+
+/* 実際のスタイルは assets/style.css を functions.php で読み込んでいます。 */

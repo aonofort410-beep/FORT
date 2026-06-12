@@ -1435,3 +1435,61 @@ body.menu-open { overflow: hidden; }
   .plan__media { grid-template-columns: 1.1fr 1fr; gap: 16px; align-items: start; padding: 22px 24px 0; }
   .plan__persp img { aspect-ratio: 4 / 3; }
 }
+
+/* ============================================================
+   17. 施工事例 詳細ページ（WORKS DETAIL）
+============================================================ */
+/* スペック表 */
+.case-spec {
+  max-width: 880px;
+  margin: 0 auto 8px;
+  border-top: 1px solid var(--c-gray);
+}
+.case-spec div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 14px;
+  padding: 15px 4px;
+  border-bottom: 1px solid var(--c-gray);
+}
+.case-spec dt { font-size: 12px; font-weight: 700; color: var(--c-gold-deep); letter-spacing: 0.06em; }
+.case-spec dd { font-size: 14px; color: var(--c-charcoal); line-height: 1.7; }
+.case-spec dd strong { font-family: var(--font-serif); font-size: 17px; color: var(--c-black); }
+
+/* 写真ギャラリー */
+.case-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.case-gallery figure { overflow: hidden; border-radius: var(--radius); }
+.case-gallery img {
+  width: 100%; height: 100%;
+  aspect-ratio: 4 / 3; object-fit: cover;
+  transition: transform .6s ease;
+}
+.case-gallery figure:hover img { transform: scale(1.04); }
+.case-gallery .is-wide { grid-column: 1 / -1; }
+.case-gallery .is-wide img { aspect-ratio: 16 / 8; }
+
+/* 担当者コメント */
+.case-comment {
+  max-width: 760px; margin: 0 auto;
+  background: var(--c-white);
+  border-left: 3px solid var(--c-gold);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px 28px;
+}
+.case-comment__role { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--c-gold-deep); }
+.case-comment__name { font-family: var(--font-serif); font-size: 16px; color: var(--c-black); margin: 4px 0 12px; }
+.case-comment__text { font-size: 14px; color: var(--c-charcoal); line-height: 2; }
+
+/* 前後・一覧ナビ */
+.case-pager { text-align: center; margin-top: 8px; }
+
+@media (min-width: 768px) {
+  .case-spec { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; }
+  .case-spec div { grid-template-columns: 130px 1fr; }
+  .case-gallery { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+}

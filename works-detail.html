@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--
+============================================================
+  株式会社FORT / 施工事例 詳細ページ（テンプレート）
+  ------------------------------------------------------------
+  ・1つの施工事例を詳しく紹介するページの「型」です
+  ・事例ごとに複製して使えます（例：works-01.html, works-02.html …）
+    タイトル・スペック・写真・本文・担当コメントを書き換えてください
+  ・写真は images/ に置いて src を差し替え（未配置時は仮画像）
+============================================================
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>中庭とつながるブラックモダンの家｜施工事例｜株式会社FORT（岡山・倉敷・福山）</title>
+  <meta name="description" content="株式会社FORTの施工事例「中庭とつながるブラックモダンの家」（倉敷市・3LDK）。中庭で光と風を取り込みながら、プライバシーを守る自由設計の住まい。間取り・写真・担当者コメントをご紹介します。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.example-fort.co.jp/works-detail.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="中庭とつながるブラックモダンの家｜施工事例｜株式会社FORT">
+  <meta property="og:description" content="中庭で光と風を取り込む、プライバシーを守る自由設計の住まい。">
+  <meta property="og:image" content="images/hero.jpg">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <a href="index.html" class="header__logo" aria-label="株式会社FORT トップへ">FORT</a>
+      <button class="menu-toggle" id="menuToggle" type="button"
+              aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-toggle__txt">MENU</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 1. 事例のメインビジュアル -->
+    <section class="subhero">
+      <div class="subhero__media">
+        <img src="images/hero.jpg" alt="中庭とつながるブラックモダンの家 外観" loading="eager" decoding="async">
+        <div class="subhero__overlay"></div>
+      </div>
+      <div class="container subhero__inner">
+        <p class="subhero__eyebrow" data-reveal>WORKS ／ 注文住宅・倉敷市</p>
+        <h1 class="subhero__title" data-reveal>中庭とつながるブラックモダンの家</h1>
+        <nav class="breadcrumb" aria-label="現在地">
+          <a href="index.html">HOME</a><span>／</span><a href="works.html">WORKS</a><span>／</span><span>中庭とつながるブラックモダンの家</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 2. リード＋スペック -->
+    <section class="section">
+      <div class="container">
+        <p class="page-lead" data-reveal>
+          外からの視線をやわらかく遮りながら、住まいの中心に光と風を呼び込む中庭のある家。<br>
+          黒を基調とした端正な外観と、自由設計ならではの伸びやかな空間が魅力です。
+        </p>
+
+        <dl class="case-spec" data-reveal>
+          <div><dt>所在地</dt><dd>岡山県倉敷市</dd></div>
+          <div><dt>ご家族構成</dt><dd>ご夫婦＋お子さま2人</dd></div>
+          <div><dt>延床面積</dt><dd>105.00㎡（約32坪）</dd></div>
+          <div><dt>間取り</dt><dd>3LDK＋中庭</dd></div>
+          <div><dt>竣工</dt><dd>2025年</dd></div>
+          <div><dt>シリーズ</dt><dd>FORT DESIGN（自由設計）</dd></div>
+          <div><dt>構造・性能</dt><dd>耐震等級3／UA値0.46以下</dd></div>
+          <div><dt>参考価格帯</dt><dd><strong>2,500万円台〜</strong>（建物本体）</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 3. ストーリー（要望と設計のポイント） -->
+    <section class="section section--gray">
+      <div class="container">
+        <article class="product">
+          <figure class="product__figure" data-reveal>
+            <img src="images/ldk.jpg" alt="中庭につながるLDK" loading="lazy" decoding="async">
+          </figure>
+          <div data-reveal>
+            <span class="product__type">REQUEST ／ ご要望</span>
+            <h2 class="product__name">街中でも、開放的に暮らしたい。</h2>
+            <p class="product__text">
+              「街中の土地でも、人目を気にせずのびのび暮らしたい」というご要望。
+              そこで住まいの中心に中庭を設け、外に対しては閉じ、内に対しては大きく開く設計に。
+              LDKは中庭とひと続きになり、明るさと広がりを両立しています。
+            </p>
+          </div>
+        </article>
+
+        <article class="product" style="margin-top:56px;">
+          <figure class="product__figure" data-reveal>
+            <img src="images/kitchen-view.jpg" alt="家事ラク動線のキッチン" loading="lazy" decoding="async">
+          </figure>
+          <div data-reveal>
+            <span class="product__type">DESIGN ／ 設計のポイント</span>
+            <h2 class="product__name">性能も、妥協しない。</h2>
+            <p class="product__text">
+              デザインだけでなく、耐震等級3・高断熱の性能も標準で確保。
+              回遊できる家事動線や、たっぷりの収納など、暮らしやすさの工夫も随所に。
+              見た目の美しさと日々の快適さを、どちらも諦めない住まいになりました。
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. ギャラリー -->
+    <section class="section">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>GALLERY</p>
+          <h2 class="section__title" data-reveal>住まいの記録</h2>
+        </header>
+        <div class="case-gallery" data-reveal>
+          <figure class="is-wide"><img src="images/exterior.jpg" alt="外観" loading="lazy" decoding="async"></figure>
+          <figure><img src="images/ldk.jpg" alt="リビング" loading="lazy" decoding="async"></figure>
+          <figure><img src="images/kitchen-view.jpg" alt="キッチン" loading="lazy" decoding="async"></figure>
+          <figure><img src="images/niche.jpg" alt="ニッチ" loading="lazy" decoding="async"></figure>
+          <figure><img src="images/hero.jpg" alt="中庭" loading="lazy" decoding="async"></figure>
+          <figure><img src="images/exterior.jpg" alt="玄関" loading="lazy" decoding="async"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 担当者コメント -->
+    <section class="section section--gray">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>VOICE</p>
+          <h2 class="section__title" data-reveal>担当者より</h2>
+        </header>
+        <div class="case-comment" data-reveal>
+          <p class="case-comment__role">設計 ／ デザインコーディネーター</p>
+          <p class="case-comment__name">設計担当</p>
+          <p class="case-comment__text">
+            「外に閉じて内に開く」中庭の設計は、採光や通風のシミュレーションを重ねました。
+            黒い外観に対して、中庭まわりは木の温もりをプラス。コントラストが日々の暮らしを豊かにしてくれます。
+            お引渡しのとき、ご家族が中庭で笑っている姿が忘れられません。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CTA -->
+    <section class="reserve section" id="reserve">
+      <div class="reserve__bg">
+        <img src="images/exterior.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="reserve__overlay"></div>
+      </div>
+      <div class="container reserve__inner">
+        <p class="section__label section__label--light" data-reveal>RESERVE &amp; CONTACT</p>
+        <h2 class="section__title section__title--light" data-reveal>こんな住まいを、体感しませんか？</h2>
+        <p class="reserve__lead" data-reveal>写真では伝わらない空気感は、見学会でこそ感じていただけます。</p>
+        <ul class="reserve__actions" data-reveal>
+          <li><a href="event.html" class="btn btn--accent btn--block">見学会予約</a></li>
+          <li><a href="event.html" class="btn btn--accent btn--block">モデルハウス予約</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">資料請求</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. ほかの施工事例 -->
+    <section class="works section">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>OTHER WORKS</p>
+          <h2 class="section__title" data-reveal>ほかの施工事例</h2>
+        </header>
+        <ul class="works__grid">
+          <li class="works__card" data-reveal>
+            <a href="works-detail.html" class="works__link">
+              <figure class="works__figure"><img src="images/exterior.jpg" alt="家事ラク動線を追求した平屋" loading="lazy" decoding="async"></figure>
+              <div class="works__body">
+                <p class="works__cat">平屋 ／ 岡山市</p>
+                <h3 class="works__card-title">家事ラク動線を追求した平屋</h3>
+                <p class="works__price">建物本体<strong>2,000万円台〜</strong><span class="works__price-note">※参考価格帯</span></p>
+              </div>
+            </a>
+          </li>
+          <li class="works__card" data-reveal>
+            <a href="works-detail.html" class="works__link">
+              <figure class="works__figure"><img src="images/kitchen-view.jpg" alt="景色を楽しむリゾートスタイルの家" loading="lazy" decoding="async"></figure>
+              <div class="works__body">
+                <p class="works__cat">注文住宅 ／ 福山市</p>
+                <h3 class="works__card-title">景色を楽しむリゾートスタイルの家</h3>
+                <p class="works__price">建物本体<strong>2,800万円台〜</strong><span class="works__price-note">※参考価格帯</span></p>
+              </div>
+            </a>
+          </li>
+          <li class="works__card" data-reveal>
+            <a href="works-detail.html" class="works__link">
+              <figure class="works__figure"><img src="images/ldk.jpg" alt="ホテルライクな二階建ての家" loading="lazy" decoding="async"></figure>
+              <div class="works__body">
+                <p class="works__cat">二階建て ／ 倉敷市</p>
+                <h3 class="works__card-title">ホテルライクな二階建ての家</h3>
+                <p class="works__price">建物本体<strong>2,600万円台〜</strong><span class="works__price-note">※参考価格帯</span></p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <div class="section__more case-pager" data-reveal>
+          <a href="works.html" class="btn btn--outline">施工事例の一覧へ戻る</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo">FORT</p>
+        <p class="footer__copy-text">性能か、デザインか。<br>その選択をしなくていい家づくり。</p>
+      </div>
+      <nav class="footer__nav" aria-label="フッターメニュー">
+        <ul class="footer__list">
+          <li><a href="index.html#concept">CONCEPT</a></li>
+          <li><a href="index.html#why">WHY FORT</a></li>
+          <li><a href="works.html">WORKS</a></li>
+          <li><a href="feature.html">FEATURE</a></li>
+          <li><a href="performance.html">PERFORMANCE</a></li>
+          <li><a href="flow.html">FLOW</a></li>
+          <li><a href="lineup.html">LINEUP</a></li>
+          <li><a href="fort-pro.html">FORT PRO PLAN</a></li>
+          <li><a href="event.html">EVENT</a></li>
+          <li><a href="studio.html">STUDIO</a></li>
+          <li><a href="staff.html">STAFF</a></li>
+          <li><a href="company.html">COMPANY</a></li>
+        </ul>
+      </nav>
+      <div class="footer__info">
+        <p>株式会社FORT</p>
+        <p>岡山県・倉敷市・福山市エリアで家づくりを行っています。</p>
+        <p>TEL：086-236-9600（岡山）／ 084-982-7404（福山）</p>
+        <p>受付時間 9:00〜18:00 / 水曜定休</p>
+      </div>
+    </div>
+    <p class="footer__copyright">© 2026 FORT Inc. All Rights Reserved.</p>
+  </footer>
+
+  <div class="floating-cta">
+    <a href="event.html" class="floating-cta__btn floating-cta__btn--ghost">見学会予約</a>
+    <a href="index.html#reserve" class="floating-cta__btn floating-cta__btn--accent">資料請求・相談</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

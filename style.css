@@ -528,6 +528,26 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
   margin-bottom: 8px;
 }
 .works__card-title { font-size: 15.5px; font-weight: 700; color: var(--c-black); line-height: 1.6; }
+/* 施工事例のざっくり価格帯 */
+.works__price {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--c-gray);
+  font-size: 12px;
+  color: var(--t-sub);
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.works__price strong {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--c-wood);
+  letter-spacing: 0.02em;
+}
+.works__price .works__price-note { font-size: 10.5px; color: var(--c-greige); }
 
 /* --- 5. LINEUP --- */
 .lineup__grid {
@@ -768,6 +788,37 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
 [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ============================================================
+   ヒーロー：文字をゆっくり、雰囲気よく浮かび上がらせる演出
+   （data-reveal の標準よりも長め＋ぼかし＋順番に表示）
+============================================================ */
+.hero [data-reveal] {
+  opacity: 0;
+  transform: translateY(34px);
+  filter: blur(9px);
+  transition: none; /* 標準のフェードは使わず、下のアニメで制御 */
+  animation-name: heroReveal;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(.16, .72, .24, 1);
+  animation-fill-mode: forwards;
+}
+/* 1つずつ時間差で浮かび上がる */
+.hero__eyebrow { animation-delay: .4s; }
+.hero__title   { animation-delay: .9s; }
+.hero__lead    { animation-delay: 1.7s; }
+.hero__actions { animation-delay: 2.4s; }
+
+@keyframes heroReveal {
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* 背景写真がゆっくり寄りから落ち着く（奥行きのある雰囲気に） */
+.hero__img { animation: heroZoom 16s ease-out forwards; }
+@keyframes heroZoom {
+  from { transform: scale(1.09); }
+  to   { transform: scale(1); }
 }
 
 /* ヒーローのスクロール線アニメ */
@@ -1030,6 +1081,27 @@ body.menu-open { overflow: hidden; }
   background: var(--c-light); padding: 5px 14px; border-radius: 999px;
 }
 .product__text { color: var(--t-sub); font-size: 14.5px; line-height: 2; margin-bottom: 18px; }
+/* 商品の価格表示 */
+.product__price {
+  margin: 4px 0 18px;
+  padding: 14px 16px;
+  background: var(--c-light);
+  border-radius: 10px;
+  font-size: 12.5px;
+  color: var(--t-sub);
+}
+.product__price strong {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--c-wood);
+  margin-right: 4px;
+  letter-spacing: 0.02em;
+}
+.product__price .product__price-label { display: block; font-size: 11px; font-weight: 700; color: var(--c-black); margin-bottom: 4px; }
+/* ボタンを横並びに */
+.product__btns { display: flex; flex-wrap: wrap; gap: 12px; }
 .product__features { display: grid; gap: 10px; margin-bottom: 22px; }
 .product__features li {
   position: relative;
@@ -1212,4 +1284,117 @@ body.menu-open { overflow: hidden; }
   .message__inner { grid-template-columns: 0.8fr 1.2fr; gap: 48px; }
   .studio-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   .feature__grid { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+}
+
+/* ============================================================
+   13. 性能グレード比較表（PERFORMANCE）
+============================================================ */
+.spec-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.spec-note-scroll {
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--c-greige);
+  margin-bottom: 10px;
+}
+.spec-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  background: var(--c-white);
+  font-size: 13px;
+}
+.spec-table th, .spec-table td {
+  border: 1px solid var(--c-gray);
+  padding: 13px 14px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.6;
+}
+/* 左端の項目名 */
+.spec-table th[scope="row"] {
+  background: var(--c-light);
+  text-align: left;
+  white-space: nowrap;
+  font-weight: 700;
+  color: var(--c-black);
+  font-size: 12.5px;
+}
+/* グレード見出し */
+.spec-table thead th { background: var(--c-charcoal); color: var(--c-white); padding: 16px 14px; }
+.spec-grade { font-family: var(--font-serif); font-size: 17px; font-weight: 600; letter-spacing: 0.04em; display: block; }
+.spec-sub { display: block; font-size: 10.5px; font-weight: 500; color: var(--c-greige); margin-top: 3px; }
+.spec-table td strong { font-family: var(--font-serif); font-size: 15px; color: var(--c-black); font-weight: 600; }
+.spec-table .spec-muted { color: var(--c-greige); }
+/* 推奨グレード（PLUS）の列を強調 */
+.spec-table .is-recommend { background: #f3efe6; }
+.spec-table thead .is-recommend { background: var(--c-wood); }
+.spec-price strong { color: var(--c-wood) !important; }
+
+/* 性能の代表数値（ハイライト3つ） */
+.perf-highlight {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 44px;
+}
+.perf-highlight li {
+  background: var(--c-light);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  text-align: center;
+}
+.perf-highlight .ph-label { font-size: 12px; font-weight: 700; color: var(--c-wood); letter-spacing: 0.08em; }
+.perf-highlight .ph-value {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 8vw, 2.6rem);
+  font-weight: 600; color: var(--c-black); line-height: 1.1;
+  margin: 8px 0 4px;
+}
+.perf-highlight .ph-value small { font-size: 14px; font-weight: 500; color: var(--t-sub); margin-left: 4px; }
+.perf-highlight .ph-text { font-size: 12px; color: var(--t-sub); }
+
+/* ============================================================
+   14. FORT PRO 規格プラン（PLAN A〜F）
+============================================================ */
+.plan {
+  background: var(--c-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.plan + .plan { margin-top: 40px; }
+.plan__head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 22px 24px 0;
+}
+.plan__badge {
+  font-family: var(--font-serif);
+  font-size: 26px; font-weight: 600; color: var(--c-wood); letter-spacing: 0.04em;
+}
+.plan__name { font-size: 17px; font-weight: 700; color: var(--c-black); }
+.plan__tags { margin-left: auto; font-size: 12px; color: var(--t-sub); }
+.plan__media { display: grid; grid-template-columns: 1fr; gap: 2px; padding: 18px 24px 0; }
+.plan__persp img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; background: var(--c-light); }
+.plan__sheet { background: var(--c-light); border-radius: 6px; padding: 10px; }
+.plan__sheet img { width: 100%; object-fit: contain; }
+.plan__caption { font-size: 11px; color: var(--c-greige); text-align: center; margin-top: 6px; }
+.plan__body { padding: 18px 24px 26px; }
+.plan__spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 18px; margin-bottom: 16px; }
+.plan__spec div { font-size: 13px; border-bottom: 1px dashed var(--c-gray); padding-bottom: 8px; }
+.plan__spec dt { font-size: 11px; color: var(--c-wood); font-weight: 700; }
+.plan__spec dd { color: var(--c-charcoal); font-weight: 600; }
+.plan__text { font-size: 13.5px; color: var(--t-sub); line-height: 1.9; }
+
+@media (min-width: 768px) {
+  .perf-highlight { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .plan__media { grid-template-columns: 1.1fr 1fr; gap: 16px; align-items: start; padding: 22px 24px 0; }
+  .plan__persp img { aspect-ratio: 4 / 3; }
 }

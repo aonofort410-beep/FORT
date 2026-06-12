@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { en: 'FEATURE',  ja: '特集',               href: 'feature.html' },
     { en: 'PERFORMANCE', ja: '構造・性能',      href: 'performance.html' },
     { en: 'LINEUP',   ja: '商品ラインナップ',   href: 'lineup.html' },
+    { en: 'FORT PRO', ja: '規格プラン A〜F',    href: 'fort-pro.html' },
     { en: 'EVENT',    ja: '見学会・イベント',   href: 'event.html' },
     { en: 'FLOW',     ja: '家づくりの流れ',     href: 'flow.html' },
     { en: 'STUDIO',   ja: 'スタジオ・モデルハウス', href: 'studio.html' },

@@ -23,15 +23,18 @@
 :root {
   /* ベースカラー（クールなグレー基調） */
   --c-white:    #ffffff;
-  --c-light:    #f3f4f5; /* 明るいクールグレー（背景） */
-  --c-gray:     #e2e4e6; /* ライトグレー（境界・背景） */
+  --c-bg:       #f5f6f7; /* ページ背景：うっすいグレー */
+  --c-light:    #ebedf0; /* セクションの薄いグレー・小さな塗り */
+  --c-gray:     #e2e4e6; /* ライトグレー（境界） */
   --c-charcoal: #34373b; /* チャコールグレー（本文・濃いめ） */
   --c-black:    #1a1c1f; /* ニアブラック（クール） */
 
-  /* アクセント（グレー基調のモノトーン） */
-  --c-beige:    #c3c7cc; /* 旧ベージュ → ライトグレー（暗い背景の強調文字） */
-  --c-greige:   #9499a0; /* 旧グレージュ → ミッドグレー（補助テキスト） */
-  --c-wood:     #4c5157; /* 旧アクセント → グラファイト（リンク・ラベル・CTA） */
+  /* アクセント（グレー基調＋ゴールドの差し色） */
+  --c-beige:    #c3c7cc; /* 旧ベージュ → ライトグレー（暗い背景の補助） */
+  --c-greige:   #9499a0; /* ミッドグレー（補助テキスト） */
+  --c-wood:     #4c5157; /* グラファイト（構造・CTA・ホバー） */
+  --c-gold:     #c4a35e; /* ゴールドの差し色（バッジ・塗り・暗背景用） */
+  --c-gold-deep:#9a7c38; /* 濃いめゴールド（明るい背景の文字用・可読性確保） */
 
   /* テキスト色 */
   --t-main:  #232528;
@@ -59,7 +62,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-sans);
   color: var(--t-main);
-  background: var(--c-white);
+  background: var(--c-bg);
   line-height: 1.9;
   font-size: 15px;
   letter-spacing: 0.02em;
@@ -96,11 +99,11 @@ ul { list-style: none; }
   font-family: var(--font-sans);
   font-size: 12px;
   letter-spacing: 0.28em;
-  color: var(--c-wood);
+  color: var(--c-gold-deep);
   font-weight: 700;
   margin-bottom: 14px;
 }
-.section__label--light { color: var(--c-beige); }
+.section__label--light { color: var(--c-gold); }
 
 /* 日本語の大見出し（h2） */
 .section__title {
@@ -256,13 +259,13 @@ body.menu-open .header__logo { color: var(--c-white); }
   position: absolute;
   left: 0; bottom: -7px;
   width: 0; height: 2px;
-  background: var(--c-wood);
+  background: var(--c-gold);
   transition: width .3s;
 }
 .header-nav__link:hover::after { width: 100%; }
 /* スクロール後は文字を黒に、目次を開いている間は白に */
 .header.is-scrolled .header-nav__link { color: var(--c-charcoal); }
-.header.is-scrolled .header-nav__link:hover { color: var(--c-wood); }
+.header.is-scrolled .header-nav__link:hover { color: var(--c-gold-deep); }
 body.menu-open .header-nav__link { color: var(--c-white); }
 /* 目次メニューが開いている間はナビを隠す（重なり防止） */
 body.menu-open .header-nav { opacity: 0; pointer-events: none; }
@@ -501,7 +504,7 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
 .why__num {
   font-family: var(--font-serif);
   font-size: 30px;
-  color: var(--c-greige);
+  color: var(--c-gold);
   font-weight: 600;
   line-height: 1;
 }
@@ -579,10 +582,10 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
 }
 .lineup__card:hover { transform: translateY(-6px); }
 /* 真ん中のおすすめモデルだけ枠を強調 */
-.lineup__card--featured { outline: 2px solid var(--c-wood); }
+.lineup__card--featured { outline: 2px solid var(--c-gold); }
 .lineup__badge {
   position: absolute; top: 14px; left: 14px; z-index: 2;
-  background: var(--c-wood); color: var(--c-white);
+  background: var(--c-gold); color: var(--c-black);
   font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
   padding: 5px 12px; border-radius: 999px;
 }
@@ -607,10 +610,10 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
   margin-top: 16px;
   font-size: 13px; font-weight: 700;
   color: var(--c-black);
-  border-bottom: 1px solid var(--c-wood);
+  border-bottom: 1px solid var(--c-gold);
   padding-bottom: 3px;
 }
-.lineup__link:hover { color: var(--c-wood); }
+.lineup__link:hover { color: var(--c-gold-deep); }
 
 /* --- 6. EVENT --- */
 .event__inner {
@@ -1036,8 +1039,19 @@ body.menu-open { overflow: hidden; }
   letter-spacing: 0.03em;
   line-height: 1.6;
 }
-/* 「取締役」など役職は黒・太字で少しだけ強調 */
-.member__cred--exec { color: var(--c-black); font-weight: 700; }
+/* 「取締役」はゴールドの小さなバッジで上品に強調 */
+.member__cred--exec {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 13px;
+  border: 1px solid var(--c-gold);
+  border-radius: 2px;
+  color: var(--c-gold-deep);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+}
 
 /* --- タブレット以上 --- */
 @media (min-width: 768px) {
@@ -1080,7 +1094,7 @@ body.menu-open { overflow: hidden; }
   transition: background .3s, color .3s, border-color .3s;
 }
 .works-filter a:hover,
-.works-filter a.is-active { background: var(--c-wood); color: var(--c-white); border-color: var(--c-wood); }
+.works-filter a.is-active { background: var(--c-gold); color: var(--c-black); border-color: var(--c-gold); }
 
 /* --- 商品詳細（LINEUP）：写真とテキストを交互に --- */
 .product {
@@ -1100,7 +1114,7 @@ body.menu-open { overflow: hidden; }
 .product__type {
   display: inline-block;
   margin: 10px 0 16px;
-  font-size: 12px; font-weight: 700; color: var(--c-wood);
+  font-size: 12px; font-weight: 700; color: var(--c-gold-deep);
   background: var(--c-light); padding: 5px 14px; border-radius: 999px;
 }
 .product__text { color: var(--t-sub); font-size: 14.5px; line-height: 2; margin-bottom: 18px; }
@@ -1154,8 +1168,8 @@ body.menu-open { overflow: hidden; }
 .schedule__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .schedule__date { font-family: var(--font-serif); font-size: 18px; color: var(--c-black); font-weight: 600; }
 .schedule__badge {
-  font-size: 10.5px; font-weight: 700; color: var(--c-white);
-  background: var(--c-wood); padding: 4px 12px; border-radius: 999px;
+  font-size: 10.5px; font-weight: 700; color: var(--c-black);
+  background: var(--c-gold); padding: 4px 12px; border-radius: 999px;
 }
 .schedule__place { font-size: 13px; color: var(--t-sub); }
 .schedule__title { font-size: 15px; font-weight: 700; color: var(--c-charcoal); line-height: 1.6; }
@@ -1286,10 +1300,10 @@ body.menu-open { overflow: hidden; }
   width: 64px; height: 64px;
   display: flex; align-items: center; justify-content: center;
   border-radius: 50%;
-  background: var(--c-light);
-  border: 2px solid var(--c-beige);
+  background: var(--c-white);
+  border: 1.5px solid var(--c-gold);
   font-family: var(--font-serif);
-  font-size: 19px; font-weight: 600; color: var(--c-wood);
+  font-size: 19px; font-weight: 600; color: var(--c-gold-deep);
 }
 .flow__title {
   font-size: 16px; font-weight: 700; color: var(--c-black);
@@ -1355,8 +1369,8 @@ body.menu-open { overflow: hidden; }
 .spec-table .spec-muted { color: var(--c-greige); }
 /* 推奨グレード（PLUS）の列を強調 */
 .spec-table .is-recommend { background: #eceef0; }
-.spec-table thead .is-recommend { background: var(--c-wood); }
-.spec-price strong { color: var(--c-wood) !important; }
+.spec-table thead .is-recommend { background: var(--c-gold-deep); }
+.spec-price strong { color: var(--c-gold-deep) !important; }
 
 /* 性能の代表数値（ハイライト3つ） */
 .perf-highlight {
@@ -1371,7 +1385,7 @@ body.menu-open { overflow: hidden; }
   padding: 24px 20px;
   text-align: center;
 }
-.perf-highlight .ph-label { font-size: 12px; font-weight: 700; color: var(--c-wood); letter-spacing: 0.08em; }
+.perf-highlight .ph-label { font-size: 12px; font-weight: 700; color: var(--c-gold-deep); letter-spacing: 0.08em; }
 .perf-highlight .ph-value {
   font-family: var(--font-serif);
   font-size: clamp(2rem, 8vw, 2.6rem);

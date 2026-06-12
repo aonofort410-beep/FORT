@@ -1015,6 +1015,21 @@ body.menu-open { overflow: hidden; }
   color: var(--t-sub); letter-spacing: 0.08em;
 }
 .member__msg { margin-top: 14px; font-size: 13.5px; color: var(--c-charcoal); line-height: 1.95; }
+/* 名前の下に出す「取締役・資格・兼務」などの目立つ表示 */
+.member__cred {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 14px;
+  background: var(--c-wood);
+  color: var(--c-white);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  line-height: 1.5;
+}
+/* 「取締役」など役職は濃い色でさらに目立たせる */
+.member__cred--exec { background: var(--c-charcoal); }
 
 /* --- タブレット以上 --- */
 @media (min-width: 768px) {

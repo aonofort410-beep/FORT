@@ -226,22 +226,35 @@ body.menu-open .header__logo { color: var(--c-white); }
 /* ヘッダー右側のまとまり（ナビ＋MENUボタン） */
 .header__right { display: flex; align-items: center; gap: 30px; }
 
-/* --- トップページ用ナビ項目（PCで表示） --- */
-.header-nav { display: none; align-items: center; gap: 28px; }
+/* --- トップページ用ナビ項目（PCで表示・英語＋日本語の2行） --- */
+.header-nav { display: none; align-items: center; gap: 22px; }
 .header-nav__link {
   position: relative;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
   color: var(--c-white);
-  white-space: nowrap;
   transition: color .3s;
+}
+.header-nav__en {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  opacity: .65;
+}
+.header-nav__ja {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 /* ホバー時に下線がのびる */
 .header-nav__link::after {
   content: "";
   position: absolute;
-  left: 0; bottom: -6px;
+  left: 0; bottom: -7px;
   width: 0; height: 2px;
   background: var(--c-wood);
   transition: width .3s;
@@ -255,7 +268,7 @@ body.menu-open .header-nav__link { color: var(--c-white); }
 body.menu-open .header-nav { opacity: 0; pointer-events: none; }
 
 /* 画面が広いときだけナビ項目を表示。狭いときは MENU(目次) に集約 */
-@media (min-width: 1000px) {
+@media (min-width: 1120px) {
   .header-nav { display: flex; }
 }
 
@@ -409,7 +422,8 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
   letter-spacing: 0.04em;
   text-shadow: 0 2px 20px rgba(0,0,0,.25);
 }
-.hero__title-accent { color: var(--c-beige); }
+/* ヒーローの強調文字だけは、アクセントのゴールドに（グレー基調の中の差し色） */
+.hero__title-accent { color: #c4a35e; }
 .hero__lead {
   margin-top: 22px;
   font-size: clamp(13px, 3.6vw, 16px);

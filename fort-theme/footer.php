@@ -17,13 +17,16 @@ $tel_f = fort_opt( 'fort_tel_fukuyama', '084-982-7404' );
 				<ul class="footer__list">
 					<li><a href="<?php echo esc_url( home_url( '/#concept' ) ); ?>">CONCEPT</a></li>
 					<li><a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>">WORKS</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/#performance' ) ); ?>">PERFORMANCE</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/#flow' ) ); ?>">FLOW</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/#lineup' ) ); ?>">LINEUP</a></li>
+					<li><a href="<?php echo esc_url( home_url( '/lineup/' ) ); ?>">LINEUP</a></li>
+					<li><a href="<?php echo esc_url( home_url( '/performance/' ) ); ?>">PERFORMANCE</a></li>
+					<li><a href="<?php echo esc_url( home_url( '/flow/' ) ); ?>">FLOW</a></li>
+					<li><a href="<?php echo esc_url( home_url( '/feature/' ) ); ?>">FEATURE</a></li>
+					<li><a href="<?php echo esc_url( home_url( '/fort-pro/' ) ); ?>">FORT PRO</a></li>
 					<li><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>">EVENT</a></li>
+					<li><a href="<?php echo esc_url( home_url( '/studio/' ) ); ?>">STUDIO</a></li>
 					<li><a href="<?php echo esc_url( get_post_type_archive_link( 'staff' ) ); ?>">STAFF</a></li>
+					<li><a href="<?php echo esc_url( home_url( '/company/' ) ); ?>">COMPANY</a></li>
 					<li><a href="<?php echo esc_url( home_url( '/news/' ) ); ?>">NEWS</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/#reserve' ) ); ?>">CONTACT</a></li>
 				</ul>
 			</nav>
 			<div class="footer__info">

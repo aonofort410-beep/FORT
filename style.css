@@ -1587,3 +1587,19 @@ body.menu-open { overflow: hidden; }
   padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
+
+/* ============================================================
+   19. ロゴ画像（ヘッダー/フッターを本物のロゴに統一）
+============================================================ */
+/* ヘッダー：透明時＝白ロゴ／スクロール時＝濃グレー／メニュー展開時＝白 */
+.header__logo { display: inline-flex; align-items: center; line-height: 0; }
+.header__logo::after { content: none; }                 /* 文字版のタグラインは出さない */
+.header__logo-img { height: 22px; width: auto; display: block; transition: opacity .4s; }
+.header__logo-img--dark { display: none; }
+.header.is-scrolled .header__logo-img--white { display: none; }
+.header.is-scrolled .header__logo-img--dark  { display: block; }
+body.menu-open .header__logo-img--white { display: block; }
+body.menu-open .header__logo-img--dark   { display: none; }
+
+/* フッター：暗い背景なので白ロゴ。下のタグライン(OKAYAMA・FUKUYAMA)はそのまま */
+.footer__logo-img { height: 30px; width: auto; display: block; }

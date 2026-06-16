@@ -10,7 +10,7 @@ $tel_f = fort_opt( 'fort_tel_fukuyama', '084-982-7404' );
 	<footer class="footer">
 		<div class="container footer__inner">
 			<div class="footer__brand">
-				<p class="footer__logo">FORT</p>
+				<p class="footer__logo"><img class="footer__logo-img" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-white.png' ); ?>" alt="FORT"></p>
 				<p class="footer__copy-text">性能か、デザインか。<br>その選択をしなくていい家づくり。</p>
 			</div>
 			<nav class="footer__nav" aria-label="フッターメニュー">

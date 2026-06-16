@@ -15,7 +15,7 @@
 
 	<header class="header" id="header">
 		<div class="header__inner container">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="header__logo" aria-label="<?php bloginfo( 'name' ); ?> トップへ"><img class="header__logo-img header__logo-img--white" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-white.png' ); ?>" alt="FORT"><img class="header__logo-img header__logo-img--dark" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-dark.png' ); ?>" alt="" aria-hidden="true"></a>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="header__logo" aria-label="<?php bloginfo( 'name' ); ?> トップへ"><img class="header__logo-img header__logo-img--white" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-lockup-white.png' ); ?>" alt="FORT"><img class="header__logo-img header__logo-img--dark" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-lockup-dark.png' ); ?>" alt="" aria-hidden="true"></a>
 
 			<div class="header__right">
 				<?php if ( is_front_page() ) : ?>

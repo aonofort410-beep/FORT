@@ -33,8 +33,9 @@
   --c-beige:    #c3c7cc; /* 旧ベージュ → ライトグレー（暗い背景の補助） */
   --c-greige:   #9499a0; /* ミッドグレー（補助テキスト） */
   --c-wood:     #4c5157; /* グラファイト（構造・CTA・ホバー） */
-  --c-gold:     #c4a35e; /* ゴールドの差し色（バッジ・塗り・暗背景用） */
-  --c-gold-deep:#9a7c38; /* 濃いめゴールド（明るい背景の文字用・可読性確保） */
+  /* モノクローム化：旧ゴールドはグレー系に統一（差し色は使わない） */
+  --c-gold:     #c9cccf; /* 旧ゴールド → ライトグレー（細い線・小さな塗り） */
+  --c-gold-deep:#4c5157; /* 旧ゴールド濃 → グラファイト（ラベル・番号などの文字） */
 
   /* テキスト色 */
   --t-main:  #232528;
@@ -87,12 +88,12 @@ ul { list-style: none; }
   padding-inline: 24px;
 }
 
-/* セクション共通の上下余白（余白を大きめに） */
-.section { padding-block: 72px; }
+/* セクション共通の上下余白（neie風に大きくとる） */
+.section { padding-block: clamp(80px, 11vw, 130px); }
 .section--gray { background: var(--c-light); }
 
 /* セクション見出しのまとまり */
-.section__head { text-align: center; margin-bottom: 44px; }
+.section__head { text-align: center; margin-bottom: clamp(44px, 6vw, 66px); }
 
 /* 英語の小見出しラベル */
 .section__label {
@@ -426,7 +427,7 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
   text-shadow: 0 2px 20px rgba(0,0,0,.25);
 }
 /* ヒーローの強調文字だけは、アクセントのゴールドに（グレー基調の中の差し色） */
-.hero__title-accent { color: #c4a35e; }
+.hero__title-accent { color: inherit; }
 .hero__lead {
   margin-top: 22px;
   font-size: clamp(13px, 3.6vw, 16px);
@@ -582,11 +583,11 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
 }
 .lineup__card:hover { transform: translateY(-6px); }
 /* 真ん中のおすすめモデルだけ枠を強調 */
-.lineup__card--featured { outline: 2px solid var(--c-gold); }
+.lineup__card--featured { outline: 1px solid var(--c-charcoal); }
 .lineup__badge {
   position: absolute; top: 14px; left: 14px; z-index: 2;
-  background: var(--c-gold); color: var(--c-black);
-  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  background: var(--c-charcoal); color: var(--c-white);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
   padding: 5px 12px; border-radius: 999px;
 }
 .lineup__figure img { aspect-ratio: 3 / 2; object-fit: cover; }
@@ -1094,7 +1095,7 @@ body.menu-open { overflow: hidden; }
   transition: background .3s, color .3s, border-color .3s;
 }
 .works-filter a:hover,
-.works-filter a.is-active { background: var(--c-gold); color: var(--c-black); border-color: var(--c-gold); }
+.works-filter a.is-active { background: var(--c-charcoal); color: var(--c-white); border-color: var(--c-charcoal); }
 
 /* --- 商品詳細（LINEUP）：写真とテキストを交互に --- */
 .product {
@@ -1168,8 +1169,8 @@ body.menu-open { overflow: hidden; }
 .schedule__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .schedule__date { font-family: var(--font-serif); font-size: 18px; color: var(--c-black); font-weight: 600; }
 .schedule__badge {
-  font-size: 10.5px; font-weight: 700; color: var(--c-black);
-  background: var(--c-gold); padding: 4px 12px; border-radius: 999px;
+  font-size: 10.5px; font-weight: 700; color: var(--c-white);
+  background: var(--c-charcoal); padding: 4px 12px; border-radius: 999px;
 }
 .schedule__place { font-size: 13px; color: var(--t-sub); }
 .schedule__title { font-size: 15px; font-weight: 700; color: var(--c-charcoal); line-height: 1.6; }
@@ -1301,7 +1302,7 @@ body.menu-open { overflow: hidden; }
   line-height: .85;
   letter-spacing: 0.01em;
   color: var(--c-gold-deep); /* 非対応ブラウザ用フォールバック */
-  background: linear-gradient(155deg, #d9bd83 0%, #b2914c 45%, #8c6f31 100%);
+  background: linear-gradient(155deg, #7c828a 0%, #4c5157 55%, #2f3338 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

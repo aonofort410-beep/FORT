@@ -100,8 +100,18 @@
         <div class="hero__overlay"></div>
       </div>
 
-      <!-- ファーストビューは「FORTのロゴ」のみ -->
-      <h1 class="hero__logo" data-reveal>FORT<span class="sr-only">株式会社FORT｜岡山・倉敷・福山の注文住宅</span></h1>
+      <!-- ファーストビューは「FORTのロゴ」のみ
+           images/logo-white.png（白ロゴ・透過PNG）を置くと自動でそれを表示。
+           無い間は下の文字ロゴ(FORT)が表示されます。 -->
+      <h1 class="hero__logo" data-reveal>
+        <img class="hero__logo-img" src="images/logo-white.png" alt="FORT"
+             data-fallback="1" onerror="this.remove()">
+        <span class="hero__logo-text" aria-hidden="true">FORT</span>
+        <span class="sr-only">株式会社FORT｜岡山・倉敷・福山の注文住宅</span>
+      </h1>
+
+      <!-- ヒーロー左下：FORTの思い（小さく） -->
+      <p class="hero__note" data-reveal>性能か、デザインか。<br>その選択を、しなくていい。</p>
 
       <!-- スクロールを促すアイコン -->
       <a href="#concept" class="hero__scroll" aria-label="下へスクロール">

@@ -14,7 +14,12 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<img class="hero__img" src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="" aria-hidden="true" loading="eager" decoding="async">
 			<div class="hero__overlay"></div>
 		</div>
-		<h1 class="hero__logo" data-reveal>FORT<span class="sr-only"><?php bloginfo( 'name' ); ?>｜岡山・倉敷・福山の注文住宅</span></h1>
+		<h1 class="hero__logo" data-reveal>
+			<img class="hero__logo-img" src="<?php echo esc_url( $img . 'logo-white.png' ); ?>" alt="FORT" data-fallback="1" onerror="this.remove()">
+			<span class="hero__logo-text" aria-hidden="true">FORT</span>
+			<span class="sr-only"><?php bloginfo( 'name' ); ?>｜岡山・倉敷・福山の注文住宅</span>
+		</h1>
+		<p class="hero__note" data-reveal>性能か、デザインか。<br>その選択を、しなくていい。</p>
 		<a href="#concept" class="hero__scroll" aria-label="下へスクロール">
 			<span class="hero__scroll-line"></span><span class="hero__scroll-text">SCROLL</span>
 		</a>

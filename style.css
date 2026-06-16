@@ -1520,32 +1520,66 @@ body.menu-open { overflow: hidden; }
    18. ロゴだけのファーストビュー（neie風ミニマル・hero--logo）
 ============================================================ */
 .hero--logo { align-items: center; justify-content: center; text-align: center; }
-.hero--logo .hero__overlay { background: linear-gradient(180deg, rgba(20,22,25,.30), rgba(20,22,25,.42)); }
+.hero--logo .hero__overlay { background: linear-gradient(180deg, rgba(20,22,25,.32), rgba(20,22,25,.50)); }
 
+/* ロゴの入れ物（画像ロゴ or 文字ロゴを中央に） */
 .hero__logo {
   position: relative;
   z-index: 1;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
+}
+/* ロゴ画像（images/logo-white.png を置くと自動で表示） */
+.hero__logo-img {
+  width: clamp(200px, 34vw, 380px);
+  height: auto;
+}
+/* 画像ロゴがある時は文字ロゴを隠す（無い／読み込み失敗時は文字ロゴを表示） */
+.hero__logo-img + .hero__logo-text { display: none; }
+
+/* 文字ロゴ（ロゴ画像が無い間のフォールバック・少し小さめに） */
+.hero__logo-text {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
   font-family: var(--font-logo);
   font-weight: 600;
   color: var(--c-white);
-  font-size: clamp(3.2rem, 15vw, 9rem);
+  font-size: clamp(2.6rem, 11vw, 6.2rem);
   letter-spacing: 0.30em;
   line-height: 1;
   margin-left: 0.30em; /* 字送りの右余白を相殺し、光学的に中央へ */
 }
-.hero__logo::after {
+.hero__logo-text::after {
   content: "OKAYAMA・FUKUYAMA";
   font-family: var(--font-sans);
-  font-size: clamp(10px, 1.8vw, 14px);
+  font-size: clamp(9px, 1.5vw, 12px);
   font-weight: 500;
   letter-spacing: 0.40em;
-  margin-top: clamp(16px, 2.6vw, 30px);
+  margin-top: clamp(14px, 2.2vw, 24px);
   margin-left: 0.10em;
   opacity: .92;
 }
+
+/* フェードをゆっくりに（ロゴが静かに浮かび上がる） */
+.hero--logo .hero__logo { animation-duration: 3.6s; }
+
+/* ヒーロー左下の「FORTの思い」 */
+.hero__note {
+  position: absolute;
+  left: clamp(20px, 4vw, 56px);
+  bottom: clamp(64px, 10vh, 110px);
+  z-index: 1;
+  color: var(--c-white);
+  font-size: clamp(11px, 1.5vw, 13px);
+  line-height: 2;
+  letter-spacing: 0.12em;
+  text-align: left;
+  opacity: .9;
+  text-shadow: 0 1px 12px rgba(0,0,0,.35);
+}
+.hero--logo .hero__note { animation-duration: 3.6s; animation-delay: .6s; }
 
 /* スクリーンリーダー用（SEO向けの説明文・画面には出さない） */
 .sr-only {

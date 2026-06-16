@@ -8,24 +8,13 @@ get_header();
 $img = get_template_directory_uri() . '/assets/images/';
 ?>
 
-	<!-- ===== HERO ===== -->
-	<section class="hero" id="hero">
+	<!-- ===== HERO（ロゴのみのファーストビュー） ===== -->
+	<section class="hero hero--logo" id="hero">
 		<div class="hero__media">
-			<img class="hero__img" src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="FORTが手がける住まい" loading="eager" decoding="async">
+			<img class="hero__img" src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="" aria-hidden="true" loading="eager" decoding="async">
 			<div class="hero__overlay"></div>
 		</div>
-		<div class="hero__inner container">
-			<p class="hero__eyebrow" data-reveal><?php echo esc_html( fort_opt( 'fort_hero_eyebrow', 'FORT｜岡山・倉敷・福山の家づくり' ) ); ?></p>
-			<h1 class="hero__title" data-reveal>
-				<?php echo esc_html( fort_opt( 'fort_hero_line1', '性能か、デザインか。' ) ); ?><br>
-				<span class="hero__title-accent"><?php echo esc_html( fort_opt( 'fort_hero_accent', 'その選択をしなくていい' ) ); ?></span><?php echo esc_html( fort_opt( 'fort_hero_line2', '家づくり。' ) ); ?>
-			</h1>
-			<p class="hero__lead" data-reveal><?php echo esc_html( fort_opt( 'fort_hero_lead', '営業・設計・工務がひとつのチームとなり、性能とデザインを高いレベルで両立する住まいをご提案します。' ) ); ?></p>
-			<div class="hero__actions" data-reveal>
-				<a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>" class="btn btn--light">施工事例を見る</a>
-				<a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent">見学会を予約する</a>
-			</div>
-		</div>
+		<h1 class="hero__logo" data-reveal>FORT<span class="sr-only"><?php bloginfo( 'name' ); ?>｜岡山・倉敷・福山の注文住宅</span></h1>
 		<a href="#concept" class="hero__scroll" aria-label="下へスクロール">
 			<span class="hero__scroll-line"></span><span class="hero__scroll-text">SCROLL</span>
 		</a>

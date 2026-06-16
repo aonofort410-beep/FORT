@@ -91,32 +91,17 @@
          1. ファーストビュー（ヒーロー）
          背景に大きな写真/動画が入る想定
     ============================================================ -->
-    <section class="hero" id="hero">
+    <section class="hero hero--logo" id="hero">
       <div class="hero__media">
-        <!-- IMAGE: ヒーロー背景（写真① モダンなLDK）
-             動画にする場合は<img>を<video>に差し替えてください -->
+        <!-- IMAGE: ファーストビュー背景（圧倒的にかっこいい写真／動画も可） -->
         <img class="hero__img"
              src="images/hero.jpg"
-             alt="FORTが手がける住まいのLDK" loading="eager" decoding="async">
+             alt="" aria-hidden="true" loading="eager" decoding="async">
         <div class="hero__overlay"></div>
       </div>
 
-      <div class="hero__inner container">
-        <p class="hero__eyebrow" data-reveal>FORT｜岡山・倉敷・福山の家づくり</p>
-        <!-- ページで最も重要な見出し（h1は1ページに1つ） -->
-        <h1 class="hero__title" data-reveal>
-          性能か、デザインか。<br>
-          <span class="hero__title-accent">その選択をしなくていい</span>家づくり。
-        </h1>
-        <p class="hero__lead" data-reveal>
-          営業・設計・工務がひとつのチームとなり、<br>
-          性能とデザインを高いレベルで両立する住まいをご提案します。
-        </p>
-        <div class="hero__actions" data-reveal>
-          <a href="works.html" class="btn btn--light">施工事例を見る</a>
-          <a href="event.html" class="btn btn--accent">見学会を予約する</a>
-        </div>
-      </div>
+      <!-- ファーストビューは「FORTのロゴ」のみ -->
+      <h1 class="hero__logo" data-reveal>FORT<span class="sr-only">株式会社FORT｜岡山・倉敷・福山の注文住宅</span></h1>
 
       <!-- スクロールを促すアイコン -->
       <a href="#concept" class="hero__scroll" aria-label="下へスクロール">

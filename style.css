@@ -1514,3 +1514,41 @@ body.menu-open { overflow: hidden; }
   .case-spec div { grid-template-columns: 130px 1fr; }
   .case-gallery { grid-template-columns: repeat(3, 1fr); gap: 14px; }
 }
+
+/* ============================================================
+   18. ロゴだけのファーストビュー（neie風ミニマル・hero--logo）
+============================================================ */
+.hero--logo { align-items: center; justify-content: center; text-align: center; }
+.hero--logo .hero__overlay { background: linear-gradient(180deg, rgba(20,22,25,.30), rgba(20,22,25,.42)); }
+
+.hero__logo {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-logo);
+  font-weight: 600;
+  color: var(--c-white);
+  font-size: clamp(3.2rem, 15vw, 9rem);
+  letter-spacing: 0.30em;
+  line-height: 1;
+  margin-left: 0.30em; /* 字送りの右余白を相殺し、光学的に中央へ */
+}
+.hero__logo::after {
+  content: "OKAYAMA・FUKUYAMA";
+  font-family: var(--font-sans);
+  font-size: clamp(10px, 1.8vw, 14px);
+  font-weight: 500;
+  letter-spacing: 0.40em;
+  margin-top: clamp(16px, 2.6vw, 30px);
+  margin-left: 0.10em;
+  opacity: .92;
+}
+
+/* スクリーンリーダー用（SEO向けの説明文・画面には出さない） */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}

@@ -19,7 +19,12 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<span class="hero__logo-text" aria-hidden="true">FORT</span>
 			<span class="sr-only"><?php bloginfo( 'name' ); ?>｜岡山・倉敷・福山の注文住宅</span>
 		</h1>
-		<p class="hero__note" data-reveal>その日々が、いつか宝物になる。<br>家族の時間を、ずっと包む家を。</p>
+		<p class="hero__note" data-reveal>
+			性能だけでもない。<br>
+			デザインだけでもない。<br><br>
+			その<strong>ちょうど真ん中</strong>に、FORTがある。
+			<span class="hero__note-en">Design × Performance × Balance</span>
+		</p>
 		<a href="#concept" class="hero__scroll" aria-label="下へスクロール">
 			<span class="hero__scroll-line"></span><span class="hero__scroll-text">SCROLL</span>
 		</a>
@@ -29,17 +34,10 @@ $img = get_template_directory_uri() . '/assets/images/';
 	<section class="concept section" id="concept">
 		<div class="container concept__inner">
 			<p class="section__label" data-reveal>CONCEPT</p>
-			<h2 class="section__title" data-reveal>性能も、デザインも。<br>家族の人生を、ずっと支える家を。</h2>
+			<h2 class="section__title" data-reveal>性能も、デザインも。</h2>
 			<p class="concept__text" data-reveal>
-				FORTがつくるのは、単なる建物ではありません。<br>
-				家族の時間、趣味の時間、友人と過ごす時間——<br>
-				その先にある“暮らし”そのものをデザインしています。
-			</p>
-			<p class="concept__text" data-reveal style="margin-top:20px;">
-				社名の FORT には、欧州の堅固な城のように永く住み継げる<strong>堅固性（FORT）</strong>、
-				毎日を心地よくする<strong>快適性（comFORT）</strong>、ムダを省く<strong>企業努力（efFORT）</strong>、
-				住むほど価値が続く<strong>資産価値（FORTune）</strong>——4つの想いを込めました。<br>
-				「性能か、デザインか」ではなく、その両方を。私たちは、どちらも諦めません。
+				「性能か、デザインか」ではなく、その両方を。<br>
+				家族の人生を、ずっと支える住まいをつくります。
 			</p>
 		</div>
 		<figure class="concept__figure" data-reveal>
@@ -47,11 +45,11 @@ $img = get_template_directory_uri() . '/assets/images/';
 		</figure>
 		<div class="container concept__reasons">
 			<p class="concept__reasons-title" data-reveal>FORTが、大切にする4つのこと。</p>
-			<ul class="why__grid">
-				<li class="why__card" data-reveal><span class="why__num">01</span><h3 class="why__card-title">デザインだけじゃない、性能。</h3><p class="why__card-text">耐震・断熱・気密まで、数字で語れる確かな住宅性能を標準で。</p></li>
-				<li class="why__card" data-reveal><span class="why__num">02</span><h3 class="why__card-title">性能だけじゃない、デザイン。</h3><p class="why__card-text">設計士が一邸ずつ設計。暮らしに映える美しさと住み心地を両立します。</p></li>
-				<li class="why__card" data-reveal><span class="why__num">03</span><h3 class="why__card-title">営業・設計・工務のチームで。</h3><p class="why__card-text">担当者まかせにしない。各分野のプロが連携し、最初から最後まで伴走します。</p></li>
-				<li class="why__card" data-reveal><span class="why__num">04</span><h3 class="why__card-title">手の届く価格と、続く安心。</h3><p class="why__card-text">ムダを省いた家づくりと、お引渡し後の定期点検・アフターサポート。</p></li>
+			<ul class="value__grid">
+				<li class="value__card" data-reveal><figure class="value__figure"><img src="<?php echo esc_url( $img . 'exterior.jpg' ); ?>" alt="性能" loading="lazy"></figure><div class="value__body"><span class="value__num">01</span><h3 class="value__title">デザインだけじゃない、性能。</h3><p class="value__text">耐震・断熱・気密まで、数字で語れる確かな性能を標準で。</p></div></li>
+				<li class="value__card" data-reveal><figure class="value__figure"><img src="<?php echo esc_url( $img . 'ldk.jpg' ); ?>" alt="デザイン" loading="lazy"></figure><div class="value__body"><span class="value__num">02</span><h3 class="value__title">性能だけじゃない、デザイン。</h3><p class="value__text">設計士が一邸ずつ設計。映える美しさと住み心地を両立します。</p></div></li>
+				<li class="value__card" data-reveal><figure class="value__figure"><img src="<?php echo esc_url( $img . 'kitchen-view.jpg' ); ?>" alt="チーム" loading="lazy"></figure><div class="value__body"><span class="value__num">03</span><h3 class="value__title">営業・設計・工務のチームで。</h3><p class="value__text">各分野のプロが連携し、最初から最後まで伴走します。</p></div></li>
+				<li class="value__card" data-reveal><figure class="value__figure"><img src="<?php echo esc_url( $img . 'niche.jpg' ); ?>" alt="価格と安心" loading="lazy"></figure><div class="value__body"><span class="value__num">04</span><h3 class="value__title">手の届く価格と、続く安心。</h3><p class="value__text">ムダを省いた家づくりと、引渡し後のアフターサポート。</p></div></li>
 			</ul>
 		</div>
 	</section>
@@ -62,31 +60,38 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<header class="section__head">
 				<p class="section__label" data-reveal>WORKS</p>
 				<h2 class="section__title" data-reveal>暮らしが見える施工事例</h2>
+				<p class="section__desc" data-reveal>写真をタップすると、事例の詳細をご覧いただけます。</p>
 			</header>
-			<ul class="works__grid">
-				<?php
-				$works = new WP_Query( array( 'post_type' => 'works', 'posts_per_page' => 6 ) );
-				if ( $works->have_posts() ) :
-					while ( $works->have_posts() ) : $works->the_post();
-						$area  = fort_meta( 'fort_area' );
-						$price = fort_meta( 'fort_price' );
-				?>
-				<li class="works__card" data-reveal>
-					<a href="<?php the_permalink(); ?>" class="works__link">
-						<figure class="works__figure">
-							<?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'fort-card', array( 'loading' => 'lazy' ) ); } else { echo '<img src="' . esc_url( $img . 'exterior.jpg' ) . '" alt="">'; } ?>
-						</figure>
-						<div class="works__body">
-							<?php if ( $area ) : ?><p class="works__cat"><?php echo esc_html( $area ); ?></p><?php endif; ?>
-							<h3 class="works__card-title"><?php the_title(); ?></h3>
-							<?php if ( $price ) : ?><p class="works__price">建物本体<strong><?php echo esc_html( $price ); ?></strong><span class="works__price-note">※参考価格帯</span></p><?php endif; ?>
-						</div>
-					</a>
-				</li>
-				<?php endwhile; wp_reset_postdata(); else : ?>
-				<li class="works__card"><div class="works__body"><p class="works__cat">準備中</p><h3 class="works__card-title">施工事例は管理画面「施工事例 &gt; 新規追加」から登録できます。</h3></div></li>
-				<?php endif; ?>
-			</ul>
+		</div>
+		<?php
+		$ws = get_posts( array( 'post_type' => 'works', 'posts_per_page' => 8 ) );
+		if ( $ws ) :
+			// マーキー用に2回出力（シームレスなループ）
+			$render = function( $hide ) use ( $ws, $img ) {
+				foreach ( $ws as $p ) {
+					$area = get_post_meta( $p->ID, 'fort_area', true );
+					$thumb = has_post_thumbnail( $p ) ? get_the_post_thumbnail_url( $p, 'fort-card' ) : $img . 'exterior.jpg';
+					printf(
+						'<a class="works-slide" href="%s"%s><img src="%s" alt="%s" loading="lazy"><span class="works-slide__cap">%s%s</span></a>',
+						esc_url( get_permalink( $p ) ),
+						$hide ? ' aria-hidden="true" tabindex="-1"' : '',
+						esc_url( $thumb ),
+						$hide ? '' : esc_attr( get_the_title( $p ) ),
+						$area ? '<span class="works-slide__cat">' . esc_html( $area ) . '</span>' : '',
+						esc_html( get_the_title( $p ) )
+					);
+				}
+			};
+		?>
+		<div class="works-slider" data-reveal aria-label="施工事例スライド">
+			<div class="works-slider__track">
+				<?php $render( false ); $render( true ); ?>
+			</div>
+		</div>
+		<?php else : ?>
+		<div class="container"><p style="text-align:center;color:var(--t-sub);">施工事例は管理画面「施工事例 &gt; 新規追加」から登録できます。</p></div>
+		<?php endif; ?>
+		<div class="container">
 			<div class="section__more" data-reveal>
 				<a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>" class="btn btn--outline">もっと施工事例を見る</a>
 			</div>

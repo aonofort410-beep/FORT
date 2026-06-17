@@ -23,9 +23,10 @@
 :root {
   /* ベースカラー（クールなグレー基調） */
   --c-white:    #ffffff;
-  --c-bg:       #e7e9eb; /* ページ背景：しっかりめのグレー */
-  --c-light:    #dbdee1; /* セクションのグレー・小さな塗り（やや濃いめ） */
-  --c-gray:     #cdd1d4; /* ライトグレー（境界） */
+  --c-bg:       #dfe1e4; /* ページ背景：グレー強め */
+  --c-light:    #d3d6d9; /* セクションのグレー帯 */
+  --c-card:     #ecedef; /* カード等の面（白の代わりにうっすらグレー） */
+  --c-gray:     #c6cacd; /* 境界線 */
   --c-charcoal: #34373b; /* チャコールグレー（本文・濃いめ） */
   --c-black:    #1a1c1f; /* ニアブラック（クール） */
 
@@ -88,12 +89,12 @@ ul { list-style: none; }
   padding-inline: 24px;
 }
 
-/* セクション共通の上下余白（詰めすぎず・空きすぎず） */
-.section { padding-block: clamp(46px, 6vw, 78px); }
+/* セクション共通の上下余白（コンパクトに） */
+.section { padding-block: clamp(36px, 4.5vw, 62px); }
 .section--gray { background: var(--c-light); }
 
 /* セクション見出しのまとまり */
-.section__head { text-align: center; margin-bottom: clamp(26px, 3.5vw, 40px); }
+.section__head { text-align: center; margin-bottom: clamp(20px, 2.6vw, 32px); }
 
 /* 英語の小見出しラベル */
 .section__label {
@@ -1639,4 +1640,89 @@ body.menu-open .header__logo-img--dark   { display: none; }
 
 @media (min-width: 600px) {
   .form__row--2 { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================================
+   22. 白面をうっすらグレーに（カード類）
+============================================================ */
+.why__card, .feature__card, .lineup__card, .works__card,
+.member, .plan, .schedule, .case-comment, .spec-table,
+.perf-highlight li, .map-frame, .value__card {
+  background: var(--c-card);
+}
+
+/* ============================================================
+   23. ヒーロー左下コピー（英字タグライン）＆ コンセプトの可読性
+============================================================ */
+.hero__note { font-weight: 500; }
+.hero__note strong { font-weight: 700; }
+.hero__note-en {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: clamp(9px, 1.3vw, 11px);
+  letter-spacing: 0.22em;
+  opacity: .85;
+}
+/* コンセプト本文：ゴシックで読みやすく */
+.concept__text {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 3.4vw, 15.5px);
+  line-height: 1.95;
+  color: var(--c-charcoal);
+}
+
+/* ============================================================
+   24. FORTが大切にする4つのこと（写真付きカード）
+============================================================ */
+.value__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  text-align: left;
+}
+.value__card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.value__figure { overflow: hidden; aspect-ratio: 16 / 10; }
+.value__figure img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.value__card:hover .value__figure img { transform: scale(1.05); }
+.value__body { padding: 14px 15px 18px; }
+.value__num { font-family: var(--font-serif); font-size: 13px; color: var(--c-greige); }
+.value__title { font-size: 14.5px; font-weight: 700; color: var(--c-black); margin: 3px 0 7px; line-height: 1.5; }
+.value__text { font-size: 12.5px; color: var(--t-sub); line-height: 1.85; }
+
+/* ============================================================
+   25. 施工事例：ゆっくり流れる写真スライダー（タップで詳細へ）
+============================================================ */
+.works-slider { overflow: hidden; width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.works-slider__track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: worksMarquee 48s linear infinite;
+}
+.works-slider:hover .works-slider__track { animation-play-state: paused; }
+.works-slide {
+  flex: 0 0 auto;
+  width: clamp(250px, 66vw, 380px);
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.works-slide img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; transition: transform .6s ease; }
+.works-slide:hover img { transform: scale(1.05); }
+.works-slide__cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 26px 16px 14px;
+  color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0.03em;
+  background: linear-gradient(transparent, rgba(0,0,0,.62));
+}
+.works-slide__cat { display: block; font-size: 10.5px; font-weight: 600; opacity: .85; margin-bottom: 3px; }
+@keyframes worksMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+@media (min-width: 768px) {
+  .value__grid { grid-template-columns: repeat(4, 1fr); gap: 18px; }
 }

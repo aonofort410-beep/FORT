@@ -23,9 +23,9 @@
 :root {
   /* ベースカラー（クールなグレー基調） */
   --c-white:    #ffffff;
-  --c-bg:       #f5f6f7; /* ページ背景：うっすいグレー */
-  --c-light:    #ebedf0; /* セクションの薄いグレー・小さな塗り */
-  --c-gray:     #e2e4e6; /* ライトグレー（境界） */
+  --c-bg:       #e7e9eb; /* ページ背景：しっかりめのグレー */
+  --c-light:    #dbdee1; /* セクションのグレー・小さな塗り（やや濃いめ） */
+  --c-gray:     #cdd1d4; /* ライトグレー（境界） */
   --c-charcoal: #34373b; /* チャコールグレー（本文・濃いめ） */
   --c-black:    #1a1c1f; /* ニアブラック（クール） */
 
@@ -88,12 +88,12 @@ ul { list-style: none; }
   padding-inline: 24px;
 }
 
-/* セクション共通の上下余白（neie風に大きくとる） */
-.section { padding-block: clamp(80px, 11vw, 130px); }
+/* セクション共通の上下余白（詰めすぎず・空きすぎず） */
+.section { padding-block: clamp(46px, 6vw, 78px); }
 .section--gray { background: var(--c-light); }
 
 /* セクション見出しのまとまり */
-.section__head { text-align: center; margin-bottom: clamp(44px, 6vw, 66px); }
+.section__head { text-align: center; margin-bottom: clamp(26px, 3.5vw, 40px); }
 
 /* 英語の小見出しラベル */
 .section__label {
@@ -340,19 +340,19 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
   min-height: 100%;
   max-width: var(--container);
   margin-inline: auto;
-  padding: 120px 24px 60px;
+  padding: 84px 24px 36px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.gmenu__list { display: grid; gap: 2px; }
+.gmenu__list { display: grid; gap: 0; }
 .gmenu__item a {
   display: flex;
   align-items: baseline;
-  gap: 16px;
-  padding: 16px 6px;
-  border-bottom: 1px solid rgba(255,255,255,.12);
+  gap: 14px;
+  padding: 9px 6px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
   color: var(--c-white);
   /* 開いたとき1つずつ順番に現れる */
   opacity: 0;
@@ -360,29 +360,29 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
 }
 .gmenu.is-open .gmenu__item a {
   animation: gmenuIn .5s forwards;
-  animation-delay: calc(var(--i) * 0.05s + 0.15s);
+  animation-delay: calc(var(--i) * 0.04s + 0.12s);
 }
 .gmenu__item a:hover { color: var(--c-beige); padding-left: 16px; }
 .gmenu__item.is-active a { color: var(--c-wood); }
 .gmenu__num {
-  font-family: var(--font-serif);
-  font-size: 13px;
+  font-family: var(--font-sans);
+  font-size: 11px;
   color: var(--c-greige);
-  min-width: 28px;
+  min-width: 24px;
 }
 .gmenu__en {
-  font-family: var(--font-serif);
-  font-size: clamp(1.4rem, 6vw, 2.1rem);
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
 }
-.gmenu__ja { font-size: 12px; color: rgba(255,255,255,.7); letter-spacing: 0.06em; }
+.gmenu__ja { font-size: 11px; color: rgba(255,255,255,.6); letter-spacing: 0.06em; }
 
 .gmenu__foot {
-  margin-top: 40px;
+  margin-top: 26px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 .gmenu__cta { display: flex; flex-wrap: wrap; gap: 12px; }
 .gmenu__company { font-size: 12px; line-height: 1.9; color: rgba(255,255,255,.6); }
@@ -1281,56 +1281,46 @@ body.menu-open { overflow: hidden; }
 .flow__step {
   position: relative;
   display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 26px;
-  padding: 30px 10px 30px 6px;
+  grid-template-columns: 72px 1fr;
+  gap: 22px;
+  padding: 20px 6px;
   align-items: start;
-  border-top: 1px solid var(--c-gray);
-  transition: background .35s ease;
 }
-.flow__step:last-child { border-bottom: 1px solid var(--c-gray); }
-/* ホバーでゴールドの淡い光がスッと差す */
-.flow__step:hover { background: linear-gradient(90deg, rgba(196,163,94,.10), rgba(196,163,94,0) 70%); }
-.flow__step:hover .flow__num { transform: translateY(-2px); }
+/* ステップ同士をつなぐ縦線 */
+.flow__step::before {
+  content: "";
+  position: absolute;
+  left: 35px; top: 58px; bottom: -8px;
+  width: 1px;
+  background: var(--c-gray);
+}
+.flow__step:last-child::before { display: none; }
 
-/* STEP + 大きなゴールドのグラデ数字 */
+/* 丸囲みの番号（見やすい〇表示に戻す） */
 .flow__num {
-  display: block;
+  position: relative;
+  z-index: 1;
+  width: 72px; height: 72px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--c-white);
+  border: 1px solid var(--c-charcoal);
   font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 8vw, 3.6rem);
-  font-weight: 600;
-  line-height: .85;
-  letter-spacing: 0.01em;
-  color: var(--c-gold-deep); /* 非対応ブラウザ用フォールバック */
-  background: linear-gradient(155deg, #7c828a 0%, #4c5157 55%, #2f3338 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: transform .35s ease;
-}
-.flow__num::before {
-  content: "STEP";
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  color: var(--c-greige);
-  -webkit-text-fill-color: var(--c-greige);
-  margin-bottom: 8px;
+  font-size: 22px; font-weight: 600; color: var(--c-charcoal);
 }
 .flow__title {
   font-family: var(--font-serif);
-  font-size: clamp(1rem, 4vw, 1.2rem);
+  font-size: clamp(1rem, 4vw, 1.15rem);
   font-weight: 600;
   color: var(--c-black);
   letter-spacing: 0.04em;
-  margin: 4px 0 8px;
+  margin: 14px 0 6px;
 }
-.flow__text { font-size: 13.5px; color: var(--t-sub); line-height: 1.95; }
+.flow__text { font-size: 13.5px; color: var(--t-sub); line-height: 1.9; }
 
 @media (min-width: 768px) {
-  .flow__step { grid-template-columns: 130px 1fr; gap: 40px; align-items: center; padding-block: 34px; }
+  .flow__step { grid-template-columns: 92px 1fr; gap: 30px; align-items: center; padding-block: 24px; }
+  .flow__step::before { left: 45px; top: 62px; }
 }
 
 /* --- タブレット以上：下層ページの2カラム化 --- */
@@ -1604,3 +1594,49 @@ body.menu-open .header__logo-img--dark   { display: none; }
 /* フッター：暗い背景なので白ロゴ（ロックアップにタグラインが含まれるため別タグラインは非表示） */
 .footer__logo::after { content: none; }
 .footer__logo-img { height: 42px; width: auto; display: block; }
+
+/* ============================================================
+   20. コンセプトの追記（深堀り＋選ばれる理由を統合）
+============================================================ */
+.concept__text strong { color: var(--c-black); font-weight: 700; }
+.concept__reasons { margin-top: clamp(40px, 6vw, 64px); }
+.concept__reasons-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 4vw, 1.35rem);
+  font-weight: 600;
+  color: var(--c-black);
+  letter-spacing: 0.04em;
+  margin-bottom: clamp(22px, 3vw, 32px);
+}
+
+/* ============================================================
+   21. お問い合わせフォーム
+============================================================ */
+.form { max-width: 720px; margin-inline: auto; }
+.form__row { margin-bottom: 22px; }
+.form__row--2 { display: grid; grid-template-columns: 1fr; gap: 22px; }
+.form__label { display: block; font-size: 13px; font-weight: 700; color: var(--c-black); letter-spacing: 0.04em; margin-bottom: 8px; }
+.form__req { font-size: 10.5px; font-weight: 700; color: var(--c-white); background: var(--c-charcoal); padding: 2px 7px; border-radius: 2px; margin-left: 8px; vertical-align: middle; }
+.form__input, .form__textarea, .form__select {
+  width: 100%; padding: 13px 14px;
+  border: 1px solid var(--c-gray); border-radius: 3px;
+  background: var(--c-white); color: var(--t-main);
+  font-family: inherit; font-size: 15px; line-height: 1.6;
+  transition: border-color .25s, box-shadow .25s;
+}
+.form__input:focus, .form__textarea:focus, .form__select:focus {
+  outline: none; border-color: var(--c-charcoal);
+  box-shadow: 0 0 0 3px rgba(52,55,59,.10);
+}
+.form__textarea { min-height: 150px; resize: vertical; }
+.form__agree { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--t-sub); line-height: 1.8; }
+.form__agree input { margin-top: 5px; flex-shrink: 0; }
+.form__agree a { text-decoration: underline; }
+.form__submit { text-align: center; margin-top: 30px; }
+.form__note { font-size: 12px; color: var(--t-sub); line-height: 1.9; margin-top: 16px; text-align: center; }
+.form__tel { text-align: center; margin-top: 8px; font-size: 13px; color: var(--t-sub); }
+.form__tel a { font-family: var(--font-serif); font-size: 18px; color: var(--c-black); font-weight: 600; }
+
+@media (min-width: 600px) {
+  .form__row--2 { grid-template-columns: 1fr 1fr; }
+}

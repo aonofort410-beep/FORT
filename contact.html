@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--
+============================================================
+  株式会社FORT / お問い合わせ・ご予約フォーム
+  ------------------------------------------------------------
+  ★ フォームの送信先について（重要）
+    下の <form action="..."> の action を、実際の送信先に変更してください。
+    ・かんたん：Formspree（https://formspree.io）でフォームを作成し、
+      発行されたURL（例 https://formspree.io/f/abcd1234）を action に貼る。
+    ・WordPressの場合：プラグイン「Contact Form 7」で作るのが定番です。
+    現状は action="#" のため、送信ボタンを押しても送信されません（見た目の確認用）。
+============================================================
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>お問い合わせ・ご予約｜株式会社FORT（岡山・倉敷・福山）</title>
+  <meta name="description" content="株式会社FORTへのお問い合わせ・来場予約・資料請求はこちらから。岡山・倉敷・福山エリアで、設計士とつくる注文住宅をご提案します。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.example-fort.co.jp/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="お問い合わせ・ご予約｜株式会社FORT">
+  <meta property="og:description" content="来場予約・資料請求・ご相談はこちらから。">
+  <meta property="og:image" content="images/exterior.jpg">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <a href="index.html" class="header__logo" aria-label="株式会社FORT トップへ"><img class="header__logo-img header__logo-img--white" src="images/logo-lockup-white.png" alt="FORT"><img class="header__logo-img header__logo-img--dark" src="images/logo-lockup-dark.png" alt="" aria-hidden="true"></a>
+      <button class="menu-toggle" id="menuToggle" type="button"
+              aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-toggle__txt">MENU</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="subhero">
+      <div class="subhero__media">
+        <img src="images/exterior.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
+        <div class="subhero__overlay"></div>
+      </div>
+      <div class="container subhero__inner">
+        <p class="subhero__eyebrow" data-reveal>CONTACT</p>
+        <h1 class="subhero__title" data-reveal>お問い合わせ・ご予約</h1>
+        <nav class="breadcrumb" aria-label="現在地">
+          <a href="index.html">HOME</a><span>／</span><span>CONTACT</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="page-lead" data-reveal>
+          来場予約・資料請求・家づくりのご相談など、お気軽にお問い合わせください。<br>
+          内容を確認のうえ、担当者より折り返しご連絡いたします。
+        </p>
+
+        <!-- ★ action を実際の送信先（Formspree等）に変更してください -->
+        <form class="form" action="#" method="POST" data-reveal>
+          <div class="form__row">
+            <label class="form__label" for="f-type">お問い合わせ種別<span class="form__req">必須</span></label>
+            <select class="form__select" id="f-type" name="種別" required>
+              <option value="">選択してください</option>
+              <option>来場・見学会のご予約</option>
+              <option>モデルハウス見学のご予約</option>
+              <option>資料請求</option>
+              <option>プラン・お見積りのご相談</option>
+              <option>その他のお問い合わせ</option>
+            </select>
+          </div>
+
+          <div class="form__row form__row--2">
+            <div>
+              <label class="form__label" for="f-name">お名前<span class="form__req">必須</span></label>
+              <input class="form__input" id="f-name" name="お名前" type="text" placeholder="山田 太郎" required>
+            </div>
+            <div>
+              <label class="form__label" for="f-kana">ふりがな</label>
+              <input class="form__input" id="f-kana" name="ふりがな" type="text" placeholder="やまだ たろう">
+            </div>
+          </div>
+
+          <div class="form__row form__row--2">
+            <div>
+              <label class="form__label" for="f-email">メールアドレス<span class="form__req">必須</span></label>
+              <input class="form__input" id="f-email" name="メール" type="email" placeholder="example@email.com" required>
+            </div>
+            <div>
+              <label class="form__label" for="f-tel">電話番号</label>
+              <input class="form__input" id="f-tel" name="電話番号" type="tel" placeholder="090-0000-0000">
+            </div>
+          </div>
+
+          <div class="form__row">
+            <label class="form__label" for="f-studio">ご希望のスタジオ</label>
+            <select class="form__select" id="f-studio" name="希望スタジオ">
+              <option value="">指定なし</option>
+              <option>岡山スタジオ</option>
+              <option>福山スタジオ</option>
+              <option>どちらでも可</option>
+            </select>
+          </div>
+
+          <div class="form__row">
+            <label class="form__label" for="f-msg">ご相談内容・ご希望</label>
+            <textarea class="form__textarea" id="f-msg" name="内容" placeholder="ご希望の間取り・ご予算・土地の有無・ご希望の連絡方法など、何でもお書きください。"></textarea>
+          </div>
+
+          <div class="form__row">
+            <label class="form__agree">
+              <input type="checkbox" name="同意" required>
+              <span><a href="#">プライバシーポリシー</a>に同意のうえ送信します。<span class="form__req">必須</span></span>
+            </label>
+          </div>
+
+          <div class="form__submit">
+            <button type="submit" class="btn btn--accent">この内容で送信する</button>
+            <p class="form__note">
+              ※ 現在このフォームは表示確認用です。送信を有効にするには、フォームの送信先（Formspree等）またはWordPressの「Contact Form 7」への接続が必要です。
+            </p>
+          </div>
+        </form>
+
+        <p class="form__tel">お電話：<a href="tel:0862369600">086-236-9600</a>（岡山）／ <a href="tel:0849827404">084-982-7404</a>（福山）<br><span style="font-size:12px;">受付 9:00〜18:00 / 水曜定休</span></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo"><img class="footer__logo-img" src="images/logo-lockup-white.png" alt="FORT"></p>
+        <p class="footer__copy-text">性能か、デザインか。<br>その選択をしなくていい家づくり。</p>
+      </div>
+      <nav class="footer__nav" aria-label="フッターメニュー">
+        <ul class="footer__list">
+          <li><a href="index.html#concept">CONCEPT</a></li>
+          <li><a href="works.html">WORKS</a></li>
+          <li><a href="performance.html">PERFORMANCE</a></li>
+          <li><a href="flow.html">FLOW</a></li>
+          <li><a href="lineup.html">LINEUP</a></li>
+          <li><a href="event.html">EVENT</a></li>
+          <li><a href="staff.html">STAFF</a></li>
+          <li><a href="company.html">COMPANY</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </nav>
+      <div class="footer__info">
+        <p>株式会社FORT</p>
+        <p>岡山県・倉敷市・福山市エリアで家づくりを行っています。</p>
+        <p>TEL：086-236-9600（岡山）／ 084-982-7404（福山）</p>
+        <p>受付時間 9:00〜18:00 / 水曜定休</p>
+      </div>
+    </div>
+    <p class="footer__copyright">© 2026 FORT Inc. All Rights Reserved.</p>
+  </footer>
+
+  <div class="floating-cta">
+    <a href="event.html" class="floating-cta__btn floating-cta__btn--ghost">見学会予約</a>
+    <a href="contact.html" class="floating-cta__btn floating-cta__btn--accent">資料請求・相談</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

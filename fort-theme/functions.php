@@ -61,7 +61,7 @@ function fort_assets() {
 		array( 'en' => 'STAFF',       'ja' => 'スタッフ紹介',           'href' => get_post_type_archive_link( 'staff' ) ),
 		array( 'en' => 'NEWS',        'ja' => 'お知らせ',               'href' => home_url( '/news/' ) ),
 		array( 'en' => 'COMPANY',     'ja' => '会社概要',               'href' => home_url( '/company/' ) ),
-		array( 'en' => 'CONTACT',     'ja' => 'ご予約・お問い合わせ',   'href' => home_url( '/#reserve' ) ),
+		array( 'en' => 'CONTACT',     'ja' => 'ご予約・お問い合わせ',   'href' => home_url( '/contact/' ) ),
 	);
 	wp_add_inline_script( 'fort-script', 'window.FORT_MENU = ' . wp_json_encode( $menu ) . ';', 'before' );
 }

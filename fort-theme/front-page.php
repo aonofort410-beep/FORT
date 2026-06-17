@@ -19,7 +19,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<span class="hero__logo-text" aria-hidden="true">FORT</span>
 			<span class="sr-only"><?php bloginfo( 'name' ); ?>｜岡山・倉敷・福山の注文住宅</span>
 		</h1>
-		<p class="hero__note" data-reveal>性能か、デザインか。<br>その選択を、しなくていい。</p>
+		<p class="hero__note" data-reveal>その日々が、いつか宝物になる。<br>家族の時間を、ずっと包む家を。</p>
 		<a href="#concept" class="hero__scroll" aria-label="下へスクロール">
 			<span class="hero__scroll-line"></span><span class="hero__scroll-text">SCROLL</span>
 		</a>
@@ -29,30 +29,29 @@ $img = get_template_directory_uri() . '/assets/images/';
 	<section class="concept section" id="concept">
 		<div class="container concept__inner">
 			<p class="section__label" data-reveal>CONCEPT</p>
-			<h2 class="section__title" data-reveal>暮らしをデザインする。</h2>
+			<h2 class="section__title" data-reveal>性能も、デザインも。<br>家族の人生を、ずっと支える家を。</h2>
 			<p class="concept__text" data-reveal>
 				FORTがつくるのは、単なる建物ではありません。<br>
-				家族の時間、趣味の時間、友人との時間。<br>
-				その先にある暮らしをデザインします。
+				家族の時間、趣味の時間、友人と過ごす時間——<br>
+				その先にある“暮らし”そのものをデザインしています。
+			</p>
+			<p class="concept__text" data-reveal style="margin-top:20px;">
+				社名の FORT には、欧州の堅固な城のように永く住み継げる<strong>堅固性（FORT）</strong>、
+				毎日を心地よくする<strong>快適性（comFORT）</strong>、ムダを省く<strong>企業努力（efFORT）</strong>、
+				住むほど価値が続く<strong>資産価値（FORTune）</strong>——4つの想いを込めました。<br>
+				「性能か、デザインか」ではなく、その両方を。私たちは、どちらも諦めません。
 			</p>
 		</div>
 		<figure class="concept__figure" data-reveal>
 			<img src="<?php echo esc_url( $img . 'niche.jpg' ); ?>" alt="FORTの住まいで過ごす家族の暮らし" loading="lazy" decoding="async">
 		</figure>
-	</section>
-
-	<!-- ===== WHY FORT ===== -->
-	<section class="why section section--gray" id="why">
-		<div class="container">
-			<header class="section__head">
-				<p class="section__label" data-reveal>WHY FORT</p>
-				<h2 class="section__title" data-reveal>FORTが選ばれる理由</h2>
-			</header>
+		<div class="container concept__reasons">
+			<p class="concept__reasons-title" data-reveal>FORTが、大切にする4つのこと。</p>
 			<ul class="why__grid">
-				<li class="why__card" data-reveal><span class="why__num">01</span><h3 class="why__card-title">性能とデザインの両立</h3><p class="why__card-text">耐震・断熱などの住宅性能と、洗練されたデザイン。どちらかを諦めるのではなく、両方を高いレベルで実現します。</p></li>
-				<li class="why__card" data-reveal><span class="why__num">02</span><h3 class="why__card-title">営業・設計・工務のチーム体制</h3><p class="why__card-text">担当者まかせにせず、各分野のプロがチームで連携。安心して家づくりを進められる体制を整えています。</p></li>
-				<li class="why__card" data-reveal><span class="why__num">03</span><h3 class="why__card-title">手の届く価格で実現</h3><p class="why__card-text">ムダを省いた家づくりで、デザインと性能を手の届く価格に。予算に合わせたご提案が可能です。</p></li>
-				<li class="why__card" data-reveal><span class="why__num">04</span><h3 class="why__card-title">建てた後も続く安心</h3><p class="why__card-text">お引渡しはゴールではなくスタート。定期点検やアフターサポートで、長く安心して暮らせます。</p></li>
+				<li class="why__card" data-reveal><span class="why__num">01</span><h3 class="why__card-title">デザインだけじゃない、性能。</h3><p class="why__card-text">耐震・断熱・気密まで、数字で語れる確かな住宅性能を標準で。</p></li>
+				<li class="why__card" data-reveal><span class="why__num">02</span><h3 class="why__card-title">性能だけじゃない、デザイン。</h3><p class="why__card-text">設計士が一邸ずつ設計。暮らしに映える美しさと住み心地を両立します。</p></li>
+				<li class="why__card" data-reveal><span class="why__num">03</span><h3 class="why__card-title">営業・設計・工務のチームで。</h3><p class="why__card-text">担当者まかせにしない。各分野のプロが連携し、最初から最後まで伴走します。</p></li>
+				<li class="why__card" data-reveal><span class="why__num">04</span><h3 class="why__card-title">手の届く価格と、続く安心。</h3><p class="why__card-text">ムダを省いた家づくりと、お引渡し後の定期点検・アフターサポート。</p></li>
 			</ul>
 		</div>
 	</section>
@@ -154,14 +153,27 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<header class="section__head">
 				<p class="section__label" data-reveal>PERFORMANCE</p>
 				<h2 class="section__title" data-reveal>構造・性能</h2>
-				<p class="section__desc" data-reveal>見えない部分こそ、ていねいに。SMART／STANDARD／PLUS／BLACKの4つの性能グレードをご用意しています。</p>
+				<p class="section__desc" data-reveal>FORT最高峰グレード「<strong>FORT BLACK</strong>」を基準に、確かな住宅性能を。</p>
 			</header>
-			<ul class="why__grid">
-				<li class="why__card" data-reveal><span class="why__num">01</span><h3 class="why__card-title">高い断熱性能</h3><p class="why__card-text">UA値 0.56〜0.34以下。夏は涼しく冬はあたたかい、一年中心地よい室内環境へ。</p></li>
-				<li class="why__card" data-reveal><span class="why__num">02</span><h3 class="why__card-title">すきまの少ない高気密</h3><p class="why__card-text">C値 1.0〜0.3以下。全棟、第三者機関による気密測定を実施します。</p></li>
-				<li class="why__card" data-reveal><span class="why__num">03</span><h3 class="why__card-title">耐震へのこだわり</h3><p class="why__card-text">耐震等級3が基本。PLUS以上は許容応力度計算・設計性能評価を取得します。</p></li>
-				<li class="why__card" data-reveal><span class="why__num">04</span><h3 class="why__card-title">計画換気・空調</h3><p class="why__card-text">第三種換気〜第一種熱交換換気「Air save」まで。空気の質まで考えた住まいへ。</p></li>
+			<ul class="perf-highlight" data-reveal>
+				<li><p class="ph-label">断熱性能 UA値</p><p class="ph-value">0.34<small>以下</small></p><p class="ph-text">HEAT20 G2.5〜G3クラス</p></li>
+				<li><p class="ph-label">気密性能 C値</p><p class="ph-value">0.3<small>以下</small></p><p class="ph-text">全棟、第三者機関で気密測定</p></li>
+				<li><p class="ph-label">耐震性能</p><p class="ph-value">等級3<small>＋構造計算</small></p><p class="ph-text">許容応力度計算・設計性能評価</p></li>
 			</ul>
+			<p class="concept__reasons-title" data-reveal style="text-align:center;">FORT BLACK ｜ 最高峰グレードの標準基準</p>
+			<dl class="case-spec" data-reveal>
+				<div><dt>耐震</dt><dd>等級3 ＋ 許容応力度計算</dd></div>
+				<div><dt>設計性能評価</dt><dd>取得</dd></div>
+				<div><dt>断熱（UA値）</dt><dd>0.34 以下（HEAT20 G2.5〜G3）</dd></div>
+				<div><dt>気密（C値）</dt><dd>0.3 以下</dd></div>
+				<div><dt>気密測定</dt><dd>全棟・第三者機関</dd></div>
+				<div><dt>窓・サッシ</dt><dd>APW430（樹脂・トリプルガラス）</dd></div>
+				<div><dt>換気</dt><dd>Air save（第一種熱交換換気）</dd></div>
+				<div><dt>制振</dt><dd>evoltz（制振ダンパー）</dd></div>
+				<div><dt>保証</dt><dd>躯体20年（最長60年）／設備10年</dd></div>
+			</dl>
+			<p class="spec-note-scroll" style="margin-top:14px;">※ FORT BLACK 標準仕様の一例です。グレードにより内容が異なります。</p>
+			<div class="section__more" data-reveal><a href="<?php echo esc_url( home_url( '/performance/' ) ); ?>" class="btn btn--outline">4つの性能グレードを詳しく見る</a></div>
 		</div>
 	</section>
 
@@ -277,8 +289,8 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<ul class="reserve__actions" data-reveal>
 				<li><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent btn--block">見学会予約</a></li>
 				<li><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent btn--block">モデルハウス予約</a></li>
-				<li><a href="#" class="btn btn--light btn--block">資料請求</a></li>
-				<li><a href="#" class="btn btn--light btn--block">お問い合わせ</a></li>
+				<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--light btn--block">資料請求</a></li>
+				<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--light btn--block">お問い合わせ</a></li>
 			</ul>
 			<p class="reserve__tel" data-reveal>お電話：<a href="tel:<?php echo esc_attr( str_replace( '-', '', fort_opt( 'fort_tel_okayama', '086-236-9600' ) ) ); ?>"><?php echo esc_html( fort_opt( 'fort_tel_okayama', '086-236-9600' ) ); ?></a>（岡山）／ <a href="tel:<?php echo esc_attr( str_replace( '-', '', fort_opt( 'fort_tel_fukuyama', '084-982-7404' ) ) ); ?>"><?php echo esc_html( fort_opt( 'fort_tel_fukuyama', '084-982-7404' ) ); ?></a>（福山）<span class="reserve__tel-note">（受付 9:00〜18:00 / 水曜定休）</span></p>
 		</div>

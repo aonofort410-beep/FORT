@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { en: 'STAFF',    ja: 'スタッフ紹介',       href: 'staff.html' },
     { en: 'NEWS',     ja: 'お知らせ',           href: 'index.html#news' },
     { en: 'COMPANY',  ja: '会社概要',           href: 'company.html' },
-    { en: 'CONTACT',  ja: 'ご予約・お問い合わせ', href: 'index.html#reserve' }
+    { en: 'CONTACT',  ja: 'ご予約・お問い合わせ', href: 'contact.html' }
   ];
 
   // 今開いているページのファイル名（例：staff.html）を調べる

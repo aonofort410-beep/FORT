@@ -374,8 +374,8 @@ body.menu-open .header { background: transparent; box-shadow: none; backdrop-fil
 .gmenu__en {
   font-family: var(--font-sans);
   font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 400;
+  letter-spacing: 0.10em;
 }
 .gmenu__ja { font-size: 11px; color: rgba(255,255,255,.6); letter-spacing: 0.06em; }
 
@@ -1657,12 +1657,16 @@ body.menu-open .header__logo-img--dark   { display: none; }
 .hero__note { font-weight: 500; }
 .hero__note strong { font-weight: 700; }
 .hero__note-en {
-  display: inline-block;
-  margin-top: 10px;
+  display: block;
+  margin-top: 8px;
   font-size: clamp(9px, 1.3vw, 11px);
   letter-spacing: 0.22em;
   opacity: .85;
 }
+/* ヒーロー左下コピーの行間を詰める */
+.hero__note { line-height: 1.7; }
+/* コンセプト見出しを少し小さめに */
+.concept .section__title { font-size: clamp(1.3rem, 4.4vw, 1.85rem); }
 /* コンセプト本文：ゴシックで読みやすく */
 .concept__text {
   font-family: var(--font-sans);
@@ -1696,23 +1700,29 @@ body.menu-open .header__logo-img--dark   { display: none; }
 /* ============================================================
    25. 施工事例：ゆっくり流れる写真スライダー（タップで詳細へ）
 ============================================================ */
-.works-slider { overflow: hidden; width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+/* 画面いっぱいに表示（コンテナの外へ広げる） */
+.works-slider {
+  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
 .works-slider__track {
   display: flex;
-  gap: 16px;
+  gap: 18px;
   width: max-content;
-  animation: worksMarquee 48s linear infinite;
+  padding-inline: 18px;
+  animation: worksMarquee 60s linear infinite;
 }
 .works-slider:hover .works-slider__track { animation-play-state: paused; }
 .works-slide {
   flex: 0 0 auto;
-  width: clamp(250px, 66vw, 380px);
+  width: clamp(320px, 84vw, 680px);
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
 }
-.works-slide img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; transition: transform .6s ease; }
+.works-slide img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; transition: transform .6s ease; }
 .works-slide:hover img { transform: scale(1.05); }
 .works-slide__cap {
   position: absolute; left: 0; right: 0; bottom: 0;

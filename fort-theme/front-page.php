@@ -21,7 +21,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 		</h1>
 		<p class="hero__note" data-reveal>
 			性能だけでもない。<br>
-			デザインだけでもない。<br><br>
+			デザインだけでもない。<br>
 			その<strong>ちょうど真ん中</strong>に、FORTがある。
 			<span class="hero__note-en">Design × Performance × Balance</span>
 		</p>
@@ -158,27 +158,15 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<header class="section__head">
 				<p class="section__label" data-reveal>PERFORMANCE</p>
 				<h2 class="section__title" data-reveal>構造・性能</h2>
-				<p class="section__desc" data-reveal>FORT最高峰グレード「<strong>FORT BLACK</strong>」を基準に、確かな住宅性能を。</p>
+				<p class="section__desc" data-reveal>見えない部分こそ、ていねいに。SMART／STANDARD／PLUS／BLACK の4グレードをご用意しています。</p>
 			</header>
-			<ul class="perf-highlight" data-reveal>
-				<li><p class="ph-label">断熱性能 UA値</p><p class="ph-value">0.34<small>以下</small></p><p class="ph-text">HEAT20 G2.5〜G3クラス</p></li>
-				<li><p class="ph-label">気密性能 C値</p><p class="ph-value">0.3<small>以下</small></p><p class="ph-text">全棟、第三者機関で気密測定</p></li>
-				<li><p class="ph-label">耐震性能</p><p class="ph-value">等級3<small>＋構造計算</small></p><p class="ph-text">許容応力度計算・設計性能評価</p></li>
+			<ul class="value__grid">
+				<li class="value__card" data-reveal><figure class="value__figure"><img src="<?php echo esc_url( $img . 'ldk.jpg' ); ?>" alt="高断熱" loading="lazy"></figure><div class="value__body"><span class="value__num">01</span><h3 class="value__title">高い断熱性能</h3><p class="value__text">UA値 0.56〜0.34以下。一年中心地よい室内環境へ。</p></div></li>
+				<li class="value__card" data-reveal><figure class="value__figure"><img src="<?php echo esc_url( $img . 'kitchen-view.jpg' ); ?>" alt="高気密" loading="lazy"></figure><div class="value__body"><span class="value__num">02</span><h3 class="value__title">すきまの少ない高気密</h3><p class="value__text">C値 1.0〜0.3以下。全棟、第三者機関で気密測定。</p></div></li>
+				<li class="value__card" data-reveal><figure class="value__figure"><img src="<?php echo esc_url( $img . 'exterior.jpg' ); ?>" alt="耐震" loading="lazy"></figure><div class="value__body"><span class="value__num">03</span><h3 class="value__title">耐震へのこだわり</h3><p class="value__text">耐震等級3が基本。PLUS以上は許容応力度計算を取得。</p></div></li>
+				<li class="value__card" data-reveal><figure class="value__figure"><img src="<?php echo esc_url( $img . 'niche.jpg' ); ?>" alt="換気" loading="lazy"></figure><div class="value__body"><span class="value__num">04</span><h3 class="value__title">計画換気・空調</h3><p class="value__text">第三種換気〜第一種熱交換換気「Air save」まで。</p></div></li>
 			</ul>
-			<p class="concept__reasons-title" data-reveal style="text-align:center;">FORT BLACK ｜ 最高峰グレードの標準基準</p>
-			<dl class="case-spec" data-reveal>
-				<div><dt>耐震</dt><dd>等級3 ＋ 許容応力度計算</dd></div>
-				<div><dt>設計性能評価</dt><dd>取得</dd></div>
-				<div><dt>断熱（UA値）</dt><dd>0.34 以下（HEAT20 G2.5〜G3）</dd></div>
-				<div><dt>気密（C値）</dt><dd>0.3 以下</dd></div>
-				<div><dt>気密測定</dt><dd>全棟・第三者機関</dd></div>
-				<div><dt>窓・サッシ</dt><dd>APW430（樹脂・トリプルガラス）</dd></div>
-				<div><dt>換気</dt><dd>Air save（第一種熱交換換気）</dd></div>
-				<div><dt>制振</dt><dd>evoltz（制振ダンパー）</dd></div>
-				<div><dt>保証</dt><dd>躯体20年（最長60年）／設備10年</dd></div>
-			</dl>
-			<p class="spec-note-scroll" style="margin-top:14px;">※ FORT BLACK 標準仕様の一例です。グレードにより内容が異なります。</p>
-			<div class="section__more" data-reveal><a href="<?php echo esc_url( home_url( '/performance/' ) ); ?>" class="btn btn--outline">4つの性能グレードを詳しく見る</a></div>
+			<div class="section__more" data-reveal><a href="<?php echo esc_url( home_url( '/performance/' ) ); ?>" class="btn btn--outline">FORT BLACKなど、4つの性能グレードを詳しく見る</a></div>
 		</div>
 	</section>
 

@@ -35,16 +35,15 @@ document.addEventListener('DOMContentLoaded', function () {
   -------------------------------------------------------- */
   var MENU = [
     { en: 'HOME',     ja: 'トップ',             href: 'index.html' },
-    { en: 'CONCEPT',  ja: '私たちの想い',       href: 'index.html#concept' },
-    { en: 'WHY FORT', ja: '選ばれる理由',       href: 'index.html#concept' },
-    { en: 'WORKS',    ja: '施工事例',           href: 'works.html' },
-    { en: 'FEATURE',  ja: '特集',               href: 'feature.html' },
+    { en: 'PHILOSOPHY', ja: 'FORTの思い',       href: 'index.html#philosophy' },
     { en: 'PERFORMANCE', ja: '構造・性能',      href: 'performance.html' },
+    { en: 'WORKS',    ja: '施工事例',           href: 'works.html' },
+    { en: 'FORT FAMILY', ja: 'お客様の声',      href: 'index.html#family' },
     { en: 'LINEUP',   ja: '商品ラインナップ',   href: 'lineup.html' },
-    { en: 'EVENT',    ja: '見学会・イベント',   href: 'event.html' },
     { en: 'FLOW',     ja: '家づくりの流れ',     href: 'flow.html' },
-    { en: 'STUDIO',   ja: 'モデルハウス・スタジオ', href: 'studio.html' },
     { en: 'STAFF',    ja: 'スタッフ紹介',       href: 'staff.html' },
+    { en: 'STUDIO',   ja: 'モデルハウス・スタジオ', href: 'studio.html' },
+    { en: 'EVENT',    ja: '見学会・イベント',   href: 'event.html' },
     { en: 'NEWS',     ja: 'お知らせ',           href: 'index.html#news' },
     { en: 'COMPANY',  ja: '会社概要',           href: 'company.html' },
     { en: 'CONTACT',  ja: 'ご予約・お問い合わせ', href: 'contact.html' }

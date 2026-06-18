@@ -1736,3 +1736,41 @@ body.menu-open .header__logo-img--dark   { display: none; }
 @media (min-width: 768px) {
   .value__grid { grid-template-columns: repeat(4, 1fr); gap: 18px; }
 }
+
+/* ============================================================
+   26. TOP再構成（動画ヒーロー / FORT PHILOSOPHY ほか）
+============================================================ */
+/* 動画ヒーロー */
+.hero__media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hero--video .hero__img { animation: none; }
+.hero--video .hero__inner { text-align: left; }
+.hero--video .hero__title { color: var(--c-white); }
+.hero--video .hero__lead { color: rgba(255,255,255,.92); }
+
+/* FORT PHILOSOPHY（思い）：余白を大きく、写真＋テキスト */
+.philosophy__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  align-items: center;
+}
+.philosophy__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 5.4vw, 2.2rem);
+  color: var(--c-black);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  margin: 14px 0 22px;
+}
+.philosophy__body {
+  font-size: clamp(14px, 3.6vw, 16px);
+  line-height: 2.25;
+  color: var(--c-charcoal);
+}
+.philosophy__figure { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.philosophy__figure img { aspect-ratio: 4 / 5; object-fit: cover; }
+
+@media (min-width: 860px) {
+  .philosophy__inner { grid-template-columns: 1.05fr 0.95fr; gap: 64px; }
+  .philosophy__figure img { aspect-ratio: 3 / 4; }
+}

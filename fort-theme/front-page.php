@@ -22,10 +22,10 @@ $img = get_template_directory_uri() . '/assets/images/';
 				<span class="hero__logo-text" aria-hidden="true">FORT</span>
 				<span class="sr-only"><?php bloginfo( 'name' ); ?>｜岡山・福山の注文住宅</span>
 			</h1>
-			<div class="hero__actions">
-				<a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>" class="btn btn--light">施工事例を見る</a>
-				<a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent">見学会を予約する</a>
-			</div>
+		</div>
+		<div class="hero__actions hero__actions--br" data-reveal>
+			<a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>" class="btn btn--light">施工事例を見る</a>
+			<a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent">見学会を予約する</a>
 		</div>
 		<p class="hero__note" data-reveal>
 			性能だけでもない。<br>

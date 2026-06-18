@@ -86,8 +86,8 @@
 
   <main>
 
-    <!-- 01 HOME / ヒーロー（フルスクリーン動画） -->
-    <section class="hero hero--video" id="hero">
+    <!-- 01 HOME / ヒーロー（フルスクリーン動画＋FORTロゴ） -->
+    <section class="hero hero--logo" id="hero">
       <div class="hero__media">
         <!-- VIDEO: images/hero.mp4 を置くと動画再生。無い間は poster の hero.jpg を表示 -->
         <video class="hero__img" autoplay muted loop playsinline poster="images/hero.jpg">
@@ -95,14 +95,27 @@
         </video>
         <div class="hero__overlay"></div>
       </div>
-      <div class="hero__inner container">
-        <h1 class="hero__title" data-reveal>性能か、デザインか。<br>その選択をしなくていい家づくり。</h1>
-        <p class="hero__lead" data-reveal>営業、設計、工務。<br>チームでつくる、FORTの家づくり。</p>
-        <div class="hero__actions" data-reveal>
+
+      <div class="hero__logobox" data-reveal>
+        <h1 class="hero__logo">
+          <img class="hero__logo-img" src="images/logo-white.png" alt="FORT" data-fallback="1" onerror="this.remove()">
+          <span class="hero__logo-text" aria-hidden="true">FORT</span>
+          <span class="sr-only">株式会社FORT｜岡山・福山の注文住宅</span>
+        </h1>
+        <div class="hero__actions">
           <a href="works.html" class="btn btn--light">施工事例を見る</a>
           <a href="event.html" class="btn btn--accent">見学会を予約する</a>
         </div>
       </div>
+
+      <!-- ヒーロー左下：FORTの思い -->
+      <p class="hero__note" data-reveal>
+        性能だけでもない。<br>
+        デザインだけでもない。<br>
+        その<strong>ちょうど真ん中</strong>に、FORTがある。
+        <span class="hero__note-en">Design × Performance × Balance</span>
+      </p>
+
       <a href="#philosophy" class="hero__scroll" aria-label="下へスクロール">
         <span class="hero__scroll-line"></span><span class="hero__scroll-text">SCROLL</span>
       </a>
@@ -113,7 +126,7 @@
       <div class="container philosophy__inner">
         <div class="philosophy__text" data-reveal>
           <p class="section__label">FORT PHILOSOPHY</p>
-          <h2 class="philosophy__title">岡山に、ちょうどいい家を。</h2>
+          <h2 class="philosophy__title">家族に、ちょうどいい家を。</h2>
           <p class="philosophy__body">
             性能だけを追い求めれば、家は高くなる。<br>
             デザインだけを追い求めれば、暮らしにくくなる。<br><br>
@@ -138,12 +151,11 @@
           <p class="section__desc" data-reveal>見えない部分こそ、ていねいに。FORTの確かな住宅性能。</p>
         </header>
         <ul class="perf-highlight" data-reveal>
-          <li><p class="ph-value">0.2</p><p class="ph-label">平均 C値（気密）</p></li>
-          <li><p class="ph-value">等級3</p><p class="ph-label">耐震等級</p></li>
+          <li><p class="ph-value">0.3</p><p class="ph-label">平均 C値（気密）</p></li>
+          <li><p class="ph-value">0.34<small>以下</small></p><p class="ph-label">UA値（断熱）</p></li>
           <li><p class="ph-value">等級6</p><p class="ph-label">断熱等級</p></li>
-          <li><p class="ph-value">全棟</p><p class="ph-label">許容応力度計算</p></li>
-          <li><p class="ph-value">20<small>年</small></p><p class="ph-label">構造保証</p></li>
-          <li><p class="ph-value">60<small>年</small></p><p class="ph-label">最長保証</p></li>
+          <li><p class="ph-value">等級3</p><p class="ph-label">耐震等級</p></li>
+          <li><p class="ph-value">最長60<small>年</small></p><p class="ph-label">保証（初期保証20年）</p></li>
         </ul>
         <div class="section__more" data-reveal>
           <a href="performance.html" class="btn btn--outline">構造・性能を詳しく見る</a>
@@ -257,7 +269,6 @@
             <div class="lineup__body"><h3 class="lineup__name">FORT STYLE</h3><p class="lineup__type">建売住宅</p><p class="lineup__text">土地・建物・外構まで、わかりやすい価格設定の住まい。</p><a href="https://www.fortstyle.org/" class="lineup__link" target="_blank" rel="noopener">公式サイトを見る</a></div>
           </li>
           <li class="lineup__card lineup__card--featured" data-reveal>
-            <span class="lineup__badge">STANDARD</span>
             <figure class="lineup__figure"><img src="images/pro/persp-b.jpg" alt="FORT PRO" loading="lazy" decoding="async"></figure>
             <div class="lineup__body"><h3 class="lineup__name">FORT PRO</h3><p class="lineup__type">規格・セミオーダー住宅</p><p class="lineup__text">人気の間取りをベースに、自分たちらしくカスタマイズ。</p><a href="fort-pro.html" class="lineup__link">PLAN A〜F を見る</a></div>
           </li>

@@ -50,6 +50,7 @@ function fort_assets() {
 	$menu = array(
 		array( 'en' => 'HOME',        'ja' => 'トップ',                 'href' => home_url( '/' ) ),
 		array( 'en' => 'PHILOSOPHY',  'ja' => 'FORTの思い',             'href' => home_url( '/#philosophy' ) ),
+		array( 'en' => 'EVENT',       'ja' => '見学会・イベント',       'href' => get_post_type_archive_link( 'fort_event' ) ),
 		array( 'en' => 'PERFORMANCE', 'ja' => '構造・性能',             'href' => home_url( '/performance/' ) ),
 		array( 'en' => 'WORKS',       'ja' => '施工事例',               'href' => get_post_type_archive_link( 'works' ) ),
 		array( 'en' => 'FORT FAMILY', 'ja' => 'お客様の声',             'href' => home_url( '/#family' ) ),
@@ -57,7 +58,6 @@ function fort_assets() {
 		array( 'en' => 'FLOW',        'ja' => '家づくりの流れ',         'href' => home_url( '/flow/' ) ),
 		array( 'en' => 'STAFF',       'ja' => 'スタッフ紹介',           'href' => get_post_type_archive_link( 'staff' ) ),
 		array( 'en' => 'STUDIO',      'ja' => 'モデルハウス・スタジオ', 'href' => home_url( '/studio/' ) ),
-		array( 'en' => 'EVENT',       'ja' => '見学会・イベント',       'href' => get_post_type_archive_link( 'fort_event' ) ),
 		array( 'en' => 'NEWS',        'ja' => 'お知らせ',               'href' => home_url( '/news/' ) ),
 		array( 'en' => 'COMPANY',     'ja' => '会社概要',               'href' => home_url( '/company/' ) ),
 		array( 'en' => 'CONTACT',     'ja' => 'ご予約・お問い合わせ',   'href' => home_url( '/contact/' ) ),

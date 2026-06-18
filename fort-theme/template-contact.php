@@ -16,9 +16,9 @@ $img = get_template_directory_uri() . "/assets/images/";
       </div>
       <div class="container subhero__inner">
         <p class="subhero__eyebrow" data-reveal>CONTACT</p>
-        <h1 class="subhero__title" data-reveal>お問い合わせ・ご予約</h1>
+        <h1 class="subhero__title" data-reveal>お問合せ</h1>
         <nav class="breadcrumb" aria-label="現在地">
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>">HOME</a><span>／</span><span>CONTACT</span>
+          <a href="<?php echo esc_url( home_url( '/' ) ); ?>">HOME</a><span>／</span><span>お問合せ</span>
         </nav>
       </div>
     </section>
@@ -26,8 +26,9 @@ $img = get_template_directory_uri() . "/assets/images/";
     <section class="section">
       <div class="container">
         <p class="page-lead" data-reveal>
-          来場予約・資料請求・家づくりのご相談など、お気軽にお問い合わせください。<br>
-          内容を確認のうえ、担当者より折り返しご連絡いたします。
+          家づくりのご相談・ご質問など、お気軽にお問い合わせください。<br>
+          内容を確認のうえ、担当者より折り返しご連絡いたします。<br>
+          <span style="font-size:13px;color:var(--t-sub);">※ ご来場予約は<a href="<?php echo esc_url( home_url( '/visit/' ) ); ?>" style="text-decoration:underline;">ご来場予約ページ</a>、資料請求は<a href="<?php echo esc_url( home_url( '/request/' ) ); ?>" style="text-decoration:underline;">資料請求ページ</a>が便利です。</span>
         </p>
 
         <!-- ★ action を実際の送信先（Formspree等）に変更してください -->

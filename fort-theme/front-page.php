@@ -215,10 +215,10 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<p class="section__label section__label--light" data-reveal>CONTACT</p>
 			<h2 class="section__title section__title--light" data-reveal>家づくりのご相談、<br>モデルハウスの見学予約はこちらから。</h2>
 			<ul class="reserve__actions" data-reveal>
-				<li><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent btn--block">見学会・来場予約</a></li>
-				<li><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent btn--block">モデルハウス見学予約</a></li>
-				<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--light btn--block">資料請求</a></li>
-				<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--light btn--block">お問い合わせ</a></li>
+				<li><a href="<?php echo esc_url( home_url( '/visit/' ) ); ?>" class="btn btn--accent btn--block">ご来場予約</a></li>
+				<li><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent btn--block">見学会・モデルハウス予約</a></li>
+				<li><a href="<?php echo esc_url( home_url( '/request/' ) ); ?>" class="btn btn--light btn--block">資料請求</a></li>
+				<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--light btn--block">お問合せ</a></li>
 			</ul>
 			<p class="reserve__tel" data-reveal>お電話：<a href="tel:0862369600">086-236-9600</a>（岡山）／ <a href="tel:0849827404">084-982-7404</a>（福山）<span class="reserve__tel-note">（受付 9:00〜18:00 / 水曜定休）</span></p>
 		</div>

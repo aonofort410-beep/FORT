@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <!--
 ============================================================
-  株式会社FORT / EVENT（見学会・イベント）ページ
+  株式会社FORT / EVENT（見学会・モデルハウス予約）ページ
   ------------------------------------------------------------
-  ・開催予定は <div class="schedule__item"> ... </div> を
-    コピー＆ペーストして追加・更新してください
+  ・見学会／イベントは <li class="feature__card"> をコピーして追加
+  ・開催予定の一覧は <div class="schedule__item"> をコピーして追加
+  ・モデルハウスは MODEL HOUSE セクションのカードを編集
 ============================================================
 -->
 <html lang="ja">
@@ -12,12 +13,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>見学会・イベント｜実際の住まいを体感する｜株式会社FORT（岡山・倉敷・福山）</title>
-  <meta name="description" content="株式会社FORTの完成見学会・モデルハウス見学のご案内。実際の住まいで、FORTのデザインと性能を体感いただけます。岡山・倉敷・福山エリアで開催。ご予約はこちらから。">
+  <title>見学会・モデルハウス予約｜株式会社FORT（岡山・倉敷・福山）</title>
+  <meta name="description" content="株式会社FORTの見学会・モデルハウスのご案内。完成見学会・構造見学会・無料相談会、そして岡山玉野・福山下加茂のモデルハウスを写真でわかりやすくご紹介。ご予約はこちらから。">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.example-fort.co.jp/event.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="見学会・イベント｜株式会社FORT">
+  <meta property="og:title" content="見学会・モデルハウス予約｜株式会社FORT">
   <meta property="og:description" content="完成見学会・モデルハウス見学で、FORTの住まいを体感してください。">
   <meta property="og:image" content="images/ldk.jpg">
 
@@ -48,10 +49,10 @@
         <div class="subhero__overlay"></div>
       </div>
       <div class="container subhero__inner">
-        <p class="subhero__eyebrow" data-reveal>EVENT</p>
-        <h1 class="subhero__title" data-reveal>実際の住まいを体感する。</h1>
+        <p class="subhero__eyebrow" data-reveal>EVENT &amp; MODEL HOUSE</p>
+        <h1 class="subhero__title" data-reveal>見学会・モデルハウス予約</h1>
         <nav class="breadcrumb" aria-label="現在地">
-          <a href="index.html">HOME</a><span>／</span><span>EVENT</span>
+          <a href="index.html">HOME</a><span>／</span><span>見学会・モデルハウス</span>
         </nav>
       </div>
     </section>
@@ -60,34 +61,54 @@
       <div class="container">
         <p class="page-lead" data-reveal>
           写真やカタログだけでは伝わらない、空気感や心地よさ。<br>
-          FORTの家を、ぜひその目で、その肌で感じてください。
+          FORTの家を、ぜひその目で、その肌で感じてください。常時3つ以上のイベントを開催しています。
         </p>
+      </div>
+    </section>
 
-        <!-- 2種類のイベント -->
-        <ul class="why__grid" style="grid-template-columns:1fr;">
-          <li class="why__card" data-reveal>
-            <span class="why__num">01</span>
-            <h2 class="why__card-title">完成見学会</h2>
-            <p class="why__card-text">
-              実際に建てられたお客様の家を、お引渡し前に特別に公開。
-              リアルな暮らしのサイズ感や、間取りの工夫を体感いただけます。
-              期間・場所限定の開催です。
-            </p>
+    <!-- ▼ 開催中の見学会・イベント（写真カード） -->
+    <section class="section section--gray" id="events">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>EVENT</p>
+          <h2 class="section__title" data-reveal>開催中の見学会・イベント</h2>
+          <p class="section__desc" data-reveal>気になるイベントの「予約する」ボタンから、かんたんにお申し込みいただけます。</p>
+        </header>
+
+        <ul class="feature__grid">
+          <li class="feature__card" data-reveal>
+            <figure class="feature__figure"><img src="images/exterior.jpg" alt="完成見学会" loading="lazy" decoding="async"></figure>
+            <div class="feature__body">
+              <span class="feature__tag">完成見学会</span>
+              <h3 class="feature__title">中庭とつながるブラックモダンの家</h3>
+              <p class="feature__text">お引渡し前のお住まいを特別公開。実際の暮らしのサイズ感や間取りの工夫を体感いただけます。<br>6/14(土)〜6/15(日)・倉敷市</p>
+              <a href="visit.html" class="btn btn--accent btn--block">この見学会を予約する</a>
+            </div>
           </li>
-          <li class="why__card" data-reveal>
-            <span class="why__num">02</span>
-            <h2 class="why__card-title">モデルハウス見学</h2>
-            <p class="why__card-text">
-              FORTのデザインと性能を、いつでもご体感いただける常設の住まい。
-              ご家族のペースで、ゆっくりとご覧いただけます。ご予約優先でご案内します。
-            </p>
+          <li class="feature__card" data-reveal>
+            <figure class="feature__figure"><img src="images/hero.jpg" alt="構造見学会" loading="lazy" decoding="async"></figure>
+            <div class="feature__body">
+              <span class="feature__tag">構造見学会</span>
+              <h3 class="feature__title">見えなくなる部分を見る、構造見学会</h3>
+              <p class="feature__text">完成後は隠れてしまう断熱・耐震・気密の工夫を、構造段階の現場でご確認いただけます。<br>6/28(土)・岡山市</p>
+              <a href="visit.html" class="btn btn--accent btn--block">この見学会を予約する</a>
+            </div>
+          </li>
+          <li class="feature__card" data-reveal>
+            <figure class="feature__figure"><img src="images/kitchen-view.jpg" alt="無料相談会" loading="lazy" decoding="async"></figure>
+            <div class="feature__body">
+              <span class="feature__tag">相談会</span>
+              <h3 class="feature__title">家づくり無料相談会</h3>
+              <p class="feature__text">資金計画や土地さがし、はじめの一歩から。お子さま連れでもお気軽にご相談ください。<br>随時開催・岡山／福山スタジオ</p>
+              <a href="contact.html" class="btn btn--accent btn--block">相談を予約する</a>
+            </div>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- 開催予定 -->
-    <section class="section section--gray">
+    <!-- ▼ 開催予定（日程一覧） -->
+    <section class="section" id="schedule">
       <div class="container">
         <header class="section__head">
           <p class="section__label" data-reveal>SCHEDULE</p>
@@ -106,11 +127,19 @@
           </div>
           <div class="schedule__item">
             <div class="schedule__meta">
-              <span class="schedule__date">毎週末</span>
-              <span class="schedule__badge">モデルハウス</span>
+              <span class="schedule__date">6/28</span>
+              <span class="schedule__badge">構造見学会</span>
               <span class="schedule__place">岡山市</span>
             </div>
-            <p class="schedule__title">FORTモデルハウス 見学受付中（ご予約優先）</p>
+            <p class="schedule__title">見えなくなる部分を見る 構造見学会</p>
+          </div>
+          <div class="schedule__item">
+            <div class="schedule__meta">
+              <span class="schedule__date">毎週末</span>
+              <span class="schedule__badge">モデルハウス</span>
+              <span class="schedule__place">岡山玉野／福山下加茂</span>
+            </div>
+            <p class="schedule__title">モデルハウス見学受付中（ご予約優先）</p>
           </div>
           <div class="schedule__item">
             <div class="schedule__meta">
@@ -124,6 +153,38 @@
       </div>
     </section>
 
+    <!-- ▼ モデルハウス（常設・予約優先） -->
+    <section class="section section--gray" id="modelhouse">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>MODEL HOUSE</p>
+          <h2 class="section__title" data-reveal>常設モデルハウス</h2>
+          <p class="section__desc" data-reveal>FORTのデザインと性能を、いつでもご体感いただける2つのモデルハウス。ご予約優先でご案内します。</p>
+        </header>
+
+        <ul class="feature__grid">
+          <li class="feature__card" data-reveal>
+            <figure class="feature__figure"><img src="images/model-tamano.jpg" alt="岡山玉野モデルハウス" loading="lazy" decoding="async" onerror="this.src='images/ldk.jpg'"></figure>
+            <div class="feature__body">
+              <span class="feature__tag">岡山エリア</span>
+              <h3 class="feature__title">岡山玉野モデルハウス</h3>
+              <p class="feature__text">実際の住まいで、FORTの性能とデザインを体感いただけます。暮らしのサイズ感や心地よさをその場で。</p>
+              <a href="visit.html" class="btn btn--accent btn--block">来場を予約する</a>
+            </div>
+          </li>
+          <li class="feature__card" data-reveal>
+            <figure class="feature__figure"><img src="images/model-shimokamo.jpg" alt="福山下加茂モデルハウス" loading="lazy" decoding="async" onerror="this.src='images/exterior.jpg'"></figure>
+            <div class="feature__body">
+              <span class="feature__tag">福山エリア</span>
+              <h3 class="feature__title">福山下加茂モデルハウス</h3>
+              <p class="feature__text">光や風の通り方、素材の質感まで。スタッフがご案内しながらじっくりご覧いただけます。</p>
+              <a href="visit.html" class="btn btn--accent btn--block">来場を予約する</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="reserve section" id="reserve">
       <div class="reserve__bg">
@@ -132,13 +193,13 @@
       </div>
       <div class="container reserve__inner">
         <p class="section__label section__label--light" data-reveal>RESERVE</p>
-        <h2 class="section__title section__title--light" data-reveal>見学会を予約する。</h2>
+        <h2 class="section__title section__title--light" data-reveal>見学会・モデルハウスを予約する。</h2>
         <p class="reserve__lead" data-reveal>ご予約は無料です。お子さま連れも歓迎。お気軽にお越しください。</p>
         <ul class="reserve__actions" data-reveal>
-          <li><a href="index.html#reserve" class="btn btn--accent btn--block">完成見学会を予約</a></li>
-          <li><a href="index.html#reserve" class="btn btn--accent btn--block">モデルハウスを予約</a></li>
-          <li><a href="index.html#reserve" class="btn btn--light btn--block">資料請求</a></li>
-          <li><a href="index.html#reserve" class="btn btn--light btn--block">お問い合わせ</a></li>
+          <li><a href="visit.html" class="btn btn--accent btn--block">ご来場予約</a></li>
+          <li><a href="#events" class="btn btn--accent btn--block">見学会を選ぶ</a></li>
+          <li><a href="request.html" class="btn btn--light btn--block">資料請求</a></li>
+          <li><a href="contact.html" class="btn btn--light btn--block">お問合せ</a></li>
         </ul>
         <p class="reserve__tel" data-reveal>
           お電話でのご予約：<a href="tel:0862369600">086-236-9600</a>（岡山）／ <a href="tel:0849827404">084-982-7404</a>（福山）
@@ -157,20 +218,18 @@
       </div>
       <nav class="footer__nav" aria-label="フッターメニュー">
         <ul class="footer__list">
-          <li><a href="index.html#concept">CONCEPT</a></li>
-          <li><a href="index.html#why">WHY FORT</a></li>
-          <li><a href="works.html">WORKS</a></li>
-          <li><a href="feature.html">FEATURE</a></li>
-          <li><a href="performance.html">PERFORMANCE</a></li>
-          <li><a href="flow.html">FLOW</a></li>
-          <li><a href="lineup.html">LINEUP</a></li>
-          <li><a href="fort-pro.html">FORT PRO PLAN</a></li>
+          <li><a href="index.html#philosophy">PHILOSOPHY</a></li>
           <li><a href="event.html">EVENT</a></li>
-          <li><a href="studio.html">STUDIO</a></li>
+          <li><a href="performance.html">PERFORMANCE</a></li>
+          <li><a href="works.html">WORKS</a></li>
+          <li><a href="lineup.html">LINEUP</a></li>
+          <li><a href="flow.html">FLOW</a></li>
           <li><a href="staff.html">STAFF</a></li>
+          <li><a href="studio.html">STUDIO</a></li>
           <li><a href="company.html">COMPANY</a></li>
-          <li><a href="index.html#news">NEWS</a></li>
-          <li><a href="index.html#reserve">RESERVE</a></li>
+          <li><a href="visit.html">ご来場予約</a></li>
+          <li><a href="request.html">資料請求</a></li>
+          <li><a href="contact.html">お問合せ</a></li>
         </ul>
       </nav>
       <div class="footer__info">
@@ -184,8 +243,8 @@
   </footer>
 
   <div class="floating-cta">
-    <a href="#reserve" class="floating-cta__btn floating-cta__btn--ghost">見学会予約</a>
-    <a href="index.html#reserve" class="floating-cta__btn floating-cta__btn--accent">資料請求・相談</a>
+    <a href="visit.html" class="floating-cta__btn floating-cta__btn--ghost">ご来場予約</a>
+    <a href="request.html" class="floating-cta__btn floating-cta__btn--accent">資料請求</a>
   </div>
 
   <script src="script.js"></script>

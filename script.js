@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var MENU = [
     { en: 'HOME',     ja: 'トップ',             href: 'index.html' },
     { en: 'PHILOSOPHY', ja: 'FORTの思い',       href: 'index.html#philosophy' },
+    { en: 'EVENT',    ja: '見学会・イベント',   href: 'event.html' },
     { en: 'PERFORMANCE', ja: '構造・性能',      href: 'performance.html' },
     { en: 'WORKS',    ja: '施工事例',           href: 'works.html' },
     { en: 'FORT FAMILY', ja: 'お客様の声',      href: 'index.html#family' },
@@ -43,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
     { en: 'FLOW',     ja: '家づくりの流れ',     href: 'flow.html' },
     { en: 'STAFF',    ja: 'スタッフ紹介',       href: 'staff.html' },
     { en: 'STUDIO',   ja: 'モデルハウス・スタジオ', href: 'studio.html' },
-    { en: 'EVENT',    ja: '見学会・イベント',   href: 'event.html' },
     { en: 'NEWS',     ja: 'お知らせ',           href: 'index.html#news' },
     { en: 'COMPANY',  ja: '会社概要',           href: 'company.html' },
     { en: 'CONTACT',  ja: 'ご予約・お問い合わせ', href: 'contact.html' }
@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
     +   '<ul class="gmenu__list">' + itemsHtml + '</ul>'
     +   '<div class="gmenu__foot">'
     +     '<div class="gmenu__cta">'
-    +       '<a class="btn btn--accent" href="index.html#reserve">来場予約・お問い合わせ</a>'
-    +       '<a class="btn btn--outline btn--outline-light" href="index.html#reserve">資料請求</a>'
+    +       '<a class="btn btn--accent" href="visit.html">ご来場予約</a>'
+    +       '<a class="btn btn--outline btn--outline-light" href="request.html">資料請求</a>'
     +     '</div>'
     +     '<p class="gmenu__company">株式会社FORT｜岡山・倉敷・福山エリアの家づくり<br>岡山スタジオ 086-236-9600 ／ 福山スタジオ 084-982-7404（9:00〜18:00 / 水曜定休）</p>'
     +   '</div>'

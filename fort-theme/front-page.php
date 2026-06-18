@@ -1,7 +1,6 @@
 <?php
 /**
- * フロントページ（トップ） / 13セクション構成
- * ・ヘッダーのコピー等は「外観 > カスタマイズ」
+ * フロントページ（トップ） / ブランド導線（13セクション）
  * ・WORKS / EVENT / NEWS は投稿（管理画面）から自動表示
  */
 get_header();
@@ -57,8 +56,31 @@ $img = get_template_directory_uri() . '/assets/images/';
 		</div>
 	</section>
 
+	<!-- EVENT / 見学会・イベント（写真カード） -->
+	<section class="event section section--gray" id="event">
+		<div class="container">
+			<header class="section__head">
+				<p class="section__label" data-reveal>EVENT</p>
+				<p class="section__desc" data-reveal>見学会・モデルハウス見学・無料相談会を、随時開催しています。</p>
+			</header>
+			<ul class="feature__grid">
+				<?php $ev = new WP_Query( array( 'post_type' => 'fort_event', 'posts_per_page' => 3 ) );
+				if ( $ev->have_posts() ) : while ( $ev->have_posts() ) : $ev->the_post();
+					$thumb = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'fort-card' ) : $img . 'exterior.jpg';
+					$badge = fort_meta( 'fort_badge' ); ?>
+				<li class="feature__card" data-reveal><a href="<?php the_permalink(); ?>" class="feature__link"><figure class="feature__figure"><img src="<?php echo esc_url( $thumb ); ?>" alt="" loading="lazy"></figure><div class="feature__body"><?php if ( $badge ) : ?><span class="feature__tag"><?php echo esc_html( $badge ); ?></span><?php endif; ?><h3 class="feature__title"><?php the_title(); ?></h3></div></a></li>
+				<?php endwhile; wp_reset_postdata(); else : ?>
+				<li class="feature__card" data-reveal><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="feature__link"><figure class="feature__figure"><img src="<?php echo esc_url( $img . 'exterior.jpg' ); ?>" alt="完成見学会" loading="lazy"></figure><div class="feature__body"><span class="feature__tag">完成見学会</span><h3 class="feature__title">完成・構造見学会</h3><p class="feature__text">実際の住まいで、FORTの性能とデザインを体感。</p></div></a></li>
+				<li class="feature__card" data-reveal><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="feature__link"><figure class="feature__figure"><img src="<?php echo esc_url( $img . 'ldk.jpg' ); ?>" alt="モデルハウス見学" loading="lazy"></figure><div class="feature__body"><span class="feature__tag">モデルハウス</span><h3 class="feature__title">モデルハウス見学</h3><p class="feature__text">ご予約優先で、じっくりご覧いただけます。</p></div></a></li>
+				<li class="feature__card" data-reveal><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="feature__link"><figure class="feature__figure"><img src="<?php echo esc_url( $img . 'kitchen-view.jpg' ); ?>" alt="無料相談会" loading="lazy"></figure><div class="feature__body"><span class="feature__tag">相談会</span><h3 class="feature__title">家づくり無料相談会</h3><p class="feature__text">資金計画や土地さがしも、お気軽にご相談ください。</p></div></a></li>
+				<?php endif; ?>
+			</ul>
+			<div class="section__more" data-reveal><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--outline">VIEW MORE</a></div>
+		</div>
+	</section>
+
 	<!-- 03 PERFORMANCE -->
-	<section class="performance section section--gray" id="performance">
+	<section class="performance section" id="performance">
 		<div class="container">
 			<header class="section__head">
 				<p class="section__label" data-reveal>PERFORMANCE</p>
@@ -71,13 +93,14 @@ $img = get_template_directory_uri() . '/assets/images/';
 				<li><p class="ph-value">等級6</p><p class="ph-label">断熱等級</p></li>
 				<li><p class="ph-value">等級3</p><p class="ph-label">耐震等級</p></li>
 				<li><p class="ph-value">最長60<small>年</small></p><p class="ph-label">保証（初期保証20年）</p></li>
+				<li><p class="ph-value">10<small>年</small></p><p class="ph-label">設備保証（※対象機器）</p></li>
 			</ul>
 			<div class="section__more" data-reveal><a href="<?php echo esc_url( home_url( '/performance/' ) ); ?>" class="btn btn--outline">構造・性能を詳しく見る</a></div>
 		</div>
 	</section>
 
-	<!-- 04 WORKS / 施工事例（スライダー・投稿から自動） -->
-	<section class="works section" id="works">
+	<!-- 04 WORKS -->
+	<section class="works section section--gray" id="works">
 		<div class="container">
 			<header class="section__head">
 				<p class="section__label" data-reveal>WORKS</p>
@@ -103,8 +126,8 @@ $img = get_template_directory_uri() . '/assets/images/';
 		<div class="container"><div class="section__more" data-reveal><a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>" class="btn btn--outline">もっと施工事例を見る</a></div></div>
 	</section>
 
-	<!-- 05 FORT FAMILY / お客様の声 -->
-	<section class="family section section--gray" id="family">
+	<!-- 05 FORT FAMILY -->
+	<section class="family section" id="family">
 		<div class="container">
 			<header class="section__head">
 				<p class="section__label" data-reveal>FORT FAMILY</p>
@@ -120,7 +143,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 	</section>
 
 	<!-- 06 LINEUP -->
-	<section class="lineup section" id="lineup">
+	<section class="lineup section section--gray" id="lineup">
 		<div class="container">
 			<header class="section__head"><p class="section__label" data-reveal>LINEUP</p><h2 class="section__title" data-reveal>あなたらしい家づくりを選ぶ。</h2></header>
 			<ul class="lineup__grid">
@@ -132,7 +155,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 	</section>
 
 	<!-- 07 FLOW -->
-	<section class="flow section section--gray" id="flow">
+	<section class="flow section" id="flow">
 		<div class="container">
 			<header class="section__head"><p class="section__label" data-reveal>FLOW</p><h2 class="section__title" data-reveal>家づくりの流れ</h2><p class="section__desc" data-reveal>はじめての方もご安心ください。ご相談からお引渡しまで。</p></header>
 			<ol class="flow__list">
@@ -145,8 +168,8 @@ $img = get_template_directory_uri() . '/assets/images/';
 		</div>
 	</section>
 
-	<!-- 08 STAFF（チームを一部表示） -->
-	<section class="staff section" id="staff">
+	<!-- 08 STAFF -->
+	<section class="staff section section--gray" id="staff">
 		<div class="container">
 			<header class="section__head"><p class="section__label" data-reveal>STAFF</p><h2 class="section__title" data-reveal>チームで、家づくりを支える。</h2><p class="section__desc" data-reveal>営業・設計・工務。一人ではなく、ひとつのチームで。</p></header>
 			<ul class="staff__grid">
@@ -158,36 +181,19 @@ $img = get_template_directory_uri() . '/assets/images/';
 		</div>
 	</section>
 
-	<!-- 09 STUDIO -->
-	<section class="studio-teaser section section--gray" id="studio">
+	<!-- 09 STUDIO（モデルハウス） -->
+	<section class="studio-teaser section" id="studio">
 		<div class="container">
-			<header class="section__head"><p class="section__label" data-reveal>STUDIO</p><h2 class="section__title" data-reveal>FORTの家づくりを体感する。</h2><p class="section__desc" data-reveal>素材に触れ、空気感を確かめる。FORTの世界観を体験できる場所です。</p></header>
+			<header class="section__head"><p class="section__label" data-reveal>STUDIO</p><h2 class="section__title" data-reveal>FORTの家づくりを体感する。</h2><p class="section__desc" data-reveal>素材に触れ、空気感を確かめる。実際の住まいでFORTを体感いただけます。</p></header>
 			<ul class="feature__grid">
-				<li class="feature__card" data-reveal><a href="<?php echo esc_url( home_url( '/studio/' ) ); ?>" class="feature__link"><figure class="feature__figure"><img src="<?php echo esc_url( $img . 'studio-okayama.jpg' ); ?>" alt="岡山スタジオ" loading="lazy"></figure><div class="feature__body"><span class="feature__tag">STUDIO</span><h3 class="feature__title">岡山スタジオ</h3><p class="feature__text">岡山市北区問屋町。家づくりのご相談はこちらへ。</p></div></a></li>
-				<li class="feature__card" data-reveal><a href="<?php echo esc_url( home_url( '/studio/' ) ); ?>" class="feature__link"><figure class="feature__figure"><img src="<?php echo esc_url( $img . 'studio-fukuyama.jpg' ); ?>" alt="福山スタジオ" loading="lazy"></figure><div class="feature__body"><span class="feature__tag">STUDIO</span><h3 class="feature__title">福山スタジオ</h3><p class="feature__text">広島県福山市東川口町。福山エリアの拠点です。</p></div></a></li>
-				<li class="feature__card" data-reveal><a href="<?php echo esc_url( home_url( '/studio/' ) ); ?>" class="feature__link"><figure class="feature__figure"><img src="<?php echo esc_url( $img . 'ldk.jpg' ); ?>" alt="モデルハウス" loading="lazy"></figure><div class="feature__body"><span class="feature__tag">MODEL HOUSE</span><h3 class="feature__title">モデルハウス</h3><p class="feature__text">玉野ほか。実際の住まいでFORTを体感いただけます。</p></div></a></li>
+				<li class="feature__card" data-reveal><a href="<?php echo esc_url( home_url( '/studio/' ) ); ?>" class="feature__link"><figure class="feature__figure"><img src="<?php echo esc_url( $img . 'model-tamano.jpg' ); ?>" alt="岡山玉野モデルハウス" loading="lazy"></figure><div class="feature__body"><span class="feature__tag">MODEL HOUSE</span><h3 class="feature__title">岡山玉野モデルハウス</h3><p class="feature__text">実際の住まいで、FORTの性能とデザインを体感いただけます。</p></div></a></li>
+				<li class="feature__card" data-reveal><a href="<?php echo esc_url( home_url( '/studio/' ) ); ?>" class="feature__link"><figure class="feature__figure"><img src="<?php echo esc_url( $img . 'model-shimokamo.jpg' ); ?>" alt="福山下加茂モデルハウス" loading="lazy"></figure><div class="feature__body"><span class="feature__tag">MODEL HOUSE</span><h3 class="feature__title">福山下加茂モデルハウス</h3><p class="feature__text">暮らしのサイズ感や心地よさを、その場で確かめられます。</p></div></a></li>
 			</ul>
-			<div class="section__more" data-reveal><a href="<?php echo esc_url( home_url( '/studio/' ) ); ?>" class="btn btn--outline">スタジオ・モデルハウスを見る</a></div>
+			<div class="section__more" data-reveal><a href="<?php echo esc_url( home_url( '/studio/' ) ); ?>" class="btn btn--outline">モデルハウスを見る</a></div>
 		</div>
 	</section>
 
-	<!-- 10 EVENT（投稿から自動） -->
-	<section class="event section" id="event">
-		<div class="container">
-			<header class="section__head"><p class="section__label" data-reveal>EVENT</p><h2 class="section__title" data-reveal>見学会・イベント</h2></header>
-			<div class="schedule" data-reveal>
-				<?php $ev = new WP_Query( array( 'post_type' => 'fort_event', 'posts_per_page' => 4 ) );
-				if ( $ev->have_posts() ) : while ( $ev->have_posts() ) : $ev->the_post(); ?>
-				<div class="schedule__item"><div class="schedule__meta"><?php if ( fort_meta('fort_date') ) : ?><span class="schedule__date"><?php echo esc_html( fort_meta('fort_date') ); ?></span><?php endif; if ( fort_meta('fort_badge') ) : ?><span class="schedule__badge"><?php echo esc_html( fort_meta('fort_badge') ); ?></span><?php endif; if ( fort_meta('fort_place') ) : ?><span class="schedule__place"><?php echo esc_html( fort_meta('fort_place') ); ?></span><?php endif; ?></div><p class="schedule__title"><?php the_title(); ?></p></div>
-				<?php endwhile; wp_reset_postdata(); else : ?>
-				<div class="schedule__item"><p class="schedule__title">イベントは管理画面「イベント &gt; 新規追加」から登録できます。</p></div>
-				<?php endif; ?>
-			</div>
-			<div class="section__more" data-reveal><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--outline">イベント一覧・ご予約へ</a></div>
-		</div>
-	</section>
-
-	<!-- 11 NEWS（投稿から自動） -->
+	<!-- 11 NEWS -->
 	<section class="news section section--gray" id="news">
 		<div class="container">
 			<header class="section__head"><p class="section__label" data-reveal>NEWS</p><h2 class="section__title" data-reveal>お知らせ</h2></header>
@@ -211,7 +217,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 				<div><dt>設立</dt><dd>平成28年</dd></div>
 				<div><dt>事業内容</dt><dd>注文住宅・規格住宅・建売住宅の設計および施工 ほか</dd></div>
 				<div><dt>対応エリア</dt><dd>岡山市・倉敷市・福山市およびその周辺</dd></div>
-				<div><dt>所在地</dt><dd>岡山スタジオ／福山スタジオ</dd></div>
+				<div><dt>所在地</dt><dd>岡山スタジオ：岡山市北区問屋町9-101 タイルビル1F<br>福山スタジオ：広島県福山市東川口町2-1-18 中国情報ビル1F</dd></div>
 				<div><dt>登録</dt><dd>2級建築士事務所 岡山県知事登録 第6548号</dd></div>
 			</dl>
 			<div class="section__more" data-reveal><a href="<?php echo esc_url( home_url( '/company/' ) ); ?>" class="btn btn--outline">会社概要を詳しく見る</a></div>

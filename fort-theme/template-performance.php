@@ -29,25 +29,6 @@ $img = get_template_directory_uri() . '/assets/images/';
           デザイン・自由度・性能・耐震・保証。そのすべてのバランスを大切にした家づくりをご提案します。
         </p>
 
-        <!-- 代表数値 -->
-        <ul class="perf-highlight" data-reveal>
-          <li>
-            <p class="ph-label">断熱性能（UA値）</p>
-            <p class="ph-value">0.34<small>以下</small></p>
-            <p class="ph-text">最高グレードBLACKはHEAT20 G2.5〜G3レベル</p>
-          </li>
-          <li>
-            <p class="ph-label">気密性能（C値）</p>
-            <p class="ph-value">0.3<small>以下</small></p>
-            <p class="ph-text">全棟、第三者機関による気密測定を実施</p>
-          </li>
-          <li>
-            <p class="ph-label">耐震性能</p>
-            <p class="ph-value">等級3<small>＋構造計算</small></p>
-            <p class="ph-text">PLUS以上は許容応力度計算でさらに安心</p>
-          </li>
-        </ul>
-
         <!-- 4つの考え方 -->
         <ul class="why__grid">
           <li class="why__card" data-reveal>
@@ -63,7 +44,7 @@ $img = get_template_directory_uri() . '/assets/images/';
           <li class="why__card" data-reveal>
             <span class="why__num">03</span>
             <h2 class="why__card-title">耐震へのこだわり</h2>
-            <p class="why__card-text">耐震等級3を基本に、PLUS以上は許容応力度計算・設計性能評価を取得します。</p>
+            <p class="why__card-text">耐震等級3を基本に、PLUS以上は設計性能評価を取得します。</p>
           </li>
           <li class="why__card" data-reveal>
             <span class="why__num">04</span>
@@ -100,8 +81,8 @@ $img = get_template_directory_uri() . '/assets/images/';
                 <th scope="row">耐震</th>
                 <td>等級3相当</td>
                 <td>等級3相当</td>
-                <td class="is-recommend">等級3＋許容応力度計算</td>
-                <td>等級3＋許容応力度計算</td>
+                <td class="is-recommend">等級3</td>
+                <td>等級3</td>
               </tr>
               <tr>
                 <th scope="row">設計性能評価</th>
@@ -154,23 +135,16 @@ $img = get_template_directory_uri() . '/assets/images/';
               </tr>
               <tr>
                 <th scope="row">保証</th>
-                <td>躯体10年<br>設備10年</td>
-                <td>躯体20年<br><span class="spec-sub">最長60年</span>／設備10年</td>
+                <td>躯体10年</td>
+                <td>躯体20年<br><span class="spec-sub">最長60年</span></td>
                 <td class="is-recommend">躯体20年<br><span class="spec-sub">最長60年</span>／設備10年</td>
                 <td>躯体20年<br><span class="spec-sub">最長60年</span>／設備10年</td>
-              </tr>
-              <tr class="spec-price">
-                <th scope="row">価格調整<br><span class="spec-sub">PLUS基準・税別</span></th>
-                <td><strong>−150</strong>万円</td>
-                <td><strong>−75</strong>万円</td>
-                <td class="is-recommend"><strong>±0</strong>万円</td>
-                <td><strong>+200</strong>万円</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p class="spec-note-scroll" style="margin-top:14px;">
-          ※ 上記は標準仕様の一例です。仕様・数値は予告なく変更する場合があります。価格調整はPLUS基準価格からの増減（税別）です。
+          ※ 上記は標準仕様の一例です。仕様・数値は予告なく変更する場合があります。
         </p>
       </div>
     </section>
@@ -210,11 +184,11 @@ $img = get_template_directory_uri() . '/assets/images/';
             <span class="product__type">耐震・構造</span>
             <h2 class="product__name">家族を守る、強い構造。</h2>
             <p class="product__text">
-              耐震等級3を基本に、PLUS以上のグレードでは許容応力度計算・設計性能評価を取得。
+              耐震等級3を基本に、PLUS以上のグレードでは設計性能評価を取得。
               最高峰のBLACKでは制振システム「evoltz」も採用し、地震の揺れそのものを抑えます。
             </p>
             <ul class="product__features">
-              <li>耐震等級3＋許容応力度計算（PLUS以上）</li>
+              <li>耐震等級3を基本に、PLUS以上は設計性能評価を取得</li>
               <li>制振ダンパー evoltz で揺れを軽減（BLACK）</li>
               <li>長く住み継げる、丈夫な住まいづくり</li>
             </ul>

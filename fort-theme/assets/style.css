@@ -1553,8 +1553,17 @@ body.menu-open { overflow: hidden; }
   opacity: .92;
 }
 
-/* フェードをゆっくりに（ロゴが静かに浮かび上がる） */
-.hero--logo .hero__logo { animation-duration: 3.6s; }
+/* ロゴはより長く、静かに浮かび上がる（専用アニメで制御） */
+.hero--logo .hero__logobox {
+  animation-name: logoReveal;
+  animation-duration: 5.6s;
+  animation-delay: .4s;
+  animation-timing-function: cubic-bezier(.16, .72, .24, 1);
+}
+@keyframes logoReveal {
+  from { opacity: 0; transform: translateY(16px) scale(1.04); filter: blur(14px); }
+  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
 
 /* ヒーロー左下の「FORTの思い」 */
 .hero__note {

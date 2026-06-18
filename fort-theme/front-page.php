@@ -208,22 +208,6 @@ $img = get_template_directory_uri() . '/assets/images/';
 		</div>
 	</section>
 
-	<!-- 12 COMPANY -->
-	<section class="company section" id="company">
-		<div class="container">
-			<header class="section__head"><p class="section__label" data-reveal>COMPANY</p><h2 class="section__title" data-reveal>会社概要</h2></header>
-			<dl class="case-spec" data-reveal>
-				<div><dt>会社名</dt><dd>株式会社FORT（フォート）</dd></div>
-				<div><dt>設立</dt><dd>平成28年</dd></div>
-				<div><dt>事業内容</dt><dd>注文住宅・規格住宅・建売住宅の設計および施工 ほか</dd></div>
-				<div><dt>対応エリア</dt><dd>岡山市・倉敷市・福山市およびその周辺</dd></div>
-				<div><dt>所在地</dt><dd>岡山スタジオ：岡山市北区問屋町9-101 タイルビル1F<br>福山スタジオ：広島県福山市東川口町2-1-18 中国情報ビル1F</dd></div>
-				<div><dt>登録</dt><dd>2級建築士事務所 岡山県知事登録 第6548号</dd></div>
-			</dl>
-			<div class="section__more" data-reveal><a href="<?php echo esc_url( home_url( '/company/' ) ); ?>" class="btn btn--outline">会社概要を詳しく見る</a></div>
-		</div>
-	</section>
-
 	<!-- 13 CONTACT -->
 	<section class="reserve section" id="reserve">
 		<div class="reserve__bg"><img src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="" aria-hidden="true" loading="lazy"><div class="reserve__overlay"></div></div>
@@ -232,6 +216,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<h2 class="section__title section__title--light" data-reveal>家づくりのご相談、<br>モデルハウスの見学予約はこちらから。</h2>
 			<ul class="reserve__actions" data-reveal>
 				<li><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent btn--block">見学会・来場予約</a></li>
+				<li><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent btn--block">モデルハウス見学予約</a></li>
 				<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--light btn--block">資料請求</a></li>
 				<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--light btn--block">お問い合わせ</a></li>
 			</ul>

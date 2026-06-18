@@ -23,34 +23,6 @@ $img = get_template_directory_uri() . '/assets/images/';
       </div>
     </section>
 
-    <!-- 代表メッセージ -->
-    <section class="section message">
-      <div class="container">
-        <header class="section__head">
-          <p class="section__label" data-reveal>MESSAGE</p>
-          <h2 class="section__title" data-reveal>家づくりを、もっと自由に。</h2>
-        </header>
-        <div class="message__inner">
-          <figure class="message__figure" data-reveal>
-            <!-- IMAGE: 代表者の写真（推奨 800×600px） -->
-            <img src="<?php echo $img; ?>company-message.jpg" alt="株式会社FORT 代表" loading="lazy" decoding="async">
-          </figure>
-          <div data-reveal>
-            <p class="message__text">
-              「性能か、デザインか」――家づくりでは、よくこの二択を迫られます。
-              しかし私たちは、そのどちらも諦めてほしくないと考えています。<br><br>
-              FORTは、営業・設計・工務・総務がひとつのチームとなり、
-              性能・デザイン・価格・暮らしやすさのバランスを大切にした住まいをご提案します。
-              地域に根ざした工務店だからこそできる、顔の見える家づくりを。<br><br>
-              岡山・倉敷・福山で家づくりを考えるすべての方に、
-              「相談してよかった」と思っていただける会社であり続けます。
-            </p>
-            <p class="message__sign">代表取締役<strong>中村 亜樹</strong></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- 会社情報テーブル -->
     <section class="section section--gray">
       <div class="container">
@@ -77,7 +49,7 @@ $img = get_template_directory_uri() . '/assets/images/';
           </div>
           <div><dt>登録番号</dt><dd>2級建築士事務所　岡山県知事登録　第6548号</dd></div>
           <div><dt>事業内容</dt><dd>注文住宅・規格住宅・建売住宅の設計および施工 ほか</dd></div>
-          <div><dt>対応エリア</dt><dd>岡山市・倉敷市・福山市およびその周辺地域</dd></div>
+          <div><dt>対応エリア</dt><dd>岡山県全域　※一部エリアについてはご相談ください<br>福山市・尾道市・三原市<br>施工エリア拡大中</dd></div>
         </dl>
       </div>
     </section>

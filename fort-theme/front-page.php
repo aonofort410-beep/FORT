@@ -51,10 +51,18 @@ $img = get_template_directory_uri() . '/assets/images/';
 				</p>
 			</div>
 			<figure class="philosophy__figure" data-reveal>
-				<img src="<?php echo esc_url( $img . 'niche.jpg' ); ?>" alt="FORTがつくる、ちょうどいい暮らし" loading="lazy" decoding="async">
+				<img src="<?php echo esc_url( $img . 'niche.jpg' ); ?>" alt="FORTがつくる、ちょうどいい暮らし" loading="lazy" decoding="async" data-parallax="0.08">
 			</figure>
 		</div>
 	</section>
+
+	<!-- 流れるテキスト帯（ブランドのリズム） -->
+	<div class="marquee" aria-hidden="true">
+		<div class="marquee__track">
+			<span>Design</span><span>Performance</span><span>Balance</span><span>For your family</span>
+			<span>Design</span><span>Performance</span><span>Balance</span><span>For your family</span>
+		</div>
+	</div>
 
 	<!-- EVENT / 見学会・イベント（写真カード） -->
 	<section class="event section section--gray" id="event">
@@ -124,6 +132,12 @@ $img = get_template_directory_uri() . '/assets/images/';
 		<div class="container"><p style="text-align:center;color:var(--t-sub);">施工事例は管理画面「施工事例 &gt; 新規追加」から登録できます。</p></div>
 		<?php endif; ?>
 		<div class="container"><div class="section__more" data-reveal><a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>" class="btn btn--outline">もっと施工事例を見る</a></div></div>
+	</section>
+
+	<!-- 大判ビジュアル（フルブリード・パララックス） -->
+	<section class="showcase" aria-label="FORTの住まい">
+		<img class="showcase__img" src="<?php echo esc_url( $img . 'ldk.jpg' ); ?>" alt="FORTがつくる、心地よい暮らし" loading="lazy" decoding="async" data-parallax="0.12">
+		<p class="showcase__cap" data-reveal>Live beautifully, every day.</p>
 	</section>
 
 	<!-- 05 FORT FAMILY -->

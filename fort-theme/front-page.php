@@ -63,7 +63,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 				<p class="section__label" data-reveal>EVENT</p>
 				<p class="section__desc" data-reveal>見学会・モデルハウス見学・無料相談会を、随時開催しています。</p>
 			</header>
-			<ul class="feature__grid">
+			<ul class="feature__grid hscroll" data-drag>
 				<?php $ev = new WP_Query( array( 'post_type' => 'fort_event', 'posts_per_page' => 3 ) );
 				if ( $ev->have_posts() ) : while ( $ev->have_posts() ) : $ev->the_post();
 					$thumb = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'fort-card' ) : $img . 'exterior.jpg';
@@ -75,6 +75,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 				<li class="feature__card" data-reveal><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="feature__link"><figure class="feature__figure"><img src="<?php echo esc_url( $img . 'kitchen-view.jpg' ); ?>" alt="無料相談会" loading="lazy"></figure><div class="feature__body"><span class="feature__tag">相談会</span><h3 class="feature__title">家づくり無料相談会</h3><p class="feature__text">資金計画や土地さがしも、お気軽にご相談ください。</p></div></a></li>
 				<?php endif; ?>
 			</ul>
+			<p class="hscroll-note" aria-hidden="true">― 横にスクロール ―</p>
 			<div class="section__more" data-reveal><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--outline">VIEW MORE</a></div>
 		</div>
 	</section>
@@ -87,14 +88,21 @@ $img = get_template_directory_uri() . '/assets/images/';
 				<h2 class="section__title" data-reveal>数字で、信頼を。</h2>
 				<p class="section__desc" data-reveal>見えない部分こそ、ていねいに。FORTの確かな住宅性能。</p>
 			</header>
-			<ul class="perf-highlight" data-reveal>
-				<li><p class="ph-value">0.3</p><p class="ph-label">平均 C値（気密）</p></li>
-				<li><p class="ph-value">0.34<small>以下</small></p><p class="ph-label">UA値（断熱）</p></li>
-				<li><p class="ph-value">等級6</p><p class="ph-label">断熱等級</p></li>
-				<li><p class="ph-value">等級3</p><p class="ph-label">耐震等級</p></li>
-				<li><p class="ph-value">最長60<small>年</small></p><p class="ph-label">保証（初期保証20年）</p></li>
-				<li><p class="ph-value">10<small>年</small></p><p class="ph-label">設備保証（※対象機器）</p></li>
-			</ul>
+		</div>
+		<div class="perf-marquee" data-reveal aria-label="FORTの性能数値">
+			<div class="perf-marquee__track">
+				<?php $perf = array(
+					array('0.3','平均C値（気密）'), array('0.34<small>以下</small>','UA値（断熱）'),
+					array('等級6','断熱等級'), array('等級3','耐震等級'),
+					array('最長60<small>年</small>','保証（初期保証20年）'), array('10<small>年</small>','設備保証（※対象機器）'),
+				);
+				for ( $r = 0; $r < 2; $r++ ) { foreach ( $perf as $p ) {
+					printf('<div class="perf-marquee__item"%s><span class="perf-marquee__v">%s</span><span class="perf-marquee__l">%s</span></div>',
+						$r ? ' aria-hidden="true"' : '', $p[0], esc_html( $p[1] ));
+				} } ?>
+			</div>
+		</div>
+		<div class="container">
 			<div class="section__more" data-reveal><a href="<?php echo esc_url( home_url( '/performance/' ) ); ?>" class="btn btn--outline">構造・性能を詳しく見る</a></div>
 		</div>
 	</section>
@@ -134,11 +142,12 @@ $img = get_template_directory_uri() . '/assets/images/';
 				<h2 class="section__title" data-reveal>建てたあとの、しあわせまで。</h2>
 				<p class="section__desc" data-reveal>FORTで家を建てたご家族の、暮らしの声をご紹介します。</p>
 			</header>
-			<ul class="family__grid">
+			<ul class="family__grid hscroll" data-drag>
 				<li class="family__card" data-reveal><figure class="family__figure"><img src="<?php echo esc_url( $img . 'family-01.jpg' ); ?>" alt="お客様の声 01" loading="lazy"></figure><div class="family__body"><p class="family__text">「チームで親身に向き合ってくれて、はじめての家づくりも安心でした。」</p><p class="family__name">倉敷市 ／ T様邸</p></div></li>
 				<li class="family__card" data-reveal><figure class="family__figure"><img src="<?php echo esc_url( $img . 'family-02.jpg' ); ?>" alt="お客様の声 02" loading="lazy"></figure><div class="family__body"><p class="family__text">「性能もデザインも妥協せず、予算内で理想の住まいになりました。」</p><p class="family__name">岡山市 ／ K様邸</p></div></li>
 				<li class="family__card" data-reveal><figure class="family__figure"><img src="<?php echo esc_url( $img . 'family-03.jpg' ); ?>" alt="お客様の声 03" loading="lazy"></figure><div class="family__body"><p class="family__text">「引渡し後も同じ顔ぶれで対応してくれるのが心強いです。」</p><p class="family__name">福山市 ／ M様邸</p></div></li>
 			</ul>
+			<p class="hscroll-note" aria-hidden="true">― 横にスクロール ―</p>
 		</div>
 	</section>
 
@@ -146,11 +155,38 @@ $img = get_template_directory_uri() . '/assets/images/';
 	<section class="lineup section section--gray" id="lineup">
 		<div class="container">
 			<header class="section__head"><p class="section__label" data-reveal>LINEUP</p><h2 class="section__title" data-reveal>あなたらしい家づくりを選ぶ。</h2></header>
-			<ul class="lineup__grid">
-				<li class="lineup__card" data-reveal><figure class="lineup__figure"><img src="<?php echo esc_url( $img . 'lineup-style.jpg' ); ?>" alt="FORT STYLE" loading="lazy"></figure><div class="lineup__body"><h3 class="lineup__name">FORT STYLE</h3><p class="lineup__type">建売住宅</p><p class="lineup__text">土地・建物・外構まで、わかりやすい価格設定の住まい。</p><a href="https://www.fortstyle.org/" class="lineup__link" target="_blank" rel="noopener">公式サイトを見る</a></div></li>
-				<li class="lineup__card lineup__card--featured" data-reveal><figure class="lineup__figure"><img src="<?php echo esc_url( $img . 'pro/persp-b.jpg' ); ?>" alt="FORT PRO" loading="lazy"></figure><div class="lineup__body"><h3 class="lineup__name">FORT PRO</h3><p class="lineup__type">規格・セミオーダー住宅</p><p class="lineup__text">人気の間取りをベースに、自分たちらしくカスタマイズ。</p><a href="<?php echo esc_url( home_url( '/fort-pro/' ) ); ?>" class="lineup__link">PLAN A〜F を見る</a></div></li>
-				<li class="lineup__card" data-reveal><figure class="lineup__figure"><img src="<?php echo esc_url( $img . 'lineup-design.jpg' ); ?>" alt="FORT DESIGN" loading="lazy"></figure><div class="lineup__body"><h3 class="lineup__name">FORT DESIGN</h3><p class="lineup__type">自由設計</p><p class="lineup__text">理想の暮らしをゼロから形にする、完全自由設計。</p><a href="<?php echo esc_url( home_url( '/fort-design/' ) ); ?>" class="lineup__link">詳しく見る</a></div></li>
-			</ul>
+			<div class="lineup-ed">
+				<article class="lineup-ed__row" data-reveal>
+					<figure class="lineup-ed__media"><img src="<?php echo esc_url( $img . 'lineup-style.jpg' ); ?>" alt="FORT STYLE" loading="lazy"><span class="lineup-ed__tag">建売住宅</span></figure>
+					<div class="lineup-ed__body">
+						<span class="lineup-ed__no">01</span>
+						<h3 class="lineup-ed__name">FORT STYLE</h3>
+						<p class="lineup-ed__type">READY-MADE ／ 建売住宅</p>
+						<p class="lineup-ed__text">土地・建物・外構まで含めて、わかりやすい価格設定。FORTらしいデザインと暮らしやすさを、すぐに住める形で。本体価格1,900万円〜（税別）。</p>
+						<a href="https://www.fortstyle.org/" class="lineup-ed__link" target="_blank" rel="noopener">公式サイトを見る →</a>
+					</div>
+				</article>
+				<article class="lineup-ed__row" data-reveal>
+					<figure class="lineup-ed__media"><img src="<?php echo esc_url( $img . 'pro/persp-b.jpg' ); ?>" alt="FORT PRO" loading="lazy"><span class="lineup-ed__tag">規格・セミオーダー</span></figure>
+					<div class="lineup-ed__body">
+						<span class="lineup-ed__no">02</span>
+						<h3 class="lineup-ed__name">FORT PRO</h3>
+						<p class="lineup-ed__type">SEMI-ORDER ／ 規格・セミオーダー住宅</p>
+						<p class="lineup-ed__text">人気の間取りをベースに、自分たちらしくカスタマイズ。性能・デザイン・価格のバランスを重視した、FORTのスタンダード。PLAN A〜F からお選びいただけます。</p>
+						<a href="<?php echo esc_url( home_url( '/fort-pro/' ) ); ?>" class="lineup-ed__link">PLAN A〜F を見る →</a>
+					</div>
+				</article>
+				<article class="lineup-ed__row" data-reveal>
+					<figure class="lineup-ed__media"><img src="<?php echo esc_url( $img . 'lineup-design.jpg' ); ?>" alt="FORT DESIGN" loading="lazy"><span class="lineup-ed__tag">自由設計</span></figure>
+					<div class="lineup-ed__body">
+						<span class="lineup-ed__no">03</span>
+						<h3 class="lineup-ed__name">FORT DESIGN</h3>
+						<p class="lineup-ed__type">FULL-ORDER ／ 完全自由設計</p>
+						<p class="lineup-ed__text">理想の暮らしをゼロから形にする、完全自由設計。土地条件やライフスタイルに合わせて、設計士と世界にひとつの住まいを描きます。</p>
+						<a href="<?php echo esc_url( home_url( '/fort-design/' ) ); ?>" class="lineup-ed__link">FORT DESIGN の世界を見る →</a>
+					</div>
+				</article>
+			</div>
 			<div class="section__more" data-reveal><a href="<?php echo esc_url( home_url( '/lineup/' ) ); ?>" class="btn btn--outline">商品ラインナップを詳しく見る</a></div>
 		</div>
 	</section>

@@ -194,4 +194,35 @@ document.addEventListener('DOMContentLoaded', function () {
     if (priceSel) priceSel.addEventListener('change', applyWorksFilter);
   }
 
+  /* --------------------------------------------------------
+     6. 横スクロールのカルーセルをマウスでドラッグできるように
+        （.hscroll を掴んで左右に動かせる。スマホは標準スワイプ）
+  -------------------------------------------------------- */
+  document.querySelectorAll('.hscroll').forEach(function (track) {
+    var down = false, startX = 0, startLeft = 0, moved = 0;
+    track.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse') return; // タッチは標準スクロールに任せる
+      down = true; moved = 0;
+      startX = e.clientX; startLeft = track.scrollLeft;
+      track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener('pointermove', function (e) {
+      if (!down) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) { track.classList.add('is-dragging'); moved = Math.abs(dx); }
+      track.scrollLeft = startLeft - dx;
+    });
+    function end() {
+      down = false;
+      window.setTimeout(function () { track.classList.remove('is-dragging'); }, 0);
+    }
+    track.addEventListener('pointerup', end);
+    track.addEventListener('pointercancel', end);
+    track.addEventListener('pointerleave', function () { if (down) end(); });
+    // ドラッグ直後のクリックでリンクが飛ぶのを防ぐ
+    track.addEventListener('click', function (e) {
+      if (moved > 6) { e.preventDefault(); moved = 0; }
+    }, true);
+  });
+
 });

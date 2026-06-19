@@ -45,8 +45,6 @@
 
   <!-- 自作のCSSを読み込み -->
   <link rel="stylesheet" href="style.css">
-  <!-- JavaScript無効時はスタートゲートを出さない（そのままサイトを使えるように） -->
-  <noscript><style>.startgate{display:none!important}</style></noscript>
 
   <!-- Google Fonts（見出し=Noto Serif、本文=Noto Sans） -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,18 +53,6 @@
 </head>
 
 <body>
-
-  <!-- ============================================================
-       スタートゲート（FORTを1文字ずつタイプ → クリックでヒーローへ）
-       ・白背景・黒文字。動きは script.js が制御します
-       ・JavaScript無効時は head の noscript で自動的に非表示
-  ============================================================ -->
-  <div class="startgate" id="startGate" data-word="FORT" role="button" tabindex="0" aria-label="サイトに入る">
-    <div class="startgate__inner">
-      <span class="startgate__word"><span class="startgate__type"></span><span class="startgate__caret" aria-hidden="true"></span></span>
-      <p class="startgate__hint">CLICK TO ENTER</p>
-    </div>
-  </div>
 
   <!-- ============================================================
        ヘッダー（常に上部に固定されるナビゲーション）

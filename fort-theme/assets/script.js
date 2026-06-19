@@ -125,14 +125,6 @@ document.addEventListener('DOMContentLoaded', function () {
   -------------------------------------------------------- */
   var revealTargets = document.querySelectorAll('[data-reveal]');
 
-  // 同じ親の中で順番に現れる「ずらし表示」（リズム感のある動き）
-  revealTargets.forEach(function (el) {
-    if (el.closest('.hero')) return; // ヒーローは専用アニメ
-    var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) { return c.hasAttribute && c.hasAttribute('data-reveal'); });
-    var i = sibs.indexOf(el);
-    if (i > 0) el.style.transitionDelay = Math.min(i * 0.08, 0.4) + 's';
-  });
-
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -200,66 +192,6 @@ document.addEventListener('DOMContentLoaded', function () {
       applyWorksFilter();
     });
     if (priceSel) priceSel.addEventListener('change', applyWorksFilter);
-  }
-
-  /* --------------------------------------------------------
-     6. イントロのヴェール（読み込み時にFORTがふわっと開く）
-        ・1セッションに1回だけ表示（ページ遷移のたびには出さない）
-  -------------------------------------------------------- */
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  try {
-    if (!reduceMotion && !sessionStorage.getItem('fortIntroDone')) {
-      var intro = document.createElement('div');
-      intro.className = 'intro';
-      intro.innerHTML = '<div class="intro__inner"><span class="intro__logo">FORT</span><span class="intro__line"></span><span class="intro__tag">Design × Performance × Balance</span></div>';
-      body.appendChild(intro);
-      body.classList.add('intro-lock');
-      sessionStorage.setItem('fortIntroDone', '1');
-      window.setTimeout(function () {
-        intro.classList.add('is-hidden');
-        body.classList.remove('intro-lock');
-        window.setTimeout(function () { intro.remove(); }, 1000);
-      }, 1900);
-    }
-  } catch (err) { /* sessionStorage が使えない環境は無視 */ }
-
-  /* --------------------------------------------------------
-     7. 上部のスクロール進捗バー
-  -------------------------------------------------------- */
-  var bar = document.createElement('div');
-  bar.className = 'scrollbar';
-  body.appendChild(bar);
-  function onProgress() {
-    var h = document.documentElement;
-    var max = h.scrollHeight - h.clientHeight;
-    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
-  }
-  onProgress();
-  window.addEventListener('scroll', onProgress, { passive: true });
-  window.addEventListener('resize', onProgress);
-
-  /* --------------------------------------------------------
-     8. パララックス（[data-parallax] をゆっくり動かす）
-        data-parallax="0.2" のように強さを指定（省略時0.15）
-  -------------------------------------------------------- */
-  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
-  if (parallaxEls.length && !reduceMotion) {
-    var ticking = false;
-    function parallax() {
-      var vh = window.innerHeight;
-      parallaxEls.forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > vh) return;
-        var speed = parseFloat(el.dataset.parallax) || 0.15;
-        var offset = (r.top + r.height / 2 - vh / 2) * -speed;
-        el.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
-      });
-      ticking = false;
-    }
-    window.addEventListener('scroll', function () {
-      if (!ticking) { window.requestAnimationFrame(parallax); ticking = true; }
-    }, { passive: true });
-    parallax();
   }
 
 });

@@ -63,89 +63,101 @@
           写真をクリックすると、間取りやこだわりの詳細をご覧いただけます。
         </p>
 
-        <!-- カテゴリ絞り込み（見た目のみ。実装時にリンク先を設定してください） -->
-        <nav class="works-filter" data-reveal aria-label="カテゴリ">
-          <a href="#" class="is-active">すべて</a>
-          <a href="#">注文住宅</a>
-          <a href="#">平屋</a>
-          <a href="#">二階建て</a>
-          <a href="#">プライベート設計</a>
-        </nav>
+        <!-- 絞り込みツールバー：カテゴリタブ＋金額プルダウン（JSで動作・script.js） -->
+        <div class="works-toolbar" data-reveal>
+          <nav class="works-filter" id="worksFilter" aria-label="カテゴリで絞り込み">
+            <a href="#" class="is-active" data-filter="all">すべて</a>
+            <a href="#" data-filter="fullorder">フルオーダー</a>
+            <a href="#" data-filter="semiorder">セミオーダー</a>
+            <a href="#" data-filter="hiraya">平屋</a>
+            <a href="#" data-filter="nakaniwa">中庭</a>
+          </nav>
+          <label class="works-toolbar__price">
+            金額で絞り込み
+            <select id="worksPrice" aria-label="金額で絞り込み">
+              <option value="all">すべての価格</option>
+              <option value="0-2200">〜2,200万円台</option>
+              <option value="2300-2600">2,300〜2,600万円台</option>
+              <option value="2700-99999">2,700万円台以上</option>
+            </select>
+          </label>
+        </div>
 
-        <ul class="works__grid">
-          <li class="works__card" data-reveal>
+        <ul class="works__grid" id="worksGrid">
+          <li class="works__card" data-reveal data-cat="fullorder nakaniwa" data-price="2500">
             <a href="works-detail.html" class="works__link">
               <figure class="works__figure">
                 <img src="images/hero.jpg" alt="中庭とつながるブラックモダンの家" loading="lazy" decoding="async">
               </figure>
               <div class="works__body">
-                <p class="works__cat">注文住宅 ／ 倉敷市</p>
+                <p class="works__cat">フルオーダー ／ 中庭 ／ 倉敷市</p>
                 <h2 class="works__card-title">中庭とつながるブラックモダンの家</h2>
                 <p class="works__price">建物本体<strong>2,500万円台〜</strong><span class="works__price-note">※参考価格帯</span></p>
               </div>
             </a>
           </li>
-          <li class="works__card" data-reveal>
+          <li class="works__card" data-reveal data-cat="fullorder hiraya" data-price="2000">
             <a href="works-detail.html" class="works__link">
               <figure class="works__figure">
                 <img src="images/exterior.jpg" alt="家事ラク動線を追求した平屋" loading="lazy" decoding="async">
               </figure>
               <div class="works__body">
-                <p class="works__cat">平屋 ／ 岡山市</p>
+                <p class="works__cat">フルオーダー ／ 平屋 ／ 岡山市</p>
                 <h2 class="works__card-title">家事ラク動線を追求した平屋</h2>
                 <p class="works__price">建物本体<strong>2,000万円台〜</strong><span class="works__price-note">※参考価格帯</span></p>
               </div>
             </a>
           </li>
-          <li class="works__card" data-reveal>
+          <li class="works__card" data-reveal data-cat="fullorder nakaniwa" data-price="2800">
             <a href="works-detail.html" class="works__link">
               <figure class="works__figure">
                 <img src="images/kitchen-view.jpg" alt="景色を楽しむリゾートスタイルの家" loading="lazy" decoding="async">
               </figure>
               <div class="works__body">
-                <p class="works__cat">注文住宅 ／ 福山市</p>
+                <p class="works__cat">フルオーダー ／ 中庭 ／ 福山市</p>
                 <h2 class="works__card-title">景色を楽しむリゾートスタイルの家</h2>
                 <p class="works__price">建物本体<strong>2,800万円台〜</strong><span class="works__price-note">※参考価格帯</span></p>
               </div>
             </a>
           </li>
-          <li class="works__card" data-reveal>
+          <li class="works__card" data-reveal data-cat="semiorder" data-price="2600">
             <a href="works-detail.html" class="works__link">
               <figure class="works__figure">
                 <img src="images/ldk.jpg" alt="ホテルライクな二階建ての家" loading="lazy" decoding="async">
               </figure>
               <div class="works__body">
-                <p class="works__cat">二階建て ／ 倉敷市</p>
+                <p class="works__cat">セミオーダー ／ 倉敷市</p>
                 <h2 class="works__card-title">ホテルライクな二階建ての家</h2>
                 <p class="works__price">建物本体<strong>2,600万円台〜</strong><span class="works__price-note">※参考価格帯</span></p>
               </div>
             </a>
           </li>
-          <li class="works__card" data-reveal>
+          <li class="works__card" data-reveal data-cat="semiorder hiraya" data-price="2300">
             <a href="works-detail.html" class="works__link">
               <figure class="works__figure">
-                <img src="images/kitchen-view.jpg" alt="家族が集まる開放的なLDKの家" loading="lazy" decoding="async">
+                <img src="images/kitchen-view.jpg" alt="家族が集まる開放的な平屋LDKの家" loading="lazy" decoding="async">
               </figure>
               <div class="works__body">
-                <p class="works__cat">注文住宅 ／ 岡山市</p>
-                <h2 class="works__card-title">家族が集まる開放的なLDKの家</h2>
+                <p class="works__cat">セミオーダー ／ 平屋 ／ 岡山市</p>
+                <h2 class="works__card-title">家族が集まる開放的な平屋LDKの家</h2>
                 <p class="works__price">建物本体<strong>2,300万円台〜</strong><span class="works__price-note">※参考価格帯</span></p>
               </div>
             </a>
           </li>
-          <li class="works__card" data-reveal>
+          <li class="works__card" data-reveal data-cat="fullorder nakaniwa" data-price="2400">
             <a href="works-detail.html" class="works__link">
               <figure class="works__figure">
-                <img src="images/exterior.jpg" alt="外からの視線を抑えたプライベートハウス" loading="lazy" decoding="async">
+                <img src="images/exterior.jpg" alt="中庭のあるプライベートハウス" loading="lazy" decoding="async">
               </figure>
               <div class="works__body">
-                <p class="works__cat">プライベート設計 ／ 福山市</p>
-                <h2 class="works__card-title">外からの視線を抑えたプライベートハウス</h2>
+                <p class="works__cat">フルオーダー ／ 中庭 ／ 福山市</p>
+                <h2 class="works__card-title">外の視線を抑えた、中庭のある家</h2>
                 <p class="works__price">建物本体<strong>2,400万円台〜</strong><span class="works__price-note">※参考価格帯</span></p>
               </div>
             </a>
           </li>
         </ul>
+        <p class="works-empty" id="worksEmpty">条件に合う事例が見つかりませんでした。絞り込みを変えてお試しください。</p>
       </div>
     </section>
 

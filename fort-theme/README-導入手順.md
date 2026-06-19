@@ -80,6 +80,8 @@
 | FORT PRO 規格プラン | FORT PRO 規格プラン | `fort-pro` |
 | スタジオ・モデルハウス | スタジオ・モデルハウス | `studio` |
 | 会社概要 | 会社概要 | `company` |
+| FORT DESIGN（自由設計・特設） | FORT DESIGN（自由設計・特設） | `fort-design` |
+| お客様の声（FORT FAMILY） | お客様の声（FORT FAMILY） | `family` |
 | ご来場予約 | ご来場予約 | `visit` |
 | 資料請求 | 資料請求 | `request` |
 | お問合せ | お問い合わせ | `contact` |

@@ -33,22 +33,20 @@ document.addEventListener('DOMContentLoaded', function () {
        { en: 英語表記, ja: 日本語, href: リンク先 }
        ページを増やしたらここに1行足してください。
   -------------------------------------------------------- */
-  var MENU = (window.FORT_MENU && window.FORT_MENU.length) ? window.FORT_MENU : [
+  var MENU = [
     { en: 'HOME',     ja: 'トップ',             href: 'index.html' },
-    { en: 'CONCEPT',  ja: '私たちの想い',       href: 'index.html#concept' },
-    { en: 'WHY FORT', ja: '選ばれる理由',       href: 'index.html#why' },
-    { en: 'WORKS',    ja: '施工事例',           href: 'works.html' },
-    { en: 'FEATURE',  ja: '特集',               href: 'feature.html' },
-    { en: 'PERFORMANCE', ja: '構造・性能',      href: 'performance.html' },
-    { en: 'LINEUP',   ja: '商品ラインナップ',   href: 'lineup.html' },
-    { en: 'FORT PRO', ja: '規格プラン A〜F',    href: 'fort-pro.html' },
+    { en: 'PHILOSOPHY', ja: 'FORTの思い',       href: 'index.html#philosophy' },
     { en: 'EVENT',    ja: '見学会・イベント',   href: 'event.html' },
+    { en: 'PERFORMANCE', ja: '構造・性能',      href: 'performance.html' },
+    { en: 'WORKS',    ja: '施工事例',           href: 'works.html' },
+    { en: 'FORT FAMILY', ja: 'お客様の声',      href: 'index.html#family' },
+    { en: 'LINEUP',   ja: '商品ラインナップ',   href: 'lineup.html' },
     { en: 'FLOW',     ja: '家づくりの流れ',     href: 'flow.html' },
-    { en: 'STUDIO',   ja: 'スタジオ・モデルハウス', href: 'studio.html' },
     { en: 'STAFF',    ja: 'スタッフ紹介',       href: 'staff.html' },
+    { en: 'STUDIO',   ja: 'モデルハウス・スタジオ', href: 'studio.html' },
     { en: 'NEWS',     ja: 'お知らせ',           href: 'index.html#news' },
     { en: 'COMPANY',  ja: '会社概要',           href: 'company.html' },
-    { en: 'CONTACT',  ja: 'ご予約・お問い合わせ', href: 'index.html#reserve' }
+    { en: 'CONTACT',  ja: 'ご予約・お問い合わせ', href: 'contact.html' }
   ];
 
   // 今開いているページのファイル名（例：staff.html）を調べる
@@ -79,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
     +   '<ul class="gmenu__list">' + itemsHtml + '</ul>'
     +   '<div class="gmenu__foot">'
     +     '<div class="gmenu__cta">'
-    +       '<a class="btn btn--accent" href="index.html#reserve">来場予約・お問い合わせ</a>'
-    +       '<a class="btn btn--outline btn--outline-light" href="index.html#reserve">資料請求</a>'
+    +       '<a class="btn btn--accent" href="visit.html">ご来場予約</a>'
+    +       '<a class="btn btn--outline btn--outline-light" href="request.html">資料請求</a>'
     +     '</div>'
     +     '<p class="gmenu__company">株式会社FORT｜岡山・倉敷・福山エリアの家づくり<br>岡山スタジオ 086-236-9600 ／ 福山スタジオ 084-982-7404（9:00〜18:00 / 水曜定休）</p>'
     +   '</div>'
@@ -147,12 +145,53 @@ document.addEventListener('DOMContentLoaded', function () {
         images/ の写真がまだ無い場合でも、
         「画像が壊れたアイコン」ではなく仮画像を表示する。
   -------------------------------------------------------- */
-  document.querySelectorAll('img').forEach(function (img) {
+  document.querySelectorAll('img[src^="images/"]').forEach(function (img) {
     img.addEventListener('error', function () {
       if (img.dataset.fallback) return;
       img.dataset.fallback = '1';
       img.src = 'https://placehold.co/1200x800/e7e3dc/b3a896?text=FORT';
     });
   });
+
+  /* --------------------------------------------------------
+     5. 施工事例（WORKS）の絞り込み
+        ・カテゴリタブ（data-filter）と金額プルダウン（#worksPrice）で
+          .works__card を出し分けする
+  -------------------------------------------------------- */
+  var worksFilter = document.getElementById('worksFilter');
+  var worksGrid   = document.getElementById('worksGrid');
+  if (worksFilter && worksGrid) {
+    var priceSel = document.getElementById('worksPrice');
+    var emptyMsg = document.getElementById('worksEmpty');
+    var cards    = Array.prototype.slice.call(worksGrid.querySelectorAll('.works__card'));
+    var curCat   = 'all';
+
+    function applyWorksFilter() {
+      var pr = priceSel ? priceSel.value : 'all';
+      var lo = -Infinity, hi = Infinity;
+      if (pr !== 'all') { var p = pr.split('-'); lo = +p[0]; hi = +p[1]; }
+      var shown = 0;
+      cards.forEach(function (card) {
+        var cats  = (card.dataset.cat || '').split(/\s+/);
+        var price = +card.dataset.price || 0;
+        var okCat = (curCat === 'all') || cats.indexOf(curCat) !== -1;
+        var okPr  = (pr === 'all') || (price >= lo && price <= hi);
+        var show  = okCat && okPr;
+        card.classList.toggle('is-hidden', !show);
+        if (show) shown++;
+      });
+      if (emptyMsg) emptyMsg.classList.toggle('is-shown', shown === 0);
+    }
+
+    worksFilter.addEventListener('click', function (e) {
+      var a = e.target.closest('a[data-filter]');
+      if (!a) return;
+      e.preventDefault();
+      curCat = a.dataset.filter;
+      worksFilter.querySelectorAll('a').forEach(function (x) { x.classList.toggle('is-active', x === a); });
+      applyWorksFilter();
+    });
+    if (priceSel) priceSel.addEventListener('change', applyWorksFilter);
+  }
 
 });

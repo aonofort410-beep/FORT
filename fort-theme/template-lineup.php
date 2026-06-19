@@ -48,8 +48,8 @@ $img = get_template_directory_uri() . '/assets/images/';
               <li>打ち合わせの手間が少なく、スピーディに入居可能</li>
             </ul>
             <p class="product__price">
-              <span class="product__price-label">総額目安（建物＋土地＋外構・税込）</span>
-              <strong>3,900万円〜</strong>
+              <span class="product__price-label">建物本体価格（税別）</span>
+              <strong>1,900万円〜</strong>
             </p>
             <div class="product__btns">
               <a href="https://www.fortstyle.org/" class="btn btn--accent" target="_blank" rel="noopener">FORT STYLE 公式サイトへ</a>
@@ -108,7 +108,8 @@ $img = get_template_directory_uri() . '/assets/images/';
               <strong>2,500万円〜</strong>
             </p>
             <div class="product__btns">
-              <a href="<?php echo esc_url( home_url( '/#reserve' ) ); ?>" class="btn btn--accent">この商品について相談する</a>
+              <a href="<?php echo esc_url( home_url( '/fort-design/' ) ); ?>" class="btn btn--accent">FORT DESIGN の世界を見る</a>
+              <a href="<?php echo esc_url( home_url( '/#reserve' ) ); ?>" class="btn btn--outline">この商品について相談する</a>
             </div>
           </div>
         </article>

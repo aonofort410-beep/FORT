@@ -153,4 +153,45 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* --------------------------------------------------------
+     5. 施工事例（WORKS）の絞り込み
+        ・カテゴリタブ（data-filter）と金額プルダウン（#worksPrice）で
+          .works__card を出し分けする
+  -------------------------------------------------------- */
+  var worksFilter = document.getElementById('worksFilter');
+  var worksGrid   = document.getElementById('worksGrid');
+  if (worksFilter && worksGrid) {
+    var priceSel = document.getElementById('worksPrice');
+    var emptyMsg = document.getElementById('worksEmpty');
+    var cards    = Array.prototype.slice.call(worksGrid.querySelectorAll('.works__card'));
+    var curCat   = 'all';
+
+    function applyWorksFilter() {
+      var pr = priceSel ? priceSel.value : 'all';
+      var lo = -Infinity, hi = Infinity;
+      if (pr !== 'all') { var p = pr.split('-'); lo = +p[0]; hi = +p[1]; }
+      var shown = 0;
+      cards.forEach(function (card) {
+        var cats  = (card.dataset.cat || '').split(/\s+/);
+        var price = +card.dataset.price || 0;
+        var okCat = (curCat === 'all') || cats.indexOf(curCat) !== -1;
+        var okPr  = (pr === 'all') || (price >= lo && price <= hi);
+        var show  = okCat && okPr;
+        card.classList.toggle('is-hidden', !show);
+        if (show) shown++;
+      });
+      if (emptyMsg) emptyMsg.classList.toggle('is-shown', shown === 0);
+    }
+
+    worksFilter.addEventListener('click', function (e) {
+      var a = e.target.closest('a[data-filter]');
+      if (!a) return;
+      e.preventDefault();
+      curCat = a.dataset.filter;
+      worksFilter.querySelectorAll('a').forEach(function (x) { x.classList.toggle('is-active', x === a); });
+      applyWorksFilter();
+    });
+    if (priceSel) priceSel.addEventListener('change', applyWorksFilter);
+  }
+
 });

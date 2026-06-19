@@ -7,6 +7,14 @@ get_header();
 $img = get_template_directory_uri() . '/assets/images/';
 ?>
 
+	<!-- スタートゲート（FORTを1文字ずつタイプ → クリックでヒーローへ） -->
+	<div class="startgate" id="startGate" data-word="FORT" role="button" tabindex="0" aria-label="サイトに入る">
+		<div class="startgate__inner">
+			<span class="startgate__word"><span class="startgate__type"></span><span class="startgate__caret" aria-hidden="true"></span></span>
+			<p class="startgate__hint">CLICK TO ENTER</p>
+		</div>
+	</div>
+
 	<!-- 01 HOME / 動画ヒーロー＋FORTロゴ -->
 	<section class="hero hero--logo" id="hero">
 		<div class="hero__media">

@@ -194,4 +194,53 @@ document.addEventListener('DOMContentLoaded', function () {
     if (priceSel) priceSel.addEventListener('change', applyWorksFilter);
   }
 
+  /* --------------------------------------------------------
+     6. スタートゲート（FORTを1文字ずつ表示→クリックで入場）
+        ・#startGate がある（＝トップページ）ときだけ動作
+        ・タイプライターのように1文字ずつ表示し、打ち終えたら
+          「CLICK TO ENTER」を点滅。クリック／Enterでヒーローへ。
+  -------------------------------------------------------- */
+  var gate = document.getElementById('startGate');
+  if (gate) {
+    var wordEl  = gate.querySelector('.startgate__type');
+    var caretEl = gate.querySelector('.startgate__caret');
+    var word    = (gate.dataset.word || 'FORT').split('');
+    var reduce  = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var entered = false;
+
+    body.classList.add('gate-lock');
+
+    function enter() {
+      if (entered) return;
+      entered = true;
+      gate.classList.add('is-leaving');
+      body.classList.remove('gate-lock');
+      window.setTimeout(function () { if (gate && gate.parentNode) gate.parentNode.removeChild(gate); }, 1050);
+    }
+
+    function ready() {
+      gate.classList.add('is-ready');
+      gate.addEventListener('click', enter);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') { e.preventDefault(); enter(); }
+      });
+    }
+
+    if (reduce) {
+      // 動きを減らす設定のときは一度に表示
+      if (wordEl) wordEl.textContent = word.join('');
+      ready();
+    } else {
+      var i = 0;
+      (function type() {
+        if (i < word.length) {
+          wordEl.textContent += word[i++];
+          window.setTimeout(type, 230);
+        } else {
+          window.setTimeout(ready, 450);
+        }
+      })();
+    }
+  }
+
 });

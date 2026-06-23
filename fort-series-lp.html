@@ -1,543 +1,669 @@
 <!-- ============================================================
-  FORT SERIES ランディングページ
+  FORT SERIES ランディングページ v2
   WordPress「カスタムHTML」ブロックにこのまま貼り付け可能
   ・<html>/<head>/<body> は含みません
-  ・CSSはすべて下部の <style> 内（.fort-series-lp でスコープ化）
+  ・CSSはすべて下部の <style> 内（.fort-lp でスコープ化）
   ・JSはすべて最下部の <script> 内
   ・画像は「IMAGE:」コメント箇所のURLを差し替えてください
+  ・リンクは「LINK:」コメント箇所のURLを差し替えてください
 ============================================================ -->
 
-<div class="fort-series-lp">
+<div class="fort-lp">
 
   <!-- ===================== HERO ===================== -->
-  <section class="fsl-hero">
-    <div class="fsl-hero__media">
-      <!-- IMAGE: ヒーロー背景画像（推奨 2400×1400px・暗めの上質な住宅外観/内観） -->
-      <img
-        class="fsl-hero__img"
-        src="https://placehold.co/2400x1400/1c1a17/2a2722?text=FORT"
-        alt="FORT" loading="eager" decoding="async">
-      <div class="fsl-hero__overlay"></div>
+  <section class="fl-hero">
+    <div class="fl-hero__bg">
+      <!-- IMAGE: ヒーロー背景（推奨 2400×1400px・上質な住宅外観、夕景推奨） -->
+      <img src="https://placehold.co/2400x1400/1a1816/2a2620?text=FORT+SERIES" alt="FORT" loading="eager" decoding="async">
+      <div class="fl-hero__overlay"></div>
     </div>
-
-    <div class="fsl-hero__inner">
-      <p class="fsl-hero__eyebrow" data-fsl-reveal>BUILD YOUR FORT</p>
-      <h1 class="fsl-hero__title" data-fsl-reveal>
-        住まいに、<br>揺るがない上質を。
+    <div class="fl-hero__content">
+      <p class="fl-hero__label" data-fl-reveal>FORT SERIES</p>
+      <h1 class="fl-hero__title" data-fl-reveal>
+        あなたの「砦」を、<br>ここから。
       </h1>
-      <p class="fsl-hero__lead" data-fsl-reveal>
-        建売からフルオーダーまで。<br>
-        FORTのデザイン力を、3つのかたちで。
+      <p class="fl-hero__sub" data-fl-reveal>
+        家族を守り、暮らしを豊かにする住まい。<br>
+        FORTは3つのスタイルで、理想のかたちを届けます。
       </p>
-
-      <div class="fsl-hero__series" data-fsl-reveal>
-        <a class="fsl-hero__chip" href="#fort-style">FORT STYLE</a>
-        <a class="fsl-hero__chip" href="#fort-pro">FORT PRO</a>
-        <a class="fsl-hero__chip" href="#fort-design">FORT DESIGN</a>
+      <div class="fl-hero__chips" data-fl-reveal>
+        <a class="fl-chip" href="#sec-style">STYLE</a>
+        <a class="fl-chip" href="#sec-pro">PRO</a>
+        <a class="fl-chip" href="#sec-design">DESIGN</a>
+      </div>
+      <div class="fl-hero__cta" data-fl-reveal>
+        <!-- LINK: お問い合わせフォームURL -->
+        <a class="fl-btn fl-btn--gold" href="#sec-contact">まずは相談する</a>
       </div>
     </div>
-
-    <a class="fsl-hero__scroll" href="#fort-intro" aria-label="下へスクロール">
-      <span class="fsl-hero__scroll-line"></span>
-    </a>
+    <div class="fl-hero__scroll">
+      <span class="fl-hero__scroll-line"></span>
+    </div>
   </section>
 
-  <!-- ===================== INTRO ===================== -->
-  <section class="fsl-intro" id="fort-intro">
-    <div class="fsl-container fsl-intro__inner">
-      <p class="fsl-intro__label" data-fsl-reveal>THE FORT SERIES</p>
-      <h2 class="fsl-intro__title" data-fsl-reveal>
-        暮らしの理想に、<br class="fsl-br-sp">最適な答えを。
+  <!-- ===================== BRAND MESSAGE ===================== -->
+  <section class="fl-brand" id="sec-brand">
+    <div class="fl-wrap">
+      <p class="fl-label" data-fl-reveal>PHILOSOPHY</p>
+      <h2 class="fl-brand__title" data-fl-reveal>
+        「FORT」は、英語で砦。
       </h2>
-      <p class="fsl-intro__text" data-fsl-reveal>
-        FORTは、デザイン・性能・コストのバランスを突き詰めた住まいづくりを追求してきました。
-        ご家族の理想やご予算に合わせて選べる3つのシリーズで、
-        「ちょうどいい上質」をお届けします。
+      <p class="fl-brand__body" data-fl-reveal>
+        家族の暮らしを守り、日々の安心と豊かさを支える場所。<br>
+        それがFORTの考える「住まい」です。<br><br>
+        デザイン、性能、コスト。どれも妥協せず、<br class="fl-br-sp">
+        一邸一邸に私たちの誇りを込めてつくります。
       </p>
     </div>
   </section>
 
-  <!-- ===================== SERIES OVERVIEW ===================== -->
-  <section class="fsl-overview">
-    <div class="fsl-container">
-      <div class="fsl-overview__grid">
+  <!-- ===================== 3 SERIES OVERVIEW ===================== -->
+  <section class="fl-overview" id="sec-overview">
+    <div class="fl-wrap">
+      <p class="fl-label" data-fl-reveal>3 SERIES</p>
+      <h2 class="fl-overview__title" data-fl-reveal>暮らしに合わせて、選べる3つの住まい</h2>
+      <p class="fl-overview__sub" data-fl-reveal>予算や理想に応じて、最適なスタイルをお選びいただけます。</p>
 
-        <!-- STYLE -->
-        <a class="fsl-ocard" href="#fort-style" data-fsl-reveal>
-          <span class="fsl-ocard__num">01</span>
-          <span class="fsl-ocard__name">FORT STYLE</span>
-          <span class="fsl-ocard__cat">建売住宅</span>
-          <span class="fsl-ocard__desc">FORTのデザイン力を、建売で届けるシリーズ。</span>
-          <span class="fsl-ocard__more">詳しく見る</span>
+      <div class="fl-cards" data-fl-reveal>
+        <a class="fl-card" href="#sec-style">
+          <span class="fl-card__num">01</span>
+          <span class="fl-card__name">FORT STYLE</span>
+          <span class="fl-card__type">建売住宅</span>
+          <span class="fl-card__desc">FORTクオリティの完成邸を、見て・触れて・すぐに暮らせる。</span>
+          <span class="fl-card__arrow">&rarr;</span>
         </a>
-
-        <!-- PRO -->
-        <a class="fsl-ocard" href="#fort-pro" data-fsl-reveal>
-          <span class="fsl-ocard__num">02</span>
-          <span class="fsl-ocard__name">FORT PRO</span>
-          <span class="fsl-ocard__cat">セミオーダー／規格住宅</span>
-          <span class="fsl-ocard__desc">選んで仕上げる、自由と合理のセミオーダー。</span>
-          <span class="fsl-ocard__more">詳しく見る</span>
+        <a class="fl-card" href="#sec-pro">
+          <span class="fl-card__num">02</span>
+          <span class="fl-card__name">FORT PRO</span>
+          <span class="fl-card__type">セミオーダー住宅</span>
+          <span class="fl-card__desc">厳選プランをベースに、内装・設備を自分好みにカスタマイズ。</span>
+          <span class="fl-card__arrow">&rarr;</span>
         </a>
-
-        <!-- DESIGN -->
-        <a class="fsl-ocard" href="#fort-design" data-fsl-reveal>
-          <span class="fsl-ocard__num">03</span>
-          <span class="fsl-ocard__name">FORT DESIGN</span>
-          <span class="fsl-ocard__cat">完全自由設計の注文住宅</span>
-          <span class="fsl-ocard__desc">一邸ごとに描く、完全自由設計の注文住宅。</span>
-          <span class="fsl-ocard__more">詳しく見る</span>
+        <a class="fl-card" href="#sec-design">
+          <span class="fl-card__num">03</span>
+          <span class="fl-card__name">FORT DESIGN</span>
+          <span class="fl-card__type">完全自由設計</span>
+          <span class="fl-card__desc">ゼロから描く、世界にひとつだけの住まい。</span>
+          <span class="fl-card__arrow">&rarr;</span>
         </a>
-
       </div>
     </div>
   </section>
 
   <!-- ===================== FORT STYLE ===================== -->
-  <section class="fsl-series fsl-series--style" id="fort-style">
-    <div class="fsl-container fsl-series__inner">
-      <div class="fsl-series__media" data-fsl-reveal>
-        <!-- IMAGE: FORT STYLE 紹介画像（推奨 1600×1200px） -->
-        <img src="https://placehold.co/1600x1200/2a2722/8a7d68?text=FORT+STYLE"
-             alt="FORT STYLE" loading="lazy" decoding="async">
+  <section class="fl-detail" id="sec-style">
+    <div class="fl-wrap fl-detail__grid">
+      <div class="fl-detail__img" data-fl-reveal>
+        <!-- IMAGE: FORT STYLE 施工写真（推奨 1600×1200px） -->
+        <img src="https://placehold.co/1600x1200/2a2722/8a7d68?text=FORT+STYLE" alt="FORT STYLE" loading="lazy" decoding="async">
       </div>
-      <div class="fsl-series__body" data-fsl-reveal>
-        <p class="fsl-series__num">01 / SERIES</p>
-        <h2 class="fsl-series__name">FORT STYLE</h2>
-        <p class="fsl-series__cat">建売住宅</p>
-        <p class="fsl-series__catch">FORTのデザイン力を、建売で届けるシリーズ。</p>
-        <p class="fsl-series__text">
-          完成された設計とデザインを、すぐに住める一邸として。
-          FORTが磨いてきた意匠性・間取り・素材感をそのままに、
-          手の届く価格と確かなクオリティで実現します。
-          「選んでそのまま暮らせる」上質を。
+      <div class="fl-detail__body" data-fl-reveal>
+        <p class="fl-detail__num">01</p>
+        <h2 class="fl-detail__name">FORT STYLE</h2>
+        <p class="fl-detail__type">建売住宅</p>
+        <p class="fl-detail__catch">プロが仕上げた一邸を、そのまま手に入れる。</p>
+        <p class="fl-detail__text">
+          FORTが培ってきたデザイン力と品質基準で完成させた住まいを、
+          内覧して即入居可能なかたちでお届け。設計や仕様選びに迷うことなく、
+          確かなクオリティと手の届く価格を両立しました。
         </p>
-        <ul class="fsl-series__points">
-          <li>プロが設計したデザイン住宅をそのまま</li>
-          <li>完成物件を見て・触れて選べる安心感</li>
-          <li>コストパフォーマンスに優れた価格設定</li>
+        <ul class="fl-detail__list">
+          <li>完成物件だから、実物を見て決められる</li>
+          <li>FORTデザインの住まいをリーズナブルに</li>
+          <li>打ち合わせ不要、最短スケジュールで入居</li>
         </ul>
-        <a class="fsl-btn" href="#fort-contact">FORT STYLE を相談する</a>
+        <!-- LINK: FORT STYLE 相談ページ -->
+        <a class="fl-btn" href="#sec-contact">STYLE を相談する</a>
       </div>
     </div>
   </section>
 
   <!-- ===================== FORT PRO ===================== -->
-  <section class="fsl-series fsl-series--pro fsl-series--reverse" id="fort-pro">
-    <div class="fsl-container fsl-series__inner">
-      <div class="fsl-series__media" data-fsl-reveal>
-        <!-- IMAGE: FORT PRO 紹介画像（推奨 1600×1200px） -->
-        <img src="https://placehold.co/1600x1200/26231f/9a8c72?text=FORT+PRO"
-             alt="FORT PRO" loading="lazy" decoding="async">
+  <section class="fl-detail fl-detail--alt" id="sec-pro">
+    <div class="fl-wrap fl-detail__grid fl-detail__grid--rev">
+      <div class="fl-detail__img" data-fl-reveal>
+        <!-- IMAGE: FORT PRO 施工写真（推奨 1600×1200px） -->
+        <img src="https://placehold.co/1600x1200/26231f/9a8c72?text=FORT+PRO" alt="FORT PRO" loading="lazy" decoding="async">
       </div>
-      <div class="fsl-series__body" data-fsl-reveal>
-        <p class="fsl-series__num">02 / SERIES</p>
-        <h2 class="fsl-series__name">FORT PRO</h2>
-        <p class="fsl-series__cat">セミオーダー／規格住宅</p>
-        <p class="fsl-series__catch">選んで仕上げる、自由と合理のセミオーダー。</p>
-        <p class="fsl-series__text">
-          洗練された規格プランをベースに、間取り・内装・設備を
-          ご家族のスタイルに合わせて選択。
-          自由設計の魅力と、規格住宅の合理性・コスト最適化を両立した、
-          ちょうどいいオーダーのかたちです。
+      <div class="fl-detail__body" data-fl-reveal>
+        <p class="fl-detail__num">02</p>
+        <h2 class="fl-detail__name">FORT PRO</h2>
+        <p class="fl-detail__type">セミオーダー住宅</p>
+        <p class="fl-detail__catch">「ちょうどいい自由」で、賢く理想を実現。</p>
+        <p class="fl-detail__text">
+          プロが設計した間取りプランをベースに、
+          壁紙・床材・キッチン・照明などをお好みでセレクト。
+          自由設計の楽しさと、規格住宅の安心感・コストメリットを両立した
+          バランス型の家づくりです。
         </p>
-        <ul class="fsl-series__points">
-          <li>厳選された規格プランから選べる安心設計</li>
-          <li>内装・設備をセミオーダーでカスタマイズ</li>
-          <li>自由設計よりも明快な価格とスケジュール</li>
+        <ul class="fl-detail__list">
+          <li>検証済みプランだから間取りの失敗がない</li>
+          <li>内装・設備を自由にカスタマイズ</li>
+          <li>明確な価格とスケジュールで安心</li>
         </ul>
-        <a class="fsl-btn" href="#fort-contact">FORT PRO を相談する</a>
+        <!-- LINK: FORT PRO 相談ページ -->
+        <a class="fl-btn" href="#sec-contact">PRO を相談する</a>
       </div>
     </div>
   </section>
 
   <!-- ===================== FORT DESIGN ===================== -->
-  <section class="fsl-series fsl-series--design" id="fort-design">
-    <div class="fsl-container fsl-series__inner">
-      <div class="fsl-series__media" data-fsl-reveal>
-        <!-- IMAGE: FORT DESIGN 紹介画像（推奨 1600×1200px） -->
-        <img src="https://placehold.co/1600x1200/1f1c19/b3a486?text=FORT+DESIGN"
-             alt="FORT DESIGN" loading="lazy" decoding="async">
+  <section class="fl-detail" id="sec-design">
+    <div class="fl-wrap fl-detail__grid">
+      <div class="fl-detail__img" data-fl-reveal>
+        <!-- IMAGE: FORT DESIGN 施工写真（推奨 1600×1200px） -->
+        <img src="https://placehold.co/1600x1200/1f1c19/b3a486?text=FORT+DESIGN" alt="FORT DESIGN" loading="lazy" decoding="async">
       </div>
-      <div class="fsl-series__body" data-fsl-reveal>
-        <p class="fsl-series__num">03 / SERIES</p>
-        <h2 class="fsl-series__name">FORT DESIGN</h2>
-        <p class="fsl-series__cat">完全自由設計の注文住宅</p>
-        <p class="fsl-series__catch">一邸ごとに描く、完全自由設計の注文住宅。</p>
-        <p class="fsl-series__text">
-          土地の個性、ご家族の暮らし、理想のすべてを起点に、
-          ゼロから設計する完全自由設計。
-          専属の設計士とともに、間取りも素材も唯一無二の一邸を描きます。
-          FORTのデザイン力を、最大限に。
+      <div class="fl-detail__body" data-fl-reveal>
+        <p class="fl-detail__num">03</p>
+        <h2 class="fl-detail__name">FORT DESIGN</h2>
+        <p class="fl-detail__type">完全自由設計の注文住宅</p>
+        <p class="fl-detail__catch">妥協ゼロ。すべてをオーダーメイドで。</p>
+        <p class="fl-detail__text">
+          土地の条件、家族構成、ライフスタイル——すべてを起点に
+          専属の設計士がゼロから設計。素材選びから空間の使い方まで、
+          あなただけの理想を一切の妥協なく形にします。
         </p>
-        <ul class="fsl-series__points">
-          <li>設計士とつくる完全オーダーメイドの住まい</li>
-          <li>土地・予算・暮らしに最適化した一邸設計</li>
-          <li>素材・意匠・性能を妥協なく追求</li>
+        <ul class="fl-detail__list">
+          <li>専属設計士による完全オーダーメイド</li>
+          <li>素材・意匠・性能をとことん追求</li>
+          <li>土地探しからトータルサポート</li>
         </ul>
-        <a class="fsl-btn" href="#fort-contact">FORT DESIGN を相談する</a>
+        <!-- LINK: FORT DESIGN 相談ページ -->
+        <a class="fl-btn" href="#sec-contact">DESIGN を相談する</a>
       </div>
     </div>
   </section>
 
   <!-- ===================== COMPARE ===================== -->
-  <section class="fsl-compare">
-    <div class="fsl-container">
-      <div class="fsl-compare__head" data-fsl-reveal>
-        <p class="fsl-compare__label">COMPARE</p>
-        <h2 class="fsl-compare__title">3シリーズの違い</h2>
-      </div>
-
-      <div class="fsl-compare__scroll" data-fsl-reveal>
-        <table class="fsl-table">
+  <section class="fl-compare" id="sec-compare">
+    <div class="fl-wrap">
+      <p class="fl-label fl-label--light" data-fl-reveal>COMPARE</p>
+      <h2 class="fl-compare__title" data-fl-reveal>シリーズ比較</h2>
+      <div class="fl-compare__scroll" data-fl-reveal>
+        <table class="fl-table">
           <thead>
             <tr>
-              <th scope="col" class="fsl-table__corner"></th>
-              <th scope="col">FORT STYLE</th>
-              <th scope="col">FORT PRO</th>
-              <th scope="col">FORT DESIGN</th>
+              <th class="fl-table__corner"></th>
+              <th>FORT STYLE</th>
+              <th>FORT PRO</th>
+              <th>FORT DESIGN</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">タイプ</th>
+              <th>タイプ</th>
               <td>建売住宅</td>
-              <td>セミオーダー／規格住宅</td>
-              <td>完全自由設計の注文住宅</td>
+              <td>セミオーダー住宅</td>
+              <td>完全自由設計</td>
             </tr>
             <tr>
-              <th scope="row">設計の自由度</th>
+              <th>設計の自由度</th>
               <td>完成プラン</td>
-              <td>選択カスタマイズ</td>
+              <td>内装・設備を選択</td>
               <td>フルオーダー</td>
             </tr>
             <tr>
-              <th scope="row">こんな方に</th>
-              <td>すぐに上質な住まいを</td>
-              <td>自由と合理を両立したい</td>
-              <td>理想を妥協なく形に</td>
+              <th>入居までの期間</th>
+              <td>最短</td>
+              <td>約4〜6ヶ月</td>
+              <td>約8〜12ヶ月</td>
             </tr>
             <tr>
-              <th scope="row">価格感</th>
+              <th>価格帯</th>
               <td>リーズナブル</td>
               <td>バランス</td>
-              <td>オーダーメイド</td>
+              <td>プレミアム</td>
+            </tr>
+            <tr>
+              <th>こんな方に</th>
+              <td>すぐ住みたい方</td>
+              <td>自由と効率を両立したい方</td>
+              <td>すべてにこだわりたい方</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="fsl-compare__note">※ スマートフォンでは表を横にスクロールできます。</p>
+      <p class="fl-compare__note">※ スマートフォンでは横にスクロールできます</p>
     </div>
   </section>
 
-  <!-- ===================== CONTACT / CTA ===================== -->
-  <section class="fsl-cta" id="fort-contact">
-    <div class="fsl-cta__media">
-      <!-- IMAGE: CTA背景画像（推奨 2400×1200px・暗めの上質なビジュアル） -->
-      <img src="https://placehold.co/2400x1200/161310/241f1a?text=FORT"
-           alt="" loading="lazy" decoding="async">
-      <div class="fsl-cta__overlay"></div>
-    </div>
-    <div class="fsl-container fsl-cta__inner">
-      <p class="fsl-cta__label" data-fsl-reveal>CONTACT</p>
-      <h2 class="fsl-cta__title" data-fsl-reveal>
-        あなたの理想に、<br class="fsl-br-sp">最適なFORTを。
-      </h2>
-      <p class="fsl-cta__text" data-fsl-reveal>
-        どのシリーズが合うか分からない方も、まずはお気軽にご相談ください。
-        専門スタッフが、暮らしの理想とご予算に合わせてご提案します。
-      </p>
-      <div class="fsl-cta__actions" data-fsl-reveal>
-        <!-- LINK: お問い合わせフォームのURLに差し替え -->
-        <a class="fsl-btn fsl-btn--light" href="#">無料で相談する</a>
-        <!-- LINK: 資料請求のURLに差し替え -->
-        <a class="fsl-btn fsl-btn--ghost" href="#">資料を請求する</a>
+  <!-- ===================== FLOW ===================== -->
+  <section class="fl-flow" id="sec-flow">
+    <div class="fl-wrap">
+      <p class="fl-label" data-fl-reveal>FLOW</p>
+      <h2 class="fl-flow__title" data-fl-reveal>家づくりの流れ</h2>
+
+      <div class="fl-steps" data-fl-reveal>
+        <div class="fl-step">
+          <span class="fl-step__num">01</span>
+          <h3 class="fl-step__name">無料相談</h3>
+          <p class="fl-step__text">理想の暮らしやご予算をヒアリング。最適なシリーズをご提案します。</p>
+        </div>
+        <div class="fl-step">
+          <span class="fl-step__num">02</span>
+          <h3 class="fl-step__name">プラン提案</h3>
+          <p class="fl-step__text">ご要望をもとに間取り・デザイン・概算見積もりをご提示。</p>
+        </div>
+        <div class="fl-step">
+          <span class="fl-step__num">03</span>
+          <h3 class="fl-step__name">ご契約</h3>
+          <p class="fl-step__text">プラン・仕様・お見積もりに納得いただけたらご契約へ。</p>
+        </div>
+        <div class="fl-step">
+          <span class="fl-step__num">04</span>
+          <h3 class="fl-step__name">着工・施工</h3>
+          <p class="fl-step__text">経験豊富な職人が丁寧に施工。進捗も随時ご報告します。</p>
+        </div>
+        <div class="fl-step">
+          <span class="fl-step__num">05</span>
+          <h3 class="fl-step__name">完成・お引渡し</h3>
+          <p class="fl-step__text">最終検査を経て、理想の住まいをお引渡しします。</p>
+        </div>
       </div>
     </div>
   </section>
 
-</div><!-- /.fort-series-lp -->
+  <!-- ===================== FAQ ===================== -->
+  <section class="fl-faq" id="sec-faq">
+    <div class="fl-wrap">
+      <p class="fl-label" data-fl-reveal>FAQ</p>
+      <h2 class="fl-faq__title" data-fl-reveal>よくあるご質問</h2>
+
+      <div class="fl-faqs" data-fl-reveal>
+        <details class="fl-q">
+          <summary class="fl-q__head">どのシリーズが自分に合うかわかりません。</summary>
+          <p class="fl-q__body">ご安心ください。無料相談で、ご予算やライフスタイルに合わせて最適なシリーズをご提案します。まずはお気軽にお問い合わせください。</p>
+        </details>
+        <details class="fl-q">
+          <summary class="fl-q__head">土地がまだ決まっていなくても相談できますか？</summary>
+          <p class="fl-q__body">もちろんです。土地探しからサポートしておりますので、土地が決まっていない段階でもお気軽にご相談ください。</p>
+        </details>
+        <details class="fl-q">
+          <summary class="fl-q__head">相談は無料ですか？</summary>
+          <p class="fl-q__body">はい、初回のご相談・お見積もりは無料です。しつこい営業は一切いたしませんので、安心してご利用ください。</p>
+        </details>
+        <details class="fl-q">
+          <summary class="fl-q__head">住宅ローンの相談もできますか？</summary>
+          <p class="fl-q__body">はい、提携金融機関のご紹介やローンシミュレーションもお手伝いしています。資金計画からサポートいたします。</p>
+        </details>
+        <details class="fl-q">
+          <summary class="fl-q__head">アフターサポートはありますか？</summary>
+          <p class="fl-q__body">お引渡し後の定期点検・メンテナンスサポートをご用意しています。住んでからも安心してお過ごしいただけます。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="fl-cta" id="sec-contact">
+    <div class="fl-cta__bg">
+      <!-- IMAGE: CTA背景（推奨 2400×1200px・上質な住宅写真） -->
+      <img src="https://placehold.co/2400x1200/161310/241f1a?text=FORT" alt="" loading="lazy" decoding="async">
+      <div class="fl-cta__overlay"></div>
+    </div>
+    <div class="fl-wrap fl-cta__inner">
+      <p class="fl-label fl-label--light" data-fl-reveal>CONTACT</p>
+      <h2 class="fl-cta__title" data-fl-reveal>理想の住まい、<br class="fl-br-sp">一緒に見つけませんか？</h2>
+      <p class="fl-cta__text" data-fl-reveal>
+        どのシリーズが合うかわからなくても大丈夫。<br>
+        まずはお気軽にご相談ください。
+      </p>
+      <div class="fl-cta__btns" data-fl-reveal>
+        <!-- LINK: お問い合わせフォームURL -->
+        <a class="fl-btn fl-btn--gold" href="#">無料で相談する</a>
+        <!-- LINK: 資料請求ページURL -->
+        <a class="fl-btn fl-btn--white" href="#">資料を請求する</a>
+      </div>
+      <p class="fl-cta__tel" data-fl-reveal>
+        <!-- LINK: 電話番号を差し替え -->
+        お電話でのご相談 <a href="tel:0000000000">000-000-0000</a>
+        <span>受付時間 10:00〜18:00（水曜定休）</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== COMPANY ===================== -->
+  <section class="fl-company" id="sec-company">
+    <div class="fl-wrap">
+      <p class="fl-label" data-fl-reveal>COMPANY</p>
+      <h2 class="fl-company__title" data-fl-reveal>会社概要</h2>
+      <dl class="fl-company__info" data-fl-reveal>
+        <!-- 以下の情報を実際のものに差し替えてください -->
+        <dt>会社名</dt>
+        <dd>FORT株式会社</dd>
+        <dt>所在地</dt>
+        <dd>〒000-0000 ○○県○○市○○ 0-0-0</dd>
+        <dt>電話番号</dt>
+        <dd>000-000-0000</dd>
+        <dt>営業時間</dt>
+        <dd>10:00〜18:00（水曜定休）</dd>
+        <dt>事業内容</dt>
+        <dd>建売住宅の企画・販売、注文住宅の設計・施工、リフォーム</dd>
+      </dl>
+    </div>
+  </section>
+
+</div><!-- /.fort-lp -->
 
 
-<!-- ===================== STYLE（.fort-series-lp にスコープ化） ===================== -->
+<!-- ===================== STYLE ===================== -->
 <style>
-/* ---- 変数・ベース ---- */
-.fort-series-lp{
-  --fsl-bg:#f6f3ee;
-  --fsl-bg-deep:#1c1a17;
-  --fsl-ink:#26221d;
-  --fsl-ink-soft:#5b554c;
-  --fsl-line:#ddd6c9;
-  --fsl-gold:#a8946c;
-  --fsl-gold-deep:#8a7a58;
-  --fsl-white:#fbf9f5;
-  --fsl-serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
-  --fsl-sans:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
-  --fsl-ease:cubic-bezier(.22,.61,.36,1);
-  color:var(--fsl-ink);
-  font-family:var(--fsl-sans);
-  font-size:16px;
-  line-height:1.9;
-  -webkit-font-smoothing:antialiased;
-  background:var(--fsl-bg);
+/* ---- リセット・変数 ---- */
+.fort-lp{
+  --fl-bg:#f5f2ec;
+  --fl-bg-white:#fff;
+  --fl-bg-dark:#1b1917;
+  --fl-ink:#221f1b;
+  --fl-ink-soft:#6b6359;
+  --fl-line:#d9d1c4;
+  --fl-gold:#a08860;
+  --fl-gold-hover:#8a7550;
+  --fl-white:#faf8f4;
+  --fl-serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --fl-sans:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --fl-ease:cubic-bezier(.22,.61,.36,1);
+  color:var(--fl-ink);font-family:var(--fl-sans);
+  font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+  background:var(--fl-bg);
 }
-.fort-series-lp *,
-.fort-series-lp *::before,
-.fort-series-lp *::after{box-sizing:border-box;}
-.fort-series-lp img{display:block;width:100%;height:100%;object-fit:cover;}
-.fort-series-lp a{color:inherit;text-decoration:none;}
-.fort-series-lp h1,
-.fort-series-lp h2{font-family:var(--fsl-serif);font-weight:600;line-height:1.45;letter-spacing:.04em;margin:0;}
-.fort-series-lp p{margin:0;}
-.fort-series-lp ul{margin:0;padding:0;list-style:none;}
+.fort-lp *,.fort-lp *::before,.fort-lp *::after{box-sizing:border-box;}
+.fort-lp img{display:block;width:100%;height:100%;object-fit:cover;}
+.fort-lp a{color:inherit;text-decoration:none;}
+.fort-lp h1,.fort-lp h2,.fort-lp h3{font-family:var(--fl-serif);font-weight:600;line-height:1.45;letter-spacing:.04em;margin:0;}
+.fort-lp p,.fort-lp dl,.fort-lp dd{margin:0;}
+.fort-lp ul{margin:0;padding:0;list-style:none;}
+.fort-lp .fl-wrap{width:100%;max-width:1100px;margin-inline:auto;padding-inline:24px;}
+.fort-lp .fl-br-sp{display:none;}
 
-.fort-series-lp .fsl-container{
-  width:100%;max-width:1120px;margin-inline:auto;padding-inline:24px;
+/* ---- ラベル ---- */
+.fort-lp .fl-label{
+  font-size:.74rem;letter-spacing:.45em;color:var(--fl-gold);
+  font-weight:500;margin-bottom:20px;text-align:center;
 }
-.fort-series-lp .fsl-br-sp{display:none;}
+.fort-lp .fl-label--light{color:var(--fl-gold);}
 
-/* ---- reveal アニメーション ---- */
-.fort-series-lp [data-fsl-reveal]{
-  opacity:0;transform:translateY(28px);
-  transition:opacity .9s var(--fsl-ease),transform .9s var(--fsl-ease);
+/* ---- reveal ---- */
+.fort-lp [data-fl-reveal]{
+  opacity:0;transform:translateY(24px);
+  transition:opacity .8s var(--fl-ease),transform .8s var(--fl-ease);
   will-change:opacity,transform;
 }
-.fort-series-lp [data-fsl-reveal].is-visible{opacity:1;transform:none;}
+.fort-lp [data-fl-reveal].is-visible{opacity:1;transform:none;}
 
 /* ---- ボタン ---- */
-.fort-series-lp .fsl-btn{
+.fort-lp .fl-btn{
   display:inline-flex;align-items:center;gap:.6em;
   font-size:.84rem;letter-spacing:.14em;font-weight:500;
-  padding:18px 38px;border:1px solid var(--fsl-gold);
-  color:var(--fsl-gold-deep);background:transparent;
-  border-radius:2px;transition:all .4s var(--fsl-ease);
+  padding:17px 36px;border:1px solid var(--fl-gold);
+  color:var(--fl-gold);background:transparent;
+  border-radius:2px;transition:all .35s var(--fl-ease);cursor:pointer;
 }
-.fort-series-lp .fsl-btn::after{content:"→";font-size:.9em;transition:transform .4s var(--fsl-ease);}
-.fort-series-lp .fsl-btn:hover{background:var(--fsl-gold);color:#fff;}
-.fort-series-lp .fsl-btn:hover::after{transform:translateX(4px);}
-.fort-series-lp .fsl-btn--light{
-  background:var(--fsl-gold);color:#fff;border-color:var(--fsl-gold);
-}
-.fort-series-lp .fsl-btn--light:hover{background:#fff;color:var(--fsl-gold-deep);}
-.fort-series-lp .fsl-btn--ghost{color:var(--fsl-white);border-color:rgba(255,255,255,.55);}
-.fort-series-lp .fsl-btn--ghost:hover{background:rgba(255,255,255,.12);color:#fff;border-color:#fff;}
+.fort-lp .fl-btn::after{content:"→";font-size:.9em;transition:transform .35s var(--fl-ease);}
+.fort-lp .fl-btn:hover{background:var(--fl-gold);color:#fff;}
+.fort-lp .fl-btn:hover::after{transform:translateX(4px);}
+.fort-lp .fl-btn--gold{background:var(--fl-gold);color:#fff;border-color:var(--fl-gold);}
+.fort-lp .fl-btn--gold:hover{background:var(--fl-gold-hover);border-color:var(--fl-gold-hover);}
+.fort-lp .fl-btn--white{color:var(--fl-white);border-color:rgba(255,255,255,.5);}
+.fort-lp .fl-btn--white:hover{background:rgba(255,255,255,.15);border-color:#fff;color:#fff;}
 
 /* ===================== HERO ===================== */
-.fort-series-lp .fsl-hero{
-  position:relative;min-height:92vh;display:flex;align-items:center;
-  overflow:hidden;color:var(--fsl-white);
+.fort-lp .fl-hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  justify-content:center;overflow:hidden;color:var(--fl-white);text-align:center;
 }
-.fort-series-lp .fsl-hero__media{position:absolute;inset:0;z-index:0;}
-.fort-series-lp .fsl-hero__overlay{
+.fort-lp .fl-hero__bg{position:absolute;inset:0;z-index:0;}
+.fort-lp .fl-hero__overlay{
   position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(20,18,15,.55),rgba(20,18,15,.45) 40%,rgba(20,18,15,.7));
+  background:linear-gradient(180deg,rgba(18,16,13,.5) 0%,rgba(18,16,13,.35) 40%,rgba(18,16,13,.7) 100%);
 }
-.fort-series-lp .fsl-hero__inner{
-  position:relative;z-index:1;width:100%;max-width:1120px;
-  margin-inline:auto;padding:120px 24px;
+.fort-lp .fl-hero__content{
+  position:relative;z-index:1;max-width:800px;padding:120px 24px;
 }
-.fort-series-lp .fsl-hero__eyebrow{
-  font-size:.78rem;letter-spacing:.42em;margin-bottom:28px;
-  color:var(--fsl-gold);font-weight:500;
+.fort-lp .fl-hero__label{
+  font-size:.76rem;letter-spacing:.5em;color:var(--fl-gold);margin-bottom:32px;font-weight:500;
 }
-.fort-series-lp .fsl-hero__title{
-  font-size:clamp(2.3rem,6vw,4.4rem);letter-spacing:.06em;
-  text-shadow:0 2px 30px rgba(0,0,0,.3);
+.fort-lp .fl-hero__title{
+  font-size:clamp(2.2rem,5.5vw,4rem);letter-spacing:.06em;
+  text-shadow:0 2px 40px rgba(0,0,0,.3);
 }
-.fort-series-lp .fsl-hero__lead{
-  margin-top:30px;font-size:clamp(1rem,2vw,1.18rem);
-  letter-spacing:.08em;line-height:2;font-weight:300;
-  color:rgba(251,249,245,.92);
+.fort-lp .fl-hero__sub{
+  margin-top:28px;font-size:clamp(.95rem,1.8vw,1.15rem);
+  letter-spacing:.06em;line-height:2;font-weight:300;
+  color:rgba(250,248,244,.88);
 }
-.fort-series-lp .fsl-hero__series{display:flex;flex-wrap:wrap;gap:14px;margin-top:48px;}
-.fort-series-lp .fsl-hero__chip{
-  font-size:.82rem;letter-spacing:.16em;padding:13px 26px;
-  border:1px solid rgba(255,255,255,.4);border-radius:2px;
-  backdrop-filter:blur(2px);transition:all .4s var(--fsl-ease);
+.fort-lp .fl-hero__chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:42px;}
+.fort-lp .fl-chip{
+  font-size:.8rem;letter-spacing:.18em;padding:12px 28px;
+  border:1px solid rgba(255,255,255,.35);border-radius:2px;
+  transition:all .35s var(--fl-ease);
 }
-.fort-series-lp .fsl-hero__chip:hover{
-  background:var(--fsl-gold);border-color:var(--fsl-gold);color:#fff;
+.fort-lp .fl-chip:hover{background:var(--fl-gold);border-color:var(--fl-gold);color:#fff;}
+.fort-lp .fl-hero__cta{margin-top:48px;}
+.fort-lp .fl-hero__scroll{
+  position:absolute;left:50%;bottom:32px;transform:translateX(-50%);z-index:1;
 }
-.fort-series-lp .fsl-hero__scroll{
-  position:absolute;left:50%;bottom:34px;z-index:1;transform:translateX(-50%);
-}
-.fort-series-lp .fsl-hero__scroll-line{
-  display:block;width:1px;height:64px;background:rgba(255,255,255,.6);
+.fort-lp .fl-hero__scroll-line{
+  display:block;width:1px;height:60px;background:rgba(255,255,255,.5);
   position:relative;overflow:hidden;
 }
-.fort-series-lp .fsl-hero__scroll-line::after{
+.fort-lp .fl-hero__scroll-line::after{
   content:"";position:absolute;top:-50%;left:0;width:100%;height:50%;
-  background:var(--fsl-gold);animation:fsl-scroll 2.2s var(--fsl-ease) infinite;
+  background:var(--fl-gold);animation:fl-scroll 2.4s var(--fl-ease) infinite;
 }
-@keyframes fsl-scroll{0%{top:-50%}60%,100%{top:100%}}
+@keyframes fl-scroll{0%{top:-50%}60%,100%{top:100%}}
 
-/* ===================== INTRO ===================== */
-.fort-series-lp .fsl-intro{padding:clamp(80px,12vw,140px) 0;text-align:center;}
-.fort-series-lp .fsl-intro__label{
-  font-size:.76rem;letter-spacing:.4em;color:var(--fsl-gold);margin-bottom:26px;
-}
-.fort-series-lp .fsl-intro__title{font-size:clamp(1.7rem,4.2vw,2.7rem);}
-.fort-series-lp .fsl-intro__text{
-  max-width:680px;margin:34px auto 0;color:var(--fsl-ink-soft);
-  font-size:1rem;font-weight:300;
+/* ===================== BRAND ===================== */
+.fort-lp .fl-brand{padding:clamp(80px,12vw,140px) 0;text-align:center;}
+.fort-lp .fl-brand__title{font-size:clamp(1.6rem,3.8vw,2.4rem);}
+.fort-lp .fl-brand__body{
+  max-width:640px;margin:32px auto 0;color:var(--fl-ink-soft);
+  font-size:.97rem;font-weight:300;line-height:2.1;
 }
 
 /* ===================== OVERVIEW ===================== */
-.fort-series-lp .fsl-overview{padding-bottom:clamp(40px,8vw,90px);}
-.fort-series-lp .fsl-overview__grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+.fort-lp .fl-overview{padding:0 0 clamp(60px,10vw,120px);text-align:center;}
+.fort-lp .fl-overview__title{font-size:clamp(1.5rem,3.6vw,2.2rem);}
+.fort-lp .fl-overview__sub{margin-top:16px;color:var(--fl-ink-soft);font-weight:300;}
+.fort-lp .fl-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px;text-align:left;}
+.fort-lp .fl-card{
+  display:flex;flex-direction:column;padding:44px 32px;
+  background:var(--fl-bg-white);border:1px solid var(--fl-line);border-radius:4px;
+  position:relative;overflow:hidden;transition:all .45s var(--fl-ease);
 }
-.fort-series-lp .fsl-ocard{
-  display:flex;flex-direction:column;background:var(--fsl-white);
-  border:1px solid var(--fsl-line);border-radius:3px;
-  padding:46px 34px;transition:all .5s var(--fsl-ease);position:relative;overflow:hidden;
-}
-.fort-series-lp .fsl-ocard::before{
+.fort-lp .fl-card::before{
   content:"";position:absolute;left:0;top:0;width:100%;height:3px;
-  background:var(--fsl-gold);transform:scaleX(0);transform-origin:left;
-  transition:transform .5s var(--fsl-ease);
+  background:var(--fl-gold);transform:scaleX(0);transform-origin:left;
+  transition:transform .45s var(--fl-ease);
 }
-.fort-series-lp .fsl-ocard:hover{transform:translateY(-8px);box-shadow:0 24px 50px -28px rgba(40,34,29,.5);}
-.fort-series-lp .fsl-ocard:hover::before{transform:scaleX(1);}
-.fort-series-lp .fsl-ocard__num{
-  font-family:var(--fsl-serif);font-size:.9rem;letter-spacing:.2em;color:var(--fsl-gold);
+.fort-lp .fl-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px -24px rgba(34,31,27,.45);}
+.fort-lp .fl-card:hover::before{transform:scaleX(1);}
+.fort-lp .fl-card__num{font-family:var(--fl-serif);font-size:.85rem;letter-spacing:.2em;color:var(--fl-gold);}
+.fort-lp .fl-card__name{font-family:var(--fl-serif);font-size:1.4rem;letter-spacing:.08em;margin-top:16px;}
+.fort-lp .fl-card__type{font-size:.78rem;letter-spacing:.1em;color:var(--fl-gold);margin-top:8px;}
+.fort-lp .fl-card__desc{font-size:.92rem;color:var(--fl-ink-soft);margin-top:16px;line-height:1.85;flex:1;}
+.fort-lp .fl-card__arrow{
+  font-size:.85rem;margin-top:24px;color:var(--fl-ink);
+  transition:transform .35s var(--fl-ease);display:inline-block;
 }
-.fort-series-lp .fsl-ocard__name{
-  font-family:var(--fsl-serif);font-size:1.5rem;letter-spacing:.08em;margin-top:18px;
-}
-.fort-series-lp .fsl-ocard__cat{
-  font-size:.8rem;letter-spacing:.1em;color:var(--fsl-gold-deep);margin-top:10px;
-}
-.fort-series-lp .fsl-ocard__desc{
-  font-size:.94rem;color:var(--fsl-ink-soft);margin-top:18px;line-height:1.9;flex:1;
-}
-.fort-series-lp .fsl-ocard__more{
-  font-size:.8rem;letter-spacing:.14em;margin-top:26px;color:var(--fsl-ink);
-  display:inline-flex;align-items:center;gap:.5em;
-}
-.fort-series-lp .fsl-ocard__more::after{content:"→";transition:transform .4s var(--fsl-ease);}
-.fort-series-lp .fsl-ocard:hover .fsl-ocard__more::after{transform:translateX(5px);}
+.fort-lp .fl-card:hover .fl-card__arrow{transform:translateX(6px);}
 
-/* ===================== SERIES（詳細） ===================== */
-.fort-series-lp .fsl-series{padding:clamp(70px,10vw,120px) 0;}
-.fort-series-lp .fsl-series--pro{background:var(--fsl-white);}
-.fort-series-lp .fsl-series__inner{
-  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center;
+/* ===================== DETAIL ===================== */
+.fort-lp .fl-detail{padding:clamp(64px,10vw,110px) 0;}
+.fort-lp .fl-detail--alt{background:var(--fl-bg-white);}
+.fort-lp .fl-detail__grid{
+  display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(32px,5vw,68px);align-items:center;
 }
-.fort-series-lp .fsl-series--reverse .fsl-series__media{order:2;}
-.fort-series-lp .fsl-series__media{
+.fort-lp .fl-detail__grid--rev .fl-detail__img{order:2;}
+.fort-lp .fl-detail__img{
   position:relative;aspect-ratio:4/3;border-radius:4px;overflow:hidden;
-  box-shadow:0 30px 60px -34px rgba(40,34,29,.55);
+  box-shadow:0 28px 56px -30px rgba(34,31,27,.5);
 }
-.fort-series-lp .fsl-series__media img{transition:transform 1.2s var(--fsl-ease);}
-.fort-series-lp .fsl-series__media:hover img{transform:scale(1.05);}
-.fort-series-lp .fsl-series__num{
-  font-size:.78rem;letter-spacing:.3em;color:var(--fsl-gold);margin-bottom:20px;
+.fort-lp .fl-detail__img img{transition:transform 1s var(--fl-ease);}
+.fort-lp .fl-detail__img:hover img{transform:scale(1.04);}
+.fort-lp .fl-detail__num{
+  font-family:var(--fl-serif);font-size:2.4rem;letter-spacing:.06em;
+  color:var(--fl-gold);opacity:.35;font-weight:700;line-height:1;
 }
-.fort-series-lp .fsl-series__name{font-size:clamp(1.9rem,4vw,2.6rem);}
-.fort-series-lp .fsl-series__cat{
-  font-size:.86rem;letter-spacing:.14em;color:var(--fsl-gold-deep);margin-top:14px;
+.fort-lp .fl-detail__name{font-size:clamp(1.8rem,3.8vw,2.4rem);margin-top:8px;}
+.fort-lp .fl-detail__type{font-size:.82rem;letter-spacing:.14em;color:var(--fl-gold);margin-top:10px;}
+.fort-lp .fl-detail__catch{
+  font-family:var(--fl-serif);font-size:1.12rem;letter-spacing:.04em;
+  margin-top:22px;line-height:1.8;
 }
-.fort-series-lp .fsl-series__catch{
-  font-family:var(--fsl-serif);font-size:1.18rem;letter-spacing:.04em;
-  margin-top:24px;line-height:1.8;
+.fort-lp .fl-detail__text{margin-top:18px;color:var(--fl-ink-soft);font-weight:300;font-size:.95rem;}
+.fort-lp .fl-detail__list{margin-top:26px;display:grid;gap:12px;}
+.fort-lp .fl-detail__list li{
+  position:relative;padding-left:28px;font-size:.92rem;
 }
-.fort-series-lp .fsl-series__text{
-  margin-top:20px;color:var(--fsl-ink-soft);font-weight:300;font-size:.97rem;
+.fort-lp .fl-detail__list li::before{
+  content:"";position:absolute;left:0;top:.72em;width:14px;height:1px;background:var(--fl-gold);
 }
-.fort-series-lp .fsl-series__points{margin-top:30px;display:grid;gap:14px;}
-.fort-series-lp .fsl-series__points li{
-  position:relative;padding-left:30px;font-size:.94rem;color:var(--fsl-ink);
-}
-.fort-series-lp .fsl-series__points li::before{
-  content:"";position:absolute;left:0;top:.7em;width:14px;height:1px;background:var(--fsl-gold);
-}
-.fort-series-lp .fsl-series__body .fsl-btn{margin-top:40px;}
+.fort-lp .fl-detail__body .fl-btn{margin-top:36px;}
 
 /* ===================== COMPARE ===================== */
-.fort-series-lp .fsl-compare{padding:clamp(70px,10vw,120px) 0;background:var(--fsl-bg-deep);color:var(--fsl-white);}
-.fort-series-lp .fsl-compare__head{text-align:center;margin-bottom:48px;}
-.fort-series-lp .fsl-compare__label{font-size:.76rem;letter-spacing:.4em;color:var(--fsl-gold);margin-bottom:18px;}
-.fort-series-lp .fsl-compare__title{font-size:clamp(1.6rem,3.6vw,2.3rem);color:#fff;}
-.fort-series-lp .fsl-compare__scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.fort-series-lp .fsl-table{
-  width:100%;min-width:640px;border-collapse:collapse;font-size:.92rem;
-}
-.fort-series-lp .fsl-table th,
-.fort-series-lp .fsl-table td{
-  padding:20px 18px;text-align:center;border-bottom:1px solid rgba(255,255,255,.14);
+.fort-lp .fl-compare{padding:clamp(70px,10vw,120px) 0;background:var(--fl-bg-dark);color:var(--fl-white);}
+.fort-lp .fl-compare__title{font-size:clamp(1.5rem,3.4vw,2.1rem);color:#fff;text-align:center;margin-bottom:44px;}
+.fort-lp .fl-compare__scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.fort-lp .fl-table{width:100%;min-width:640px;border-collapse:collapse;font-size:.9rem;}
+.fort-lp .fl-table th,.fort-lp .fl-table td{
+  padding:18px 16px;text-align:center;border-bottom:1px solid rgba(255,255,255,.12);
   font-weight:400;letter-spacing:.04em;
 }
-.fort-series-lp .fsl-table thead th{
-  font-family:var(--fsl-serif);font-size:1.04rem;letter-spacing:.1em;color:var(--fsl-gold);
-  border-bottom:1px solid rgba(168,148,108,.5);padding-bottom:18px;
+.fort-lp .fl-table thead th{
+  font-family:var(--fl-serif);font-size:1rem;letter-spacing:.1em;color:var(--fl-gold);
+  border-bottom:1px solid rgba(160,136,96,.45);padding-bottom:16px;
 }
-.fort-series-lp .fsl-table tbody th[scope="row"]{
-  text-align:left;color:rgba(251,249,245,.7);font-size:.84rem;letter-spacing:.08em;white-space:nowrap;
+.fort-lp .fl-table tbody th{
+  text-align:left;color:rgba(250,248,244,.65);font-size:.82rem;letter-spacing:.08em;white-space:nowrap;
 }
-.fort-series-lp .fsl-table__corner{background:transparent;}
-.fort-series-lp .fsl-compare__note{
-  margin-top:18px;font-size:.78rem;color:rgba(251,249,245,.5);text-align:center;
+.fort-lp .fl-table__corner{background:transparent;}
+.fort-lp .fl-compare__note{margin-top:16px;font-size:.76rem;color:rgba(250,248,244,.45);text-align:center;}
+
+/* ===================== FLOW ===================== */
+.fort-lp .fl-flow{padding:clamp(70px,10vw,120px) 0;text-align:center;}
+.fort-lp .fl-flow__title{font-size:clamp(1.5rem,3.4vw,2.1rem);margin-bottom:50px;}
+.fort-lp .fl-steps{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:16px;text-align:center;
+}
+.fort-lp .fl-step{
+  padding:36px 20px;background:var(--fl-bg-white);border:1px solid var(--fl-line);
+  border-radius:4px;position:relative;
+}
+.fort-lp .fl-step__num{
+  display:block;font-family:var(--fl-serif);font-size:1.6rem;
+  color:var(--fl-gold);opacity:.5;font-weight:700;line-height:1;margin-bottom:14px;
+}
+.fort-lp .fl-step__name{font-size:1rem;letter-spacing:.06em;margin-bottom:10px;}
+.fort-lp .fl-step__text{font-size:.82rem;color:var(--fl-ink-soft);font-weight:300;line-height:1.75;}
+
+/* ===================== FAQ ===================== */
+.fort-lp .fl-faq{padding:clamp(70px,10vw,120px) 0;background:var(--fl-bg-white);text-align:center;}
+.fort-lp .fl-faq__title{font-size:clamp(1.5rem,3.4vw,2.1rem);margin-bottom:44px;}
+.fort-lp .fl-faqs{max-width:760px;margin-inline:auto;text-align:left;}
+.fort-lp .fl-q{border-bottom:1px solid var(--fl-line);}
+.fort-lp .fl-q__head{
+  padding:22px 40px 22px 0;font-size:.95rem;font-weight:500;
+  letter-spacing:.03em;cursor:pointer;position:relative;
+  list-style:none;
+}
+.fort-lp .fl-q__head::-webkit-details-marker{display:none;}
+.fort-lp .fl-q__head::after{
+  content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);
+  font-size:1.3rem;color:var(--fl-gold);font-weight:300;
+  transition:transform .3s var(--fl-ease);
+}
+.fort-lp .fl-q[open] .fl-q__head::after{transform:translateY(-50%) rotate(45deg);}
+.fort-lp .fl-q__body{
+  padding:0 0 22px;font-size:.9rem;color:var(--fl-ink-soft);
+  font-weight:300;line-height:1.9;
 }
 
 /* ===================== CTA ===================== */
-.fort-series-lp .fsl-cta{position:relative;overflow:hidden;color:var(--fsl-white);text-align:center;}
-.fort-series-lp .fsl-cta__media{position:absolute;inset:0;z-index:0;}
-.fort-series-lp .fsl-cta__overlay{position:absolute;inset:0;background:rgba(18,15,12,.72);}
-.fort-series-lp .fsl-cta__inner{position:relative;z-index:1;padding:clamp(90px,13vw,150px) 24px;}
-.fort-series-lp .fsl-cta__label{font-size:.76rem;letter-spacing:.4em;color:var(--fsl-gold);margin-bottom:24px;}
-.fort-series-lp .fsl-cta__title{font-size:clamp(1.8rem,4.2vw,2.8rem);color:#fff;}
-.fort-series-lp .fsl-cta__text{
-  max-width:600px;margin:28px auto 0;font-weight:300;color:rgba(251,249,245,.9);font-size:.97rem;
+.fort-lp .fl-cta{position:relative;overflow:hidden;color:var(--fl-white);text-align:center;}
+.fort-lp .fl-cta__bg{position:absolute;inset:0;z-index:0;}
+.fort-lp .fl-cta__overlay{position:absolute;inset:0;background:rgba(18,15,12,.75);}
+.fort-lp .fl-cta__inner{position:relative;z-index:1;padding:clamp(90px,13vw,150px) 24px;}
+.fort-lp .fl-cta__title{font-size:clamp(1.7rem,4vw,2.6rem);color:#fff;}
+.fort-lp .fl-cta__text{
+  max-width:560px;margin:24px auto 0;font-weight:300;
+  color:rgba(250,248,244,.88);font-size:.95rem;
 }
-.fort-series-lp .fsl-cta__actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:44px;}
+.fort-lp .fl-cta__btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:40px;}
+.fort-lp .fl-cta__tel{
+  margin-top:36px;font-size:.88rem;color:rgba(250,248,244,.7);
+}
+.fort-lp .fl-cta__tel a{
+  font-family:var(--fl-serif);font-size:1.3rem;letter-spacing:.06em;
+  color:var(--fl-white);margin-left:.4em;
+}
+.fort-lp .fl-cta__tel span{display:block;font-size:.78rem;margin-top:4px;color:rgba(250,248,244,.5);}
+
+/* ===================== COMPANY ===================== */
+.fort-lp .fl-company{padding:clamp(60px,8vw,100px) 0;text-align:center;}
+.fort-lp .fl-company__title{font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:40px;}
+.fort-lp .fl-company__info{
+  max-width:600px;margin-inline:auto;text-align:left;
+  display:grid;grid-template-columns:120px 1fr;gap:0;
+  font-size:.92rem;
+}
+.fort-lp .fl-company__info dt{
+  padding:16px 0;font-weight:500;color:var(--fl-ink);
+  border-bottom:1px solid var(--fl-line);
+}
+.fort-lp .fl-company__info dd{
+  padding:16px 0;color:var(--fl-ink-soft);font-weight:300;
+  border-bottom:1px solid var(--fl-line);
+}
 
 /* ===================== レスポンシブ ===================== */
-@media (max-width:880px){
-  .fort-series-lp .fsl-overview__grid{grid-template-columns:1fr;gap:18px;}
-  .fort-series-lp .fsl-series__inner{grid-template-columns:1fr;gap:36px;}
-  .fort-series-lp .fsl-series--reverse .fsl-series__media{order:0;}
-  .fort-series-lp .fsl-series__media{aspect-ratio:16/11;}
+@media(max-width:960px){
+  .fort-lp .fl-steps{grid-template-columns:repeat(3,1fr);}
 }
-@media (max-width:600px){
-  .fort-series-lp{font-size:15px;}
-  .fort-series-lp .fsl-br-sp{display:inline;}
-  .fort-series-lp .fsl-hero{min-height:88vh;}
-  .fort-series-lp .fsl-hero__inner{padding:96px 22px;}
-  .fort-series-lp .fsl-hero__series{gap:10px;}
-  .fort-series-lp .fsl-hero__chip{padding:11px 18px;font-size:.76rem;}
-  .fort-series-lp .fsl-ocard{padding:36px 28px;}
-  .fort-series-lp .fsl-btn{padding:16px 30px;width:100%;justify-content:center;}
-  .fort-series-lp .fsl-cta__actions{flex-direction:column;}
-  .fort-series-lp .fsl-cta__actions .fsl-btn{width:100%;}
+@media(max-width:880px){
+  .fort-lp .fl-cards{grid-template-columns:1fr;gap:16px;}
+  .fort-lp .fl-detail__grid{grid-template-columns:1fr;gap:32px;}
+  .fort-lp .fl-detail__grid--rev .fl-detail__img{order:0;}
+  .fort-lp .fl-detail__img{aspect-ratio:16/11;}
 }
-
-/* モーション抑制設定への配慮 */
-@media (prefers-reduced-motion:reduce){
-  .fort-series-lp [data-fsl-reveal]{opacity:1!important;transform:none!important;transition:none!important;}
-  .fort-series-lp .fsl-hero__scroll-line::after{animation:none;}
+@media(max-width:600px){
+  .fort-lp{font-size:15px;}
+  .fort-lp .fl-br-sp{display:inline;}
+  .fort-lp .fl-hero{min-height:92vh;}
+  .fort-lp .fl-hero__content{padding:96px 20px;}
+  .fort-lp .fl-hero__chips{gap:8px;}
+  .fort-lp .fl-chip{padding:10px 18px;font-size:.74rem;}
+  .fort-lp .fl-btn{padding:15px 28px;width:100%;justify-content:center;}
+  .fort-lp .fl-cta__btns{flex-direction:column;}
+  .fort-lp .fl-steps{grid-template-columns:1fr 1fr;gap:12px;}
+  .fort-lp .fl-step{padding:28px 16px;}
+  .fort-lp .fl-company__info{grid-template-columns:100px 1fr;font-size:.85rem;}
+}
+@media(prefers-reduced-motion:reduce){
+  .fort-lp [data-fl-reveal]{opacity:1!important;transform:none!important;transition:none!important;}
+  .fort-lp .fl-hero__scroll-line::after{animation:none;}
 }
 </style>
 
 
-<!-- ===================== SCRIPT（スクロール表示アニメーション） ===================== -->
+<!-- ===================== SCRIPT ===================== -->
 <script>
 (function(){
-  var root = document.querySelector('.fort-series-lp');
-  if(!root) return;
-  var items = root.querySelectorAll('[data-fsl-reveal]');
+  var root=document.querySelector('.fort-lp');
+  if(!root)return;
+  var els=root.querySelectorAll('[data-fl-reveal]');
   if(!('IntersectionObserver' in window)){
-    items.forEach(function(el){ el.classList.add('is-visible'); });
+    els.forEach(function(el){el.classList.add('is-visible');});
     return;
   }
-  var io = new IntersectionObserver(function(entries){
+  var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
         e.target.classList.add('is-visible');
         io.unobserve(e.target);
       }
     });
-  }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
-  items.forEach(function(el){ io.observe(el); });
+  },{threshold:0.1,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(el){io.observe(el);});
 })();
 </script>

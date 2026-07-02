@@ -225,4 +225,108 @@ document.addEventListener('DOMContentLoaded', function () {
     }, true);
   });
 
+  /* --------------------------------------------------------
+     7. 没入スクロール演出
+        7-1 写真のカーテンリビール（[data-wipe]）
+        7-2 文章の行ごと点灯（[data-lines]）
+        7-3 FORT STORY 固定章（.story）
+        7-4 パララックス（[data-parallax]）
+        7-5 ヒーローがスクロールで溶けるように退場
+  -------------------------------------------------------- */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 7-1 [data-wipe] にも is-visible を付与（既存の reveal と同じ考え方）
+  var wipeTargets = document.querySelectorAll('[data-wipe]');
+  if (wipeTargets.length) {
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      var wipeObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('is-visible'); wipeObs.unobserve(en.target); }
+        });
+      }, { threshold: 0.25 });
+      wipeTargets.forEach(function (el) { wipeObs.observe(el); });
+    } else {
+      wipeTargets.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  }
+
+  // 7-2 [data-lines]：<br> 区切りの各行を span.line に分割して時間差表示
+  document.querySelectorAll('[data-lines]').forEach(function (el) {
+    var parts = el.innerHTML.split(/<br\s*\/?>/i);
+    el.innerHTML = parts.map(function (p, i) {
+      if (p.replace(/&nbsp;|\s/g, '') === '') return '<br>';
+      return '<span class="line" style="--line-delay:' + (i * 0.14) + 's">' + p + '</span><br>';
+    }).join('');
+  });
+
+  // 7-3 FORT STORY：スクロール量で言葉を切り替える
+  var story = document.querySelector('.story');
+  var storyWords = story ? Array.prototype.slice.call(story.querySelectorAll('.story__word')) : [];
+  var storyBar = story ? story.querySelector('.story__progress span') : null;
+
+  // 7-4 パララックス対象
+  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+
+  // 7-5 ヒーロー退場の対象（トップページのみ存在）
+  var heroSec  = document.querySelector('.hero--logo');
+  var heroBits = heroSec ? Array.prototype.slice.call(
+    heroSec.querySelectorAll('.hero__logobox, .hero__note, .hero__actions--br')) : [];
+  var heroIntroKilled = false;
+
+  function immersiveFrame() {
+    var vh = window.innerHeight;
+
+    // --- FORT STORY ---
+    if (story && storyWords.length) {
+      var r = story.getBoundingClientRect();
+      var total = r.height - vh;
+      var p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
+      var idx = Math.min(storyWords.length - 1, Math.floor(p * storyWords.length));
+      storyWords.forEach(function (w, i) { w.classList.toggle('is-active', i === idx); });
+      if (storyBar) storyBar.style.width = (p * 100) + '%';
+    }
+
+    // --- パララックス ---
+    if (!reduceMotion) {
+      parallaxEls.forEach(function (el) {
+        var pr = el.getBoundingClientRect();
+        if (pr.bottom < 0 || pr.top > vh) return;
+        var speed = parseFloat(el.dataset.parallax) || 0.12;
+        var off = (pr.top + pr.height / 2 - vh / 2) * -speed;
+        var scale = el.dataset.pscale ? ' scale(' + el.dataset.pscale + ')' : '';
+        el.style.transform = 'translate3d(0,' + off.toFixed(1) + 'px,0)' + scale;
+      });
+    }
+
+    // --- ヒーロー退場（下へスクロールすると静かに溶ける） ---
+    if (heroSec && heroBits.length && !reduceMotion) {
+      var y = window.scrollY;
+      if (y > 30 && !heroIntroKilled) {
+        // 登場アニメ（CSS animation）を止めてJS制御に切り替える
+        heroBits.forEach(function (el) { el.style.animation = 'none'; el.style.filter = 'none'; });
+        heroIntroKilled = true;
+      }
+      if (heroIntroKilled) {
+        var hp = Math.min(1, y / (vh * 0.85));
+        heroBits.forEach(function (el) {
+          el.style.opacity = String(1 - hp * 1.15);
+          el.style.transform = 'translateY(' + (-hp * 46).toFixed(1) + 'px)';
+        });
+      }
+    }
+  }
+
+  var immersiveTick = false;
+  function onImmersiveScroll() {
+    if (!immersiveTick) {
+      window.requestAnimationFrame(function () { immersiveFrame(); immersiveTick = false; });
+      immersiveTick = true;
+    }
+  }
+  if (story || parallaxEls.length || heroSec) {
+    window.addEventListener('scroll', onImmersiveScroll, { passive: true });
+    window.addEventListener('resize', onImmersiveScroll);
+    immersiveFrame();
+  }
+
 });

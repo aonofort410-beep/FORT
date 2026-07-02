@@ -41,7 +41,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<div class="philosophy__text" data-reveal>
 				<p class="section__label">FORT PHILOSOPHY</p>
 				<h2 class="philosophy__title">家族に、ちょうどいい家を。</h2>
-				<p class="philosophy__body">
+				<p class="philosophy__body" data-lines>
 					性能だけを追い求めれば、家は高くなる。<br>
 					デザインだけを追い求めれば、暮らしにくくなる。<br><br>
 					FORTは、性能・デザイン・価格の<br>
@@ -50,7 +50,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 					それが、FORTの家づくりです。
 				</p>
 			</div>
-			<figure class="philosophy__figure" data-reveal>
+			<figure class="philosophy__figure" data-wipe>
 				<img src="<?php echo esc_url( $img . 'niche.jpg' ); ?>" alt="FORTがつくる、ちょうどいい暮らし" loading="lazy" decoding="async">
 			</figure>
 		</div>
@@ -134,6 +134,20 @@ $img = get_template_directory_uri() . '/assets/images/';
 		<div class="container"><div class="section__more" data-reveal><a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>" class="btn btn--outline">もっと施工事例を見る</a></div></div>
 	</section>
 
+	<!-- FORT STORY / スクロールで言葉が切り替わる没入章 -->
+	<section class="story" id="story" aria-label="FORTの家づくりの物語">
+		<div class="story__sticky">
+			<p class="story__label">FORT STORY</p>
+			<div class="story__words">
+				<div class="story__word is-active"><span class="story__en">DESIGN</span><span class="story__ja">デザインを、あきらめない。</span></div>
+				<div class="story__word"><span class="story__en">PERFORMANCE</span><span class="story__ja">性能に、妥協しない。</span></div>
+				<div class="story__word"><span class="story__en">BALANCE</span><span class="story__ja">だから、家族に“ちょうどいい”。</span></div>
+			</div>
+			<div class="story__progress"><span></span></div>
+			<p class="story__hint" aria-hidden="true">SCROLL</p>
+		</div>
+	</section>
+
 	<!-- 05 FORT FAMILY -->
 	<section class="family section" id="family">
 		<div class="container">
@@ -157,7 +171,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<header class="section__head"><p class="section__label" data-reveal>LINEUP</p><h2 class="section__title" data-reveal>あなたらしい家づくりを選ぶ。</h2></header>
 			<div class="lineup-ed">
 				<article class="lineup-ed__row" data-reveal>
-					<figure class="lineup-ed__media"><img src="<?php echo esc_url( $img . 'lineup-style.jpg' ); ?>" alt="FORT STYLE" loading="lazy"><span class="lineup-ed__tag">建売住宅</span></figure>
+					<figure class="lineup-ed__media" data-wipe><img src="<?php echo esc_url( $img . 'lineup-style.jpg' ); ?>" alt="FORT STYLE" loading="lazy"><span class="lineup-ed__tag">建売住宅</span></figure>
 					<div class="lineup-ed__body">
 						<span class="lineup-ed__no">01</span>
 						<h3 class="lineup-ed__name">FORT STYLE</h3>
@@ -167,7 +181,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 					</div>
 				</article>
 				<article class="lineup-ed__row" data-reveal>
-					<figure class="lineup-ed__media"><img src="<?php echo esc_url( $img . 'pro/persp-b.jpg' ); ?>" alt="FORT PRO" loading="lazy"><span class="lineup-ed__tag">規格・セミオーダー</span></figure>
+					<figure class="lineup-ed__media" data-wipe><img src="<?php echo esc_url( $img . 'pro/persp-b.jpg' ); ?>" alt="FORT PRO" loading="lazy"><span class="lineup-ed__tag">規格・セミオーダー</span></figure>
 					<div class="lineup-ed__body">
 						<span class="lineup-ed__no">02</span>
 						<h3 class="lineup-ed__name">FORT PRO</h3>
@@ -177,7 +191,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 					</div>
 				</article>
 				<article class="lineup-ed__row" data-reveal>
-					<figure class="lineup-ed__media"><img src="<?php echo esc_url( $img . 'lineup-design.jpg' ); ?>" alt="FORT DESIGN" loading="lazy"><span class="lineup-ed__tag">自由設計</span></figure>
+					<figure class="lineup-ed__media" data-wipe><img src="<?php echo esc_url( $img . 'lineup-design.jpg' ); ?>" alt="FORT DESIGN" loading="lazy"><span class="lineup-ed__tag">自由設計</span></figure>
 					<div class="lineup-ed__body">
 						<span class="lineup-ed__no">03</span>
 						<h3 class="lineup-ed__name">FORT DESIGN</h3>
@@ -247,7 +261,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 
 	<!-- 13 CONTACT -->
 	<section class="reserve section" id="reserve">
-		<div class="reserve__bg"><img src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="" aria-hidden="true" loading="lazy"><div class="reserve__overlay"></div></div>
+		<div class="reserve__bg"><img src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="" aria-hidden="true" loading="lazy" data-parallax="0.12" data-pscale="1.18"><div class="reserve__overlay"></div></div>
 		<div class="container reserve__inner">
 			<p class="section__label section__label--light" data-reveal>CONTACT</p>
 			<h2 class="section__title section__title--light" data-reveal>家づくりのご相談、<br>モデルハウスの見学予約はこちらから。</h2>

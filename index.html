@@ -129,7 +129,7 @@
         <div class="philosophy__text" data-reveal>
           <p class="section__label">FORT PHILOSOPHY</p>
           <h2 class="philosophy__title">家族に、ちょうどいい家を。</h2>
-          <p class="philosophy__body">
+          <p class="philosophy__body" data-lines>
             性能だけを追い求めれば、家は高くなる。<br>
             デザインだけを追い求めれば、暮らしにくくなる。<br><br>
             FORTは、性能・デザイン・価格の<br>
@@ -138,7 +138,7 @@
             それが、FORTの家づくりです。
           </p>
         </div>
-        <figure class="philosophy__figure" data-reveal>
+        <figure class="philosophy__figure" data-wipe>
           <img src="images/niche.jpg" alt="FORTがつくる、ちょうどいい暮らし" loading="lazy" decoding="async">
         </figure>
       </div>
@@ -279,6 +279,29 @@
       </div>
     </section>
 
+    <!-- FORT STORY / スクロールで言葉が切り替わる没入章 -->
+    <section class="story" id="story" aria-label="FORTの家づくりの物語">
+      <div class="story__sticky">
+        <p class="story__label">FORT STORY</p>
+        <div class="story__words">
+          <div class="story__word is-active">
+            <span class="story__en">DESIGN</span>
+            <span class="story__ja">デザインを、あきらめない。</span>
+          </div>
+          <div class="story__word">
+            <span class="story__en">PERFORMANCE</span>
+            <span class="story__ja">性能に、妥協しない。</span>
+          </div>
+          <div class="story__word">
+            <span class="story__en">BALANCE</span>
+            <span class="story__ja">だから、家族に“ちょうどいい”。</span>
+          </div>
+        </div>
+        <div class="story__progress"><span></span></div>
+        <p class="story__hint" aria-hidden="true">SCROLL</p>
+      </div>
+    </section>
+
     <!-- 05 FORT FAMILY / お客様の声 -->
     <section class="family section" id="family">
       <div class="container">
@@ -315,7 +338,7 @@
         </header>
         <div class="lineup-ed">
           <article class="lineup-ed__row" data-reveal>
-            <figure class="lineup-ed__media"><img src="images/lineup-style.jpg" alt="FORT STYLE" loading="lazy" decoding="async"><span class="lineup-ed__tag">建売住宅</span></figure>
+            <figure class="lineup-ed__media" data-wipe><img src="images/lineup-style.jpg" alt="FORT STYLE" loading="lazy" decoding="async"><span class="lineup-ed__tag">建売住宅</span></figure>
             <div class="lineup-ed__body">
               <span class="lineup-ed__no">01</span>
               <h3 class="lineup-ed__name">FORT STYLE</h3>
@@ -325,7 +348,7 @@
             </div>
           </article>
           <article class="lineup-ed__row" data-reveal>
-            <figure class="lineup-ed__media"><img src="images/pro/persp-b.jpg" alt="FORT PRO" loading="lazy" decoding="async"><span class="lineup-ed__tag">規格・セミオーダー</span></figure>
+            <figure class="lineup-ed__media" data-wipe><img src="images/pro/persp-b.jpg" alt="FORT PRO" loading="lazy" decoding="async"><span class="lineup-ed__tag">規格・セミオーダー</span></figure>
             <div class="lineup-ed__body">
               <span class="lineup-ed__no">02</span>
               <h3 class="lineup-ed__name">FORT PRO</h3>
@@ -335,7 +358,7 @@
             </div>
           </article>
           <article class="lineup-ed__row" data-reveal>
-            <figure class="lineup-ed__media"><img src="images/lineup-design.jpg" alt="FORT DESIGN" loading="lazy" decoding="async"><span class="lineup-ed__tag">自由設計</span></figure>
+            <figure class="lineup-ed__media" data-wipe><img src="images/lineup-design.jpg" alt="FORT DESIGN" loading="lazy" decoding="async"><span class="lineup-ed__tag">自由設計</span></figure>
             <div class="lineup-ed__body">
               <span class="lineup-ed__no">03</span>
               <h3 class="lineup-ed__name">FORT DESIGN</h3>
@@ -434,7 +457,7 @@
 
     <!-- 13 CONTACT / ご予約・お問い合わせ -->
     <section class="reserve section" id="reserve">
-      <div class="reserve__bg"><img src="images/hero.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async"><div class="reserve__overlay"></div></div>
+      <div class="reserve__bg"><img src="images/hero.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" data-parallax="0.12" data-pscale="1.18"><div class="reserve__overlay"></div></div>
       <div class="container reserve__inner">
         <p class="section__label section__label--light" data-reveal>CONTACT</p>
         <h2 class="section__title section__title--light" data-reveal>家づくりのご相談、<br>モデルハウスの見学予約はこちらから。</h2>

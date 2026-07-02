@@ -35,6 +35,20 @@ $img = get_template_directory_uri() . '/assets/images/';
 		<a href="#philosophy" class="hero__scroll" aria-label="下へスクロール"><span class="hero__scroll-line"></span><span class="hero__scroll-text">SCROLL</span></a>
 	</section>
 
+	<!-- FORT STORY / スクロールで言葉が切り替わる没入章 -->
+	<section class="story" id="story" aria-label="FORTの家づくりの物語">
+		<div class="story__sticky">
+			<p class="story__label">FORT STORY</p>
+			<div class="story__words">
+				<div class="story__word is-active"><span class="story__en">DESIGN</span><span class="story__ja">デザインを、あきらめない。</span></div>
+				<div class="story__word"><span class="story__en">PERFORMANCE</span><span class="story__ja">性能に、妥協しない。</span></div>
+				<div class="story__word"><span class="story__en">BALANCE</span><span class="story__ja">だから、家族に“ちょうどいい”。</span></div>
+			</div>
+			<div class="story__progress"><span></span></div>
+			<p class="story__hint" aria-hidden="true">SCROLL</p>
+		</div>
+	</section>
+
 	<!-- 02 FORT PHILOSOPHY -->
 	<section class="philosophy section" id="philosophy">
 		<div class="container philosophy__inner">
@@ -89,20 +103,15 @@ $img = get_template_directory_uri() . '/assets/images/';
 				<p class="section__desc" data-reveal>見えない部分こそ、ていねいに。FORTの確かな住宅性能。</p>
 			</header>
 		</div>
-		<div class="perf-marquee" data-reveal aria-label="FORTの性能数値">
-			<div class="perf-marquee__track">
-				<?php $perf = array(
-					array('0.3','平均C値（気密）'), array('0.34<small>以下</small>','UA値（断熱）'),
-					array('等級6','断熱等級'), array('等級3','耐震等級'),
-					array('最長60<small>年</small>','保証（初期保証20年）'), array('10<small>年</small>','設備保証（※対象機器）'),
-				);
-				for ( $r = 0; $r < 2; $r++ ) { foreach ( $perf as $p ) {
-					printf('<div class="perf-marquee__item"%s><span class="perf-marquee__v">%s</span><span class="perf-marquee__l">%s</span></div>',
-						$r ? ' aria-hidden="true"' : '', $p[0], esc_html( $p[1] ));
-				} } ?>
-			</div>
-		</div>
 		<div class="container">
+			<ul class="perf-highlight" data-reveal>
+				<li><p class="ph-value">0.3</p><p class="ph-label">平均 C値（気密）</p></li>
+				<li><p class="ph-value">0.34<small>以下</small></p><p class="ph-label">UA値（断熱）</p></li>
+				<li><p class="ph-value">等級6</p><p class="ph-label">断熱等級</p></li>
+				<li><p class="ph-value">等級3</p><p class="ph-label">耐震等級</p></li>
+				<li><p class="ph-value">最長60<small>年</small></p><p class="ph-label">保証（初期保証20年）</p></li>
+				<li><p class="ph-value">10<small>年</small></p><p class="ph-label">設備保証（※対象機器）</p></li>
+			</ul>
 			<div class="section__more" data-reveal><a href="<?php echo esc_url( home_url( '/performance/' ) ); ?>" class="btn btn--outline">構造・性能を詳しく見る</a></div>
 		</div>
 	</section>
@@ -132,20 +141,6 @@ $img = get_template_directory_uri() . '/assets/images/';
 		<div class="container"><p style="text-align:center;color:var(--t-sub);">施工事例は管理画面「施工事例 &gt; 新規追加」から登録できます。</p></div>
 		<?php endif; ?>
 		<div class="container"><div class="section__more" data-reveal><a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>" class="btn btn--outline">もっと施工事例を見る</a></div></div>
-	</section>
-
-	<!-- FORT STORY / スクロールで言葉が切り替わる没入章 -->
-	<section class="story" id="story" aria-label="FORTの家づくりの物語">
-		<div class="story__sticky">
-			<p class="story__label">FORT STORY</p>
-			<div class="story__words">
-				<div class="story__word is-active"><span class="story__en">DESIGN</span><span class="story__ja">デザインを、あきらめない。</span></div>
-				<div class="story__word"><span class="story__en">PERFORMANCE</span><span class="story__ja">性能に、妥協しない。</span></div>
-				<div class="story__word"><span class="story__en">BALANCE</span><span class="story__ja">だから、家族に“ちょうどいい”。</span></div>
-			</div>
-			<div class="story__progress"><span></span></div>
-			<p class="story__hint" aria-hidden="true">SCROLL</p>
-		</div>
 	</section>
 
 	<!-- 05 FORT FAMILY -->

@@ -19,7 +19,7 @@ export const toiletPhotos = {
 export const toiletReasons: Point[] = [
   { title: "清潔性", note: "汚れに強い素材と形状" },
   { title: "節水性能", note: "環境にもコストにも配慮" },
-  { title: "快適性", note: "暖房便座など基本装備" },
+  { title: "快適性", note: "座る瞬間から、心地よく" },
 ];
 
 export const toiletStandardItems: PhotoGridItem[] = [

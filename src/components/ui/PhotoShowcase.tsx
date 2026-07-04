@@ -14,7 +14,7 @@ type PhotoShowcaseProps = {
 /** A handful of large, full-width photos stacked with generous space — no grid, no overlay text. */
 export function PhotoShowcase({ heading, items }: PhotoShowcaseProps) {
   return (
-    <section className="py-24 sm:py-32">
+    <section className="py-24 sm:py-32 lg:py-40">
       <Container>
         <h2 className="font-serif text-2xl text-std-ink sm:text-3xl">
           {heading}

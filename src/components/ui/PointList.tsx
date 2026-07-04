@@ -14,7 +14,7 @@ type PointListProps = {
 /** A quiet hairline list of short considerations — title + one short phrase, nothing more. */
 export function PointList({ heading, lead, items }: PointListProps) {
   return (
-    <section className="py-24 sm:py-32">
+    <section className="py-24 sm:py-32 lg:py-40">
       <Container>
         <h2 className="font-serif text-2xl text-std-ink sm:text-3xl">
           {heading}

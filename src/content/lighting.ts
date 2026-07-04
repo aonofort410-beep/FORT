@@ -19,7 +19,7 @@ export const lightingPhotos = {
 export const lightingReasons: Point[] = [
   { title: "機能性", note: "必要な明るさを確保" },
   { title: "情緒性", note: "時間帯ごとの心地よさ" },
-  { title: "省エネ性", note: "LED標準化によるランニングコスト" },
+  { title: "省エネ性", note: "毎日のことだから、電気代にもやさしく" },
 ];
 
 export const lightingStandardItems: PhotoGridItem[] = [

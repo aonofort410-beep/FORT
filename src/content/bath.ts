@@ -18,7 +18,7 @@ export const bathPhotos = {
 } satisfies Record<string, PhotoSlot>;
 
 export const bathReasons: Point[] = [
-  { title: "断熱・保温", note: "ヒートショックへの配慮" },
+  { title: "断熱・保温", note: "急な温度差から、家族を守る" },
   { title: "お手入れのしやすさ", note: "カビや汚れに強く" },
   { title: "くつろぎ", note: "一日の疲れを癒す設え" },
 ];

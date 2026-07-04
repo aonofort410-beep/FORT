@@ -20,7 +20,7 @@ export const kitchenPhotos = {
 
 export const kitchenReasons: Point[] = [
   { title: "家事動線", note: "無理のない配置と高さ" },
-  { title: "耐久性", note: "水・熱に強い素材選び" },
+  { title: "耐久性", note: "水にも熱にも、強くあるように" },
   { title: "デザイン性", note: "LDK全体との調和" },
 ];
 

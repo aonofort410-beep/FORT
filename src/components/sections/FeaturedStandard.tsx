@@ -5,7 +5,7 @@ import { featuredStandards } from "@/content/featured";
 
 export function FeaturedStandard() {
   return (
-    <section className="py-24 sm:py-32">
+    <section className="py-24 sm:py-32 lg:py-40">
       <Container>
         <h2 className="max-w-lg font-serif text-2xl text-std-ink sm:text-3xl">
           FORTが大切にしている標準仕様
@@ -26,9 +26,6 @@ export function FeaturedStandard() {
               </h3>
               <p className="mt-3 text-base leading-[1.8] text-std-ink">
                 {item.lead}
-              </p>
-              <p className="mt-3 text-sm leading-[1.9] text-std-ink-soft">
-                {item.description}
               </p>
 
               <TextLink href={item.href} className="mt-6">

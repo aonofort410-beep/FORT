@@ -10,7 +10,6 @@ export function Cta() {
           最適なFORTを。
         </>
       }
-      supporting="標準仕様の考え方が伝わったら、次は暮らしの理想をお聞かせください。"
       buttonLabel="家づくりの相談をする"
       href="/contact"
     />

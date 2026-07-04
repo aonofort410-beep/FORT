@@ -27,9 +27,16 @@ export function Photo({ src, alt, className = "", priority, sizes }: PhotoProps)
       <div
         role="img"
         aria-label={alt}
-        className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#efeadf] to-[#dcd3bf] ${className}`}
+        className={`absolute inset-0 overflow-hidden bg-[#e9e3d4] ${className}`}
       >
-        <span className="px-6 text-center text-xs tracking-[0.2em] text-std-ink-soft/70">
+        <div
+          className="absolute inset-0 opacity-40"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(135deg, #dcd3bf 0px, #dcd3bf 1px, transparent 1px, transparent 14px)",
+          }}
+        />
+        <span className="absolute bottom-3 left-4 text-[10px] tracking-[0.14em] text-std-ink-soft/50">
           {alt}
         </span>
       </div>

@@ -12,7 +12,7 @@ type PageHeroProps = {
 export function PageHero({ eyebrow, heading, photo }: PageHeroProps) {
   return (
     <section>
-      <Container className="pt-28 sm:pt-36">
+      <Container className="pt-12 sm:pt-20">
         <p className="text-xs tracking-[0.32em] text-std-accent">{eyebrow}</p>
         <h1 className="mt-6 max-w-2xl font-serif text-[clamp(2.1rem,6vw,3.4rem)] leading-[1.5] text-std-ink">
           {heading}

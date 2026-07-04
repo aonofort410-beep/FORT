@@ -1,0 +1,499 @@
+/* ============================================================
+   FORT DESIGN STANDARD — 静的HTML版デザインシステム
+   ダブルクリックでそのまま開けるよう、ビルド不要の素のCSSのみで構成。
+   トークンは docs/brand-guide-design-system.md に対応。
+============================================================ */
+
+:root {
+  --std-bg: #f7f5f0;
+  --std-bg-deep: #16130f;
+  --std-ink: #1e1b17;
+  --std-ink-soft: #6e675d;
+  --std-line: #e6e1d6;
+  --std-accent: #93805f;
+  --std-serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  --std-sans: "Hiragino Sans", "Yu Gothic Medium", "Yu Gothic", "Noto Sans JP",
+    system-ui, sans-serif;
+  --std-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--std-bg);
+  color: var(--std-ink);
+  font-family: var(--std-sans);
+  font-size: 16px;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1040px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+@media (min-width: 640px) {
+  .container {
+    padding-inline: 32px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: 40px;
+  }
+}
+
+/* ---- header ---- */
+.site-header {
+  padding: 24px 0;
+}
+.site-header a {
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: var(--std-ink);
+  text-decoration: none;
+}
+
+/* ---- buttons ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--std-accent);
+  color: #fff;
+  padding: 16px 36px;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: opacity 0.3s var(--std-ease);
+}
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--std-line);
+  padding-bottom: 2px;
+  color: var(--std-ink);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s var(--std-ease), border-color 0.3s var(--std-ease);
+}
+.text-link:hover {
+  color: var(--std-accent);
+  border-color: var(--std-accent);
+}
+.text-link .arrow {
+  transition: transform 0.3s var(--std-ease);
+}
+.text-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ---- hero ---- */
+.hero__inner {
+  padding-top: 48px;
+}
+@media (min-width: 640px) {
+  .hero__inner {
+    padding-top: 80px;
+  }
+}
+.hero__eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  color: var(--std-accent);
+}
+.hero__heading {
+  margin-top: 24px;
+  max-width: 640px;
+  font-family: var(--std-serif);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 6vw, 3.4rem);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+.hero__photo {
+  position: relative;
+  margin-top: 64px;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .hero__photo {
+    margin-top: 80px;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* ---- section heading (shared by most sections) ---- */
+.section-heading {
+  font-family: var(--std-serif);
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: 0.02em;
+}
+@media (min-width: 640px) {
+  .section-heading {
+    font-size: 30px;
+  }
+}
+
+/* ---- statement (concept) ---- */
+.statement {
+  padding: 96px 0;
+  text-align: center;
+}
+@media (min-width: 640px) {
+  .statement {
+    padding: 128px 0;
+  }
+}
+@media (min-width: 1024px) {
+  .statement {
+    padding: 160px 0;
+  }
+}
+.statement__text {
+  max-width: 640px;
+  margin-inline: auto;
+  font-family: var(--std-serif);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+  line-height: 1.7;
+}
+.statement__supporting {
+  max-width: 480px;
+  margin: 24px auto 0;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--std-ink-soft);
+}
+
+/* ---- category nav (TOP) ---- */
+.cat-nav {
+  padding: 96px 0;
+}
+@media (min-width: 640px) {
+  .cat-nav {
+    padding: 128px 0;
+  }
+}
+.cat-nav__grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+  border-top: 1px solid var(--std-line);
+}
+@media (min-width: 640px) {
+  .cat-nav__grid {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 40px;
+  }
+}
+.cat-nav__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--std-line);
+  text-decoration: none;
+  font-size: 16px;
+  color: var(--std-ink);
+  transition: color 0.3s var(--std-ease);
+}
+.cat-nav__item:hover {
+  color: var(--std-accent);
+}
+.cat-nav__item .arrow {
+  color: var(--std-ink-soft);
+  transition: transform 0.3s var(--std-ease), color 0.3s var(--std-ease);
+}
+.cat-nav__item:hover .arrow {
+  color: var(--std-accent);
+  transform: translateX(4px);
+}
+
+/* ---- featured standard (TOP) ---- */
+.featured {
+  padding: 96px 0;
+}
+@media (min-width: 640px) {
+  .featured {
+    padding: 128px 0;
+  }
+}
+@media (min-width: 1024px) {
+  .featured {
+    padding: 160px 0;
+  }
+}
+.featured__heading {
+  max-width: 480px;
+}
+.featured__grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 64px;
+  column-gap: 40px;
+}
+@media (min-width: 640px) {
+  .featured__grid {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 0;
+  }
+}
+.featured__photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.featured__category {
+  margin-top: 24px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--std-ink-soft);
+}
+.featured__title {
+  margin-top: 12px;
+  font-family: var(--std-serif);
+  font-weight: 600;
+  font-size: 20px;
+}
+.featured__lead {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.featured__link {
+  margin-top: 24px;
+}
+
+/* ---- point list (reasons / coordinate points) ---- */
+.point-list {
+  padding: 96px 0;
+}
+@media (min-width: 640px) {
+  .point-list {
+    padding: 128px 0;
+  }
+}
+@media (min-width: 1024px) {
+  .point-list {
+    padding: 160px 0;
+  }
+}
+.point-list__lead {
+  margin-top: 16px;
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 1.9;
+}
+.point-list__grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 40px;
+  border-top: 1px solid var(--std-line);
+}
+@media (min-width: 640px) {
+  .point-list__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.point-list__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--std-line);
+}
+.point-list__note {
+  text-align: right;
+  font-size: 14px;
+  color: var(--std-ink-soft);
+}
+
+/* ---- photo grid section (標準仕様 / おすすめの組み合わせ / スタイル) ---- */
+.photo-grid-section {
+  padding: 96px 0;
+}
+@media (min-width: 640px) {
+  .photo-grid-section {
+    padding: 128px 0;
+  }
+}
+@media (min-width: 1024px) {
+  .photo-grid-section {
+    padding: 160px 0;
+  }
+}
+.photo-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 40px;
+  column-gap: 24px;
+}
+@media (min-width: 640px) {
+  .photo-grid {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 32px;
+  }
+}
+.photo-grid--wide-desktop {
+  /* style gallery: up to 5 across on large screens */
+}
+@media (min-width: 1024px) {
+  .photo-grid--wide-desktop {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+.photo-grid__photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+.photo-grid__photo--square {
+  aspect-ratio: 1 / 1;
+}
+.photo-grid__label {
+  margin-top: 12px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+/* ---- photo showcase (施工写真 / 施工事例) ---- */
+.showcase {
+  padding: 96px 0;
+}
+@media (min-width: 640px) {
+  .showcase {
+    padding: 128px 0;
+  }
+}
+@media (min-width: 1024px) {
+  .showcase {
+    padding: 160px 0;
+  }
+}
+.showcase__stack {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+@media (min-width: 640px) {
+  .showcase__stack {
+    margin-top: 64px;
+    gap: 96px;
+  }
+}
+.showcase__photo {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  width: 100%;
+  overflow: hidden;
+}
+.showcase__caption {
+  margin-top: 16px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--std-ink-soft);
+}
+
+/* ---- case detail (洗面: 事例1件 + 採用したものグリッド) ---- */
+.case-detail__overview {
+  position: relative;
+  margin-top: 40px;
+  aspect-ratio: 16 / 10;
+  width: 100%;
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .case-detail__overview {
+    aspect-ratio: 21 / 9;
+  }
+}
+.case-detail__label {
+  margin-top: 56px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--std-ink-soft);
+}
+
+/* ---- cta ---- */
+.cta {
+  padding: 96px 0;
+  background: var(--std-bg-deep);
+  color: #fff;
+  text-align: center;
+}
+@media (min-width: 640px) {
+  .cta {
+    padding: 128px 0;
+  }
+}
+@media (min-width: 1024px) {
+  .cta {
+    padding: 160px 0;
+  }
+}
+.cta__heading {
+  font-family: var(--std-serif);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  line-height: 1.6;
+}
+.cta__supporting {
+  margin: 24px auto 0;
+  max-width: 480px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.7);
+}
+.cta__button {
+  margin-top: 48px;
+}

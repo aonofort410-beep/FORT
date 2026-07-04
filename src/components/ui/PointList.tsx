@@ -7,17 +7,23 @@ export type Point = {
 
 type PointListProps = {
   heading: string;
+  lead?: string;
   items: Point[];
 };
 
 /** A quiet hairline list of short considerations — title + one short phrase, nothing more. */
-export function PointList({ heading, items }: PointListProps) {
+export function PointList({ heading, lead, items }: PointListProps) {
   return (
     <section className="py-24 sm:py-32">
       <Container>
         <h2 className="font-serif text-2xl text-std-ink sm:text-3xl">
           {heading}
         </h2>
+        {lead ? (
+          <p className="mt-4 max-w-xl text-base leading-[1.9] text-std-ink">
+            {lead}
+          </p>
+        ) : null}
 
         <div className="mt-10 grid grid-cols-1 gap-x-10 border-t border-std-line sm:grid-cols-2">
           {items.map((item) => (

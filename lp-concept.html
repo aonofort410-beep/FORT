@@ -475,10 +475,12 @@
   #fort-lp .flp-close__copy {
     font-family: var(--flp-serif);
     font-weight: 600;
-    font-size: clamp(1.4rem, 4.8vw, 2.2rem);
+    font-size: clamp(1.3rem, 4.4vw, 2.1rem);
     line-height: 2.1;
     letter-spacing: 0.07em;
   }
+  /* 語句の切れ目でだけ折り返す（スマホでも変な位置で改行しない） */
+  #fort-lp .flp-close__copy span { display: inline-block; }
   #fort-lp .flp-close__sign { margin-top: 38px; }
   #fort-lp .flp-close__sign img { width: clamp(180px, 42vw, 320px); margin-inline: auto; }
   #fort-lp .flp-close__sign-text {
@@ -757,10 +759,9 @@
   <div class="flp-inner flp-inner--narrow">
     <p class="flp-label" data-flp-reveal>OUR PROMISE</p>
     <p class="flp-close__copy" data-flp-reveal>
-      住みはじめてからの毎日を、<br>
-      いちばん大切に。<br>
-      性能も、デザインも、価格も。<br>
-      ご家族に寄り添う、誠実な家づくりを続けます。
+      <span>住みはじめてからの毎日を、</span><span>いちばん大切に。</span><br>
+      <span>性能も、デザインも、価格も。</span><br>
+      <span>ご家族に寄り添う、</span><span>誠実な家づくりを続けます。</span>
     </p>
     <p class="flp-close__sign" data-flp-reveal>
       <!-- IMAGE: FORTロゴ（白・透過PNG）。ヒーローと同じロゴURLに差し替えてください -->

@@ -132,7 +132,12 @@
   /* ============ HERO ============ */
   #fort-lp .flp-hero {
     position: relative;
-    padding: clamp(96px, 14vw, 180px) 24px;
+    min-height: 100vh;   /* 画面いっぱいのファーストビュー */
+    min-height: 100svh;  /* スマホのアドレスバーにも対応 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 90px 24px 110px;
     background: var(--flp-charcoal);
     color: var(--flp-white);
     text-align: center;
@@ -144,7 +149,16 @@
     animation: flpZoom 18s ease-out forwards;
   }
   @keyframes flpZoom { from { transform: scale(1.12); } to { transform: scale(1); } }
-  #fort-lp .flp-hero__inner { position: relative; z-index: 1; }
+  #fort-lp .flp-hero__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    align-self: stretch;          /* ヒーロー全域に広げ、コピーの左下配置の基準にする */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   /* ロゴが静かに浮かび上がる（ぼかし＋わずかな拡大から） */
   #fort-lp .flp-hero__logo {
     display: flex;
@@ -201,10 +215,11 @@
     }
   }
   @keyframes flpFade { to { opacity: 1; } }
-  /* 下向きのスクロール線 */
+  /* 下向きのスクロール線（ヒーロー最下部・中央） */
   #fort-lp .flp-hero__scroll {
-    position: relative;
-    margin: clamp(40px, 6vw, 60px) auto 0;
+    position: absolute;
+    left: 50%; bottom: 26px;
+    transform: translateX(-50%);
     width: 1px; height: 56px;
     background: rgba(255,255,255,.25);
     overflow: hidden;
@@ -526,8 +541,8 @@
       <span class="l">デザインだけでも、ない。</span>
       <span class="l">その、<em>ちょうど真ん中</em>へ。</span>
     </h1>
-    <div class="flp-hero__scroll" aria-hidden="true"></div>
   </div>
+  <div class="flp-hero__scroll" aria-hidden="true"></div>
 </section>
 
 <!-- ============ 01 PHILOSOPHY ============ -->

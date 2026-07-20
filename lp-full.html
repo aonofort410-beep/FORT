@@ -1,0 +1,1035 @@
+<!-- ============================================================
+  株式会社FORT / 統合LP「FORTの家づくり」（思い・チーム・バランス・性能基準・3つのFORT詳細・性能詳細）
+  ------------------------------------------------------------
+  ▼ 使い方（WordPress固定ページへの貼り付け）
+    1. 固定ページ編集画面でブロック「カスタムHTML」を追加
+    2. このファイルの中身を【すべて】コピーして貼り付け
+    3. ページ幅の設定があるテーマでは「全幅（フルワイド）」を推奨
+  ▼ 画像の差し替え
+    IMAGE: と書いたコメントの <img src="..."> のURLを、
+    メディアにアップした画像URLへ差し替えてください。
+    未設定のままでも仮画像が表示されます。
+  ▼ このLPは自己完結です
+    スタイル・動きをすべて内包。fortlp- 接頭辞＋ #fort-lp 配下に
+    スコープしているため、お使いのテーマと干渉しません。
+    position:fixed は使っていないので、テーマのヘッダーとも共存できます。
+============================================================ -->
+
+<div id="fort-lp">
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Cinzel:wght@600;700&family=Jost:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap");
+
+  #fort-lp {
+    --flp-bg:       #dfe1e4;
+    --flp-light:    #d3d6d9;
+    --flp-card:     #ecedef;
+    --flp-line:     #c6cacd;
+    --flp-charcoal: #34373b;
+    --flp-black:    #1a1c1f;
+    --flp-accent:   #4c5157;
+    --flp-sub:      #686d73;
+    --flp-white:    #ffffff;
+    --flp-serif: "Noto Serif JP", serif;
+    --flp-sans:  "Noto Sans JP", system-ui, sans-serif;
+    --flp-en:    "Jost", sans-serif;
+    --flp-en-display: "Cinzel", serif;
+    --flp-logo:  "Zilla Slab", serif;
+    --flp-ease: cubic-bezier(.16,.72,.24,1);
+
+    font-family: var(--flp-sans);
+    color: #232528;
+    background: var(--flp-bg);
+    line-height: 1.9;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  #fort-lp *, #fort-lp *::before, #fort-lp *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  #fort-lp img { display: block; width: 100%; height: auto; }
+  #fort-lp ul, #fort-lp ol { list-style: none; }
+
+  /* ==== 共通 ==== */
+  #fort-lp .flp-section { position: relative; padding: clamp(64px, 9vw, 130px) 24px; }
+  #fort-lp .flp-section--gray { background: var(--flp-light); }
+  #fort-lp .flp-section--dark { background: var(--flp-black); color: #eef0f1; }
+  #fort-lp .flp-inner { max-width: 1080px; margin-inline: auto; position: relative; }
+  #fort-lp .flp-inner--narrow { max-width: 720px; }
+
+  /* 背景に大きく透けるゴースト番号（章のアクセント） */
+  #fort-lp .flp-ghost {
+    position: absolute;
+    top: clamp(-10px, -1vw, -24px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--flp-en-display);
+    font-size: clamp(5rem, 16vw, 11rem);
+    line-height: 1;
+    color: rgba(26,28,31,.055);
+    pointer-events: none;
+    user-select: none;
+  }
+  #fort-lp .flp-section--dark .flp-ghost { color: rgba(255,255,255,.05); }
+  #fort-lp .flp-section--gray .flp-ghost { color: rgba(26,28,31,.06); }
+
+  #fort-lp .flp-label {
+    font-family: var(--flp-en);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.4em;
+    color: var(--flp-accent);
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  #fort-lp .flp-section--dark .flp-label { color: #c9cccf; }
+  #fort-lp .flp-title {
+    font-family: var(--flp-serif);
+    font-weight: 600;
+    font-size: clamp(1.7rem, 5.4vw, 2.7rem);
+    line-height: 1.55;
+    color: var(--flp-black);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  #fort-lp .flp-section--dark .flp-title { color: var(--flp-white); }
+  #fort-lp .flp-lead {
+    margin: 18px auto 0;
+    max-width: 560px;
+    text-align: center;
+    color: var(--flp-sub);
+    font-size: 14.5px;
+    line-height: 2.1;
+  }
+  #fort-lp .flp-section--dark .flp-lead { color: #c3c7cc; }
+
+  /* ==== 動き：ふわっと＋ぼかし抜け（時間差は JS が --flp-d で指定） ==== */
+  #fort-lp [data-flp-reveal] {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(5px);
+    transition: opacity 1s var(--flp-ease), transform 1s var(--flp-ease), filter 1s ease;
+    transition-delay: var(--flp-d, 0s);
+    will-change: opacity, transform;
+  }
+  #fort-lp [data-flp-reveal].is-in { opacity: 1; transform: none; filter: none; }
+
+  /* ==== 動き：写真のカーテンワイプ ==== */
+  #fort-lp [data-flp-wipe] { position: relative; overflow: hidden; }
+  #fort-lp [data-flp-wipe] img {
+    transform: scale(1.12);
+    transition: transform 1.6s var(--flp-ease);
+  }
+  #fort-lp [data-flp-wipe]::after {
+    content: "";
+    position: absolute; inset: 0; z-index: 1;
+    background: var(--flp-charcoal);
+    transform-origin: right;
+    transition: transform 1s cubic-bezier(.76,0,.24,1) .1s;
+  }
+  #fort-lp [data-flp-wipe].is-in img { transform: scale(1); }
+  #fort-lp [data-flp-wipe].is-in::after { transform: scaleX(0); }
+
+  /* ============ HERO ============ */
+  #fort-lp .flp-hero {
+    position: relative;
+    padding: clamp(96px, 14vw, 180px) 24px;
+    background: var(--flp-charcoal);
+    color: var(--flp-white);
+    text-align: center;
+    overflow: hidden;
+  }
+  #fort-lp .flp-hero__bg { position: absolute; inset: -6% 0; opacity: .35; }
+  #fort-lp .flp-hero__bg img {
+    width: 100%; height: 100%; object-fit: cover;
+    animation: flpZoom 18s ease-out forwards;
+  }
+  @keyframes flpZoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+  #fort-lp .flp-hero__inner { position: relative; z-index: 1; }
+  /* ロゴが静かに浮かび上がる（ぼかし＋わずかな拡大から） */
+  #fort-lp .flp-hero__logo {
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    animation: flpLogo 5.6s var(--flp-ease) .4s forwards;
+    will-change: opacity, transform, filter;
+  }
+  @keyframes flpLogo {
+    from { opacity: 0; transform: translateY(16px) scale(1.04); filter: blur(14px); }
+    to   { opacity: 1; transform: none; filter: none; }
+  }
+  #fort-lp .flp-hero__logo img { width: clamp(260px, 58vw, 560px); height: auto; }
+  /* ロゴ画像が読み込めない時の文字フォールバック */
+  #fort-lp .flp-hero__logo-text {
+    display: none;
+    font-family: var(--flp-logo);
+    font-weight: 600;
+    font-size: clamp(2.4rem, 8vw, 4rem);
+    letter-spacing: 0.34em;
+    margin-left: 0.34em;
+    line-height: 1;
+  }
+  /* コピー：主役はロゴ。3行は控えめに、でも読める大きさで（PCは左下へ） */
+  #fort-lp .flp-hero__copy {
+    font-family: var(--flp-sans);
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 2.1;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,.88);
+    margin-top: clamp(40px, 7vw, 64px);
+    text-shadow: 0 1px 12px rgba(0,0,0,.35);
+  }
+  #fort-lp .flp-hero__copy .l {
+    display: block;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: flpRise 1.6s var(--flp-ease) forwards;
+  }
+  #fort-lp .flp-hero__copy .l:nth-child(1) { animation-delay: 2.2s; }
+  #fort-lp .flp-hero__copy .l:nth-child(2) { animation-delay: 2.5s; }
+  #fort-lp .flp-hero__copy .l:nth-child(3) { animation-delay: 2.8s; }
+  @keyframes flpRise { to { opacity: 1; transform: none; } }
+  #fort-lp .flp-hero__copy em { font-style: normal; font-weight: 700; }
+  @media (min-width: 760px) {
+    #fort-lp .flp-hero__copy {
+      position: absolute;
+      left: clamp(24px, 4vw, 56px);
+      bottom: clamp(28px, 5vh, 56px);
+      margin-top: 0;
+      text-align: left;
+      font-size: 13.5px;
+    }
+  }
+  @keyframes flpFade { to { opacity: 1; } }
+  /* 下向きのスクロール線 */
+  #fort-lp .flp-hero__scroll {
+    position: relative;
+    margin: clamp(40px, 6vw, 60px) auto 0;
+    width: 1px; height: 56px;
+    background: rgba(255,255,255,.25);
+    overflow: hidden;
+  }
+  #fort-lp .flp-hero__scroll::after {
+    content: "";
+    position: absolute; left: 0; top: -50%;
+    width: 100%; height: 50%;
+    background: var(--flp-white);
+    animation: flpDrop 2s ease-in-out infinite;
+  }
+  @keyframes flpDrop { 0% { top: -50%; } 100% { top: 110%; } }
+
+  /* ============ 01 PHILOSOPHY ============ */
+  #fort-lp .flp-belief {
+    margin-top: clamp(30px, 5vw, 46px);
+    display: grid;
+    gap: 12px;
+    text-align: center;
+  }
+  #fort-lp .flp-belief li {
+    font-family: var(--flp-serif);
+    font-size: clamp(15.5px, 3.4vw, 19px);
+    letter-spacing: 0.06em;
+    color: var(--flp-charcoal);
+    line-height: 2;
+  }
+  #fort-lp .flp-belief li strong {
+    color: var(--flp-black);
+    background: linear-gradient(transparent 68%, var(--flp-line) 68%);
+    padding: 0 2px;
+  }
+  #fort-lp .flp-belief li.flp-belief--answer {
+    margin-top: 10px;
+    font-size: clamp(17px, 4vw, 23px);
+    color: var(--flp-black);
+  }
+
+  /* ============ 02 TEAM ============ */
+  #fort-lp .flp-team {
+    margin-top: clamp(34px, 5vw, 52px);
+    display: grid;
+    gap: 16px;
+  }
+  @media (min-width: 760px) { #fort-lp .flp-team { grid-template-columns: repeat(3, 1fr); } }
+  #fort-lp .flp-team__card {
+    background: var(--flp-white);
+    padding: 34px 26px 30px;
+    border-radius: 3px;
+    box-shadow: 0 14px 34px rgba(20,22,25,.07);
+    text-align: center;
+    transition: transform .5s var(--flp-ease), box-shadow .5s ease;
+  }
+  #fort-lp .flp-team__card:hover { transform: translateY(-8px); box-shadow: 0 26px 54px rgba(20,22,25,.14); }
+  #fort-lp .flp-team__en {
+    font-family: var(--flp-en);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    color: #9499a0;
+  }
+  #fort-lp .flp-team__role {
+    font-family: var(--flp-serif);
+    font-weight: 600;
+    font-size: 21px;
+    color: var(--flp-black);
+    margin: 8px 0 10px;
+  }
+  #fort-lp .flp-team__text { font-size: 13.5px; color: var(--flp-sub); line-height: 2; }
+  #fort-lp .flp-team-note {
+    margin-top: 30px;
+    text-align: center;
+    font-family: var(--flp-serif);
+    font-size: clamp(15px, 3.2vw, 19px);
+    color: var(--flp-charcoal);
+    letter-spacing: 0.08em;
+  }
+
+  /* ============ 03 BALANCE ============ */
+  #fort-lp .flp-balance {
+    margin-top: clamp(40px, 6vw, 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #fort-lp .flp-balance__item {
+    width: clamp(140px, 30vw, 220px);
+    aspect-ratio: 1;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    opacity: 0;
+    transform: scale(.7);
+    transition: opacity 1s var(--flp-ease), transform 1s var(--flp-ease);
+  }
+  #fort-lp .flp-balance__item + .flp-balance__item { margin-left: clamp(-34px, -6vw, -56px); }
+  #fort-lp .flp-balance.is-in .flp-balance__item { opacity: 1; transform: scale(1); }
+  #fort-lp .flp-balance.is-in .flp-balance__item:nth-child(2) { transition-delay: .2s; }
+  #fort-lp .flp-balance.is-in .flp-balance__item:nth-child(3) { transition-delay: .4s; }
+  #fort-lp .flp-balance__item--center {
+    background: var(--flp-white);
+    color: var(--flp-black);
+    border-color: var(--flp-white);
+    z-index: 1;
+    width: clamp(160px, 34vw, 250px);
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  }
+  #fort-lp .flp-balance__en {
+    font-family: var(--flp-en);
+    font-weight: 600;
+    font-size: clamp(11px, 2.4vw, 15px);
+    letter-spacing: 0.22em;
+  }
+  #fort-lp .flp-balance__item--center .flp-balance__en { font-family: var(--flp-logo); font-size: clamp(17px, 3.6vw, 24px); letter-spacing: 0.3em; margin-left: 0.3em; }
+  #fort-lp .flp-balance__ja { font-size: clamp(10.5px, 2.2vw, 13px); line-height: 1.7; opacity: .85; }
+
+  /* ============ 04 STANDARD ============ */
+  #fort-lp .flp-specs {
+    margin-top: clamp(34px, 5vw, 52px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  @media (min-width: 760px) { #fort-lp .flp-specs { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+  #fort-lp .flp-specs li {
+    background: var(--flp-white);
+    border-radius: 3px;
+    box-shadow: 0 14px 34px rgba(20,22,25,.07);
+    padding: 28px 14px 24px;
+    text-align: center;
+    transition: transform .5s var(--flp-ease);
+  }
+  #fort-lp .flp-specs li:hover { transform: translateY(-6px); }
+  #fort-lp .flp-specs__v {
+    font-family: var(--flp-serif);
+    font-weight: 600;
+    font-size: clamp(1.9rem, 6vw, 2.8rem);
+    line-height: 1.1;
+    color: var(--flp-black);
+    font-variant-numeric: tabular-nums;
+  }
+  #fort-lp .flp-specs__v small { font-size: .42em; margin-left: 2px; }
+  #fort-lp .flp-specs__l { margin-top: 8px; font-size: 12px; color: var(--flp-sub); }
+  #fort-lp .flp-specs-note { margin-top: 18px; text-align: center; font-size: 11.5px; color: var(--flp-sub); }
+
+  /* ============ 05 3つのFORT ============ */
+  #fort-lp .flp-series { margin-top: clamp(40px, 6vw, 64px); display: grid; gap: clamp(40px, 6vw, 72px); }
+  #fort-lp .flp-series__row { display: grid; gap: 20px; align-items: center; }
+  @media (min-width: 820px) {
+    #fort-lp .flp-series__row { grid-template-columns: 1.05fr 1fr; gap: clamp(34px, 5vw, 70px); }
+    #fort-lp .flp-series__row:nth-child(even) .flp-series__media { order: 2; }
+  }
+  #fort-lp .flp-series__media { border-radius: 3px; }
+  #fort-lp .flp-series__media img { aspect-ratio: 16 / 10; object-fit: cover; }
+  #fort-lp .flp-series__no {
+    font-family: var(--flp-en-display);
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    line-height: 1;
+    color: var(--flp-line);
+  }
+  #fort-lp .flp-series__name {
+    font-family: var(--flp-serif);
+    font-weight: 600;
+    font-size: clamp(1.5rem, 4.4vw, 2.1rem);
+    color: var(--flp-black);
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+  #fort-lp .flp-series__type {
+    font-family: var(--flp-en);
+    font-weight: 600;
+    color: var(--flp-accent);
+    font-size: 12px; letter-spacing: 0.2em;
+    margin: 6px 0 12px;
+  }
+  #fort-lp .flp-series__text {
+    font-family: var(--flp-serif);
+    color: var(--flp-charcoal);
+    font-size: clamp(14.5px, 3vw, 16.5px);
+    line-height: 2;
+    letter-spacing: 0.04em;
+  }
+  #fort-lp .flp-series__points { margin-top: 12px; display: grid; gap: 4px; }
+  #fort-lp .flp-series__points li {
+    font-size: 13px; color: var(--flp-charcoal);
+    padding-left: 20px; position: relative; line-height: 1.9;
+  }
+  #fort-lp .flp-series__points li::before {
+    content: "✓";
+    position: absolute; left: 0; top: 0;
+    color: var(--flp-accent); font-weight: 700;
+  }
+  #fort-lp .flp-series__price { margin-top: 14px; font-size: 12px; color: var(--flp-sub); }
+  #fort-lp .flp-series__price strong {
+    font-family: var(--flp-serif);
+    font-size: clamp(19px, 4vw, 24px);
+    color: var(--flp-black);
+    margin-right: 4px;
+  }
+
+  /* ============ 06 GRADE ============ */
+  #fort-lp .flp-grade {
+    margin-top: clamp(34px, 5vw, 52px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  @media (min-width: 860px) { #fort-lp .flp-grade { grid-template-columns: repeat(4, 1fr); } }
+  #fort-lp .flp-grade__card {
+    background: var(--flp-white);
+    border-radius: 3px;
+    box-shadow: 0 14px 34px rgba(20,22,25,.07);
+    padding: 26px 18px 22px;
+    text-align: center;
+    position: relative;
+    transition: transform .5s var(--flp-ease), box-shadow .5s ease;
+  }
+  #fort-lp .flp-grade__card:hover { transform: translateY(-8px); box-shadow: 0 26px 54px rgba(20,22,25,.14); }
+  #fort-lp .flp-grade__card--push { outline: 2px solid var(--flp-charcoal); }
+  #fort-lp .flp-grade__badge {
+    position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+    background: var(--flp-charcoal); color: var(--flp-white);
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em;
+    padding: 3px 12px; border-radius: 99px;
+    white-space: nowrap;
+  }
+  #fort-lp .flp-grade__name {
+    font-family: var(--flp-en);
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0.16em;
+    color: var(--flp-black);
+  }
+  #fort-lp .flp-grade__sub { font-size: 11px; color: #9499a0; margin: 2px 0 14px; }
+  #fort-lp .flp-grade__list { text-align: left; display: grid; gap: 6px; }
+  #fort-lp .flp-grade__list li {
+    font-size: 12.5px; color: var(--flp-charcoal);
+    padding-left: 15px; position: relative; line-height: 1.8;
+  }
+  #fort-lp .flp-grade__list li::before {
+    content: ""; position: absolute; left: 0; top: 0.75em;
+    width: 8px; height: 1.5px; background: var(--flp-accent);
+  }
+  #fort-lp .flp-grade-note { margin-top: 20px; text-align: center; font-size: 11.5px; color: var(--flp-sub); }
+
+  /* ============ 締め ============ */
+  #fort-lp .flp-close { text-align: center; overflow: hidden; }
+  #fort-lp .flp-close__copy {
+    font-family: var(--flp-serif);
+    font-weight: 600;
+    font-size: clamp(1.4rem, 4.8vw, 2.2rem);
+    line-height: 2.1;
+    letter-spacing: 0.07em;
+  }
+  #fort-lp .flp-close__sign { margin-top: 38px; }
+  #fort-lp .flp-close__sign img { width: clamp(180px, 42vw, 320px); margin-inline: auto; }
+  #fort-lp .flp-close__sign-text {
+    display: none;
+    font-family: var(--flp-logo);
+    font-size: 24px;
+    letter-spacing: 0.32em;
+    margin-left: 0.32em;
+    color: var(--flp-white);
+  }
+  #fort-lp .flp-close__sign small {
+    display: block;
+    font-family: var(--flp-en);
+    font-size: 10px;
+    letter-spacing: 0.44em;
+    color: #9499a0;
+    margin-top: 8px;
+  }
+
+
+
+  /* ==== FORT PRO プラン（A〜F） ==== */
+  #fort-lp .flp-plans {
+    margin-top: clamp(36px, 5vw, 54px);
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+  }
+  @media (min-width: 760px) { #fort-lp .flp-plans { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+  #fort-lp .flp-plan {
+    background: var(--flp-white); border-radius: 3px; overflow: hidden;
+    box-shadow: 0 14px 34px rgba(20,22,25,.07);
+    transition: transform .5s var(--flp-ease), box-shadow .5s ease;
+  }
+  #fort-lp .flp-plan:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(20,22,25,.13); }
+  #fort-lp .flp-plan img { aspect-ratio: 4 / 3; object-fit: cover; }
+  #fort-lp .flp-plan p {
+    padding: 12px 16px; font-family: var(--flp-en); font-weight: 600;
+    font-size: 13px; letter-spacing: 0.16em; color: var(--flp-black); text-align: center;
+  }
+  #fort-lp .flp-note { margin-top: 16px; text-align: center; font-size: 11.5px; color: var(--flp-sub); }
+
+  /* ==== 横スクロールの比較表 ==== */
+  #fort-lp .flp-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: clamp(30px, 5vw, 44px); }
+  #fort-lp .flp-table { width: 100%; min-width: 780px; border-collapse: collapse; background: var(--flp-white); box-shadow: 0 14px 34px rgba(20,22,25,.07); border-radius: 3px; overflow: hidden; }
+  #fort-lp .flp-table th, #fort-lp .flp-table td {
+    padding: 14px 14px; font-size: 13px; line-height: 1.8;
+    border-bottom: 1px solid var(--flp-line); text-align: center; vertical-align: middle;
+  }
+  #fort-lp .flp-table thead th {
+    background: var(--flp-charcoal); color: var(--flp-white);
+    font-family: var(--flp-en); font-weight: 600; letter-spacing: 0.12em; font-size: 13.5px;
+  }
+  #fort-lp .flp-table thead th small { display: block; font-family: var(--flp-sans); font-size: 10px; letter-spacing: 0.06em; opacity: .8; margin-top: 2px; }
+  #fort-lp .flp-table thead th.is-push { background: var(--flp-accent); }
+  #fort-lp .flp-table tbody th {
+    background: var(--flp-card); font-weight: 700; color: var(--flp-black); white-space: nowrap; width: 110px;
+  }
+  #fort-lp .flp-table td.is-push { background: #f4f4f6; font-weight: 700; }
+  #fort-lp .flp-table td.is-left, #fort-lp .flp-table--left td { text-align: left; vertical-align: top; }
+  #fort-lp .flp-table strong { font-family: var(--flp-serif); font-size: 15px; }
+  #fort-lp .flp-table tbody tr:last-child th,
+  #fort-lp .flp-table tbody tr:last-child td { border-bottom: none; }
+  #fort-lp .flp-muted { color: #b0b5ba; }
+
+  /* ==== 断熱・耐震のトピック ==== */
+  #fort-lp .flp-topic { display: grid; gap: 22px; align-items: center; margin-top: clamp(44px, 7vw, 76px); }
+  @media (min-width: 860px) {
+    #fort-lp .flp-topic { grid-template-columns: 1.05fr 1fr; gap: clamp(36px, 5vw, 70px); }
+    #fort-lp .flp-topic--rev figure { order: 2; }
+  }
+  #fort-lp .flp-topic figure { border-radius: 3px; }
+  #fort-lp .flp-topic img { aspect-ratio: 16 / 10; object-fit: cover; }
+  #fort-lp .flp-topic__type {
+    font-family: var(--flp-en); font-weight: 600; color: var(--flp-accent);
+    font-size: 12px; letter-spacing: 0.2em; margin-bottom: 8px;
+  }
+  #fort-lp .flp-topic__title {
+    font-family: var(--flp-serif); font-weight: 600;
+    font-size: clamp(1.35rem, 4vw, 1.85rem); color: var(--flp-black); letter-spacing: 0.05em;
+  }
+  #fort-lp .flp-topic__text { margin-top: 14px; color: var(--flp-sub); font-size: 14.5px; line-height: 2.05; }
+  #fort-lp .flp-topic__list { margin-top: 16px; display: grid; gap: 5px; }
+  #fort-lp .flp-topic__list li {
+    font-size: 13.5px; color: var(--flp-charcoal); padding-left: 18px; position: relative; line-height: 1.9;
+  }
+  #fort-lp .flp-topic__list li::before {
+    content: ""; position: absolute; left: 0; top: 0.8em; width: 9px; height: 1.5px; background: var(--flp-accent);
+  }
+  /* 章内の小見出し */
+  #fort-lp .flp-subhead { margin-top: clamp(48px, 8vw, 84px); }
+
+  /* ボタン（CTAを足したいとき用。例：<div class="flp-more"><a class="flp-btn" href="...">来場予約</a></div>） */
+  #fort-lp .flp-more { text-align: center; margin-top: clamp(30px, 5vw, 44px); }
+  #fort-lp .flp-btn {
+    display: inline-block;
+    padding: 15px 38px;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--flp-black);
+    border: 1.5px solid var(--flp-charcoal);
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background .3s, color .3s, transform .3s;
+  }
+  #fort-lp .flp-btn:hover { background: var(--flp-black); color: var(--flp-white); transform: translateY(-2px); }
+
+  /* 動きを減らす設定への配慮 */
+  @media (prefers-reduced-motion: reduce) {
+    #fort-lp [data-flp-reveal], #fort-lp [data-flp-wipe] img, #fort-lp .flp-balance__item { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+    #fort-lp [data-flp-wipe]::after { display: none; }
+    #fort-lp .flp-hero__bg img, #fort-lp .flp-hero__logo,
+    #fort-lp .flp-hero__copy .l, #fort-lp .flp-hero__scroll::after { animation: none !important; transform: none; opacity: 1; filter: none; }
+  }
+</style>
+
+<!-- ============ HERO ============ -->
+<section class="flp-hero">
+  <div class="flp-hero__bg">
+    <!-- IMAGE: ヘッダー背景（外観やLDKの写真URLに差し替え） -->
+    <img src="https://placehold.co/2000x1200/34373b/6c7178?text=FORT" alt="" aria-hidden="true">
+  </div>
+  <div class="flp-hero__inner">
+    <p class="flp-hero__logo">
+      <!-- IMAGE: FORTロゴ（白・透過PNG）。メディアにアップしたロゴのURLへ差し替えてください -->
+      <img src="images/logo-white.png" alt="FORT" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+      <span class="flp-hero__logo-text" aria-hidden="true">FORT</span>
+    </p>
+    <h1 class="flp-hero__copy">
+      <span class="l">性能だけでも、ない。</span>
+      <span class="l">デザインだけでも、ない。</span>
+      <span class="l">その、<em>ちょうど真ん中</em>へ。</span>
+    </h1>
+    <div class="flp-hero__scroll" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ============ 01 PHILOSOPHY ============ -->
+<section class="flp-section">
+  <span class="flp-ghost" aria-hidden="true">01</span>
+  <div class="flp-inner flp-inner--narrow">
+    <p class="flp-label" data-flp-reveal>PHILOSOPHY</p>
+    <h2 class="flp-title" data-flp-reveal>家族に、ちょうどいい家を。</h2>
+    <ul class="flp-belief">
+      <li data-flp-reveal>性能だけなら、家は<strong>高くなる</strong>。</li>
+      <li data-flp-reveal>デザインだけなら、<strong>暮らしにくくなる</strong>。</li>
+      <li class="flp-belief--answer" data-flp-reveal>FORTは、その“ちょうど真ん中”を大切にします。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 02 TEAM ============ -->
+<section class="flp-section flp-section--gray">
+  <span class="flp-ghost" aria-hidden="true">02</span>
+  <div class="flp-inner">
+    <p class="flp-label" data-flp-reveal>TEAM</p>
+    <h2 class="flp-title" data-flp-reveal>ひとりの担当ではなく、<br>チームでつくる。</h2>
+    <p class="flp-lead" data-flp-reveal>営業・設計・工務。すべてを共有しながら、一邸を仕上げる。</p>
+    <div class="flp-team">
+      <div class="flp-team__card" data-flp-reveal>
+        <p class="flp-team__en">SALES</p>
+        <p class="flp-team__role">営業</p>
+        <p class="flp-team__text">想いとご予算に、寄り添います。</p>
+      </div>
+      <div class="flp-team__card" data-flp-reveal>
+        <p class="flp-team__en">DESIGN</p>
+        <p class="flp-team__role">設計</p>
+        <p class="flp-team__text">暮らしやすさを、美しく描きます。</p>
+      </div>
+      <div class="flp-team__card" data-flp-reveal>
+        <p class="flp-team__en">ENGINEERING</p>
+        <p class="flp-team__role">工務</p>
+        <p class="flp-team__text">理想を、確かなかたちにします。</p>
+      </div>
+    </div>
+    <p class="flp-team-note" data-flp-reveal>お打ち合わせの内容はチーム全員で共有し、<br>「言ったのに、伝わっていない」がない家づくりを。</p>
+  </div>
+</section>
+
+<!-- ============ 03 BALANCE ============ -->
+<section class="flp-section flp-section--dark">
+  <span class="flp-ghost" aria-hidden="true">03</span>
+  <div class="flp-inner">
+    <p class="flp-label" data-flp-reveal>BALANCE</p>
+    <h2 class="flp-title" data-flp-reveal>「性能か、デザインか」で、<br>悩まなくていいように。</h2>
+    <div class="flp-balance" data-flp-balance>
+      <div class="flp-balance__item">
+        <span class="flp-balance__en">DESIGN</span>
+        <span class="flp-balance__ja">暮らしを美しく</span>
+      </div>
+      <div class="flp-balance__item flp-balance__item--center">
+        <span class="flp-balance__en">FORT</span>
+        <span class="flp-balance__ja">ちょうど真ん中</span>
+      </div>
+      <div class="flp-balance__item">
+        <span class="flp-balance__en">PERFORMANCE</span>
+        <span class="flp-balance__ja">暮らしを快適に</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 STANDARD ============ -->
+<section class="flp-section">
+  <span class="flp-ghost" aria-hidden="true">04</span>
+  <div class="flp-inner">
+    <p class="flp-label" data-flp-reveal>PERFORMANCE STANDARD</p>
+    <h2 class="flp-title" data-flp-reveal>数字は、暮らしのために。</h2>
+    <p class="flp-lead" data-flp-reveal>見えない部分こそ、ていねいに。</p>
+    <ul class="flp-specs">
+      <li data-flp-reveal><p class="flp-specs__v">0.3</p><p class="flp-specs__l">平均C値（気密）</p></li>
+      <li data-flp-reveal><p class="flp-specs__v">0.34<small>以下</small></p><p class="flp-specs__l">UA値（断熱）</p></li>
+      <li data-flp-reveal><p class="flp-specs__v">等級6</p><p class="flp-specs__l">断熱等級</p></li>
+      <li data-flp-reveal><p class="flp-specs__v">等級3</p><p class="flp-specs__l">耐震等級</p></li>
+      <li data-flp-reveal><p class="flp-specs__v">最長60<small>年</small></p><p class="flp-specs__l">保証（初期保証20年）</p></li>
+      <li data-flp-reveal><p class="flp-specs__v">10<small>年</small></p><p class="flp-specs__l">設備保証（※対象機器）</p></li>
+    </ul>
+    <p class="flp-specs-note" data-flp-reveal>※ 数値はグレード・仕様により異なります。全棟で第三者機関による気密測定を実施。</p>
+  </div>
+</section>
+
+<!-- ============ 05 3つのFORT ============ -->
+<section class="flp-section flp-section--gray">
+  <span class="flp-ghost" aria-hidden="true">05</span>
+  <div class="flp-inner">
+    <p class="flp-label" data-flp-reveal>LINEUP</p>
+    <h2 class="flp-title" data-flp-reveal>3つのFORT。</h2>
+    <p class="flp-lead" data-flp-reveal>予算も、理想も、あなたのままに。</p>
+    <div class="flp-series">
+      <article class="flp-series__row">
+        <figure class="flp-series__media" data-flp-wipe>
+          <!-- IMAGE: FORT STYLE の写真URLに差し替え -->
+          <img src="https://placehold.co/1200x750/c6cacd/6c7178?text=FORT+STYLE" alt="FORT STYLE">
+        </figure>
+        <div data-flp-reveal>
+          <p class="flp-series__no">01</p>
+          <h3 class="flp-series__name">FORT STYLE</h3>
+          <p class="flp-series__type">READY-MADE ／ 建売住宅</p>
+          <p class="flp-series__text">完成した住まいを見て、納得して選ぶ。<br>価格も仕上がりも、明確に。</p>
+          <p class="flp-series__price"><strong>1,900万円〜</strong>本体価格（税別）</p>
+        </div>
+      </article>
+      <article class="flp-series__row">
+        <figure class="flp-series__media" data-flp-wipe>
+          <!-- IMAGE: FORT PRO の写真URLに差し替え -->
+          <img src="https://placehold.co/1200x750/c6cacd/6c7178?text=FORT+PRO" alt="FORT PRO">
+        </figure>
+        <div data-flp-reveal>
+          <p class="flp-series__no">02</p>
+          <h3 class="flp-series__name">FORT PRO</h3>
+          <p class="flp-series__type">SEMI-ORDER ／ 規格・セミオーダー住宅</p>
+          <p class="flp-series__text">規格をベースに、キッチンや内装を選んで仕上げる。<br>自由度と価格の、いいバランス。</p>
+          <p class="flp-series__price"><strong>2,100万円〜</strong>建物価格（30坪・2階建・税別）</p>
+        </div>
+      </article>
+      <article class="flp-series__row">
+        <figure class="flp-series__media" data-flp-wipe>
+          <!-- IMAGE: FORT DESIGN の写真URLに差し替え -->
+          <img src="https://placehold.co/1200x750/c6cacd/6c7178?text=FORT+DESIGN" alt="FORT DESIGN">
+        </figure>
+        <div data-flp-reveal>
+          <p class="flp-series__no">03</p>
+          <h3 class="flp-series__name">FORT DESIGN</h3>
+          <p class="flp-series__type">FULL-ORDER ／ 注文・フルオーダー</p>
+          <p class="flp-series__text">理想の住まいを、ゼロから形に。<br>最高クラスの性能とデザインで、世界にひとつを。</p>
+          <ul class="flp-series__points">
+            <li>完全自由設計</li>
+            <li>素材・設備を自由選択</li>
+            <li>専属設計士と家づくり</li>
+          </ul>
+          <p class="flp-series__price"><strong>仕様により変動</strong>フルオーダーのためプランごとにお見積り</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- FORT PRO のプラン（A〜F） -->
+    <div class="flp-subhead">
+      <p class="flp-label" data-flp-reveal>FORT PRO PLAN</p>
+      <h3 class="flp-title" style="font-size:clamp(1.3rem,4vw,1.8rem);" data-flp-reveal>PLAN A〜F から、はじめる。</h3>
+    </div>
+    <div class="flp-plans">
+      <!-- IMAGE: 各プランの外観パースURLに差し替え -->
+      <div class="flp-plan" data-flp-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+A" alt="PLAN A"><p>PLAN A</p></div>
+      <div class="flp-plan" data-flp-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+B" alt="PLAN B"><p>PLAN B</p></div>
+      <div class="flp-plan" data-flp-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+C" alt="PLAN C"><p>PLAN C</p></div>
+      <div class="flp-plan" data-flp-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+D" alt="PLAN D"><p>PLAN D</p></div>
+      <div class="flp-plan" data-flp-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+E" alt="PLAN E"><p>PLAN E</p></div>
+      <div class="flp-plan" data-flp-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+F" alt="PLAN F"><p>PLAN F</p></div>
+    </div>
+    <p class="flp-note" data-flp-reveal>※ 各プランの間取り・詳細は、スタジオでご覧いただけます。</p>
+
+    <!-- シリーズ別・標準仕様のちがい -->
+    <div class="flp-subhead">
+      <p class="flp-label" data-flp-reveal>EQUIPMENT</p>
+      <h3 class="flp-title" style="font-size:clamp(1.3rem,4vw,1.8rem);" data-flp-reveal>シリーズ別・標準仕様のちがい</h3>
+      <p class="flp-lead" data-flp-reveal>どのシリーズにも、FORTが選び抜いた設備を。</p>
+    </div>
+    <div class="flp-scroll" data-flp-reveal>
+      <table class="flp-table flp-table--left">
+        <thead>
+          <tr>
+            <th scope="col">ITEM</th>
+            <th scope="col">FORT STYLE</th>
+            <th scope="col">FORT PRO</th>
+            <th scope="col">FORT DESIGN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">キッチン</th><td>Panasonic Sクラス</td><td>Panasonic Sクラス／クリナップ ステディア／タカラスタンダード オフェリア から選択</td><td>メーカー等 自由選択</td></tr>
+          <tr><th scope="row">浴室</th><td>Panasonic オフローラ 1616</td><td>Panasonic Sクラス／クリナップ／タカラスタンダード から選択</td><td>メーカー等 自由選択</td></tr>
+          <tr><th scope="row">洗面</th><td>Panasonic シーライン</td><td>アイカ スタイリッシュカウンター</td><td>アイカ スマートサニタリー など自由選択</td></tr>
+          <tr><th scope="row">トイレ</th><td>1F：Panasonic アラウーノZ<br>2F：Panasonic アラウーノV</td><td>1F：TOTO NJ2<br>2F：TOTO ZJ2</td><td>1F：TOTO NJ2<br>2F：TOTO ZJ2（変更可）</td></tr>
+          <tr><th scope="row">床材</th><td>Panasonic PLフロア（シート）</td><td>ikuta 銘木フローラスティック</td><td>無垢材／突板／タイル など自由選択</td></tr>
+          <tr><th scope="row">建具</th><td>Panasonic ベリティス（H2400）</td><td>Panasonic ベリティス（H2400）</td><td>Panasonic ベリティス など自由選択</td></tr>
+          <tr><th scope="row">収納</th><td>南海プライウッド</td><td>南海プライウッド</td><td>南海プライウッド</td></tr>
+          <tr><th scope="row">外壁</th><td>窯業系サイディング（品名指定あり）</td><td>窯業系サイディング／ガルバリウム鋼板</td><td>窯業系サイディング／吹付塗装 など自由選択</td></tr>
+          <tr><th scope="row">玄関ドア</th><td colspan="3" style="text-align:center;">YKK AP ヴェナート D30（ポケットKey）</td></tr>
+          <tr><th scope="row">給湯器</th><td colspan="3" style="text-align:center;">エコキュート／ガス給湯器 選択可</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="flp-note">▶ 表は横にスクロールできます　※仕様は時期・プランにより変更となる場合があります。</p>
+  </div>
+</section>
+
+<!-- ============ 06 GRADE ============ -->
+<section class="flp-section">
+  <span class="flp-ghost" aria-hidden="true">06</span>
+  <div class="flp-inner">
+    <p class="flp-label" data-flp-reveal>PERFORMANCE GRADE</p>
+    <h2 class="flp-title" data-flp-reveal>性能を選ぶのではない。<br>暮らし方を選ぶ。</h2>
+    <p class="flp-lead" data-flp-reveal>暮らし方に合わせた、4つの性能グレード。</p>
+    <div class="flp-grade">
+      <div class="flp-grade__card" data-flp-reveal>
+        <p class="flp-grade__name">light</p>
+        <p class="flp-grade__sub">必要十分な性能を備えたベーシックモデル</p>
+        <ul class="flp-grade__list">
+          <li>UA値 0.56以下／C値 1.0以下</li>
+          <li>耐震等級3相当</li>
+          <li>第三種換気</li>
+          <li>APW330（樹脂／ペアガラス）</li>
+          <li>躯体保証10年</li>
+        </ul>
+      </div>
+      <div class="flp-grade__card" data-flp-reveal>
+        <p class="flp-grade__name">SMART</p>
+        <p class="flp-grade__sub">将来を見据えた安心の住まい</p>
+        <ul class="flp-grade__list">
+          <li>UA値 0.46以下／C値 0.7以下</li>
+          <li>耐震等級3相当</li>
+          <li>第三種換気</li>
+          <li>APW330（樹脂／ペアガラス）</li>
+          <li>躯体20年（最長60年）</li>
+        </ul>
+      </div>
+      <div class="flp-grade__card flp-grade__card--push" data-flp-reveal>
+        <span class="flp-grade__badge">FORT推奨</span>
+        <p class="flp-grade__name">STANDARD</p>
+        <p class="flp-grade__sub">快適を選ぶ、FORTの推奨性能</p>
+        <ul class="flp-grade__list">
+          <li>UA値 0.46以下／C値 0.5以下</li>
+          <li>耐震等級3＋許容応力度計算</li>
+          <li>第一種換気（熱交換）</li>
+          <li>APW330（樹脂／ペアガラス）</li>
+          <li>躯体20年（最長60年）／設備10年</li>
+        </ul>
+      </div>
+      <div class="flp-grade__card" data-flp-reveal>
+        <p class="flp-grade__name">PLUS</p>
+        <p class="flp-grade__sub">妥協しない最高峰の住まい</p>
+        <ul class="flp-grade__list">
+          <li>UA値 0.34以下／C値 0.3以下</li>
+          <li>耐震等級3＋許容応力度計算</li>
+          <li>制振ダンパー evoltz</li>
+          <li>第一種換気（熱交換）</li>
+          <li>APW430（樹脂／トリプルガラス）</li>
+          <li>躯体20年（最長60年）／設備10年</li>
+        </ul>
+      </div>
+    </div>
+    <p class="flp-grade-note" data-flp-reveal>※ 仕様は予告なく変更となる場合があります。</p>
+
+    <!-- グレード別・性能のちがい -->
+    <div class="flp-subhead">
+      <p class="flp-label" data-flp-reveal>COMPARISON</p>
+      <h3 class="flp-title" style="font-size:clamp(1.3rem,4vw,1.8rem);" data-flp-reveal>グレード別・性能のちがい</h3>
+    </div>
+    <div class="flp-scroll" data-flp-reveal>
+      <table class="flp-table">
+        <thead>
+          <tr>
+            <th scope="col">項目</th>
+            <th scope="col">light<small>ベーシック</small></th>
+            <th scope="col">SMART<small>スマート</small></th>
+            <th scope="col" class="is-push">STANDARD<small>FORT推奨</small></th>
+            <th scope="col">PLUS<small>最高峰仕様</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">断熱（UA値）</th>
+            <td><strong>0.56</strong> 以下</td>
+            <td><strong>0.46</strong> 以下</td>
+            <td class="is-push"><strong>0.46</strong> 以下</td>
+            <td><strong>0.34</strong> 以下</td>
+          </tr>
+          <tr>
+            <th scope="row">気密（C値）</th>
+            <td><strong>1.0</strong> 以下</td>
+            <td><strong>0.7</strong> 以下</td>
+            <td class="is-push"><strong>0.5</strong> 以下</td>
+            <td><strong>0.3</strong> 以下</td>
+          </tr>
+          <tr>
+            <th scope="row">耐震</th>
+            <td>等級3相当</td>
+            <td>等級3相当</td>
+            <td class="is-push">等級3＋許容応力度計算</td>
+            <td>等級3＋許容応力度計算</td>
+          </tr>
+          <tr>
+            <th scope="row">制振</th>
+            <td class="flp-muted">−</td>
+            <td class="flp-muted">−</td>
+            <td class="is-push flp-muted">−</td>
+            <td>制振ダンパー evoltz</td>
+          </tr>
+          <tr>
+            <th scope="row">換気</th>
+            <td>第三種換気</td>
+            <td>第三種換気</td>
+            <td class="is-push">第一種換気（熱交換）</td>
+            <td>第一種換気（熱交換）</td>
+          </tr>
+          <tr>
+            <th scope="row">窓・サッシ</th>
+            <td>APW330<br>樹脂／ペアガラス</td>
+            <td>APW330<br>樹脂／ペアガラス</td>
+            <td class="is-push">APW330<br>樹脂／ペアガラス</td>
+            <td>APW430<br>樹脂／トリプルガラス</td>
+          </tr>
+          <tr>
+            <th scope="row">保証</th>
+            <td>躯体10年</td>
+            <td>躯体20年<br>（最長60年）</td>
+            <td class="is-push">躯体20年（最長60年）<br>設備10年</td>
+            <td>躯体20年（最長60年）<br>設備10年</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="flp-note">▶ 表は横にスクロールできます</p>
+
+    <!-- 断熱・気密 -->
+    <div class="flp-topic">
+      <figure data-flp-wipe>
+        <!-- IMAGE: LDK・内観の写真URLに差し替え -->
+        <img src="https://placehold.co/1200x750/c6cacd/6c7178?text=INSULATION" alt="高断熱・高気密の住まい">
+      </figure>
+      <div data-flp-reveal>
+        <p class="flp-topic__type">INSULATION ／ 断熱・気密</p>
+        <h3 class="flp-topic__title">一年中、心地よい温度で。</h3>
+        <p class="flp-topic__text">
+          しっかりとした断熱・気密は、夏の暑さも冬の寒さもやわらげ、
+          冷暖房の効率を高めます。お部屋ごとの温度差も少なくなり、
+          ご家族の健康にも、家計にもやさしい住まいへ。
+        </p>
+        <ul class="flp-topic__list">
+          <li>全棟、第三者機関による気密測定を実施</li>
+          <li>樹脂サッシ APW330／APW430 を採用</li>
+          <li>光熱費を抑えて、無理なく快適に</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 耐震 -->
+    <div class="flp-topic flp-topic--rev">
+      <figure data-flp-wipe>
+        <!-- IMAGE: 外観・構造の写真URLに差し替え -->
+        <img src="https://placehold.co/1200x750/c6cacd/6c7178?text=STRUCTURE" alt="地震に強い構造">
+      </figure>
+      <div data-flp-reveal>
+        <p class="flp-topic__type">STRUCTURE ／ 耐震・構造</p>
+        <h3 class="flp-topic__title">家族を守る、強い構造。</h3>
+        <p class="flp-topic__text">
+          耐震等級3を基本に、STANDARD以上のグレードでは許容応力度計算を実施。
+          最高峰のPLUSでは制振ダンパー「evoltz」も採用し、
+          地震の揺れそのものをやわらげます。
+        </p>
+        <ul class="flp-topic__list">
+          <li>耐震等級3＋許容応力度計算（STANDARD以上）</li>
+          <li>制振ダンパー evoltz で揺れを軽減（PLUS）</li>
+          <li>長く安心して住み継げる住まいへ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 締め ============ -->
+<section class="flp-section flp-section--dark flp-close">
+  <div class="flp-inner flp-inner--narrow">
+    <p class="flp-label" data-flp-reveal>OUR PROMISE</p>
+    <p class="flp-close__copy" data-flp-reveal>
+      住みはじめてからの毎日を、<br>
+      いちばん大切に。<br>
+      性能も、デザインも、価格も。<br>
+      ご家族に寄り添う、誠実な家づくりを続けます。
+    </p>
+    <p class="flp-close__sign" data-flp-reveal>
+      <!-- IMAGE: FORTロゴ（白・透過PNG）。ヒーローと同じロゴURLに差し替えてください -->
+      <img src="images/logo-white.png" alt="FORT OKAYAMA・FUKUYAMA" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="flp-close__sign-text" aria-hidden="true">FORT<small>OKAYAMA・FUKUYAMA</small></span>
+    </p>
+  </div>
+</section>
+
+<script>
+/* ==== FORT LP 専用スクリプト（#fort-lp 内だけで動作） ==== */
+(function () {
+  var root = document.getElementById('fort-lp');
+  if (!root) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 1) ふわっと表示＋同じ親の中では時間差（ずらし） */
+  var targets = root.querySelectorAll('[data-flp-reveal], [data-flp-wipe], [data-flp-balance]');
+  targets.forEach(function (el) {
+    if (!el.hasAttribute('data-flp-reveal')) return;
+    var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) {
+      return c.hasAttribute && c.hasAttribute('data-flp-reveal');
+    });
+    var i = sibs.indexOf(el);
+    if (i > 0) el.style.setProperty('--flp-d', Math.min(i * 0.1, 0.5) + 's');
+  });
+
+  function activate(el) {
+    el.classList.add('is-in');
+  }
+
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { activate(en.target); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.2 });
+    targets.forEach(function (el) { io.observe(el); });
+  } else {
+    targets.forEach(activate);
+  }
+
+  /* 2) ヒーロー背景のパララックス（fixedは使わずtransformのみ） */
+  var heroBg = root.querySelector('.flp-hero__bg');
+  if (heroBg && !reduce) {
+    var ticking = false;
+    function frame() {
+      var r = heroBg.parentNode.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < window.innerHeight) {
+        heroBg.style.transform = 'translate3d(0,' + (-r.top * 0.25).toFixed(1) + 'px,0)';
+      }
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { requestAnimationFrame(frame); ticking = true; }
+    }, { passive: true });
+    frame();
+  }
+})();
+</script>
+
+</div><!-- /#fort-lp -->

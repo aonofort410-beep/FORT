@@ -157,7 +157,7 @@
     from { opacity: 0; transform: translateY(16px) scale(1.04); filter: blur(14px); }
     to   { opacity: 1; transform: none; filter: none; }
   }
-  #fort-lp .flp-hero__logo img { width: clamp(190px, 32vw, 360px); height: auto; }
+  #fort-lp .flp-hero__logo img { width: clamp(260px, 58vw, 560px); height: auto; }
   /* ロゴ画像が読み込めない時の文字フォールバック */
   #fort-lp .flp-hero__logo-text {
     display: none;
@@ -466,8 +466,10 @@
     line-height: 2.1;
     letter-spacing: 0.07em;
   }
-  #fort-lp .flp-close__sign {
-    margin-top: 34px;
+  #fort-lp .flp-close__sign { margin-top: 38px; }
+  #fort-lp .flp-close__sign img { width: clamp(180px, 42vw, 320px); margin-inline: auto; }
+  #fort-lp .flp-close__sign-text {
+    display: none;
     font-family: var(--flp-logo);
     font-size: 24px;
     letter-spacing: 0.32em;
@@ -523,7 +525,7 @@
     <ul class="flp-belief">
       <li data-flp-reveal>性能だけなら、家は<strong>高くなる</strong>。</li>
       <li data-flp-reveal>デザインだけなら、<strong>暮らしにくくなる</strong>。</li>
-      <li class="flp-belief--answer" data-flp-reveal>FORTは、その真ん中を設計する。</li>
+      <li class="flp-belief--answer" data-flp-reveal>FORTは、その“ちょうど真ん中”を大切にします。</li>
     </ul>
   </div>
 </section>
@@ -539,20 +541,20 @@
       <div class="flp-team__card" data-flp-reveal>
         <p class="flp-team__en">SALES</p>
         <p class="flp-team__role">営業</p>
-        <p class="flp-team__text">想いと予算に、伴走する。</p>
+        <p class="flp-team__text">想いとご予算に、寄り添います。</p>
       </div>
       <div class="flp-team__card" data-flp-reveal>
         <p class="flp-team__en">DESIGN</p>
         <p class="flp-team__role">設計</p>
-        <p class="flp-team__text">暮らしやすさを、美しく描く。</p>
+        <p class="flp-team__text">暮らしやすさを、美しく描きます。</p>
       </div>
       <div class="flp-team__card" data-flp-reveal>
         <p class="flp-team__en">ENGINEERING</p>
         <p class="flp-team__role">工務</p>
-        <p class="flp-team__text">理想を、確かな現実に。</p>
+        <p class="flp-team__text">理想を、確かなかたちにします。</p>
       </div>
     </div>
-    <p class="flp-team-note" data-flp-reveal>「言ったのに、伝わっていない」を、なくす。</p>
+    <p class="flp-team-note" data-flp-reveal>お打ち合わせの内容はチーム全員で共有し、<br>「言ったのに、伝わっていない」がない家づくりを。</p>
   </div>
 </section>
 
@@ -561,7 +563,7 @@
   <span class="flp-ghost" aria-hidden="true">03</span>
   <div class="flp-inner">
     <p class="flp-label" data-flp-reveal>BALANCE</p>
-    <h2 class="flp-title" data-flp-reveal>「性能か、デザインか」。<br>その二択を、終わらせる。</h2>
+    <h2 class="flp-title" data-flp-reveal>「性能か、デザインか」で、<br>悩まなくていいように。</h2>
     <div class="flp-balance" data-flp-balance>
       <div class="flp-balance__item">
         <span class="flp-balance__en">DESIGN</span>
@@ -718,11 +720,16 @@
   <div class="flp-inner flp-inner--narrow">
     <p class="flp-label" data-flp-reveal>OUR PROMISE</p>
     <p class="flp-close__copy" data-flp-reveal>
-      住んでからが、本番だ。<br>
-      性能にも、デザインにも、価格にも。<br>
-      FORTは、誠実であり続ける。
+      住みはじめてからの毎日を、<br>
+      いちばん大切に。<br>
+      性能も、デザインも、価格も。<br>
+      ご家族に寄り添う、誠実な家づくりを続けます。
     </p>
-    <p class="flp-close__sign" data-flp-reveal>FORT<small>OKAYAMA・FUKUYAMA</small></p>
+    <p class="flp-close__sign" data-flp-reveal>
+      <!-- IMAGE: FORTロゴ（白・透過PNG）。ヒーローと同じロゴURLに差し替えてください -->
+      <img src="images/logo-white.png" alt="FORT OKAYAMA・FUKUYAMA" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="flp-close__sign-text" aria-hidden="true">FORT<small>OKAYAMA・FUKUYAMA</small></span>
+    </p>
   </div>
 </section>
 

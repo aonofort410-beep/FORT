@@ -129,30 +129,6 @@
   #fort-lp [data-flp-wipe].is-in img { transform: scale(1); }
   #fort-lp [data-flp-wipe].is-in::after { transform: scaleX(0); }
 
-  /* ==== 流れる英字の帯（区切り） ==== */
-  #fort-lp .flp-marquee {
-    overflow: hidden;
-    background: var(--flp-charcoal);
-    color: var(--flp-bg);
-    padding: clamp(18px, 3vw, 30px) 0;
-  }
-  #fort-lp .flp-marquee__track {
-    display: inline-flex;
-    white-space: nowrap;
-    animation: flpRun 24s linear infinite;
-  }
-  #fort-lp .flp-marquee:hover .flp-marquee__track { animation-play-state: paused; }
-  #fort-lp .flp-marquee span {
-    font-family: var(--flp-en);
-    font-weight: 500;
-    font-size: clamp(1.1rem, 3.4vw, 1.9rem);
-    letter-spacing: 0.28em;
-    padding: 0 30px;
-    display: inline-flex; align-items: center; gap: 30px;
-  }
-  #fort-lp .flp-marquee span::after { content: "・"; opacity: .45; }
-  @keyframes flpRun { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
   /* ============ HERO ============ */
   #fort-lp .flp-hero {
     position: relative;
@@ -169,52 +145,62 @@
   }
   @keyframes flpZoom { from { transform: scale(1.12); } to { transform: scale(1); } }
   #fort-lp .flp-hero__inner { position: relative; z-index: 1; }
-  #fort-lp .flp-hero__brand {
+  /* ロゴが静かに浮かび上がる（ぼかし＋わずかな拡大から） */
+  #fort-lp .flp-hero__logo {
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    animation: flpLogo 5.6s var(--flp-ease) .4s forwards;
+    will-change: opacity, transform, filter;
+  }
+  @keyframes flpLogo {
+    from { opacity: 0; transform: translateY(16px) scale(1.04); filter: blur(14px); }
+    to   { opacity: 1; transform: none; filter: none; }
+  }
+  #fort-lp .flp-hero__logo img { width: clamp(190px, 32vw, 360px); height: auto; }
+  /* ロゴ画像が読み込めない時の文字フォールバック */
+  #fort-lp .flp-hero__logo-text {
+    display: none;
     font-family: var(--flp-logo);
     font-weight: 600;
     font-size: clamp(2.4rem, 8vw, 4rem);
     letter-spacing: 0.34em;
     margin-left: 0.34em;
+    line-height: 1;
   }
-  #fort-lp .flp-hero__tag {
-    font-family: var(--flp-en);
-    font-size: 12px;
-    letter-spacing: 0.46em;
-    color: #c9cccf;
-    margin-top: 12px;
-  }
-  /* コピー：1行ずつマスクから立ち上がる */
+  /* コピー：ロゴのあとに、ゆっくり浮き上がる */
   #fort-lp .flp-hero__copy {
     font-family: var(--flp-serif);
     font-weight: 600;
-    font-size: clamp(1.6rem, 6vw, 3rem);
-    line-height: 1.9;
-    margin-top: clamp(34px, 6vw, 56px);
+    font-size: clamp(1.5rem, 5.6vw, 2.7rem);
+    line-height: 1.95;
+    margin-top: clamp(36px, 6vw, 60px);
     letter-spacing: 0.06em;
   }
-  #fort-lp .flp-hero__copy .l { display: block; overflow: hidden; }
-  #fort-lp .flp-hero__copy .l span {
-    display: inline-block;
-    transform: translateY(110%);
-    animation: flpUp 1.1s var(--flp-ease) forwards;
+  #fort-lp .flp-hero__copy .l {
+    display: block;
+    opacity: 0;
+    transform: translateY(26px);
+    filter: blur(6px);
+    animation: flpRise 1.8s var(--flp-ease) forwards;
   }
-  #fort-lp .flp-hero__copy .l:nth-child(1) span { animation-delay: .25s; }
-  #fort-lp .flp-hero__copy .l:nth-child(2) span { animation-delay: .48s; }
-  #fort-lp .flp-hero__copy .l:nth-child(3) span { animation-delay: .74s; }
-  @keyframes flpUp { to { transform: translateY(0); } }
+  #fort-lp .flp-hero__copy .l:nth-child(1) { animation-delay: 1.6s; }
+  #fort-lp .flp-hero__copy .l:nth-child(2) { animation-delay: 2.1s; }
+  #fort-lp .flp-hero__copy .l:nth-child(3) { animation-delay: 2.6s; }
+  @keyframes flpRise { to { opacity: 1; transform: none; filter: none; } }
   #fort-lp .flp-hero__copy em {
     font-style: normal;
     border-bottom: 1px solid rgba(255,255,255,.55);
     padding-bottom: 2px;
   }
   #fort-lp .flp-hero__sub {
-    margin-top: 24px;
+    margin-top: 26px;
     font-family: var(--flp-en);
     font-size: 12px;
     letter-spacing: 0.34em;
     color: #c3c7cc;
     opacity: 0;
-    animation: flpFade 1.2s ease 1.15s forwards;
+    animation: flpFade 1.6s ease 3.4s forwards;
   }
   @keyframes flpFade { to { opacity: 1; } }
   /* 下向きのスクロール線 */
@@ -501,8 +487,8 @@
   @media (prefers-reduced-motion: reduce) {
     #fort-lp [data-flp-reveal], #fort-lp [data-flp-wipe] img, #fort-lp .flp-balance__item { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
     #fort-lp [data-flp-wipe]::after { display: none; }
-    #fort-lp .flp-marquee__track, #fort-lp .flp-hero__bg img,
-    #fort-lp .flp-hero__copy .l span, #fort-lp .flp-hero__sub, #fort-lp .flp-hero__scroll::after { animation: none !important; transform: none; opacity: 1; }
+    #fort-lp .flp-hero__bg img, #fort-lp .flp-hero__logo,
+    #fort-lp .flp-hero__copy .l, #fort-lp .flp-hero__sub, #fort-lp .flp-hero__scroll::after { animation: none !important; transform: none; opacity: 1; filter: none; }
   }
 </style>
 
@@ -513,25 +499,20 @@
     <img src="https://placehold.co/2000x1200/34373b/6c7178?text=FORT" alt="" aria-hidden="true">
   </div>
   <div class="flp-hero__inner">
-    <p class="flp-hero__brand">FORT</p>
-    <p class="flp-hero__tag">DESIGN × PERFORMANCE × BALANCE</p>
+    <p class="flp-hero__logo">
+      <!-- IMAGE: FORTロゴ（白・透過PNG）。メディアにアップしたロゴのURLへ差し替えてください -->
+      <img src="images/logo-white.png" alt="FORT" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+      <span class="flp-hero__logo-text" aria-hidden="true">FORT</span>
+    </p>
     <h1 class="flp-hero__copy">
-      <span class="l"><span>性能だけでも、ない。</span></span>
-      <span class="l"><span>デザインだけでも、ない。</span></span>
-      <span class="l"><span>その、<em>ちょうど真ん中</em>へ。</span></span>
+      <span class="l">性能だけでも、ない。</span>
+      <span class="l">デザインだけでも、ない。</span>
+      <span class="l">その、<em>ちょうど真ん中</em>へ。</span>
     </h1>
     <p class="flp-hero__sub">FORT CONCEPT BOOK</p>
     <div class="flp-hero__scroll" aria-hidden="true"></div>
   </div>
 </section>
-
-<!-- 流れる英字の帯 -->
-<div class="flp-marquee" aria-hidden="true">
-  <div class="flp-marquee__track">
-    <span>DESIGN</span><span>PERFORMANCE</span><span>BALANCE</span><span>FOR YOUR FAMILY</span>
-    <span>DESIGN</span><span>PERFORMANCE</span><span>BALANCE</span><span>FOR YOUR FAMILY</span>
-  </div>
-</div>
 
 <!-- ============ 01 PHILOSOPHY ============ -->
 <section class="flp-section">
@@ -616,15 +597,6 @@
     <p class="flp-specs-note" data-flp-reveal>※ 数値はグレード・仕様により異なります。全棟で第三者機関による気密測定を実施。</p>
   </div>
 </section>
-
-<!-- 流れる英字の帯（2本目） -->
-<div class="flp-marquee" aria-hidden="true">
-  <div class="flp-marquee__track">
-    <span>FORT STYLE</span><span>FORT PRO</span><span>FORT DESIGN</span>
-    <span>FORT STYLE</span><span>FORT PRO</span><span>FORT DESIGN</span>
-    <span>FORT STYLE</span><span>FORT PRO</span><span>FORT DESIGN</span>
-  </div>
-</div>
 
 <!-- ============ 05 3つのFORT ============ -->
 <section class="flp-section flp-section--gray">

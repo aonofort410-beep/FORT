@@ -102,32 +102,32 @@
   }
   #fort-lp .flp-section--dark .flp-lead { color: #c3c7cc; }
 
-  /* ==== 動き：ふわっと＋ぼかし抜け（時間差は JS が --flp-d で指定） ==== */
-  #fort-lp [data-flp-reveal] {
+  /* ==== 動き：ふわっと表示 ====
+     ・JSが動いた時だけ（.flp-js）要素を隠す＝スクリプトが無効でも内容は必ず表示される
+     ・blur / will-change を廃止してスクロールを軽量化 */
+  #fort-lp.flp-js [data-flp-reveal] {
     opacity: 0;
-    transform: translateY(30px);
-    filter: blur(5px);
-    transition: opacity 1s var(--flp-ease), transform 1s var(--flp-ease), filter 1s ease;
+    transform: translateY(26px);
+    transition: opacity .9s var(--flp-ease), transform .9s var(--flp-ease);
     transition-delay: var(--flp-d, 0s);
-    will-change: opacity, transform;
   }
-  #fort-lp [data-flp-reveal].is-in { opacity: 1; transform: none; filter: none; }
+  #fort-lp.flp-js [data-flp-reveal].is-in { opacity: 1; transform: none; }
 
-  /* ==== 動き：写真のカーテンワイプ ==== */
+  /* ==== 動き：写真のカーテンワイプ（JS動作時のみ） ==== */
   #fort-lp [data-flp-wipe] { position: relative; overflow: hidden; }
-  #fort-lp [data-flp-wipe] img {
+  #fort-lp.flp-js [data-flp-wipe] img {
     transform: scale(1.12);
     transition: transform 1.6s var(--flp-ease);
   }
-  #fort-lp [data-flp-wipe]::after {
+  #fort-lp.flp-js [data-flp-wipe]::after {
     content: "";
     position: absolute; inset: 0; z-index: 1;
     background: var(--flp-charcoal);
     transform-origin: right;
     transition: transform 1s cubic-bezier(.76,0,.24,1) .1s;
   }
-  #fort-lp [data-flp-wipe].is-in img { transform: scale(1); }
-  #fort-lp [data-flp-wipe].is-in::after { transform: scaleX(0); }
+  #fort-lp.flp-js [data-flp-wipe].is-in img { transform: scale(1); }
+  #fort-lp.flp-js [data-flp-wipe].is-in::after { transform: scaleX(0); }
 
   /* ============ HERO ============ */
   #fort-lp .flp-hero {
@@ -316,6 +316,8 @@
     justify-content: center;
     gap: 6px;
     text-align: center;
+  }
+  #fort-lp.flp-js .flp-balance__item {
     opacity: 0;
     transform: scale(.7);
     transition: opacity 1s var(--flp-ease), transform 1s var(--flp-ease);
@@ -530,12 +532,12 @@
 <section class="flp-hero">
   <div class="flp-hero__bg">
     <!-- IMAGE: ヘッダー背景（外観やLDKの写真URLに差し替え） -->
-    <img src="https://www.fort410.com/wp/wp-content/uploads/2026/07/%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC-scaled.jpg" alt="" aria-hidden="true">
+    <img src="https://www.fort410.com/wp/wp-content/uploads/2026/07/%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC-scaled.jpg" loading="eager" decoding="async" data-no-lazy="1" class="skip-lazy" alt="" aria-hidden="true">
   </div>
   <div class="flp-hero__inner">
     <p class="flp-hero__logo">
       <!-- IMAGE: FORTロゴ（白・透過PNG）。メディアにアップしたロゴのURLへ差し替えてください -->
-      <img src="https://www.fort410.com/wp/wp-content/uploads/2026/07/fortlogowhite600px.png" alt="FORT" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+      <img src="https://www.fort410.com/wp/wp-content/uploads/2026/07/fortlogowhite600px.png" loading="eager" decoding="async" data-no-lazy="1" class="skip-lazy" alt="FORT" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
       <span class="flp-hero__logo-text" aria-hidden="true">FORT</span>
     </p>
     <h1 class="flp-hero__copy">
@@ -765,60 +767,39 @@
     </p>
     <p class="flp-close__sign" data-flp-reveal>
       <!-- IMAGE: FORTロゴ（白・透過PNG）。ヒーローと同じロゴURLに差し替えてください -->
-      <img src="https://www.fort410.com/wp/wp-content/uploads/2026/07/logowhite.png" alt="FORT OKAYAMA・FUKUYAMA" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <img src="https://www.fort410.com/wp/wp-content/uploads/2026/07/logowhite.png" loading="eager" decoding="async" data-no-lazy="1" class="skip-lazy" alt="FORT OKAYAMA・FUKUYAMA" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
       <span class="flp-close__sign-text" aria-hidden="true">FORT<small>OKAYAMA・FUKUYAMA</small></span>
     </p>
   </div>
 </section>
 
 <script>
-/* ==== FORT LP 専用スクリプト（#fort-lp 内だけで動作） ==== */
 (function () {
-  var root = document.getElementById('fort-lp');
-  if (!root) return;
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* 1) ふわっと表示＋同じ親の中では時間差（ずらし） */
-  var targets = root.querySelectorAll('[data-flp-reveal], [data-flp-wipe], [data-flp-balance]');
-  targets.forEach(function (el) {
-    if (!el.hasAttribute('data-flp-reveal')) return;
-    var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) {
-      return c.hasAttribute && c.hasAttribute('data-flp-reveal');
+  /* FORT LP 専用スクリプト。失敗しても内容が消えないよう flp-js で制御 */
+  try {
+    var root = document.getElementById('fort-lp');
+    if (!root) { return; }
+    root.className += ' flp-js';
+    var targets = root.querySelectorAll('[data-flp-reveal], [data-flp-wipe], [data-flp-balance]');
+    Array.prototype.forEach.call(targets, function (el) {
+      if (!el.hasAttribute('data-flp-reveal')) { return; }
+      var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) { return c.hasAttribute && c.hasAttribute('data-flp-reveal'); });
+      var i = sibs.indexOf(el);
+      if (i > 0) { el.style.setProperty('--flp-d', Math.min(i * 0.1, 0.5) + 's'); }
     });
-    var i = sibs.indexOf(el);
-    if (i > 0) el.style.setProperty('--flp-d', Math.min(i * 0.1, 0.5) + 's');
-  });
-
-  function activate(el) {
-    el.classList.add('is-in');
-  }
-
-  if ('IntersectionObserver' in window && !reduce) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { activate(en.target); io.unobserve(en.target); }
-      });
-    }, { threshold: 0.2 });
-    targets.forEach(function (el) { io.observe(el); });
-  } else {
-    targets.forEach(activate);
-  }
-
-  /* 2) ヒーロー背景のパララックス（fixedは使わずtransformのみ） */
-  var heroBg = root.querySelector('.flp-hero__bg');
-  if (heroBg && !reduce) {
-    var ticking = false;
-    function frame() {
-      var r = heroBg.parentNode.getBoundingClientRect();
-      if (r.bottom > 0 && r.top < window.innerHeight) {
-        heroBg.style.transform = 'translate3d(0,' + (-r.top * 0.25).toFixed(1) + 'px,0)';
-      }
-      ticking = false;
+    function show(el) { el.classList.add('is-in'); }
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window && !reduce) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { show(en.target); io.unobserve(en.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+      Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+    } else {
+      Array.prototype.forEach.call(targets, show);
     }
-    window.addEventListener('scroll', function () {
-      if (!ticking) { requestAnimationFrame(frame); ticking = true; }
-    }, { passive: true });
-    frame();
+  } catch (e) {
+    var r = document.getElementById('fort-lp');
+    if (r) { r.className = r.className.replace(' flp-js', ''); }
   }
 })();
 </script>

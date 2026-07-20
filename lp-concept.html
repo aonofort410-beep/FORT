@@ -168,39 +168,37 @@
     margin-left: 0.34em;
     line-height: 1;
   }
-  /* コピー：ロゴのあとに、ゆっくり浮き上がる */
+  /* コピー：主役はロゴ。3行は控えめに、でも読める大きさで（PCは左下へ） */
   #fort-lp .flp-hero__copy {
-    font-family: var(--flp-serif);
-    font-weight: 600;
-    font-size: clamp(1.5rem, 5.6vw, 2.7rem);
-    line-height: 1.95;
-    margin-top: clamp(36px, 6vw, 60px);
-    letter-spacing: 0.06em;
+    font-family: var(--flp-sans);
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 2.1;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,.88);
+    margin-top: clamp(40px, 7vw, 64px);
+    text-shadow: 0 1px 12px rgba(0,0,0,.35);
   }
   #fort-lp .flp-hero__copy .l {
     display: block;
     opacity: 0;
-    transform: translateY(26px);
-    filter: blur(6px);
-    animation: flpRise 1.8s var(--flp-ease) forwards;
+    transform: translateY(14px);
+    animation: flpRise 1.6s var(--flp-ease) forwards;
   }
-  #fort-lp .flp-hero__copy .l:nth-child(1) { animation-delay: 1.6s; }
-  #fort-lp .flp-hero__copy .l:nth-child(2) { animation-delay: 2.1s; }
-  #fort-lp .flp-hero__copy .l:nth-child(3) { animation-delay: 2.6s; }
-  @keyframes flpRise { to { opacity: 1; transform: none; filter: none; } }
-  #fort-lp .flp-hero__copy em {
-    font-style: normal;
-    border-bottom: 1px solid rgba(255,255,255,.55);
-    padding-bottom: 2px;
-  }
-  #fort-lp .flp-hero__sub {
-    margin-top: 26px;
-    font-family: var(--flp-en);
-    font-size: 12px;
-    letter-spacing: 0.34em;
-    color: #c3c7cc;
-    opacity: 0;
-    animation: flpFade 1.6s ease 3.4s forwards;
+  #fort-lp .flp-hero__copy .l:nth-child(1) { animation-delay: 2.2s; }
+  #fort-lp .flp-hero__copy .l:nth-child(2) { animation-delay: 2.5s; }
+  #fort-lp .flp-hero__copy .l:nth-child(3) { animation-delay: 2.8s; }
+  @keyframes flpRise { to { opacity: 1; transform: none; } }
+  #fort-lp .flp-hero__copy em { font-style: normal; font-weight: 700; }
+  @media (min-width: 760px) {
+    #fort-lp .flp-hero__copy {
+      position: absolute;
+      left: clamp(24px, 4vw, 56px);
+      bottom: clamp(28px, 5vh, 56px);
+      margin-top: 0;
+      text-align: left;
+      font-size: 13.5px;
+    }
   }
   @keyframes flpFade { to { opacity: 1; } }
   /* 下向きのスクロール線 */
@@ -328,7 +326,7 @@
   #fort-lp .flp-balance__item--center .flp-balance__en { font-family: var(--flp-logo); font-size: clamp(17px, 3.6vw, 24px); letter-spacing: 0.3em; margin-left: 0.3em; }
   #fort-lp .flp-balance__ja { font-size: clamp(10.5px, 2.2vw, 13px); line-height: 1.7; opacity: .85; }
 
-  /* ============ 04 STANDARD（数字カウントアップ） ============ */
+  /* ============ 04 STANDARD ============ */
   #fort-lp .flp-specs {
     margin-top: clamp(34px, 5vw, 52px);
     display: grid;
@@ -485,12 +483,29 @@
     margin-top: 8px;
   }
 
+
+  /* 次のページへの導線ボタン */
+  #fort-lp .flp-more { text-align: center; margin-top: clamp(30px, 5vw, 44px); }
+  #fort-lp .flp-btn {
+    display: inline-block;
+    padding: 15px 38px;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--flp-black);
+    border: 1.5px solid var(--flp-charcoal);
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background .3s, color .3s, transform .3s;
+  }
+  #fort-lp .flp-btn:hover { background: var(--flp-black); color: var(--flp-white); transform: translateY(-2px); }
+
   /* 動きを減らす設定への配慮 */
   @media (prefers-reduced-motion: reduce) {
     #fort-lp [data-flp-reveal], #fort-lp [data-flp-wipe] img, #fort-lp .flp-balance__item { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
     #fort-lp [data-flp-wipe]::after { display: none; }
     #fort-lp .flp-hero__bg img, #fort-lp .flp-hero__logo,
-    #fort-lp .flp-hero__copy .l, #fort-lp .flp-hero__sub, #fort-lp .flp-hero__scroll::after { animation: none !important; transform: none; opacity: 1; filter: none; }
+    #fort-lp .flp-hero__copy .l, #fort-lp .flp-hero__scroll::after { animation: none !important; transform: none; opacity: 1; filter: none; }
   }
 </style>
 
@@ -511,7 +526,6 @@
       <span class="l">デザインだけでも、ない。</span>
       <span class="l">その、<em>ちょうど真ん中</em>へ。</span>
     </h1>
-    <p class="flp-hero__sub">FORT CONCEPT BOOK</p>
     <div class="flp-hero__scroll" aria-hidden="true"></div>
   </div>
 </section>
@@ -589,12 +603,12 @@
     <h2 class="flp-title" data-flp-reveal>数字は、暮らしのために。</h2>
     <p class="flp-lead" data-flp-reveal>見えない部分こそ、ていねいに。</p>
     <ul class="flp-specs">
-      <li data-flp-reveal><p class="flp-specs__v"><span data-flp-count="0.3" data-flp-dec="1">0</span></p><p class="flp-specs__l">平均C値（気密）</p></li>
-      <li data-flp-reveal><p class="flp-specs__v"><span data-flp-count="0.34" data-flp-dec="2">0</span><small>以下</small></p><p class="flp-specs__l">UA値（断熱）</p></li>
-      <li data-flp-reveal><p class="flp-specs__v">等級<span data-flp-count="6">0</span></p><p class="flp-specs__l">断熱等級</p></li>
-      <li data-flp-reveal><p class="flp-specs__v">等級<span data-flp-count="3">0</span></p><p class="flp-specs__l">耐震等級</p></li>
-      <li data-flp-reveal><p class="flp-specs__v">最長<span data-flp-count="60">0</span><small>年</small></p><p class="flp-specs__l">保証（初期保証20年）</p></li>
-      <li data-flp-reveal><p class="flp-specs__v"><span data-flp-count="10">0</span><small>年</small></p><p class="flp-specs__l">設備保証（※対象機器）</p></li>
+      <li data-flp-reveal><p class="flp-specs__v">0.3</p><p class="flp-specs__l">平均C値（気密）</p></li>
+      <li data-flp-reveal><p class="flp-specs__v">0.34<small>以下</small></p><p class="flp-specs__l">UA値（断熱）</p></li>
+      <li data-flp-reveal><p class="flp-specs__v">等級6</p><p class="flp-specs__l">断熱等級</p></li>
+      <li data-flp-reveal><p class="flp-specs__v">等級3</p><p class="flp-specs__l">耐震等級</p></li>
+      <li data-flp-reveal><p class="flp-specs__v">最長60<small>年</small></p><p class="flp-specs__l">保証（初期保証20年）</p></li>
+      <li data-flp-reveal><p class="flp-specs__v">10<small>年</small></p><p class="flp-specs__l">設備保証（※対象機器）</p></li>
     </ul>
     <p class="flp-specs-note" data-flp-reveal>※ 数値はグレード・仕様により異なります。全棟で第三者機関による気密測定を実施。</p>
   </div>
@@ -652,6 +666,10 @@
           <p class="flp-series__price"><strong>仕様により変動</strong>フルオーダーのためプランごとにお見積り</p>
         </div>
       </article>
+    </div>
+    <div class="flp-more" data-flp-reveal>
+      <!-- ▼ リンク先：3つのFORT詳細ページ（固定ページのURLに合わせて変更してください） -->
+      <a class="flp-btn" href="./fort-series/">3つのFORTを、詳しく見る</a>
     </div>
   </div>
 </section>
@@ -712,6 +730,10 @@
       </div>
     </div>
     <p class="flp-grade-note" data-flp-reveal>※ 仕様は予告なく変更となる場合があります。</p>
+    <div class="flp-more" data-flp-reveal>
+      <!-- ▼ リンク先：性能詳細ページ（固定ページのURLに合わせて変更してください） -->
+      <a class="flp-btn" href="./fort-performance/">性能の詳細を見る</a>
+    </div>
   </div>
 </section>
 
@@ -753,23 +775,6 @@
 
   function activate(el) {
     el.classList.add('is-in');
-    /* 数字のカウントアップ */
-    el.querySelectorAll('[data-flp-count]').forEach(function (c) {
-      if (c.dataset.flpDone) return;
-      c.dataset.flpDone = '1';
-      var end = parseFloat(c.dataset.flpCount);
-      var dec = parseInt(c.dataset.flpDec || '0', 10);
-      if (reduce) { c.textContent = end.toFixed(dec); return; }
-      var t0 = null, DUR = 1400;
-      function step(t) {
-        if (!t0) t0 = t;
-        var p = Math.min(1, (t - t0) / DUR);
-        var e = 1 - Math.pow(1 - p, 3); /* ease-out */
-        c.textContent = (end * e).toFixed(dec);
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    });
   }
 
   if ('IntersectionObserver' in window && !reduce) {

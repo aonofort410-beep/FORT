@@ -1,0 +1,348 @@
+<!-- ============================================================
+  株式会社FORT / 詳細ページ「3つのFORT」（LINEUP）
+  ------------------------------------------------------------
+  ▼ 使い方：固定ページに「カスタムHTML」ブロックを追加し、全文を貼り付け
+  ▼ 画像：IMAGE: コメントの src をメディアのURLへ差し替え
+  ▼ リンク：ページ下部のボタンのURL（コンセプトLP／性能詳細）を
+    実際の固定ページURLに合わせて変更してください
+============================================================ -->
+
+<div id="fort-lp-series">
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Cinzel:wght@600;700&family=Jost:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap");
+
+  #fort-lp-series {
+    --f-bg: #dfe1e4; --f-light: #d3d6d9; --f-card: #ecedef; --f-line: #c6cacd;
+    --f-charcoal: #34373b; --f-black: #1a1c1f; --f-accent: #4c5157; --f-sub: #686d73; --f-white: #fff;
+    --f-serif: "Noto Serif JP", serif; --f-sans: "Noto Sans JP", system-ui, sans-serif;
+    --f-en: "Jost", sans-serif; --f-en-d: "Cinzel", serif; --f-logo: "Zilla Slab", serif;
+    --f-ease: cubic-bezier(.16,.72,.24,1);
+    font-family: var(--f-sans); color: #232528; background: var(--f-bg);
+    line-height: 1.9; font-size: 15px; letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  #fort-lp-series *, #fort-lp-series *::before, #fort-lp-series *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  #fort-lp-series img { display: block; width: 100%; height: auto; }
+  #fort-lp-series ul, #fort-lp-series ol { list-style: none; }
+  #fort-lp-series a { color: inherit; text-decoration: none; }
+
+  #fort-lp-series .fls-section { position: relative; padding: clamp(60px, 8vw, 110px) 24px; }
+  #fort-lp-series .fls-section--gray { background: var(--f-light); }
+  #fort-lp-series .fls-inner { max-width: 1080px; margin-inline: auto; position: relative; }
+
+  #fort-lp-series [data-fls-reveal] {
+    opacity: 0; transform: translateY(28px); filter: blur(5px);
+    transition: opacity 1s var(--f-ease), transform 1s var(--f-ease), filter 1s ease;
+    transition-delay: var(--f-d, 0s);
+  }
+  #fort-lp-series [data-fls-reveal].is-in { opacity: 1; transform: none; filter: none; }
+  #fort-lp-series [data-fls-wipe] { position: relative; overflow: hidden; }
+  #fort-lp-series [data-fls-wipe] img { transform: scale(1.1); transition: transform 1.6s var(--f-ease); }
+  #fort-lp-series [data-fls-wipe]::after {
+    content: ""; position: absolute; inset: 0; z-index: 1; background: var(--f-charcoal);
+    transform-origin: right; transition: transform 1s cubic-bezier(.76,0,.24,1) .1s;
+  }
+  #fort-lp-series [data-fls-wipe].is-in img { transform: scale(1); }
+  #fort-lp-series [data-fls-wipe].is-in::after { transform: scaleX(0); }
+
+  /* ヘッダー */
+  #fort-lp-series .fls-head {
+    background: var(--f-charcoal); color: var(--f-white);
+    text-align: center; padding: clamp(72px, 10vw, 130px) 24px;
+  }
+  #fort-lp-series .fls-head__label {
+    font-family: var(--f-en); font-weight: 600; font-size: 12.5px;
+    letter-spacing: 0.4em; color: #c9cccf; margin-bottom: 14px;
+  }
+  #fort-lp-series .fls-head__title {
+    font-family: var(--f-serif); font-weight: 600;
+    font-size: clamp(1.9rem, 6vw, 3rem); letter-spacing: 0.06em; line-height: 1.6;
+  }
+  #fort-lp-series .fls-head__lead { margin-top: 16px; color: #c3c7cc; font-size: 14px; }
+  #fort-lp-series .fls-head__nav {
+    margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+  }
+  #fort-lp-series .fls-head__nav a {
+    font-family: var(--f-en); font-weight: 600; font-size: 12.5px; letter-spacing: 0.14em;
+    padding: 9px 22px; border: 1px solid rgba(255,255,255,.4); border-radius: 99px;
+    transition: background .3s, color .3s;
+  }
+  #fort-lp-series .fls-head__nav a:hover { background: var(--f-white); color: var(--f-black); }
+
+  /* シリーズブロック */
+  #fort-lp-series .fls-series { display: grid; gap: 22px; align-items: center; }
+  @media (min-width: 860px) {
+    #fort-lp-series .fls-series { grid-template-columns: 1.05fr 1fr; gap: clamp(36px, 5vw, 70px); }
+    #fort-lp-series .fls-section--gray .fls-series .fls-series__media { order: 2; }
+  }
+  #fort-lp-series .fls-series__media { border-radius: 3px; }
+  #fort-lp-series .fls-series__media img { aspect-ratio: 16 / 10; object-fit: cover; }
+  #fort-lp-series .fls-series__no {
+    font-family: var(--f-en-d); font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1; color: var(--f-line);
+  }
+  #fort-lp-series .fls-series__name {
+    font-family: var(--f-serif); font-weight: 600;
+    font-size: clamp(1.6rem, 4.6vw, 2.2rem); color: var(--f-black); letter-spacing: 0.06em; margin-top: 4px;
+  }
+  #fort-lp-series .fls-series__type {
+    font-family: var(--f-en); font-weight: 600; color: var(--f-accent);
+    font-size: 12px; letter-spacing: 0.2em; margin: 6px 0 14px;
+  }
+  #fort-lp-series .fls-series__text { color: var(--f-sub); font-size: 14.5px; line-height: 2.05; }
+  #fort-lp-series .fls-series__points { margin-top: 16px; display: grid; gap: 5px; }
+  #fort-lp-series .fls-series__points li {
+    font-size: 13.5px; color: var(--f-charcoal); padding-left: 20px; position: relative; line-height: 1.9;
+  }
+  #fort-lp-series .fls-series__points li::before {
+    content: "✓"; position: absolute; left: 0; top: 0; color: var(--f-accent); font-weight: 700;
+  }
+  #fort-lp-series .fls-series__price { margin-top: 16px; font-size: 12px; color: var(--f-sub); }
+  #fort-lp-series .fls-series__price strong {
+    font-family: var(--f-serif); font-size: clamp(20px, 4vw, 26px); color: var(--f-black); margin-right: 4px;
+  }
+
+  /* FORT PRO プラン */
+  #fort-lp-series .fls-plans {
+    margin-top: clamp(36px, 5vw, 54px);
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+  }
+  @media (min-width: 760px) { #fort-lp-series .fls-plans { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+  #fort-lp-series .fls-plan {
+    background: var(--f-white); border-radius: 3px; overflow: hidden;
+    box-shadow: 0 14px 34px rgba(20,22,25,.07);
+    transition: transform .5s var(--f-ease), box-shadow .5s ease;
+  }
+  #fort-lp-series .fls-plan:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(20,22,25,.13); }
+  #fort-lp-series .fls-plan img { aspect-ratio: 4 / 3; object-fit: cover; }
+  #fort-lp-series .fls-plan p {
+    padding: 12px 16px; font-family: var(--f-en); font-weight: 600;
+    font-size: 13px; letter-spacing: 0.16em; color: var(--f-black); text-align: center;
+  }
+  #fort-lp-series .fls-plans-note { margin-top: 16px; text-align: center; font-size: 11.5px; color: var(--f-sub); }
+
+  /* 設備比較表 */
+  #fort-lp-series .fls-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: clamp(30px, 5vw, 44px); }
+  #fort-lp-series .fls-scroll-note { text-align: center; font-size: 11.5px; color: var(--f-sub); margin-top: 10px; }
+  #fort-lp-series .fls-table { width: 100%; min-width: 760px; border-collapse: collapse; background: var(--f-white); box-shadow: 0 14px 34px rgba(20,22,25,.07); border-radius: 3px; overflow: hidden; }
+  #fort-lp-series .fls-table th, #fort-lp-series .fls-table td {
+    padding: 14px 16px; font-size: 13px; line-height: 1.8;
+    border-bottom: 1px solid var(--f-line); text-align: left; vertical-align: top;
+  }
+  #fort-lp-series .fls-table thead th {
+    background: var(--f-charcoal); color: var(--f-white);
+    font-family: var(--f-en); font-weight: 600; letter-spacing: 0.12em; font-size: 13.5px; text-align: center;
+  }
+  #fort-lp-series .fls-table tbody th {
+    background: var(--f-card); font-weight: 700; color: var(--f-black); white-space: nowrap; width: 110px;
+  }
+  #fort-lp-series .fls-table tbody tr:last-child th,
+  #fort-lp-series .fls-table tbody tr:last-child td { border-bottom: none; }
+
+  /* 見出し（章内） */
+  #fort-lp-series .fls-h {
+    text-align: center; font-family: var(--f-serif); font-weight: 600;
+    font-size: clamp(1.4rem, 4.4vw, 2rem); color: var(--f-black); letter-spacing: 0.05em;
+  }
+  #fort-lp-series .fls-h-label {
+    font-family: var(--f-en); font-weight: 600; font-size: 12px; letter-spacing: 0.36em;
+    color: var(--f-accent); text-align: center; margin-bottom: 12px;
+  }
+  #fort-lp-series .fls-lead { margin: 14px auto 0; max-width: 560px; text-align: center; color: var(--f-sub); font-size: 14px; }
+
+  /* ページ下部の導線 */
+  #fort-lp-series .fls-nav { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  #fort-lp-series .fls-btn {
+    display: inline-block; padding: 15px 34px; font-size: 13.5px; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--f-black); border: 1.5px solid var(--f-charcoal); border-radius: 2px;
+    transition: background .3s, color .3s, transform .3s;
+  }
+  #fort-lp-series .fls-btn:hover { background: var(--f-black); color: var(--f-white); transform: translateY(-2px); }
+  #fort-lp-series .fls-btn--fill { background: var(--f-accent); color: var(--f-white); border-color: var(--f-accent); }
+  #fort-lp-series .fls-btn--fill:hover { background: var(--f-black); border-color: var(--f-black); }
+
+  @media (prefers-reduced-motion: reduce) {
+    #fort-lp-series [data-fls-reveal], #fort-lp-series [data-fls-wipe] img { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+    #fort-lp-series [data-fls-wipe]::after { display: none; }
+  }
+</style>
+
+<!-- ヘッダー -->
+<section class="fls-head">
+  <p class="fls-head__label" data-fls-reveal>LINEUP</p>
+  <h1 class="fls-head__title" data-fls-reveal>3つのFORT。</h1>
+  <p class="fls-head__lead" data-fls-reveal>予算も、理想も、あなたのままに。</p>
+  <nav class="fls-head__nav" data-fls-reveal>
+    <a href="#style">STYLE</a>
+    <a href="#pro">PRO</a>
+    <a href="#design">DESIGN</a>
+  </nav>
+</section>
+
+<!-- 01 FORT STYLE -->
+<section class="fls-section" id="style">
+  <div class="fls-inner fls-series">
+    <figure class="fls-series__media" data-fls-wipe>
+      <!-- IMAGE: FORT STYLE の写真URLに差し替え -->
+      <img src="https://placehold.co/1200x750/c6cacd/6c7178?text=FORT+STYLE" alt="FORT STYLE">
+    </figure>
+    <div data-fls-reveal>
+      <p class="fls-series__no">01</p>
+      <h2 class="fls-series__name">FORT STYLE</h2>
+      <p class="fls-series__type">READY-MADE ／ 建売住宅</p>
+      <p class="fls-series__text">
+        完成した住まいを見て、納得して選びたい方へ。
+        間取りも仕様も決まった建売だから、価格も仕上がりも明確。
+        はじめての家づくりでも、安心して選べます。
+      </p>
+      <ul class="fls-series__points">
+        <li>実物を見てから決められる安心感</li>
+        <li>土地・建物・外構までわかりやすい価格</li>
+        <li>お引渡しまでスピーディー</li>
+      </ul>
+      <p class="fls-series__price"><strong>1,900万円〜</strong>本体価格（税別）</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 FORT PRO -->
+<section class="fls-section fls-section--gray" id="pro">
+  <div class="fls-inner">
+    <div class="fls-series">
+      <figure class="fls-series__media" data-fls-wipe>
+        <!-- IMAGE: FORT PRO の写真URLに差し替え -->
+        <img src="https://placehold.co/1200x750/c6cacd/6c7178?text=FORT+PRO" alt="FORT PRO">
+      </figure>
+      <div data-fls-reveal>
+        <p class="fls-series__no">02</p>
+        <h2 class="fls-series__name">FORT PRO</h2>
+        <p class="fls-series__type">SEMI-ORDER ／ 規格・セミオーダー住宅</p>
+        <p class="fls-series__text">
+          性能とコストのバランスを重視したい方へ。
+          実績のある規格プランをベースに、キッチンや内装を選んで仕上げるセミオーダー。
+          自由度と価格の納得感を、両立できます。
+        </p>
+        <ul class="fls-series__points">
+          <li>人気の間取りがベースだから、失敗しにくい</li>
+          <li>キッチン・内装・外観を選んで、自分たちらしく</li>
+          <li>PLAN A〜F の6プランからスタート</li>
+        </ul>
+        <p class="fls-series__price"><strong>2,100万円〜</strong>建物価格（30坪・2階建・税別）</p>
+      </div>
+    </div>
+
+    <!-- PLAN A〜F -->
+    <div class="fls-plans">
+      <!-- IMAGE: 各プランの外観パースURLに差し替え -->
+      <div class="fls-plan" data-fls-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+A" alt="PLAN A"><p>PLAN A</p></div>
+      <div class="fls-plan" data-fls-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+B" alt="PLAN B"><p>PLAN B</p></div>
+      <div class="fls-plan" data-fls-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+C" alt="PLAN C"><p>PLAN C</p></div>
+      <div class="fls-plan" data-fls-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+D" alt="PLAN D"><p>PLAN D</p></div>
+      <div class="fls-plan" data-fls-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+E" alt="PLAN E"><p>PLAN E</p></div>
+      <div class="fls-plan" data-fls-reveal><img src="https://placehold.co/800x600/ecedef/6c7178?text=PLAN+F" alt="PLAN F"><p>PLAN F</p></div>
+    </div>
+    <p class="fls-plans-note" data-fls-reveal>※ 各プランの間取り・詳細は、スタジオでご覧いただけます。</p>
+  </div>
+</section>
+
+<!-- 03 FORT DESIGN -->
+<section class="fls-section" id="design">
+  <div class="fls-inner fls-series">
+    <figure class="fls-series__media" data-fls-wipe>
+      <!-- IMAGE: FORT DESIGN の写真URLに差し替え -->
+      <img src="https://placehold.co/1200x750/c6cacd/6c7178?text=FORT+DESIGN" alt="FORT DESIGN">
+    </figure>
+    <div data-fls-reveal>
+      <p class="fls-series__no">03</p>
+      <h2 class="fls-series__name">FORT DESIGN</h2>
+      <p class="fls-series__type">FULL-ORDER ／ 注文・フルオーダー</p>
+      <p class="fls-series__text">
+        理想の住まいを、ゼロからかたちにしたい方へ。
+        設計も素材も自由なフルオーダー。
+        最高クラスの性能とデザインで、世界にひとつの住まいをつくります。
+      </p>
+      <ul class="fls-series__points">
+        <li>完全自由設計</li>
+        <li>素材・設備を自由選択</li>
+        <li>専属設計士と家づくり</li>
+      </ul>
+      <p class="fls-series__price"><strong>仕様により変動</strong>フルオーダーのためプランごとにお見積り</p>
+    </div>
+  </div>
+</section>
+
+<!-- 設備グレード比較表 -->
+<section class="fls-section fls-section--gray">
+  <div class="fls-inner">
+    <p class="fls-h-label" data-fls-reveal>EQUIPMENT</p>
+    <h2 class="fls-h" data-fls-reveal>シリーズ別・標準仕様のちがい</h2>
+    <p class="fls-lead" data-fls-reveal>どのシリーズにも、FORTが選び抜いた設備を。</p>
+    <div class="fls-scroll" data-fls-reveal>
+      <table class="fls-table">
+        <thead>
+          <tr>
+            <th scope="col">ITEM</th>
+            <th scope="col">FORT STYLE</th>
+            <th scope="col">FORT PRO</th>
+            <th scope="col">FORT DESIGN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">キッチン</th><td>Panasonic Sクラス</td><td>Panasonic Sクラス／クリナップ ステディア／タカラスタンダード オフェリア から選択</td><td>メーカー等 自由選択</td></tr>
+          <tr><th scope="row">浴室</th><td>Panasonic オフローラ 1616</td><td>Panasonic Sクラス／クリナップ／タカラスタンダード から選択</td><td>メーカー等 自由選択</td></tr>
+          <tr><th scope="row">洗面</th><td>Panasonic シーライン</td><td>アイカ スタイリッシュカウンター</td><td>アイカ スマートサニタリー など自由選択</td></tr>
+          <tr><th scope="row">トイレ</th><td>1F：Panasonic アラウーノZ<br>2F：Panasonic アラウーノV</td><td>1F：TOTO NJ2<br>2F：TOTO ZJ2</td><td>1F：TOTO NJ2<br>2F：TOTO ZJ2（変更可）</td></tr>
+          <tr><th scope="row">床材</th><td>Panasonic PLフロア（シート）</td><td>ikuta 銘木フローラスティック</td><td>無垢材／突板／タイル など自由選択</td></tr>
+          <tr><th scope="row">建具</th><td>Panasonic ベリティス（H2400）</td><td>Panasonic ベリティス（H2400）</td><td>Panasonic ベリティス など自由選択</td></tr>
+          <tr><th scope="row">収納</th><td>南海プライウッド</td><td>南海プライウッド</td><td>南海プライウッド</td></tr>
+          <tr><th scope="row">外壁</th><td>窯業系サイディング（品名指定あり）</td><td>窯業系サイディング／ガルバリウム鋼板</td><td>窯業系サイディング／吹付塗装 など自由選択</td></tr>
+          <tr><th scope="row">玄関ドア</th><td colspan="3" style="text-align:center;">YKK AP ヴェナート D30（ポケットKey）</td></tr>
+          <tr><th scope="row">給湯器</th><td colspan="3" style="text-align:center;">エコキュート／ガス給湯器 選択可</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fls-scroll-note">▶ 表は横にスクロールできます　※仕様は時期・プランにより変更となる場合があります。</p>
+  </div>
+</section>
+
+<!-- ページ下部の導線 -->
+<section class="fls-section">
+  <div class="fls-inner">
+    <p class="fls-h-label" data-fls-reveal>NEXT</p>
+    <h2 class="fls-h" data-fls-reveal>性能のことも、知ってほしい。</h2>
+    <p class="fls-lead" data-fls-reveal>どのシリーズでも、性能は4つのグレードから選べます。</p>
+    <div class="fls-nav" style="margin-top:30px;" data-fls-reveal>
+      <!-- ▼ URLは固定ページに合わせて変更してください -->
+      <a class="fls-btn fls-btn--fill" href="./fort-performance/">性能の詳細を見る</a>
+      <a class="fls-btn" href="./fort-concept/">FORTの家づくりへ戻る</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var root = document.getElementById('fort-lp-series');
+  if (!root) return;
+  var targets = root.querySelectorAll('[data-fls-reveal], [data-fls-wipe]');
+  targets.forEach(function (el) {
+    if (!el.hasAttribute('data-fls-reveal')) return;
+    var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) {
+      return c.hasAttribute && c.hasAttribute('data-fls-reveal');
+    });
+    var i = sibs.indexOf(el);
+    if (i > 0) el.style.setProperty('--f-d', Math.min(i * 0.1, 0.5) + 's');
+  });
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.2 });
+    targets.forEach(function (el) { io.observe(el); });
+  } else {
+    targets.forEach(function (el) { el.classList.add('is-in'); });
+  }
+})();
+</script>
+
+</div><!-- /#fort-lp-series -->

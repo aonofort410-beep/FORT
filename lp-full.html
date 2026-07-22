@@ -628,6 +628,84 @@
   #fort-lp .flp-flow__txt { margin-top: 8px; color: var(--flp-sub); font-size: 12px; line-height: 1.85; text-align: left; }
   @media (min-width: 1000px) { #fort-lp .flp-flow__txt { font-size: 11.5px; } }
 
+  /* ============================================================
+     立体感の強化（張りぼて感の解消：層状シャドウ＋ハイライト＋微グラデ）
+  ============================================================ */
+  /* カード類：白のグラデ＋上部ハイライト＋多層シャドウで“浮いて”見せる */
+  #fort-lp .flp-team__card,
+  #fort-lp .flp-specs li,
+  #fort-lp .flp-grade__card,
+  #fort-lp .flp-flow__step {
+    background: linear-gradient(180deg, #ffffff 0%, #f5f6f7 100%);
+    border: 1px solid rgba(255,255,255,.8);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.9),
+      0 1px 2px rgba(20,22,25,.05),
+      0 8px 16px rgba(20,22,25,.07),
+      0 24px 40px rgba(20,22,25,.10);
+  }
+  #fort-lp .flp-team__card:hover,
+  #fort-lp .flp-specs li:hover,
+  #fort-lp .flp-grade__card:hover,
+  #fort-lp .flp-flow__step:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.9),
+      0 3px 6px rgba(20,22,25,.08),
+      0 16px 30px rgba(20,22,25,.12),
+      0 40px 66px rgba(20,22,25,.16);
+  }
+  #fort-lp .flp-specs li:hover { transform: translateY(-6px); }
+
+  /* おすすめグレード（STANDARD）はより手前に浮かせる */
+  #fort-lp .flp-grade__card--push {
+    outline: none;
+    border: 1px solid var(--flp-charcoal);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.9),
+      0 2px 4px rgba(20,22,25,.08),
+      0 14px 26px rgba(20,22,25,.14),
+      0 34px 56px rgba(20,22,25,.18);
+  }
+
+  /* 写真：地面から少し浮いた影に */
+  #fort-lp .flp-series__media,
+  #fort-lp .flp-topic figure {
+    box-shadow: 0 10px 22px rgba(20,22,25,.10), 0 30px 54px rgba(20,22,25,.14);
+  }
+
+  /* バッジ・タグ：ふくらみのある立体に */
+  #fort-lp .flp-grade__badge,
+  #fort-lp .flp-series__tag {
+    background: linear-gradient(180deg, #43474c, var(--flp-black));
+    box-shadow: 0 4px 10px rgba(20,22,25,.28), inset 0 1px 0 rgba(255,255,255,.14);
+  }
+
+  /* 番号の丸：くぼみ／ふくらみのある立体に */
+  #fort-lp .flp-flow__num {
+    background: linear-gradient(180deg, #ffffff, #eef0f1);
+    box-shadow: 0 4px 10px rgba(20,22,25,.10), inset 0 1px 0 rgba(255,255,255,.9);
+  }
+
+  /* 大きな数字に微かな陰影で厚みを */
+  #fort-lp .flp-specs__v, #fort-lp .flp-guard__v {
+    text-shadow: 0 1px 0 rgba(255,255,255,.7);
+  }
+
+  /* 設備比較表：面としての奥行きを強める */
+  #fort-lp .flp-table {
+    box-shadow: 0 10px 22px rgba(20,22,25,.08), 0 30px 54px rgba(20,22,25,.12);
+  }
+
+  /* BALANCE中央の円：さらに手前へ／サイドの円は少し沈める */
+  #fort-lp .flp-balance__item--center {
+    box-shadow: 0 18px 40px rgba(0,0,0,.42), inset 0 2px 0 rgba(255,255,255,.6);
+  }
+  #fort-lp .flp-balance__item:not(.flp-balance__item--center) {
+    background: rgba(255,255,255,.04);
+    box-shadow: inset 0 0 40px rgba(0,0,0,.18);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #fort-lp [data-flp-reveal], #fort-lp [data-flp-wipe] img, #fort-lp .flp-balance__item { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
     #fort-lp [data-flp-wipe]::after { display: none; }

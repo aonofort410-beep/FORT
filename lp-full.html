@@ -176,7 +176,7 @@
     from { opacity: 0; transform: translateY(16px) scale(1.04); filter: blur(14px); }
     to   { opacity: 1; transform: none; filter: none; }
   }
-  #fort-lp .flp-hero__logo img { width: clamp(220px, 46vw, 430px); height: auto; }
+  #fort-lp .flp-hero__logo img { width: min(58vw, 380px); height: auto; }
   /* ロゴ画像が読み込めない時の文字フォールバック */
   #fort-lp .flp-hero__logo-text {
     display: none;
@@ -720,6 +720,43 @@
     #fort-lp .flp-hero__bg img, #fort-lp .flp-hero__logo,
     #fort-lp .flp-hero__copy .l, #fort-lp .flp-hero__scroll::after { animation: none !important; transform: none; opacity: 1; filter: none; }
   }
+
+  /* スマホ表示の最適化（余白を詰めて見やすく） */
+  @media (max-width: 560px) {
+    #fort-lp .flp-section { padding: 54px 16px; }
+    #fort-lp .flp-lead { font-size: 14px; line-height: 2; }
+    #fort-lp .flp-series__text { font-size: 14px; }
+  }
+
+  /* ============================================================
+     ▼ 動き・ギミックを全て無効化（軽量な“普通のLP”化）
+       アニメーション/トランジション/ホバーの動きを止め、
+       すべての要素を最初から静的に表示します。
+  ============================================================ */
+  #fort-lp *, #fort-lp *::before, #fort-lp *::after {
+    animation: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+  #fort-lp [data-flp-reveal],
+  #fort-lp [data-flp-wipe] img,
+  #fort-lp .flp-balance__item,
+  #fort-lp .flp-hero__logo,
+  #fort-lp .flp-hero__copy .l,
+  #fort-lp .flp-hero__sub {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  #fort-lp [data-flp-wipe]::after { display: none !important; } /* 写真のカーテン幕を消す */
+  #fort-lp .flp-hero__bg img { transform: none !important; }    /* 背景のズームを止める */
+  #fort-lp .flp-hero__scroll { display: none !important; }       /* スクロール線（装飾）を非表示 */
+  /* ホバーでも動かさない */
+  #fort-lp .flp-team__card:hover,
+  #fort-lp .flp-specs li:hover,
+  #fort-lp .flp-grade__card:hover,
+  #fort-lp .flp-flow__step:hover { transform: none !important; }
+
 </style>
 
 <!-- ============ HERO ============ -->
@@ -903,7 +940,7 @@
         </thead>
         <tbody>
           <tr><th scope="row">キッチン</th><td>Panasonic Sクラス</td><td>Panasonic Sクラス ／ クリナップ ステディア ／ タカラスタンダード オフェリア から選択</td><td>メーカー等 自由選択</td></tr>
-          <tr><th scope="row">浴室</th><td>Panasonic オフローラ 1616</td><td>Panasonic Sクラス ／ クリナップ ／ タカラスタンダード から選択</td><td>メーカー等 自由選択</td></tr>
+          <tr><th scope="row">浴室</th><td>Panasonic オフローラ 1616</td><td>Panasonic ／ クリナップ ／ タカラスタンダード から選択</td><td>メーカー等 自由選択</td></tr>
           <tr><th scope="row">洗面</th><td>Panasonic シーライン</td><td>アイカ スタイリッシュカウンター</td><td>アイカ スマートサニタリー ほか自由選択</td></tr>
           <tr><th scope="row">トイレ</th><td>Panasonic アラウーノ<br>（1F：Z／2F：V）</td><td>TOTO<br>（1F：NJ2／2F：ZJ2）</td><td>TOTO NJ2 / ZJ2 ほか変更可</td></tr>
           <tr><th scope="row">床材</th><td>Panasonic PLフロア（シート）</td><td>ikuta 銘木フローラスティック</td><td>無垢材 ／ 突板 ／ タイル ほか自由選択</td></tr>
@@ -1095,35 +1132,5 @@
   </div>
 </section>
 
-<script>
-(function () {
-  /* FORT LP 専用スクリプト。失敗しても内容が消えないよう flp-js で制御 */
-  try {
-    var root = document.getElementById('fort-lp');
-    if (!root) { return; }
-    root.className += ' flp-js';
-    var targets = root.querySelectorAll('[data-flp-reveal], [data-flp-wipe], [data-flp-balance]');
-    Array.prototype.forEach.call(targets, function (el) {
-      if (!el.hasAttribute('data-flp-reveal')) { return; }
-      var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) { return c.hasAttribute && c.hasAttribute('data-flp-reveal'); });
-      var i = sibs.indexOf(el);
-      if (i > 0) { el.style.setProperty('--flp-d', Math.min(i * 0.1, 0.5) + 's'); }
-    });
-    function show(el) { el.classList.add('is-in'); }
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if ('IntersectionObserver' in window && !reduce) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) { if (en.isIntersecting) { show(en.target); io.unobserve(en.target); } });
-      }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
-      Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
-    } else {
-      Array.prototype.forEach.call(targets, show);
-    }
-  } catch (e) {
-    var r = document.getElementById('fort-lp');
-    if (r) { r.className = r.className.replace(' flp-js', ''); }
-  }
-})();
-</script>
 
 </div><!-- /#fort-lp -->

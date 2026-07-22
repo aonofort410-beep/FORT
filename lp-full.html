@@ -604,35 +604,29 @@
   #fort-lp .flp-btn:hover { background: var(--flp-black); color: var(--flp-white); transform: translateY(-2px); }
 
   /* 動きを減らす設定への配慮 */
-  /* 保証カード */
-  #fort-lp .flp-guard { margin-top: clamp(28px, 4vw, 40px); display: grid; grid-template-columns: 1fr; gap: 14px; }
-  @media (min-width: 700px) { #fort-lp .flp-guard { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
-  #fort-lp .flp-guard__card {
+  /* 家づくりの流れ（横並び・折り返しカード） */
+  #fort-lp .flp-flow {
+    margin: clamp(34px, 5vw, 52px) auto 0;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+  }
+  @media (min-width: 680px)  { #fort-lp .flp-flow { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+  @media (min-width: 1000px) { #fort-lp .flp-flow { grid-template-columns: repeat(6, 1fr); gap: 12px; } }
+  #fort-lp .flp-flow__step {
     background: var(--flp-white); border-radius: 3px;
     box-shadow: 0 14px 34px rgba(20,22,25,.07);
-    padding: 30px 22px 26px; text-align: center;
+    padding: 24px 16px 22px; text-align: center;
     transition: transform .5s var(--flp-ease), box-shadow .5s ease;
   }
-  #fort-lp .flp-guard__card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(20,22,25,.13); }
-  #fort-lp .flp-guard__v { font-family: var(--flp-serif); font-weight: 600; font-size: clamp(1.9rem, 6vw, 2.5rem); color: var(--flp-black); line-height: 1; }
-  #fort-lp .flp-guard__v span { font-size: .42em; margin-left: 2px; }
-  #fort-lp .flp-guard__l { margin-top: 10px; font-weight: 700; font-size: 13.5px; color: var(--flp-accent); letter-spacing: 0.08em; }
-  #fort-lp .flp-guard__t { margin-top: 10px; font-size: 12.5px; color: var(--flp-sub); line-height: 1.9; }
-
-  /* 家づくりの流れ（縦のタイムライン） */
-  #fort-lp .flp-flow { max-width: 720px; margin: clamp(34px, 5vw, 52px) auto 0; }
-  #fort-lp .flp-flow__step { position: relative; display: grid; grid-template-columns: 54px 1fr; gap: 20px; padding-bottom: clamp(26px, 4vw, 40px); }
-  #fort-lp .flp-flow__step:last-child { padding-bottom: 0; }
-  #fort-lp .flp-flow__step:not(:last-child)::before { content: ""; position: absolute; left: 26px; top: 56px; bottom: 0; width: 1px; background: var(--flp-gray, #c6cacd); }
+  #fort-lp .flp-flow__step:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(20,22,25,.13); }
   #fort-lp .flp-flow__num {
-    width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--flp-accent);
+    width: 46px; height: 46px; margin: 0 auto; border-radius: 50%; border: 1px solid var(--flp-accent);
     background: var(--flp-white); color: var(--flp-accent);
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--flp-en-display); font-size: 18px; position: relative; z-index: 1;
+    font-family: var(--flp-en-display); font-size: 16px;
   }
-  #fort-lp .flp-flow__body { padding-top: 4px; }
-  #fort-lp .flp-flow__ttl { font-family: var(--flp-serif); font-weight: 600; font-size: clamp(1.05rem, 3.2vw, 1.28rem); color: var(--flp-black); letter-spacing: 0.04em; }
-  #fort-lp .flp-flow__txt { margin-top: 7px; color: var(--flp-sub); font-size: 13.5px; line-height: 1.95; }
+  #fort-lp .flp-flow__ttl { font-family: var(--flp-serif); font-weight: 600; font-size: 15px; color: var(--flp-black); letter-spacing: 0.03em; margin-top: 14px; line-height: 1.5; }
+  #fort-lp .flp-flow__txt { margin-top: 8px; color: var(--flp-sub); font-size: 12px; line-height: 1.85; text-align: left; }
+  @media (min-width: 1000px) { #fort-lp .flp-flow__txt { font-size: 11.5px; } }
 
   @media (prefers-reduced-motion: reduce) {
     #fort-lp [data-flp-reveal], #fort-lp [data-flp-wipe] img, #fort-lp .flp-balance__item { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
@@ -837,29 +831,6 @@
     </div>
     <p class="flp-note">※ 標準仕様の一例です。仕様は時期・プランにより変更となる場合があります。</p>
 
-    <!-- 保証・アフター -->
-    <div class="flp-subhead">
-      <p class="flp-label" data-flp-reveal>GUARANTEE</p>
-      <h3 class="flp-title" style="font-size:clamp(1.3rem,4vw,1.8rem);" data-flp-reveal>建てたあとも、ずっと安心を。</h3>
-    </div>
-    <div class="flp-guard">
-      <div class="flp-guard__card" data-flp-reveal>
-        <p class="flp-guard__v">最長60<span>年</span></p>
-        <p class="flp-guard__l">構造躯体保証</p>
-        <p class="flp-guard__t">初期保証20年。定期メンテナンスで最長60年まで延長できます。</p>
-      </div>
-      <div class="flp-guard__card" data-flp-reveal>
-        <p class="flp-guard__v">10<span>年</span></p>
-        <p class="flp-guard__l">主要設備保証</p>
-        <p class="flp-guard__t">キッチン・浴室など、対象設備を10年間保証します。</p>
-      </div>
-      <div class="flp-guard__card" data-flp-reveal>
-        <p class="flp-guard__v">定期<span>点検</span></p>
-        <p class="flp-guard__l">アフターメンテナンス</p>
-        <p class="flp-guard__t">お引渡し後も定期点検で、住まいを長く見守ります。</p>
-      </div>
-    </div>
-    <p class="flp-note" data-flp-reveal>※ 保証内容はグレード・仕様により異なります（FORT STYLEは構造躯体10年保証）。詳しくはお問い合わせください。</p>
   </div>
 </section>
 

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!--
+============================================================
+  株式会社FORT / STUDIO（スタジオ・モデルハウス案内）ページ
+  ------------------------------------------------------------
+  ・岡山スタジオ／福山スタジオ／モデルハウスの案内ページです
+  ・地図は <img> の代わりにGoogleマップのiframeを貼り付けできます
+============================================================
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>スタジオ・モデルハウス案内｜岡山・福山｜株式会社FORT</title>
+  <meta name="description" content="株式会社FORTのスタジオ・モデルハウスのご案内。岡山スタジオ（岡山市北区問屋町）・福山スタジオ（広島県福山市）で家づくりのご相談を承ります。モデルハウスでデザインと性能を体感いただけます。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.example-fort.co.jp/studio.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="スタジオ・モデルハウス案内｜株式会社FORT">
+  <meta property="og:description" content="岡山・福山のスタジオとモデルハウスのご案内。家づくりのご相談はお近くのスタジオへ。">
+  <meta property="og:image" content="images/exterior.jpg">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <a href="index.html" class="header__logo" aria-label="株式会社FORT トップへ"><img class="header__logo-img header__logo-img--white" src="images/logo-lockup-white.png" alt="FORT"><img class="header__logo-img header__logo-img--dark" src="images/logo-lockup-dark.png" alt="" aria-hidden="true"></a>
+      <button class="menu-toggle" id="menuToggle" type="button"
+              aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-toggle__txt">MENU</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="subhero">
+      <div class="subhero__media">
+        <img src="images/exterior.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
+        <div class="subhero__overlay"></div>
+      </div>
+      <div class="container subhero__inner">
+        <p class="subhero__eyebrow" data-reveal>STUDIO</p>
+        <h1 class="subhero__title" data-reveal>スタジオ・モデルハウス案内</h1>
+        <nav class="breadcrumb" aria-label="現在地">
+          <a href="index.html">HOME</a><span>／</span><span>STUDIO</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="page-lead" data-reveal>
+          家づくりのご相談は、岡山・福山の2つのスタジオで承っています。<br>
+          実際の素材に触れたり、モデルハウスで暮らしを体感したり。
+          まずはお近くのスタジオへ、お気軽にお越しください。
+        </p>
+
+        <!-- ▼ 岡山スタジオ -->
+        <article class="product" id="okayama">
+          <figure class="product__figure" data-reveal>
+            <!-- IMAGE: 岡山スタジオの写真（推奨 1200×800px） -->
+            <img src="images/studio-okayama.jpg" alt="FORT 岡山スタジオ" loading="lazy" decoding="async">
+          </figure>
+          <div data-reveal>
+            <h2 class="product__name">岡山スタジオ</h2>
+            <span class="product__type">OKAYAMA STUDIO</span>
+            <dl class="info-list">
+              <div><dt>住所</dt><dd>〒700-0977<br>岡山県岡山市北区問屋町9-101 タイルビル 1F</dd></div>
+              <div><dt>電話番号</dt><dd><a href="tel:0862369600">086-236-9600</a></dd></div>
+              <div><dt>営業時間</dt><dd>9:00〜18:00</dd></div>
+              <div><dt>定休日</dt><dd>水曜日</dd></div>
+              <div><dt>ご相談</dt><dd>ご予約優先。お子さま連れも歓迎です。</dd></div>
+            </dl>
+            <a href="https://share.google/80W9x7bPLtNcHsrXQ" class="btn btn--outline" target="_blank" rel="noopener">Googleマップで開く</a>
+            <a href="index.html#reserve" class="btn btn--accent">岡山スタジオに来場予約する</a>
+          </div>
+        </article>
+
+        <!-- 岡山スタジオの地図 -->
+        <div class="map-frame" data-reveal style="margin-top:28px;">
+          <!-- 地図：GoogleマップのiframeをこのIMGと差し替えできます -->
+          <img src="images/map-okayama.jpg" alt="岡山スタジオの地図" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--gray">
+      <div class="container">
+        <!-- ▼ 福山スタジオ -->
+        <article class="product" id="fukuyama">
+          <figure class="product__figure" data-reveal>
+            <!-- IMAGE: 福山スタジオの写真（推奨 1200×800px） -->
+            <img src="images/studio-fukuyama.jpg" alt="FORT 福山スタジオ" loading="lazy" decoding="async">
+          </figure>
+          <div data-reveal>
+            <h2 class="product__name">福山スタジオ</h2>
+            <span class="product__type">FUKUYAMA STUDIO</span>
+            <dl class="info-list">
+              <div><dt>住所</dt><dd>〒720-0821<br>広島県福山市東川口町2丁目1-18 中国情報ビル 1F</dd></div>
+              <div><dt>電話番号</dt><dd><a href="tel:0849827404">084-982-7404</a></dd></div>
+              <div><dt>営業時間</dt><dd>9:00〜18:00</dd></div>
+              <div><dt>定休日</dt><dd>水曜日</dd></div>
+              <div><dt>ご相談</dt><dd>ご予約優先。お子さま連れも歓迎です。</dd></div>
+            </dl>
+            <a href="https://share.google/qFB14aVeN0XyfuxtH" class="btn btn--outline" target="_blank" rel="noopener">Googleマップで開く</a>
+            <a href="index.html#reserve" class="btn btn--accent">福山スタジオに来場予約する</a>
+          </div>
+        </article>
+
+        <!-- 福山スタジオの地図 -->
+        <div class="map-frame" data-reveal style="margin-top:28px;">
+          <img src="images/map-fukuyama.jpg" alt="福山スタジオの地図" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <!-- ▼ モデルハウス -->
+    <section class="section" id="modelhouse">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>MODEL HOUSE</p>
+          <h2 class="section__title" data-reveal>モデルハウスで体感する。</h2>
+          <p class="section__desc" data-reveal>
+            写真やカタログだけでは伝わらない、空気感や心地よさ。
+            FORTのデザインと性能を、実際の住まいでご体感いただけます。
+          </p>
+        </header>
+
+        <!-- ▼ 岡山玉野モデルハウス -->
+        <article class="product" id="model-tamano">
+          <figure class="product__figure" data-reveal>
+            <!-- IMAGE: images/model-tamano.jpg（推奨 1600×1000px） -->
+            <img src="images/model-tamano.jpg" alt="岡山玉野モデルハウス" loading="lazy" decoding="async" onerror="this.src='images/ldk.jpg'">
+          </figure>
+          <div data-reveal>
+            <h3 class="product__name">岡山玉野モデルハウス</h3>
+            <span class="product__type">OKAYAMA TAMANO ／ 常設・ご予約優先</span>
+            <p class="product__text">
+              FORTがこだわる「性能とデザインの両立」を、実際の住まいで体感いただけるモデルハウス。
+              間取りの工夫や素材の質感、光や風の通り方まで、スタッフがご案内します。
+            </p>
+            <ul class="product__features">
+              <li>実際の生活サイズで間取りを体感できる</li>
+              <li>断熱・空調など“住んでからの快適さ”を確認できる</li>
+              <li>家づくりの疑問をその場で相談できる</li>
+            </ul>
+            <div class="product__btns">
+              <a href="visit.html" class="btn btn--accent">来場を予約する</a>
+              <a href="event.html" class="btn btn--outline">見学会・販売会を見る</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ▼ 福山下加茂モデルハウス -->
+        <article class="product" id="model-shimokamo">
+          <figure class="product__figure" data-reveal>
+            <!-- IMAGE: images/model-shimokamo.jpg（推奨 1600×1000px） -->
+            <img src="images/model-shimokamo.jpg" alt="福山下加茂モデルハウス" loading="lazy" decoding="async" onerror="this.src='images/exterior.jpg'">
+          </figure>
+          <div data-reveal>
+            <h3 class="product__name">福山下加茂モデルハウス</h3>
+            <span class="product__type">FUKUYAMA SHIMOKAMO ／ 常設・ご予約優先</span>
+            <p class="product__text">
+              福山エリアでFORTの住まいを体感いただけるモデルハウス。
+              暮らしのサイズ感や心地よさ、デザインのディテールを、その場でゆっくりご覧いただけます。
+            </p>
+            <ul class="product__features">
+              <li>家具を配置した“暮らしのイメージ”が掴める</li>
+              <li>収納や家事動線の工夫を実際に確認できる</li>
+              <li>資金計画や土地さがしもあわせて相談できる</li>
+            </ul>
+            <div class="product__btns">
+              <a href="visit.html" class="btn btn--accent">来場を予約する</a>
+              <a href="event.html" class="btn btn--outline">見学会・販売会を見る</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="reserve section" id="reserve">
+      <div class="reserve__bg">
+        <img src="images/hero.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="reserve__overlay"></div>
+      </div>
+      <div class="container reserve__inner">
+        <p class="section__label section__label--light" data-reveal>RESERVE &amp; CONTACT</p>
+        <h2 class="section__title section__title--light" data-reveal>お近くのスタジオでお待ちしています。</h2>
+        <p class="reserve__lead" data-reveal>ご来場のご予約・ご相談は、お電話またはフォームから承ります。</p>
+        <ul class="reserve__actions" data-reveal>
+          <li><a href="index.html#reserve" class="btn btn--accent btn--block">来場予約</a></li>
+          <li><a href="index.html#reserve" class="btn btn--accent btn--block">モデルハウス予約</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">資料請求</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">お問い合わせ</a></li>
+        </ul>
+        <p class="reserve__tel" data-reveal>
+          お電話でのご予約：<a href="tel:0862369600">086-236-9600</a>（岡山）／ <a href="tel:0849827404">084-982-7404</a>（福山）
+          <span class="reserve__tel-note">（受付時間 9:00〜18:00 / 水曜定休）</span>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo"><img class="footer__logo-img" src="images/logo-lockup-white.png" alt="FORT"></p>
+        <p class="footer__copy-text">性能か、デザインか。<br>その選択をしなくていい家づくり。</p>
+      </div>
+      <nav class="footer__nav" aria-label="フッターメニュー">
+        <ul class="footer__list">
+          <li><a href="index.html#concept">CONCEPT</a></li>
+          <li><a href="index.html#why">WHY FORT</a></li>
+          <li><a href="works.html">WORKS</a></li>
+          <li><a href="feature.html">FEATURE</a></li>
+          <li><a href="performance.html">PERFORMANCE</a></li>
+          <li><a href="flow.html">FLOW</a></li>
+          <li><a href="lineup.html">LINEUP</a></li>
+          <li><a href="fort-pro.html">FORT PRO PLAN</a></li>
+          <li><a href="event.html">EVENT</a></li>
+          <li><a href="studio.html">STUDIO</a></li>
+          <li><a href="staff.html">STAFF</a></li>
+          <li><a href="company.html">COMPANY</a></li>
+          <li><a href="index.html#news">NEWS</a></li>
+          <li><a href="index.html#reserve">RESERVE</a></li>
+        </ul>
+      </nav>
+      <div class="footer__info">
+        <p>株式会社FORT</p>
+        <p>岡山スタジオ：岡山県岡山市北区問屋町9-101 タイルビル 1F／TEL 086-236-9600</p>
+        <p>福山スタジオ：広島県福山市東川口町2丁目1-18 中国情報ビル 1F／TEL 084-982-7404</p>
+      </div>
+    </div>
+    <p class="footer__copyright">© 2026 FORT Inc. All Rights Reserved.</p>
+  </footer>
+
+  <div class="floating-cta">
+    <a href="index.html#reserve" class="floating-cta__btn floating-cta__btn--ghost">来場予約</a>
+    <a href="index.html#reserve" class="floating-cta__btn floating-cta__btn--accent">資料請求・相談</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

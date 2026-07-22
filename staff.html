@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!--
+============================================================
+  株式会社FORT ブランドサイト / STAFF（スタッフ紹介）ページ
+  ------------------------------------------------------------
+  ・TOPページ(index.html)と同じデザイン・CSS・JSを使っています
+  ・スタッフの写真は images/ フォルダに入れて src を差し替えてください
+    （例：images/staff-01.jpg）
+  ・スタッフを増やすときは <li class="member"> ... </li> を
+    コピー＆ペーストして名前や紹介文を書き換えればOKです
+============================================================
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- ===== SEO / AIO 用のメタ情報 ===== -->
+  <title>スタッフ紹介｜チームでつくる家づくり｜株式会社FORT（岡山・倉敷・福山）</title>
+  <meta name="description" content="株式会社FORTのスタッフ紹介。営業（コンサルティングコーディネーター）・設計（デザインコーディネーター）・工務（エンジニアリングコーディネーター）・総務の各担当がひとつのチームとなり、岡山・倉敷・福山エリアの家づくりを支えます。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.example-fort.co.jp/staff.html">
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="スタッフ紹介｜チームでつくる家づくり｜株式会社FORT">
+  <meta property="og:description" content="営業・設計・工務・総務がひとつのチームとなり、あなたの家づくりを支えます。">
+  <meta property="og:image" content="images/hero.jpg">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       ヘッダー（TOPと共通。リンクは index.html の各セクションへ）
+  ============================================================ -->
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <a href="index.html" class="header__logo" aria-label="株式会社FORT トップへ"><img class="header__logo-img header__logo-img--white" src="images/logo-lockup-white.png" alt="FORT"><img class="header__logo-img header__logo-img--dark" src="images/logo-lockup-dark.png" alt="" aria-hidden="true"></a>
+      <!-- 右上の「MENU」ボタン（全ページの目次を開く） -->
+      <button class="menu-toggle" id="menuToggle" type="button"
+              aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-toggle__txt">MENU</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         ページ見出し（下層ページ用の小さめのヒーロー）
+    ============================================================ -->
+    <section class="subhero">
+      <div class="subhero__media">
+        <!-- IMAGE: スタッフページ上部の写真（推奨 2400×1000px） -->
+        <img src="images/hero.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
+        <div class="subhero__overlay"></div>
+      </div>
+      <div class="container subhero__inner">
+        <p class="subhero__eyebrow" data-reveal>STAFF</p>
+        <!-- このページの主役の見出し（h1） -->
+        <h1 class="subhero__title" data-reveal>チームでつくる家づくり。</h1>
+        <!-- パンくず（今いる場所をわかりやすく） -->
+        <nav class="breadcrumb" aria-label="現在地">
+          <a href="index.html">HOME</a><span>／</span><span>STAFF</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         イントロ（チームの考え方）
+    ============================================================ -->
+    <section class="section staff-intro">
+      <div class="container staff-intro__inner">
+        <p class="section__label" data-reveal>OUR TEAM</p>
+        <h2 class="section__title" data-reveal>担当者まかせにしない、<br>チームの家づくり。</h2>
+        <p class="staff-intro__text" data-reveal>
+          FORTは、設計士とともにつくる注文住宅の会社です。<br>
+          堅固性（FORT）・快適性（comFORT）・企業努力（efFORT）・資産価値（FORTune）。
+          この4つの想いを胸に、営業・設計・工務の各コーディネーターと総務が
+          ひとつのチームとなって、あなたの理想の住まいをかたちにします。
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         チームの強み（3つのポイント）
+    ============================================================ -->
+    <section class="section section--gray">
+      <div class="container">
+        <ul class="teampoint__grid">
+          <li class="teampoint__card" data-reveal>
+            <span class="teampoint__num">01</span>
+            <h3 class="teampoint__title">情報を共有するチーム</h3>
+            <p class="teampoint__text">お打ち合わせの内容はチーム全体で共有。「言ったのに伝わっていない」をなくします。</p>
+          </li>
+          <li class="teampoint__card" data-reveal>
+            <span class="teampoint__num">02</span>
+            <h3 class="teampoint__title">専門性を持ち寄る</h3>
+            <p class="teampoint__text">営業・設計・工務それぞれのコーディネーターの視点で、最適なバランスを一緒に考えます。</p>
+          </li>
+          <li class="teampoint__card" data-reveal>
+            <span class="teampoint__num">03</span>
+            <h3 class="teampoint__title">引渡し後も同じ顔ぶれで</h3>
+            <p class="teampoint__text">建てて終わりではなく、点検やメンテナンスも顔の見えるチームが対応します。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         スタッフ紹介（部門ごと）
+         ※ メンバーを増やすときは <li class="member"> をコピーしてください
+    ============================================================ -->
+
+    <!-- ▼ 営業（コンサルティングコーディネーター） -->
+    <section class="section dept" id="sales">
+      <div class="container">
+        <header class="dept__head">
+          <p class="dept__label" data-reveal>SALES</p>
+          <h2 class="dept__title" data-reveal>営業 ／ コンサルティングコーディネーター</h2>
+          <p class="dept__desc" data-reveal>あなたの想いやご予算を丁寧にうかがい、家づくりの最初の一歩から伴走します。</p>
+        </header>
+        <ul class="member__grid">
+          <li class="member" data-reveal><a class="member__link" href="staff-aono.html">
+            <figure class="member__figure">
+              <!-- IMAGE: images/staff-aono.jpg（推奨 800×800px・正方形） -->
+              <img src="images/staff-aono.jpg" alt="青野 弘輝" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">コンサルティングコーディネーター</p>
+              <h3 class="member__name">青野 弘輝<span class="member__name-en">Hiroki Aono</span></h3>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+          <li class="member" data-reveal><a class="member__link" href="staff-kawasaki.html">
+            <figure class="member__figure">
+              <img src="images/staff-kawasaki.jpg" alt="川崎 力" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">コンサルティングコーディネーター</p>
+              <h3 class="member__name">川崎 力<span class="member__name-en">Chikara Kawasaki</span></h3>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+          <li class="member" data-reveal><a class="member__link" href="staff-nakao.html">
+            <figure class="member__figure">
+              <img src="images/staff-nakao.jpg" alt="中尾 実樹" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">コンサルティングコーディネーター</p>
+              <h3 class="member__name">中尾 実樹<span class="member__name-en">Miki Nakao</span></h3>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ▼ 設計（デザインコーディネーター） -->
+    <section class="section section--gray dept" id="design">
+      <div class="container">
+        <header class="dept__head">
+          <p class="dept__label" data-reveal>DESIGN</p>
+          <h2 class="dept__title" data-reveal>設計 ／ デザインコーディネーター</h2>
+          <p class="dept__desc" data-reveal>暮らしやすさとデザインを両立した、あなただけのプランを描きます。</p>
+        </header>
+        <ul class="member__grid">
+          <li class="member" data-reveal><a class="member__link" href="staff-sakamoto.html">
+            <figure class="member__figure">
+              <img src="images/staff-sakamoto.jpg" alt="坂本 薫" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">デザインコーディネーター</p>
+              <h3 class="member__name">坂本 薫<span class="member__name-en">Kaoru Sakamoto</span></h3>
+              <p class="member__cred">二級建築士</p>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+          <li class="member" data-reveal><a class="member__link" href="staff-yamashita.html">
+            <figure class="member__figure">
+              <img src="images/staff-yamashita.jpg" alt="山下 唯" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">デザインコーディネーター</p>
+              <h3 class="member__name">山下 唯<span class="member__name-en">Yui Yamashita</span></h3>
+              <p class="member__cred">二級建築士・一級建築施工管理技士</p>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+          <li class="member" data-reveal><a class="member__link" href="staff-kobayashi.html">
+            <figure class="member__figure">
+              <img src="images/staff-kobayashi.jpg" alt="古林 真希" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">デザインコーディネーター</p>
+              <h3 class="member__name">古林 真希<span class="member__name-en">Maki Kobayashi</span></h3>
+              <p class="member__cred">二級建築士</p>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+          <li class="member" data-reveal><a class="member__link" href="staff-matsukawa.html">
+            <figure class="member__figure">
+              <img src="images/staff-matsukawa.jpg" alt="松川 琳斗" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">デザインコーディネーター</p>
+              <h3 class="member__name">松川 琳斗<span class="member__name-en">Rinto Matsukawa</span></h3>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+          <li class="member" data-reveal><a class="member__link" href="staff-murakami.html">
+            <figure class="member__figure">
+              <img src="images/staff-murakami.jpg" alt="村上 芽生" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">デザインコーディネーター</p>
+              <h3 class="member__name">村上 芽生<span class="member__name-en">Mei Murakami</span></h3>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ▼ 工務（エンジニアリングコーディネーター） -->
+    <section class="section dept" id="construction">
+      <div class="container">
+        <header class="dept__head">
+          <p class="dept__label" data-reveal>ENGINEERING</p>
+          <h2 class="dept__title" data-reveal>工務 ／ エンジニアリングコーディネーター</h2>
+          <p class="dept__desc" data-reveal>確かな施工管理で、図面の上の理想を現実の住まいへと形にします。</p>
+        </header>
+        <ul class="member__grid">
+          <li class="member" data-reveal><a class="member__link" href="staff-nagataki.html">
+            <figure class="member__figure">
+              <img src="images/staff-nagataki.jpg" alt="長瀧 渉" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">エンジニアリングコーディネーター</p>
+              <h3 class="member__name">長瀧 渉<span class="member__name-en">Wataru Nagataki</span></h3>
+              <p class="member__cred">二級建築士</p>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+          <li class="member" data-reveal><a class="member__link" href="staff-matsuzaki.html">
+            <figure class="member__figure">
+              <img src="images/staff-matsuzaki.jpg" alt="松崎 真紀" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">エンジニアリングコーディネーター</p>
+              <h3 class="member__name">松崎 真紀<span class="member__name-en">Masaki Matsuzaki</span></h3>
+              <p class="member__cred">二級建築施工管理技士</p>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+          <li class="member" data-reveal><a class="member__link" href="staff-ishida.html">
+            <figure class="member__figure">
+              <img src="images/staff-ishida.jpg" alt="石田 一成" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">エンジニアリングコーディネーター</p>
+              <h3 class="member__name">石田 一成<span class="member__name-en">Issei Ishida</span></h3>
+              <p class="member__cred">二級建築施工管理技士</p>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+          <li class="member" data-reveal><a class="member__link" href="staff-hikasa.html">
+            <figure class="member__figure">
+              <img src="images/staff-hikasa.jpg" alt="日笠 泰成" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">エンジニアリングコーディネーター</p>
+              <h3 class="member__name">日笠 泰成<span class="member__name-en">Taisei Hikasa</span></h3>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ▼ 総務 -->
+    <section class="section section--gray dept" id="admin">
+      <div class="container">
+        <header class="dept__head">
+          <p class="dept__label" data-reveal>ADMIN</p>
+          <h2 class="dept__title" data-reveal>総務</h2>
+          <p class="dept__desc" data-reveal>各種手続きやご来場の対応など、見えない部分から家づくりを支えます。</p>
+        </header>
+        <ul class="member__grid">
+          <li class="member" data-reveal><a class="member__link" href="staff-nakamura-ryoko.html">
+            <figure class="member__figure">
+              <img src="images/staff-nakamura-ryoko.jpg" alt="中村 涼子" loading="lazy" decoding="async">
+            </figure>
+            <div class="member__body">
+              <p class="member__role">総務</p>
+              <h3 class="member__name">中村 涼子<span class="member__name-en">Ryoko Nakamura</span></h3>
+            <span class="member__more">詳しく見る</span></div></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA（相談・予約への導線。TOPのRESERVEへ）
+    ============================================================ -->
+    <section class="reserve section" id="reserve">
+      <div class="reserve__bg">
+        <img src="images/exterior.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="reserve__overlay"></div>
+      </div>
+      <div class="container reserve__inner">
+        <p class="section__label section__label--light" data-reveal>RESERVE &amp; CONTACT</p>
+        <h2 class="section__title section__title--light" data-reveal>チームに会いに来てください。</h2>
+        <p class="reserve__lead" data-reveal>
+          メンバー一人ひとりが、あなたの家づくりを楽しみにしています。
+          まずはお気軽にご相談ください。
+        </p>
+        <ul class="reserve__actions" data-reveal>
+          <li><a href="index.html#reserve" class="btn btn--accent btn--block">見学会予約</a></li>
+          <li><a href="index.html#reserve" class="btn btn--accent btn--block">モデルハウス予約</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">資料請求</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       フッター（TOPと共通）
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo"><img class="footer__logo-img" src="images/logo-lockup-white.png" alt="FORT"></p>
+        <p class="footer__copy-text">性能か、デザインか。<br>その選択をしなくていい家づくり。</p>
+      </div>
+      <nav class="footer__nav" aria-label="フッターメニュー">
+        <ul class="footer__list">
+          <li><a href="index.html#concept">CONCEPT</a></li>
+          <li><a href="index.html#why">WHY FORT</a></li>
+          <li><a href="works.html">WORKS</a></li>
+          <li><a href="feature.html">FEATURE</a></li>
+          <li><a href="performance.html">PERFORMANCE</a></li>
+          <li><a href="flow.html">FLOW</a></li>
+          <li><a href="lineup.html">LINEUP</a></li>
+          <li><a href="fort-pro.html">FORT PRO PLAN</a></li>
+          <li><a href="event.html">EVENT</a></li>
+          <li><a href="studio.html">STUDIO</a></li>
+          <li><a href="staff.html">STAFF</a></li>
+          <li><a href="company.html">COMPANY</a></li>
+          <li><a href="index.html#news">NEWS</a></li>
+          <li><a href="index.html#reserve">RESERVE</a></li>
+        </ul>
+      </nav>
+      <div class="footer__info">
+        <p>株式会社FORT</p>
+        <p>岡山県・倉敷市・福山市エリアで家づくりを行っています。</p>
+        <p>TEL：086-236-9600（岡山）／ 084-982-7404（福山）</p>
+        <p>受付時間 9:00〜18:00 / 水曜定休</p>
+      </div>
+    </div>
+    <p class="footer__copyright">© 2026 FORT Inc. All Rights Reserved.</p>
+  </footer>
+
+  <!-- スマホ画面下の固定CTA -->
+  <div class="floating-cta">
+    <a href="index.html#event" class="floating-cta__btn floating-cta__btn--ghost">見学会予約</a>
+    <a href="index.html#reserve" class="floating-cta__btn floating-cta__btn--accent">資料請求・相談</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

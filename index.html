@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<!--
+============================================================
+  株式会社FORT ブランドサイト / TOPページ
+  ------------------------------------------------------------
+  ・このファイルがページ本体（構造）です
+  ・見た目は style.css、動きは script.js で管理しています
+  ・写真は images/ フォルダのファイルを読み込みます。
+    images/ に同じファイル名で画像を置くだけで表示されます
+    （未配置の間はFORTの仮画像が自動表示されます）。一覧は images/README.md を参照。
+============================================================
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <!-- スマホ最優先のレスポンシブ設定 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- ===== SEO / AIO 用のメタ情報 ===== -->
+  <title>株式会社FORT｜性能か、デザインか。その選択をしなくていい家づくり｜岡山・倉敷・福山の注文住宅</title>
+  <meta name="description" content="株式会社FORTは岡山・倉敷・福山エリアの工務店です。営業・設計・工務がひとつのチームとなり、性能とデザインを高いレベルで両立する住まいをご提案。施工事例・見学会予約・資料請求はこちらから。">
+  <meta name="keywords" content="FORT,フォート,注文住宅,工務店,岡山,倉敷,福山,デザイン住宅,高性能住宅,建売,規格住宅,自由設計">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.example-fort.co.jp/">
+
+  <!-- ===== OGP（SNSでシェアされた時の表示） ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="株式会社FORT｜性能か、デザインか。その選択をしなくていい家づくり">
+  <meta property="og:description" content="営業・設計・工務がひとつのチームとなり、性能とデザインを高いレベルで両立する住まいをご提案します。">
+  <meta property="og:image" content="images/ogp.jpg">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- ===== 構造化データ（検索エンジン・AIに会社情報を伝える） ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "株式会社FORT",
+    "description": "性能とデザインを両立する岡山・倉敷・福山エリアの工務店",
+    "areaServed": ["岡山県", "倉敷市", "福山市"],
+    "slogan": "性能か、デザインか。その選択をしなくていい家づくり。"
+  }
+  </script>
+
+  <!-- 自作のCSSを読み込み -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts（見出し=Noto Serif、本文=Noto Sans） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       ヘッダー（常に上部に固定されるナビゲーション）
+  ============================================================ -->
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <!-- ロゴ（テキストロゴ。画像にする場合はここを<img>に） -->
+      <a href="index.html" class="header__logo" aria-label="株式会社FORT トップへ"><img class="header__logo-img header__logo-img--white" src="images/logo-lockup-white.png" alt="FORT"><img class="header__logo-img header__logo-img--dark" src="images/logo-lockup-dark.png" alt="" aria-hidden="true"></a>
+
+      <div class="header__right">
+        <!-- トップページ用のナビ項目（PCで表示・スマホでは目次MENUに集約） -->
+        <nav class="header-nav" aria-label="主要メニュー">
+          <a href="#philosophy" class="header-nav__link"><span class="header-nav__en">PHILOSOPHY</span><span class="header-nav__ja">FORTの思い</span></a>
+          <a href="#performance" class="header-nav__link"><span class="header-nav__en">PERFORMANCE</span><span class="header-nav__ja">構造・性能</span></a>
+          <a href="#works" class="header-nav__link"><span class="header-nav__en">WORKS</span><span class="header-nav__ja">施工事例</span></a>
+          <a href="#lineup" class="header-nav__link"><span class="header-nav__en">LINEUP</span><span class="header-nav__ja">ラインナップ</span></a>
+          <a href="#staff" class="header-nav__link"><span class="header-nav__en">STAFF</span><span class="header-nav__ja">スタッフ</span></a>
+          <a href="#event" class="header-nav__link"><span class="header-nav__en">EVENT</span><span class="header-nav__ja">イベント</span></a>
+        </nav>
+
+        <!-- 右上の「MENU」ボタン（全ページの目次を開く）
+             ※ 目次の中身は script.js が自動で作ります -->
+        <button class="menu-toggle" id="menuToggle" type="button"
+                aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
+          <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="menu-toggle__txt">MENU</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 01 HOME / ヒーロー（フルスクリーン動画＋FORTロゴ） -->
+    <section class="hero hero--logo" id="hero">
+      <div class="hero__media">
+        <!-- VIDEO: images/hero.mp4 を置くと動画再生。無い間は poster の hero.jpg を表示 -->
+        <video class="hero__img" autoplay muted loop playsinline poster="images/hero.jpg">
+          <source src="images/hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero__overlay"></div>
+      </div>
+
+      <div class="hero__logobox" data-reveal>
+        <h1 class="hero__logo">
+          <img class="hero__logo-img" src="images/logo-white.png" alt="FORT" data-fallback="1" onerror="this.remove()">
+          <span class="hero__logo-text" aria-hidden="true">FORT</span>
+          <span class="sr-only">株式会社FORT｜岡山・福山の注文住宅</span>
+        </h1>
+      </div>
+
+      <!-- ヒーロー右下：CTA -->
+      <div class="hero__actions hero__actions--br" data-reveal>
+        <a href="works.html" class="btn btn--light">施工事例を見る</a>
+        <a href="event.html" class="btn btn--accent">見学会を予約する</a>
+      </div>
+
+      <!-- ヒーロー左下：FORTの思い -->
+      <p class="hero__note" data-reveal>
+        性能だけでもない。<br>
+        デザインだけでもない。<br>
+        その<strong>ちょうど真ん中</strong>に、FORTがある。
+        <span class="hero__note-en">Design × Performance × Balance</span>
+      </p>
+
+      <a href="#philosophy" class="hero__scroll" aria-label="下へスクロール">
+        <span class="hero__scroll-line"></span><span class="hero__scroll-text">SCROLL</span>
+      </a>
+    </section>
+
+    <!-- FORT STORY / スクロールで言葉が切り替わる没入章 -->
+    <section class="story" id="story" aria-label="FORTの家づくりの物語">
+      <div class="story__sticky">
+        <p class="story__label">FORT STORY</p>
+        <div class="story__words">
+          <div class="story__word is-active">
+            <span class="story__en">DESIGN</span>
+            <span class="story__ja">デザインを、あきらめない。</span>
+          </div>
+          <div class="story__word">
+            <span class="story__en">PERFORMANCE</span>
+            <span class="story__ja">性能に、妥協しない。</span>
+          </div>
+          <div class="story__word">
+            <span class="story__en">BALANCE</span>
+            <span class="story__ja">だから、家族に“ちょうどいい”。</span>
+          </div>
+        </div>
+        <div class="story__progress"><span></span></div>
+        <p class="story__hint" aria-hidden="true">SCROLL</p>
+      </div>
+    </section>
+
+    <!-- 02 FORT PHILOSOPHY / FORTの思い -->
+    <section class="philosophy section" id="philosophy">
+      <div class="container philosophy__inner">
+        <div class="philosophy__text" data-reveal>
+          <p class="section__label">FORT PHILOSOPHY</p>
+          <h2 class="philosophy__title">家族に、ちょうどいい家を。</h2>
+          <p class="philosophy__body" data-lines>
+            性能だけを追い求めれば、家は高くなる。<br>
+            デザインだけを追い求めれば、暮らしにくくなる。<br><br>
+            FORTは、性能・デザイン・価格の<br>
+            ちょうどいいバランスを考える。<br><br>
+            家族が無理なく、長く豊かに暮らせること。<br>
+            それが、FORTの家づくりです。
+          </p>
+        </div>
+        <figure class="philosophy__figure" data-wipe>
+          <img src="images/niche.jpg" alt="FORTがつくる、ちょうどいい暮らし" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- EVENT / 見学会・イベント（写真カード） -->
+    <section class="event section section--gray" id="event">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>EVENT</p>
+          <p class="section__desc" data-reveal>見学会・モデルハウス見学・無料相談会を、随時開催しています。</p>
+        </header>
+        <ul class="feature__grid hscroll" data-drag>
+          <li class="feature__card" data-reveal>
+            <a href="event.html" class="feature__link">
+              <figure class="feature__figure"><img src="images/exterior.jpg" alt="完成見学会" loading="lazy"></figure>
+              <div class="feature__body"><span class="feature__tag">完成見学会</span><h3 class="feature__title">完成・構造見学会</h3><p class="feature__text">実際の住まいで、FORTの性能とデザインを体感。</p></div>
+            </a>
+          </li>
+          <li class="feature__card" data-reveal>
+            <a href="event.html" class="feature__link">
+              <figure class="feature__figure"><img src="images/ldk.jpg" alt="モデルハウス見学" loading="lazy"></figure>
+              <div class="feature__body"><span class="feature__tag">モデルハウス</span><h3 class="feature__title">モデルハウス見学</h3><p class="feature__text">ご予約優先で、じっくりご覧いただけます。</p></div>
+            </a>
+          </li>
+          <li class="feature__card" data-reveal>
+            <a href="event.html" class="feature__link">
+              <figure class="feature__figure"><img src="images/kitchen-view.jpg" alt="無料相談会" loading="lazy"></figure>
+              <div class="feature__body"><span class="feature__tag">相談会</span><h3 class="feature__title">家づくり無料相談会</h3><p class="feature__text">資金計画や土地さがしも、お気軽にご相談ください。</p></div>
+            </a>
+          </li>
+        </ul>
+        <p class="hscroll-note" aria-hidden="true">― 横にスクロール ―</p>
+        <div class="section__more" data-reveal>
+          <a href="event.html" class="btn btn--outline">VIEW MORE</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 PERFORMANCE / 構造・性能（数字で信頼） -->
+    <section class="performance section" id="performance">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>PERFORMANCE</p>
+          <h2 class="section__title" data-reveal>数字で、信頼を。</h2>
+          <p class="section__desc" data-reveal>見えない部分こそ、ていねいに。FORTの確かな住宅性能。</p>
+        </header>
+      </div>
+      </div>
+      <div class="container">
+        <ul class="perf-highlight" data-reveal>
+          <li><p class="ph-value">0.3</p><p class="ph-label">平均 C値（気密）</p></li>
+          <li><p class="ph-value">0.34<small>以下</small></p><p class="ph-label">UA値（断熱）</p></li>
+          <li><p class="ph-value">等級6</p><p class="ph-label">断熱等級</p></li>
+          <li><p class="ph-value">等級3</p><p class="ph-label">耐震等級</p></li>
+          <li><p class="ph-value">最長60<small>年</small></p><p class="ph-label">保証（初期保証20年）</p></li>
+          <li><p class="ph-value">10<small>年</small></p><p class="ph-label">設備保証（※対象機器）</p></li>
+        </ul>
+        <div class="section__more" data-reveal>
+          <a href="performance.html" class="btn btn--outline">構造・性能を詳しく見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 WORKS / 施工事例（大きく見せる・スライダー） -->
+    <section class="works section section--gray" id="works">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>WORKS</p>
+          <h2 class="section__title" data-reveal>暮らしが見える施工事例</h2>
+          <p class="section__desc" data-reveal>写真をタップすると、事例の詳細をご覧いただけます。</p>
+        </header>
+      </div>
+      <div class="works-slider" data-reveal aria-label="施工事例スライド">
+        <div class="works-slider__track">
+          <a class="works-slide" href="works-detail.html">
+            <img src="images/hero.jpg" alt="中庭とつながるブラックモダンの家" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">注文住宅</span>中庭とつながるブラックモダンの家</span>
+          </a>
+          <a class="works-slide" href="works-detail.html">
+            <img src="images/exterior.jpg" alt="家事ラク動線を追求した平屋" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">平屋</span>家事ラク動線を追求した平屋</span>
+          </a>
+          <a class="works-slide" href="works-detail.html">
+            <img src="images/kitchen-view.jpg" alt="景色を楽しむリゾートスタイルの家" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">注文住宅</span>景色を楽しむリゾートスタイルの家</span>
+          </a>
+          <a class="works-slide" href="works-detail.html">
+            <img src="images/ldk.jpg" alt="ホテルライクな二階建ての家" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">二階建て</span>ホテルライクな二階建ての家</span>
+          </a>
+          <a class="works-slide" href="works-detail.html">
+            <img src="images/kitchen-view.jpg" alt="家族が集まる開放的なLDKの家" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">注文住宅</span>家族が集まる開放的なLDKの家</span>
+          </a>
+          <a class="works-slide" href="works-detail.html">
+            <img src="images/exterior.jpg" alt="外からの視線を抑えたプライベートハウス" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">プライベート設計</span>外からの視線を抑えたプライベートハウス</span>
+          </a>
+          <a class="works-slide" href="works-detail.html" aria-hidden="true" tabindex="-1">
+            <img src="images/hero.jpg" alt="" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">注文住宅</span>中庭とつながるブラックモダンの家</span>
+          </a>
+          <a class="works-slide" href="works-detail.html" aria-hidden="true" tabindex="-1">
+            <img src="images/exterior.jpg" alt="" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">平屋</span>家事ラク動線を追求した平屋</span>
+          </a>
+          <a class="works-slide" href="works-detail.html" aria-hidden="true" tabindex="-1">
+            <img src="images/kitchen-view.jpg" alt="" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">注文住宅</span>景色を楽しむリゾートスタイルの家</span>
+          </a>
+          <a class="works-slide" href="works-detail.html" aria-hidden="true" tabindex="-1">
+            <img src="images/ldk.jpg" alt="" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">二階建て</span>ホテルライクな二階建ての家</span>
+          </a>
+          <a class="works-slide" href="works-detail.html" aria-hidden="true" tabindex="-1">
+            <img src="images/kitchen-view.jpg" alt="" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">注文住宅</span>家族が集まる開放的なLDKの家</span>
+          </a>
+          <a class="works-slide" href="works-detail.html" aria-hidden="true" tabindex="-1">
+            <img src="images/exterior.jpg" alt="" loading="lazy" decoding="async">
+            <span class="works-slide__cap"><span class="works-slide__cat">プライベート設計</span>外からの視線を抑えたプライベートハウス</span>
+          </a>
+        </div>
+      </div>
+      <div class="container">
+        <div class="section__more" data-reveal>
+          <a href="works.html" class="btn btn--outline">もっと施工事例を見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 FORT FAMILY / お客様の声 -->
+    <section class="family section" id="family">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>FORT FAMILY</p>
+          <h2 class="section__title" data-reveal>建てたあとの、しあわせまで。</h2>
+          <p class="section__desc" data-reveal>FORTで家を建てたご家族の、暮らしの声をご紹介します。</p>
+        </header>
+        <ul class="family__grid hscroll" data-drag>
+          <li class="family__card" data-reveal>
+            <figure class="family__figure"><img src="images/family-01.jpg" alt="お客様の声 01" loading="lazy" decoding="async"></figure>
+            <div class="family__body"><p class="family__text">「チームで親身に向き合ってくれて、はじめての家づくりも安心でした。」</p><p class="family__name">倉敷市 ／ T様邸</p></div>
+          </li>
+          <li class="family__card" data-reveal>
+            <figure class="family__figure"><img src="images/family-02.jpg" alt="お客様の声 02" loading="lazy" decoding="async"></figure>
+            <div class="family__body"><p class="family__text">「性能もデザインも妥協せず、予算内で理想の住まいになりました。」</p><p class="family__name">岡山市 ／ K様邸</p></div>
+          </li>
+          <li class="family__card" data-reveal>
+            <figure class="family__figure"><img src="images/family-03.jpg" alt="お客様の声 03" loading="lazy" decoding="async"></figure>
+            <div class="family__body"><p class="family__text">「引渡し後も同じ顔ぶれで対応してくれるのが心強いです。」</p><p class="family__name">福山市 ／ M様邸</p></div>
+          </li>
+        </ul>
+        <p class="hscroll-note" aria-hidden="true">― 横にスクロール ―</p>
+        <div class="section__more" data-reveal><a href="family.html" class="btn btn--outline">お客様の声をもっと見る</a></div>
+      </div>
+    </section>
+
+    <!-- 06 LINEUP / 商品ラインナップ -->
+    <section class="lineup section section--gray" id="lineup">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>LINEUP</p>
+          <h2 class="section__title" data-reveal>あなたらしい家づくりを選ぶ。</h2>
+        </header>
+        <div class="lineup-ed">
+          <article class="lineup-ed__row" data-reveal>
+            <figure class="lineup-ed__media" data-wipe><img src="images/lineup-style.jpg" alt="FORT STYLE" loading="lazy" decoding="async"><span class="lineup-ed__tag">建売住宅</span></figure>
+            <div class="lineup-ed__body">
+              <span class="lineup-ed__no">01</span>
+              <h3 class="lineup-ed__name">FORT STYLE</h3>
+              <p class="lineup-ed__type">READY-MADE ／ 建売住宅</p>
+              <p class="lineup-ed__text">土地・建物・外構まで含めて、わかりやすい価格設定。FORTらしいデザインと暮らしやすさを、すぐに住める形で。本体価格1,900万円〜（税別）。</p>
+              <a href="https://www.fortstyle.org/" class="lineup-ed__link" target="_blank" rel="noopener">公式サイトを見る →</a>
+            </div>
+          </article>
+          <article class="lineup-ed__row" data-reveal>
+            <figure class="lineup-ed__media" data-wipe><img src="images/pro/persp-b.jpg" alt="FORT PRO" loading="lazy" decoding="async"><span class="lineup-ed__tag">規格・セミオーダー</span></figure>
+            <div class="lineup-ed__body">
+              <span class="lineup-ed__no">02</span>
+              <h3 class="lineup-ed__name">FORT PRO</h3>
+              <p class="lineup-ed__type">SEMI-ORDER ／ 規格・セミオーダー住宅</p>
+              <p class="lineup-ed__text">人気の間取りをベースに、自分たちらしくカスタマイズ。性能・デザイン・価格のバランスを重視した、FORTのスタンダード。PLAN A〜F からお選びいただけます。</p>
+              <a href="fort-pro.html" class="lineup-ed__link">PLAN A〜F を見る →</a>
+            </div>
+          </article>
+          <article class="lineup-ed__row" data-reveal>
+            <figure class="lineup-ed__media" data-wipe><img src="images/lineup-design.jpg" alt="FORT DESIGN" loading="lazy" decoding="async"><span class="lineup-ed__tag">自由設計</span></figure>
+            <div class="lineup-ed__body">
+              <span class="lineup-ed__no">03</span>
+              <h3 class="lineup-ed__name">FORT DESIGN</h3>
+              <p class="lineup-ed__type">FULL-ORDER ／ 完全自由設計</p>
+              <p class="lineup-ed__text">理想の暮らしをゼロから形にする、完全自由設計。土地条件やライフスタイルに合わせて、設計士と世界にひとつの住まいを描きます。</p>
+              <a href="fort-design.html" class="lineup-ed__link">FORT DESIGN の世界を見る →</a>
+            </div>
+          </article>
+        </div>
+        <div class="section__more" data-reveal><a href="lineup.html" class="btn btn--outline">商品ラインナップを詳しく見る</a></div>
+      </div>
+    </section>
+
+    <!-- 07 FLOW / 家づくりの流れ（概要） -->
+    <section class="flow section" id="flow">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>FLOW</p>
+          <h2 class="section__title" data-reveal>家づくりの流れ</h2>
+          <p class="section__desc" data-reveal>はじめての方もご安心ください。ご相談からお引渡しまで。</p>
+        </header>
+        <ol class="flow__list">
+          <li class="flow__step" data-reveal><span class="flow__num">01</span><div class="flow__body"><h3 class="flow__title">ご相談・ご来場</h3><p class="flow__text">暮らしのご希望やご予算をお聞かせください。</p></div></li>
+          <li class="flow__step" data-reveal><span class="flow__num">02</span><div class="flow__body"><h3 class="flow__title">プランご提案・お見積り</h3><p class="flow__text">ご要望をかたちにしたプランをご提示します。</p></div></li>
+          <li class="flow__step" data-reveal><span class="flow__num">03</span><div class="flow__body"><h3 class="flow__title">ご契約・詳細打ち合わせ</h3><p class="flow__text">仕様や色決めなど、細部まで一緒に決めます。</p></div></li>
+          <li class="flow__step" data-reveal><span class="flow__num">04</span><div class="flow__body"><h3 class="flow__title">着工・お引渡し・アフター</h3><p class="flow__text">完成後も定期点検で長く安心を。</p></div></li>
+        </ol>
+        <div class="section__more" data-reveal>
+          <a href="flow.html" class="btn btn--outline">家づくりの流れを詳しく見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 STAFF / スタッフ紹介（チームを一部表示） -->
+    <section class="staff section section--gray" id="staff">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>STAFF</p>
+          <h2 class="section__title" data-reveal>チームで、家づくりを支える。</h2>
+          <p class="section__desc" data-reveal>営業・設計・工務。一人ではなく、ひとつのチームで。</p>
+        </header>
+        <ul class="staff__grid">
+          <li class="staff__card" data-reveal><figure class="staff__figure"><img src="images/staff-sales.jpg" alt="営業"></figure><h3 class="staff__role">営業</h3><p class="staff__text">想いとご予算に寄り添い、家づくりの入口を支えます。</p></li>
+          <li class="staff__card" data-reveal><figure class="staff__figure"><img src="images/staff-design.jpg" alt="設計"></figure><h3 class="staff__role">設計</h3><p class="staff__text">暮らしやすさとデザインを両立したプランを描きます。</p></li>
+          <li class="staff__card" data-reveal><figure class="staff__figure"><img src="images/staff-engineering.jpg" alt="工務"></figure><h3 class="staff__role">工務</h3><p class="staff__text">確かな施工管理で、理想を現実の住まいへ。</p></li>
+        </ul>
+        <div class="section__more" data-reveal>
+          <a href="staff.html" class="btn btn--outline">スタッフ一覧を見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 STUDIO / スタジオ・モデルハウス -->
+    <section class="studio-teaser section" id="studio">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>STUDIO</p>
+          <h2 class="section__title" data-reveal>FORTの家づくりを体感する。</h2>
+          <p class="section__desc" data-reveal>素材に触れ、空気感を確かめる。FORTの世界観を体験できる場所です。</p>
+        </header>
+        <ul class="feature__grid">
+          <li class="feature__card" data-reveal>
+            <a href="studio.html" class="feature__link">
+              <figure class="feature__figure"><img src="images/model-tamano.jpg" alt="岡山玉野モデルハウス" loading="lazy"></figure>
+              <div class="feature__body"><span class="feature__tag">MODEL HOUSE</span><h3 class="feature__title">岡山玉野モデルハウス</h3><p class="feature__text">実際の住まいで、FORTの性能とデザインを体感いただけます。</p></div>
+            </a>
+          </li>
+          <li class="feature__card" data-reveal>
+            <a href="studio.html" class="feature__link">
+              <figure class="feature__figure"><img src="images/model-shimokamo.jpg" alt="福山下加茂モデルハウス" loading="lazy"></figure>
+              <div class="feature__body"><span class="feature__tag">MODEL HOUSE</span><h3 class="feature__title">福山下加茂モデルハウス</h3><p class="feature__text">暮らしのサイズ感や心地よさを、その場で確かめられます。</p></div>
+            </a>
+          </li>
+        </ul>
+        <div class="section__more" data-reveal>
+          <a href="studio.html" class="btn btn--outline">モデルハウスを見る</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 11 NEWS / お知らせ -->
+    <section class="news section section--gray" id="news">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>NEWS</p>
+          <h2 class="section__title" data-reveal>お知らせ</h2>
+        </header>
+        <ul class="news__list" data-reveal>
+          <li class="news__item"><a href="#" class="news__link"><time class="news__date">2026.06.01</time><span class="news__tag">イベント</span><span class="news__title">6月の見学会・相談会スケジュールを公開しました。</span></a></li>
+          <li class="news__item"><a href="#" class="news__link"><time class="news__date">2026.05.20</time><span class="news__tag">施工事例</span><span class="news__title">新しい施工事例「中庭とつながる家」を追加しました。</span></a></li>
+          <li class="news__item"><a href="#" class="news__link"><time class="news__date">2026.05.01</time><span class="news__tag">お知らせ</span><span class="news__title">福山スタジオの営業時間変更のお知らせ。</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 13 CONTACT / ご予約・お問い合わせ -->
+    <section class="reserve section" id="reserve">
+      <div class="reserve__bg"><img src="images/hero.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" data-parallax="0.12" data-pscale="1.18"><div class="reserve__overlay"></div></div>
+      <div class="container reserve__inner">
+        <p class="section__label section__label--light" data-reveal>CONTACT</p>
+        <h2 class="section__title section__title--light" data-reveal>家づくりのご相談、<br>モデルハウスの見学予約はこちらから。</h2>
+        <ul class="reserve__actions" data-reveal>
+          <li><a href="visit.html" class="btn btn--accent btn--block">ご来場予約</a></li>
+          <li><a href="event.html" class="btn btn--accent btn--block">見学会・モデルハウス予約</a></li>
+          <li><a href="request.html" class="btn btn--light btn--block">資料請求</a></li>
+          <li><a href="contact.html" class="btn btn--light btn--block">お問合せ</a></li>
+        </ul>
+        <p class="reserve__tel" data-reveal>お電話：<a href="tel:0862369600">086-236-9600</a>（岡山）／ <a href="tel:0849827404">084-982-7404</a>（福山）<span class="reserve__tel-note">（受付 9:00〜18:00 / 水曜定休）</span></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       フッター
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo"><img class="footer__logo-img" src="images/logo-lockup-white.png" alt="FORT"></p>
+        <p class="footer__copy-text">性能か、デザインか。<br>その選択をしなくていい家づくり。</p>
+      </div>
+
+      <nav class="footer__nav" aria-label="フッターメニュー">
+        <ul class="footer__list">
+          <li><a href="#concept">CONCEPT</a></li>
+          <li><a href="#why">WHY FORT</a></li>
+          <li><a href="works.html">WORKS</a></li>
+          <li><a href="feature.html">FEATURE</a></li>
+          <li><a href="performance.html">PERFORMANCE</a></li>
+          <li><a href="flow.html">FLOW</a></li>
+          <li><a href="lineup.html">LINEUP</a></li>
+          <li><a href="fort-pro.html">FORT PRO PLAN</a></li>
+          <li><a href="event.html">EVENT</a></li>
+          <li><a href="studio.html">STUDIO</a></li>
+          <li><a href="staff.html">STAFF</a></li>
+          <li><a href="company.html">COMPANY</a></li>
+          <li><a href="#news">NEWS</a></li>
+          <li><a href="#reserve">RESERVE</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__info">
+        <p>株式会社FORT</p>
+        <p>岡山県・倉敷市・福山市エリアで家づくりを行っています。</p>
+        <p>TEL：086-236-9600（岡山）／ 084-982-7404（福山）</p>
+        <p>受付時間 9:00〜18:00 / 水曜定休</p>
+      </div>
+    </div>
+
+    <p class="footer__copyright">© 2026 FORT Inc. All Rights Reserved.</p>
+  </footer>
+
+  <!-- ============================================================
+       スマホで常に表示する固定CTA（画面下に追従）
+  ============================================================ -->
+  <div class="floating-cta">
+    <a href="event.html" class="floating-cta__btn floating-cta__btn--ghost">見学会予約</a>
+    <a href="contact.html" class="floating-cta__btn floating-cta__btn--accent">資料請求・相談</a>
+  </div>
+
+  <!-- 動きを管理するJavaScriptを読み込み -->
+  <script src="script.js"></script>
+</body>
+</html>

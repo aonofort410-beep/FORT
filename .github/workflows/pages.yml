@@ -1,0 +1,61 @@
+# ============================================================
+#  GitHub Pages 自動公開ワークフロー
+#  ------------------------------------------------------------
+#  このファイルがあると、対象ブランチにプッシュしたとき
+#  サイト（index.html など）が自動でネット上に公開されます。
+#
+#  公開URLの例：
+#    https://aonofort410-beep.github.io/FORT/
+#
+#  ※ 初回だけ、リポジトリの Settings → Pages で
+#     「Source」を「GitHub Actions」に変更してください。
+# ============================================================
+
+name: Deploy to GitHub Pages
+
+# どのタイミングで実行するか
+on:
+  push:
+    branches:
+      - claude/elegant-shannon-izgn32  # このブランチへのプッシュで実行
+      - main                            # main にマージされた時も実行
+  workflow_dispatch:                    # 手動でも実行できるようにする
+
+# Pages へ公開するために必要な権限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同時に複数走らないようにする（最新のものを優先）
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # 1. リポジトリの中身を取得
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Pages の設定（未設定なら自動で有効化）
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      # 3. 公開するファイル一式をまとめる（リポジトリ直下を丸ごと）
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+
+      # 4. 公開する
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

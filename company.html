@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--
+============================================================
+  株式会社FORT / COMPANY（会社概要）ページ
+  ------------------------------------------------------------
+  ・会社情報は <dl class="company-table"> の中を書き換えてください
+  ・「000-0000」などは仮の情報です。正式な内容に差し替えてください
+============================================================
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>会社概要｜株式会社FORT（岡山・倉敷・福山の工務店）</title>
+  <meta name="description" content="株式会社FORTの会社概要。岡山・倉敷・福山エリアで、性能とデザインを両立する家づくりを行う工務店です。会社情報・アクセスをご紹介します。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.example-fort.co.jp/company.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="会社概要｜株式会社FORT">
+  <meta property="og:description" content="岡山・倉敷・福山エリアで、性能とデザインを両立する家づくりを行う工務店です。">
+  <meta property="og:image" content="images/exterior.jpg">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ヘッダー（全ページ共通） -->
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <a href="index.html" class="header__logo" aria-label="株式会社FORT トップへ"><img class="header__logo-img header__logo-img--white" src="images/logo-lockup-white.png" alt="FORT"><img class="header__logo-img header__logo-img--dark" src="images/logo-lockup-dark.png" alt="" aria-hidden="true"></a>
+      <button class="menu-toggle" id="menuToggle" type="button"
+              aria-label="メニュー" aria-expanded="false" aria-controls="globalMenu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-toggle__txt">MENU</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ページ見出し -->
+    <section class="subhero">
+      <div class="subhero__media">
+        <img src="images/exterior.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
+        <div class="subhero__overlay"></div>
+      </div>
+      <div class="container subhero__inner">
+        <p class="subhero__eyebrow" data-reveal>COMPANY</p>
+        <h1 class="subhero__title" data-reveal>会社概要</h1>
+        <nav class="breadcrumb" aria-label="現在地">
+          <a href="index.html">HOME</a><span>／</span><span>COMPANY</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 会社情報テーブル -->
+    <section class="section section--gray">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>OVERVIEW</p>
+          <h2 class="section__title" data-reveal>会社情報</h2>
+        </header>
+
+        <dl class="company-table" data-reveal>
+          <div><dt>会社名</dt><dd>株式会社FORT（フォート）</dd></div>
+          <div><dt>設立</dt><dd>平成28年</dd></div>
+          <div><dt>代表者</dt><dd>代表取締役　中村 亜樹</dd></div>
+          <div><dt>資本金</dt><dd>1,000万円</dd></div>
+          <div>
+            <dt>所在地</dt>
+            <dd>
+              <strong>岡山スタジオ</strong><br>
+              〒700-0977　岡山県岡山市北区問屋町9-101 タイルビル 1F<br>
+              TEL 086-236-9600<br><br>
+              <strong>福山スタジオ</strong><br>
+              〒720-0821　広島県福山市東川口町2丁目1-18 中国情報ビル 1F<br>
+              TEL 084-982-7404
+            </dd>
+          </div>
+          <div><dt>登録番号</dt><dd>2級建築士事務所　岡山県知事登録　第6548号</dd></div>
+          <div><dt>事業内容</dt><dd>注文住宅・規格住宅・建売住宅の設計および施工 ほか</dd></div>
+          <div><dt>対応エリア</dt><dd>岡山県全域　※一部エリアについてはご相談ください<br>福山市・尾道市・三原市<br>施工エリア拡大中</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- アクセス（2つのスタジオ） -->
+    <section class="section">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label" data-reveal>ACCESS</p>
+          <h2 class="section__title" data-reveal>2つのスタジオ</h2>
+          <p class="section__desc" data-reveal>岡山と福山に、家づくりのご相談ができるスタジオがあります。</p>
+        </header>
+
+        <div class="studio-grid">
+          <!-- 岡山スタジオ -->
+          <article class="studio-card" data-reveal>
+            <div class="map-frame">
+              <!-- 地図：GoogleマップのiframeをここにIMAGEの代わりに貼り付けできます -->
+              <img src="images/map-okayama.jpg" alt="岡山スタジオの地図" loading="lazy" decoding="async">
+            </div>
+            <h3 class="studio-card__name">岡山スタジオ</h3>
+            <p class="studio-card__addr">〒700-0977<br>岡山県岡山市北区問屋町9-101 タイルビル 1F</p>
+          </article>
+          <!-- 福山スタジオ -->
+          <article class="studio-card" data-reveal>
+            <div class="map-frame">
+              <img src="images/map-fukuyama.jpg" alt="福山スタジオの地図" loading="lazy" decoding="async">
+            </div>
+            <h3 class="studio-card__name">福山スタジオ</h3>
+            <p class="studio-card__addr">〒720-0821<br>広島県福山市東川口町2丁目1-18 中国情報ビル 1F</p>
+          </article>
+        </div>
+
+        <div class="section__more" data-reveal>
+          <a href="studio.html" class="btn btn--outline">スタジオ・モデルハウスの詳細を見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="reserve section" id="reserve">
+      <div class="reserve__bg">
+        <img src="images/hero.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="reserve__overlay"></div>
+      </div>
+      <div class="container reserve__inner">
+        <p class="section__label section__label--light" data-reveal>RESERVE &amp; CONTACT</p>
+        <h2 class="section__title section__title--light" data-reveal>まずはお気軽にご相談ください。</h2>
+        <p class="reserve__lead" data-reveal>家づくりのこと、土地のこと、予算のこと。どんな小さなことでもお気軽に。</p>
+        <ul class="reserve__actions" data-reveal>
+          <li><a href="index.html#reserve" class="btn btn--accent btn--block">見学会予約</a></li>
+          <li><a href="index.html#reserve" class="btn btn--accent btn--block">モデルハウス予約</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">資料請求</a></li>
+          <li><a href="index.html#reserve" class="btn btn--light btn--block">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター（全ページ共通） -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo"><img class="footer__logo-img" src="images/logo-lockup-white.png" alt="FORT"></p>
+        <p class="footer__copy-text">性能か、デザインか。<br>その選択をしなくていい家づくり。</p>
+      </div>
+      <nav class="footer__nav" aria-label="フッターメニュー">
+        <ul class="footer__list">
+          <li><a href="index.html#concept">CONCEPT</a></li>
+          <li><a href="index.html#why">WHY FORT</a></li>
+          <li><a href="works.html">WORKS</a></li>
+          <li><a href="feature.html">FEATURE</a></li>
+          <li><a href="performance.html">PERFORMANCE</a></li>
+          <li><a href="flow.html">FLOW</a></li>
+          <li><a href="lineup.html">LINEUP</a></li>
+          <li><a href="fort-pro.html">FORT PRO PLAN</a></li>
+          <li><a href="event.html">EVENT</a></li>
+          <li><a href="studio.html">STUDIO</a></li>
+          <li><a href="staff.html">STAFF</a></li>
+          <li><a href="company.html">COMPANY</a></li>
+          <li><a href="index.html#news">NEWS</a></li>
+          <li><a href="index.html#reserve">RESERVE</a></li>
+        </ul>
+      </nav>
+      <div class="footer__info">
+        <p>株式会社FORT</p>
+        <p>岡山県・倉敷市・福山市エリアで家づくりを行っています。</p>
+        <p>TEL：086-236-9600（岡山）／ 084-982-7404（福山）</p>
+        <p>受付時間 9:00〜18:00 / 水曜定休</p>
+      </div>
+    </div>
+    <p class="footer__copyright">© 2026 FORT Inc. All Rights Reserved.</p>
+  </footer>
+
+  <div class="floating-cta">
+    <a href="event.html" class="floating-cta__btn floating-cta__btn--ghost">見学会予約</a>
+    <a href="index.html#reserve" class="floating-cta__btn floating-cta__btn--accent">資料請求・相談</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

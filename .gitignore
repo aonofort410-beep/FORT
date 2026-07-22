@@ -1,0 +1,4 @@
+# ビルド成果物・OS生成物
+fort-theme.zip
+*.zip
+.DS_Store

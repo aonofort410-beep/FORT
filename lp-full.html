@@ -20,14 +20,14 @@
   @import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Cinzel:wght@600;700&family=Jost:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap");
 
   #fort-lp {
-    --flp-bg:       #dfe1e4;
-    --flp-light:    #d3d6d9;
-    --flp-card:     #ecedef;
-    --flp-line:     #c6cacd;
-    --flp-charcoal: #34373b;
-    --flp-black:    #1a1c1f;
-    --flp-accent:   #4c5157;
-    --flp-sub:      #686d73;
+    --flp-bg:       #eef0f1;  /* クリーンな明るいベース（カードと帯を際立たせる） */
+    --flp-light:    #cbcfd4;  /* セクションの帯：はっきりしたコンクリートグレー */
+    --flp-card:     #ffffff;  /* カードは純白でパきっと */
+    --flp-line:     #b6bbc1;
+    --flp-charcoal: #23252a;  /* より深いチャコール */
+    --flp-black:    #0f1013;  /* ほぼ純黒（フィーチャー部分） */
+    --flp-accent:   #313640;  /* クリスプなグラファイト */
+    --flp-sub:      #565b62;  /* 本文サブ：コントラスト強め */
     --flp-white:    #ffffff;
     --flp-serif: "Noto Serif JP", serif;
     --flp-sans:  "Noto Sans JP", system-ui, sans-serif;
@@ -37,7 +37,7 @@
     --flp-ease: cubic-bezier(.16,.72,.24,1);
 
     font-family: var(--flp-sans);
-    color: #232528;
+    color: #16181c;
     background: var(--flp-bg);
     line-height: 1.9;
     font-size: 15px;
@@ -86,10 +86,10 @@
     font-family: var(--flp-serif);
     font-weight: 600;
     font-size: clamp(1.7rem, 5.4vw, 2.7rem);
-    line-height: 1.55;
+    line-height: 1.5;
     color: var(--flp-black);
     text-align: center;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
   }
   #fort-lp .flp-section--dark .flp-title { color: var(--flp-white); }
   #fort-lp .flp-lead {
@@ -138,7 +138,7 @@
     align-items: center;
     justify-content: center;
     padding: 90px 24px 110px;
-    background: var(--flp-charcoal);
+    background: var(--flp-black);
     color: var(--flp-white);
     text-align: center;
     overflow: hidden;
@@ -636,7 +636,7 @@
   #fort-lp .flp-specs li,
   #fort-lp .flp-grade__card,
   #fort-lp .flp-flow__step {
-    background: linear-gradient(180deg, #ffffff 0%, #f5f6f7 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #eef0f2 100%);
     border: 1px solid rgba(255,255,255,.8);
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.9),
@@ -704,6 +704,22 @@
   #fort-lp .flp-balance__item:not(.flp-balance__item--center) {
     background: rgba(255,255,255,.04);
     box-shadow: inset 0 0 40px rgba(0,0,0,.18);
+  }
+
+  /* 黒セクション内：3シリーズのテキスト・注記を明るく */
+  #fort-lp .flp-section--dark .flp-series__name { color: var(--flp-white); }
+  #fort-lp .flp-section--dark .flp-series__type { color: #b8bdc4; }
+  #fort-lp .flp-section--dark .flp-series__text { color: #c7ccd2; }
+  #fort-lp .flp-section--dark .flp-series__points li { color: #d2d6db; }
+  #fort-lp .flp-section--dark .flp-series__points li::before { background: #9aa0a8; }
+  #fort-lp .flp-section--dark .flp-series__no { color: rgba(255,255,255,.18); }
+  #fort-lp .flp-section--dark .flp-series__price { color: #a7adb4; }
+  #fort-lp .flp-section--dark .flp-series__price strong { color: var(--flp-white); }
+  #fort-lp .flp-section--dark .flp-series__price--sm { color: #a7adb4; }
+  #fort-lp .flp-section--dark .flp-note { color: #9aa0a8; }
+  /* 黒背景の写真：縁を締めて浮かせる */
+  #fort-lp .flp-section--dark .flp-series__media {
+    box-shadow: 0 16px 40px rgba(0,0,0,.5), 0 40px 70px rgba(0,0,0,.4);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -822,7 +838,7 @@
 </section>
 
 <!-- ============ 05 3つのFORT ============ -->
-<section class="flp-section flp-section--gray">
+<section class="flp-section flp-section--dark">
   <span class="flp-ghost" aria-hidden="true">05</span>
   <div class="flp-inner">
     <p class="flp-label" data-flp-reveal>LINEUP</p>

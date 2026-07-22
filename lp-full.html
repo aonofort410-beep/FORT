@@ -604,6 +604,36 @@
   #fort-lp .flp-btn:hover { background: var(--flp-black); color: var(--flp-white); transform: translateY(-2px); }
 
   /* 動きを減らす設定への配慮 */
+  /* 保証カード */
+  #fort-lp .flp-guard { margin-top: clamp(28px, 4vw, 40px); display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 700px) { #fort-lp .flp-guard { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+  #fort-lp .flp-guard__card {
+    background: var(--flp-white); border-radius: 3px;
+    box-shadow: 0 14px 34px rgba(20,22,25,.07);
+    padding: 30px 22px 26px; text-align: center;
+    transition: transform .5s var(--flp-ease), box-shadow .5s ease;
+  }
+  #fort-lp .flp-guard__card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(20,22,25,.13); }
+  #fort-lp .flp-guard__v { font-family: var(--flp-serif); font-weight: 600; font-size: clamp(1.9rem, 6vw, 2.5rem); color: var(--flp-black); line-height: 1; }
+  #fort-lp .flp-guard__v span { font-size: .42em; margin-left: 2px; }
+  #fort-lp .flp-guard__l { margin-top: 10px; font-weight: 700; font-size: 13.5px; color: var(--flp-accent); letter-spacing: 0.08em; }
+  #fort-lp .flp-guard__t { margin-top: 10px; font-size: 12.5px; color: var(--flp-sub); line-height: 1.9; }
+
+  /* 家づくりの流れ（縦のタイムライン） */
+  #fort-lp .flp-flow { max-width: 720px; margin: clamp(34px, 5vw, 52px) auto 0; }
+  #fort-lp .flp-flow__step { position: relative; display: grid; grid-template-columns: 54px 1fr; gap: 20px; padding-bottom: clamp(26px, 4vw, 40px); }
+  #fort-lp .flp-flow__step:last-child { padding-bottom: 0; }
+  #fort-lp .flp-flow__step:not(:last-child)::before { content: ""; position: absolute; left: 26px; top: 56px; bottom: 0; width: 1px; background: var(--flp-gray, #c6cacd); }
+  #fort-lp .flp-flow__num {
+    width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--flp-accent);
+    background: var(--flp-white); color: var(--flp-accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--flp-en-display); font-size: 18px; position: relative; z-index: 1;
+  }
+  #fort-lp .flp-flow__body { padding-top: 4px; }
+  #fort-lp .flp-flow__ttl { font-family: var(--flp-serif); font-weight: 600; font-size: clamp(1.05rem, 3.2vw, 1.28rem); color: var(--flp-black); letter-spacing: 0.04em; }
+  #fort-lp .flp-flow__txt { margin-top: 7px; color: var(--flp-sub); font-size: 13.5px; line-height: 1.95; }
+
   @media (prefers-reduced-motion: reduce) {
     #fort-lp [data-flp-reveal], #fort-lp [data-flp-wipe] img, #fort-lp .flp-balance__item { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
     #fort-lp [data-flp-wipe]::after { display: none; }
@@ -658,17 +688,17 @@
       <div class="flp-team__card" data-flp-reveal>
         <p class="flp-team__en">CONSULTING</p>
         <p class="flp-team__role">営業</p>
-        <p class="flp-team__text">はじめの一歩から、お引渡しまで。ご家族の想いとご予算にとことん寄り添い、無理のない家づくりの道すじをご提案します。資金計画や土地さがしのご相談も、どうぞお気軽に。</p>
+        <p class="flp-team__text">想いとご予算に寄り添い、家づくりの最初の一歩から伴走します。資金計画や土地さがしのご相談も、お気軽に。</p>
       </div>
       <div class="flp-team__card" data-flp-reveal>
         <p class="flp-team__en">DESIGN</p>
         <p class="flp-team__role">設計</p>
-        <p class="flp-team__text">暮らしやすさと美しさは、両立できる。ご家族のライフスタイルをていねいにうかがい、光・風・生活動線まで考え抜いた、世界にひとつのプランを描きます。</p>
+        <p class="flp-team__text">暮らしやすさと美しさを両立。光・風・生活動線まで考え抜いた、世界にひとつのプランを描きます。</p>
       </div>
       <div class="flp-team__card" data-flp-reveal>
         <p class="flp-team__en">ENGINEERING</p>
         <p class="flp-team__role">工務</p>
-        <p class="flp-team__text">図面の上の理想を、確かな現実へ。経験豊富な職人と連携し、見えない部分まで妥協のない施工管理を徹底。お引渡し後も、責任を持って住まいを見守ります。</p>
+        <p class="flp-team__text">図面の理想を、確かな現実へ。妥協のない施工管理で、お引渡し後も責任を持って住まいを見守ります。</p>
       </div>
     </div>
     <p class="flp-team-note" data-flp-reveal>営業・設計・工務が、ひとつのチーム。<br>あなたの「こうしたい」を全員で共有するから、<br>想いはこぼれず、まっすぐ住まいへ届きます。</p>
@@ -710,7 +740,7 @@
       <li data-flp-reveal><p class="flp-specs__v">0.2</p><p class="flp-specs__l">平均C値（気密）</p></li>
       <li data-flp-reveal><p class="flp-specs__v">0.34<small>以下</small></p><p class="flp-specs__l">UA値（断熱）</p></li>
       <li data-flp-reveal><p class="flp-specs__v">等級6</p><p class="flp-specs__l">断熱等級</p></li>
-      <li data-flp-reveal><p class="flp-specs__v">等級3</p><p class="flp-specs__l">耐震等級<span class="flp-specs__note">性能STANDARD以上は<br>許容応力度計算</span></p></li>
+      <li data-flp-reveal><p class="flp-specs__v">等級3</p><p class="flp-specs__l">耐震等級<span class="flp-specs__note">STANDARD以上は<br>許容応力度計算</span></p></li>
       <li data-flp-reveal><p class="flp-specs__v">最長60<small>年</small></p><p class="flp-specs__l">保証（初期保証20年）</p></li>
       <li data-flp-reveal><p class="flp-specs__v">10<small>年</small></p><p class="flp-specs__l">設備保証（※対象機器）</p></li>
     </ul>
@@ -792,20 +822,44 @@
           </tr>
         </thead>
         <tbody>
-          <tr><th scope="row">キッチン</th><td>Panasonic<br>Sクラス</td><td>Sクラス／ステディア／オフェリア から選択</td><td>自由選択</td></tr>
-          <tr><th scope="row">浴室</th><td>Panasonic<br>オフローラ</td><td>Panasonic／クリナップ／タカラ から選択</td><td>自由選択</td></tr>
-          <tr><th scope="row">洗面</th><td>Panasonic<br>シーライン</td><td>アイカ スタイリッシュカウンター</td><td>アイカ ほか<br>自由選択</td></tr>
-          <tr><th scope="row">トイレ</th><td>Panasonic<br>アラウーノ</td><td>TOTO<br>NJ2 / ZJ2</td><td>TOTO ほか<br>変更可</td></tr>
-          <tr><th scope="row">床材</th><td>Panasonic<br>PLフロア</td><td>ikuta 銘木<br>フローラスティック</td><td>無垢／突板／<br>タイル 自由選択</td></tr>
-          <tr><th scope="row">建具</th><td>Panasonic<br>ベリティス</td><td>Panasonic<br>ベリティス</td><td>ベリティス ほか<br>自由選択</td></tr>
-          <tr><th scope="row">外壁</th><td>窯業系<br>サイディング</td><td>サイディング／<br>ガルバリウム</td><td>サイディング／<br>吹付 自由選択</td></tr>
+          <tr><th scope="row">キッチン</th><td>Panasonic Sクラス</td><td>Panasonic Sクラス ／ クリナップ ステディア ／ タカラスタンダード オフェリア から選択</td><td>メーカー等 自由選択</td></tr>
+          <tr><th scope="row">浴室</th><td>Panasonic オフローラ 1616</td><td>Panasonic Sクラス ／ クリナップ ／ タカラスタンダード から選択</td><td>メーカー等 自由選択</td></tr>
+          <tr><th scope="row">洗面</th><td>Panasonic シーライン</td><td>アイカ スタイリッシュカウンター</td><td>アイカ スマートサニタリー ほか自由選択</td></tr>
+          <tr><th scope="row">トイレ</th><td>Panasonic アラウーノ<br>（1F：Z／2F：V）</td><td>TOTO<br>（1F：NJ2／2F：ZJ2）</td><td>TOTO NJ2 / ZJ2 ほか変更可</td></tr>
+          <tr><th scope="row">床材</th><td>Panasonic PLフロア（シート）</td><td>ikuta 銘木フローラスティック</td><td>無垢材 ／ 突板 ／ タイル ほか自由選択</td></tr>
+          <tr><th scope="row">建具</th><td>Panasonic ベリティス（H2400）</td><td>Panasonic ベリティス（H2400）</td><td>Panasonic ベリティス ほか自由選択</td></tr>
+          <tr><th scope="row">外壁</th><td>窯業系サイディング</td><td>窯業系サイディング ／ ガルバリウム鋼板</td><td>窯業系サイディング ／ 吹付塗装 ほか自由選択</td></tr>
           <tr><th scope="row">収納</th><td colspan="3" class="flp-td-full">南海プライウッド</td></tr>
           <tr><th scope="row">玄関ドア</th><td colspan="3" class="flp-td-full">YKK AP ヴェナート D30（ポケットKey）</td></tr>
-          <tr><th scope="row">給湯器</th><td colspan="3" class="flp-td-full">エコキュート／ガス給湯器 選択可</td></tr>
+          <tr><th scope="row">給湯器</th><td colspan="3" class="flp-td-full">エコキュート ／ ガス給湯器 選択可</td></tr>
         </tbody>
       </table>
     </div>
     <p class="flp-note">※ 標準仕様の一例です。仕様は時期・プランにより変更となる場合があります。</p>
+
+    <!-- 保証・アフター -->
+    <div class="flp-subhead">
+      <p class="flp-label" data-flp-reveal>GUARANTEE</p>
+      <h3 class="flp-title" style="font-size:clamp(1.3rem,4vw,1.8rem);" data-flp-reveal>建てたあとも、ずっと安心を。</h3>
+    </div>
+    <div class="flp-guard">
+      <div class="flp-guard__card" data-flp-reveal>
+        <p class="flp-guard__v">最長60<span>年</span></p>
+        <p class="flp-guard__l">構造躯体保証</p>
+        <p class="flp-guard__t">初期保証20年。定期メンテナンスで最長60年まで延長できます。</p>
+      </div>
+      <div class="flp-guard__card" data-flp-reveal>
+        <p class="flp-guard__v">10<span>年</span></p>
+        <p class="flp-guard__l">主要設備保証</p>
+        <p class="flp-guard__t">キッチン・浴室など、対象設備を10年間保証します。</p>
+      </div>
+      <div class="flp-guard__card" data-flp-reveal>
+        <p class="flp-guard__v">定期<span>点検</span></p>
+        <p class="flp-guard__l">アフターメンテナンス</p>
+        <p class="flp-guard__t">お引渡し後も定期点検で、住まいを長く見守ります。</p>
+      </div>
+    </div>
+    <p class="flp-note" data-flp-reveal>※ 保証内容はグレード・仕様により異なります（FORT STYLEは構造躯体10年保証）。詳しくはお問い合わせください。</p>
   </div>
 </section>
 
@@ -908,6 +962,60 @@
           <li>制振ダンパー evoltz で揺れを軽減（PLUS）</li>
           <li>長く安心して住み継げる住まいへ</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLOW 家づくりの流れ ============ -->
+<section class="flp-section flp-section--gray">
+  <span class="flp-ghost" aria-hidden="true">07</span>
+  <div class="flp-inner">
+    <p class="flp-label" data-flp-reveal>FLOW</p>
+    <h2 class="flp-title" data-flp-reveal>FORTの家づくりの流れ</h2>
+    <p class="flp-lead" data-flp-reveal>はじめての方も、ご安心ください。ご相談からお引渡し、その先まで。</p>
+    <div class="flp-flow">
+      <div class="flp-flow__step" data-flp-reveal>
+        <div class="flp-flow__num">01</div>
+        <div class="flp-flow__body">
+          <p class="flp-flow__ttl">ご相談・ご来場</p>
+          <p class="flp-flow__txt">暮らしのご希望やご予算を、まずはお聞かせください。土地さがしや資金計画のご相談から承ります。</p>
+        </div>
+      </div>
+      <div class="flp-flow__step" data-flp-reveal>
+        <div class="flp-flow__num">02</div>
+        <div class="flp-flow__body">
+          <p class="flp-flow__ttl">プランのご提案・お見積り</p>
+          <p class="flp-flow__txt">ご要望をかたちにしたプランと、わかりやすい総額のお見積りをご提示します。</p>
+        </div>
+      </div>
+      <div class="flp-flow__step" data-flp-reveal>
+        <div class="flp-flow__num">03</div>
+        <div class="flp-flow__body">
+          <p class="flp-flow__ttl">ご契約・詳細打ち合わせ</p>
+          <p class="flp-flow__txt">仕様や色決めなど、細部までチーム全員で一緒に決めていきます。</p>
+        </div>
+      </div>
+      <div class="flp-flow__step" data-flp-reveal>
+        <div class="flp-flow__num">04</div>
+        <div class="flp-flow__body">
+          <p class="flp-flow__ttl">着工・上棟</p>
+          <p class="flp-flow__txt">地鎮祭をおこない、確かな施工管理のもとで住まいをかたちにしていきます。</p>
+        </div>
+      </div>
+      <div class="flp-flow__step" data-flp-reveal>
+        <div class="flp-flow__num">05</div>
+        <div class="flp-flow__body">
+          <p class="flp-flow__ttl">完成・お引渡し</p>
+          <p class="flp-flow__txt">完成検査で仕上がりを確認いただき、お住まいの鍵をお渡しします。</p>
+        </div>
+      </div>
+      <div class="flp-flow__step" data-flp-reveal>
+        <div class="flp-flow__num">06</div>
+        <div class="flp-flow__body">
+          <p class="flp-flow__ttl">アフターメンテナンス</p>
+          <p class="flp-flow__txt">お引渡し後も定期点検で、住まいと暮らしを長く見守り続けます。</p>
+        </div>
       </div>
     </div>
   </div>

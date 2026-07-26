@@ -560,7 +560,6 @@ values
   ('F-012', '石田 一成', 'ishida@fort410.jp',     '工務', '工務',         '福山', '正社員', 'member'),
   ('F-013', '松﨑 真紀', 'matsuzaki@fort410.jp',  '工務', '工務部長',         '福山', '正社員', 'member'),
   ('F-014', '中村 涼子', 'r.nakamura@fort410.jp',   '総務', '総務',         '岡山', '正社員', 'hr')
-  ('F-015', '川崎 力', 'kawasaki@fort410.jp',   '経営', '常務取締役',         '福山', '役員', 'hr')
 on conflict (employee_no) do nothing;
 
 -- ---- 有給残（leave_balances）10期・仮の付与日数 ----

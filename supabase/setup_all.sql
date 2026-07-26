@@ -546,20 +546,21 @@ on conflict (label) do nothing;
 insert into public.employees
   (employee_no, name, email, dept, role_title, base, employment, permission)
 values
-  ('F-001', '青野 弘輝', 'h.aono@fort410.jp',       '経営', '専務取締役',   '岡山', '正社員', 'executive'),
-  ('F-002', '中尾 翔',   's.nakao@fort410.jp',      '営業', '営業リーダー', '岡山', '正社員', 'manager'),
-  ('F-003', '坂本 美咲', 'm.sakamoto@fort410.jp',   '営業', '営業',         '岡山', '正社員', 'member'),
-  ('F-004', '中山 奈央', 'n.nakayama@fort410.jp',   '営業', '営業',         '岡山', '正社員', 'member'),
-  ('F-005', '松川 亮',   'r.matsukawa@fort410.jp',  '設計', '設計主任',     '岡山', '正社員', 'manager'),
-  ('F-006', '日笠 拓也', 't.higasa@fort410.jp',     '設計', '設計',         '岡山', '正社員', 'member'),
-  ('F-007', '山下 彩',   'a.yamashita@fort410.jp',  '設計', '設計',         '岡山', '正社員', 'member'),
-  ('F-008', '村上 大輔', 'd.murakami@fort410.jp',   '設計', '設計',         '福山', '正社員', 'member'),
-  ('F-009', '長瀧 誠',   'm.nagataki@fort410.jp',   '工務', '工務部長',     '岡山', '正社員', 'manager'),
-  ('F-010', '古林 誠一', 's.furubayashi@fort410.jp','工務', '工務主任',     '岡山', '正社員', 'member'),
-  ('F-011', '加藤 健',   'k.kato@fort410.jp',       '工務', '工務',         '岡山', '正社員', 'member'),
-  ('F-012', '石田 翔平', 's.ishida@fort410.jp',     '工務', '工務',         '岡山', '正社員', 'member'),
-  ('F-013', '松﨑 健太', 'k.matsuzaki@fort410.jp',  '工務', '工務',         '福山', '正社員', 'member'),
+  ('F-001', '青野 弘輝', 'aono@fort410.jp',       '経営', '専務取締役',   '岡山', '正社員', 'executive'),
+  ('F-002', '中尾 実樹',   'nakao@fort410.jp',      '営業', '営業リーダー', '岡山', '正社員', 'manager'),
+  ('F-003', '坂本 薫', 'sakamoto@fort410.jp',   '営業', '営業',         '岡山', '正社員', 'member'),
+  ('F-004', '中山 七海', 'nakayama@fort410.jp',   '営業', '営業',         '岡山', '正社員', 'member'),
+  ('F-005', '松川 琳斗',  'matsukawa@fort410.jp',  '設計', '設計主任',     '岡山', '正社員', 'manager'),
+  ('F-006', '日笠 泰成', 'higasa@fort410.jp',     '設計', '設計',         '岡山', '正社員', 'member'),
+  ('F-007', '山下 唯',   'yamashita@fort410.jp',  '設計', '設計',         '岡山', '正社員', 'member'),
+  ('F-008', '村上 芽生', 'murakami@fort410.jp',   '設計', '設計',         '福山', '正社員', 'member'),
+  ('F-009', '長瀧 渉',   'nagataki@fort410.jp',   '工務', '工務部長',     '岡山', '正社員', 'manager'),
+  ('F-010', '古林 真希', 'kobayashi@fort410.jp','工務', '工務主任',     '岡山', '正社員', 'member'),
+  ('F-011', '加藤 真穂',   'kato@fort410.jp',       '工務', '工務',         '岡山', '正社員', 'member'),
+  ('F-012', '石田 一成', 'ishida@fort410.jp',     '工務', '工務',         '岡山', '正社員', 'member'),
+  ('F-013', '松﨑 真紀', 'matsuzaki@fort410.jp',  '工務', '工務',         '福山', '正社員', 'member'),
   ('F-014', '中村 涼子', 'r.nakamura@fort410.jp',   '総務', '総務',         '岡山', '正社員', 'hr')
+  ('F-014', '川崎 力', 'kawasaki@fort410.jp',   '総務', '総務',         '岡山', '正社員', 'hr')
 on conflict (employee_no) do nothing;
 
 -- ---- 有給残（leave_balances）10期・仮の付与日数 ----

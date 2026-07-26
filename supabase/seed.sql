@@ -36,3 +36,10 @@ values
   ('F-013', '松﨑 健太', 'k.matsuzaki@fort410.jp',  '工務', '工務',         '福山', '正社員', 'member'),
   ('F-014', '中村 涼子', 'r.nakamura@fort410.jp',   '総務', '総務',         '岡山', '正社員', 'hr')
 on conflict (employee_no) do nothing;
+
+-- ---- 有給残（leave_balances）10期・仮の付与日数 ----
+-- ※ 実際の付与日数は勤続年数で異なります。運用前に総務が調整してください。
+insert into public.leave_balances (employee_id, fiscal_label, granted_days, used_days)
+select e.id, '10期', 10, 0
+from public.employees e
+on conflict (employee_id, fiscal_label) do nothing;

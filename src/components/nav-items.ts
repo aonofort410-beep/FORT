@@ -30,8 +30,8 @@ export interface NavItem {
  */
 export const NAV_ITEMS: NavItem[] = [
   { label: "ホーム", eyebrow: "HOME", href: "/", icon: LayoutDashboard, phase: 0 },
-  { label: "日報", eyebrow: "REPORTS", href: "/reports", icon: FileText, comingSoon: true, phase: 1 },
-  { label: "勤怠・休日", eyebrow: "ATTENDANCE", href: "/attendance", icon: Clock, comingSoon: true, phase: 1 },
+  { label: "日報", eyebrow: "REPORTS", href: "/reports", icon: FileText, phase: 1 },
+  { label: "勤怠・休日", eyebrow: "ATTENDANCE", href: "/attendance", icon: Clock, phase: 1 },
   { label: "予約", eyebrow: "RESERVATIONS", href: "/reservations", icon: CalendarCheck, comingSoon: true, phase: 2 },
   { label: "案件", eyebrow: "PROJECTS", href: "/projects", icon: Building2, comingSoon: true, phase: 2 },
   { label: "タスク", eyebrow: "TASKS", href: "/tasks", icon: ListChecks, comingSoon: true, phase: 3 },

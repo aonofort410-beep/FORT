@@ -39,3 +39,53 @@ export const DEPARTMENT_COLORS: Record<string, string> = {
 /** 拠点 */
 export const BASES = ["岡山", "福山"] as const;
 export type Base = (typeof BASES)[number];
+
+// ── Phase 1：日報・勤怠 ──
+
+/** 日報の時間帯（表示ラベル付き） */
+export const REPORT_SLOTS = [
+  { key: "am", label: "午前" },
+  { key: "pm", label: "午後" },
+  { key: "ev", label: "夜" },
+] as const;
+
+/** 勤怠ステータス */
+export const ATTENDANCE_STATUSES = [
+  "出勤",
+  "外出",
+  "直行直帰",
+  "在宅",
+  "休暇",
+] as const;
+
+/** 休暇の種類 */
+export const LEAVE_TYPES = [
+  "有給",
+  "半休",
+  "代休",
+  "公休",
+  "特別休暇",
+  "欠勤",
+] as const;
+
+/** 承認権限（休暇申請などを承認できる） */
+export function canApprove(permission: Permission): boolean {
+  return permission === "manager" || permission === "hr" || permission === "executive";
+}
+
+/** 全社の勤怠・提出状況などを横断的に見られるか（総務・経営） */
+export function canViewAll(permission: Permission): boolean {
+  return permission === "hr" || permission === "executive";
+}
+
+/**
+ * 日報の記述から「休み」を示すキーワード。
+ * 「本日休みの人」の自動集計に使う（docs/06_roadmap.md Phase 1-9）。
+ */
+export const REST_KEYWORDS = ["公休", "有給", "代休", "休み", "休暇", "欠勤"];
+
+/** テキストに休みキーワードが含まれるか */
+export function looksLikeRest(text: string | null | undefined): boolean {
+  if (!text) return false;
+  return REST_KEYWORDS.some((kw) => text.includes(kw));
+}

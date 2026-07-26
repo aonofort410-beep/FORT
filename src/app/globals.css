@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * FORT デザインシステムのカラートークン（docs/03_design_system.md）。
+ * 「ミニマル・建築的・editorial」。青系は使わない。
+ */
+:root {
+  /* ベース */
+  --bg: #f4f3ef; /* 温かみのあるオフホワイト */
+  --card: #ffffff;
+  --ink: #171717; /* 本文 */
+  --sub: #777773; /* サブ文字 */
+  --line: #d9d8d2; /* 罫線 */
+  --dark: #242424; /* ダーク面（サイドバー等） */
+
+  /* アクセント */
+  --bronze: #9a8060; /* 主アクセント */
+  --olive: #6f7565; /* 副アクセント */
+
+  --radius: 8px;
+}
+
+/* 全体ダークモード（任意） */
+.dark {
+  --bg: #1a1a18;
+  --card: #242422;
+  --ink: #edebe5;
+  --sub: #9a9992;
+  --line: #34342f;
+  --dark: #171716;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-bg text-ink;
+    font-feature-settings: "palt" 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer components {
+  /* 英字ラベル：字間広め・小さく・上品に（DASHBOARD / STAFF など） */
+  .eyebrow {
+    @apply font-heading text-[11px] font-semibold uppercase tracking-label text-sub;
+  }
+
+  /* 基本カード：白背景＋極薄罫線＋極薄影 */
+  .fort-card {
+    @apply rounded-lg border border-line bg-card shadow-card;
+  }
+}
+
+/* ステータスピル（状態色）。docs の状態色に対応 */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 9999px;
+  padding: 0.125rem 0.5rem;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+.pill--ok {
+  color: #5b7355;
+  background: #eaeee7;
+}
+.pill--warn {
+  color: #b8a47e;
+  background: #f3eee3;
+}
+.pill--late {
+  color: #b5714a;
+  background: #f5e9e0;
+}
+.pill--urgent {
+  color: #a85a52;
+  background: #f3e4e2;
+}
+.pill--muted {
+  color: #6b6b67;
+  background: #ecebe6;
+}

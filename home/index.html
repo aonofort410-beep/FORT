@@ -1,0 +1,884 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>FORT Home</title>
+<meta name="description" content="岡山・福山の住宅会社FORTのトップページ（プレビュー）。写真で惹かれ、考え方で納得し、実物を見たくなる。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Tenor+Sans&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: a set of construction drawings. Each section is a numbered sheet (A-01…),
+   dark "night drafting" sheets alternate with paper sheets, and all imagery is line drawing
+   until approved photographs replace it. */
+:root{
+  --paper:#F1F1EE;      /* drawing paper */
+  --paper-2:#E7E7E3;    /* folded paper / alt band */
+  --ink:#121314;        /* text on paper */
+  --graphite:#5A5D60;   /* secondary text */
+  --rule:#C9CAC5;       /* hairlines */
+  --night:#0D0E0F;      /* dark sheets: fixed in both themes */
+  --night-2:#17191A;
+  --chalk:#ECECE8;      /* text on night */
+  --chalk-dim:#8B8E8F;
+  --night-rule:#2C2F31;
+  --sun:#E9C893;        /* sunlight only */
+  --f-display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --f-latin:"Tenor Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --gutter:clamp(16px,4.5vw,64px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141516;--paper-2:#1B1D1E;--ink:#E9E9E5;--graphite:#A0A3A5;--rule:#34373A;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{--paper:#141516;--paper-2:#1B1D1E;--ink:#E9E9E5;--graphite:#A0A3A5;--rule:#34373A;color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,canvas{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.skip{position:fixed;left:12px;top:-60px;z-index:200;background:var(--ink);color:var(--paper);padding:10px 14px}
+.skip:focus{top:12px}
+.wrap{padding-inline:var(--gutter);max-width:1440px;margin-inline:auto}
+.label{font-family:var(--f-latin);font-size:12px;letter-spacing:.28em;text-transform:uppercase}
+.mono{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.35;margin:0;text-wrap:balance}
+p{margin:0}
+.ext::after{content:"↗";display:inline-block;margin-left:.35em;font-family:var(--f-latin);transition:transform .4s var(--ease)}
+a:hover .ext::after,a.ext:hover::after{transform:translate(2px,-2px)}
+
+/* ---------- grain ---------- */
+.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-4%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+
+/* ---------- loader ---------- */
+.loader{position:fixed;inset:0;z-index:150;background:var(--night);color:var(--chalk);display:grid;place-items:center;transition:transform 1s var(--ease) .1s}
+.loader.is-done{transform:translateY(-101%)}
+.loader__box{display:grid;gap:14px;justify-items:center}
+.loader__word{font-family:var(--f-latin);font-size:clamp(40px,9vw,96px);letter-spacing:.42em;padding-left:.42em;overflow:hidden;line-height:1}
+.loader__word span{display:inline-block;transform:translateY(105%);animation:rise .9s var(--ease) forwards}
+.loader__word span:nth-child(2){animation-delay:.08s}.loader__word span:nth-child(3){animation-delay:.16s}.loader__word span:nth-child(4){animation-delay:.24s}
+.loader__bar{width:min(260px,60vw);height:1px;background:var(--night-rule);position:relative;overflow:hidden}
+.loader__bar i{position:absolute;inset:0;background:var(--chalk);transform-origin:left;transform:scaleX(0)}
+.loader__meta{display:flex;justify-content:space-between;width:min(260px,60vw);color:var(--chalk-dim)}
+@keyframes rise{to{transform:none}}
+html.no-loader .loader{display:none}
+
+/* ---------- cursor ---------- */
+.cursor{position:fixed;left:0;top:0;z-index:120;pointer-events:none;mix-blend-mode:difference;display:none}
+.cursor__dot,.cursor__ring{position:fixed;left:0;top:0;border-radius:50%;background:#fff;transform:translate(-50%,-50%)}
+.cursor__dot{width:6px;height:6px}
+.cursor__ring{width:38px;height:38px;background:transparent;border:1px solid #fff;transition:width .35s var(--ease),height .35s var(--ease),background .35s}
+.cursor__ring span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-latin);font-size:10px;letter-spacing:.2em;color:#000;opacity:0;transition:opacity .2s}
+.cursor.is-link .cursor__ring{width:64px;height:64px}
+.cursor.is-label .cursor__ring{width:92px;height:92px;background:#fff}
+.cursor.is-label .cursor__ring span{opacity:1}
+@media (hover:hover) and (pointer:fine){.cursor{display:block}}
+
+/* ---------- header ---------- */
+.progress{position:fixed;left:0;top:0;height:2px;width:100%;z-index:110;background:var(--chalk);mix-blend-mode:difference;transform-origin:left;transform:scaleX(0)}
+.header{position:fixed;left:0;right:0;top:0;z-index:100;padding-top:env(safe-area-inset-top,0px);color:#fff;mix-blend-mode:difference;transition:transform .6s var(--ease)}
+.header.is-hidden{transform:translateY(-110%)}
+.header__in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
+.logo{font-family:var(--f-latin);font-size:22px;letter-spacing:.42em}
+.nav{display:flex;gap:28px;align-items:center}
+.nav a{position:relative;font-family:var(--f-latin);font-size:12px;letter-spacing:.22em;padding-block:12px}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav .nav__visit{border:1px solid currentColor;padding:10px 20px;border-radius:40px}
+.nav .nav__visit::after{display:none}
+.menu-btn{display:none;align-items:center;gap:12px;min-height:44px;font-family:var(--f-latin);font-size:12px;letter-spacing:.22em}
+.menu-btn i{display:grid;gap:6px;width:26px}
+.menu-btn i::before,.menu-btn i::after{content:"";height:1px;background:currentColor}
+@media (max-width:980px){.nav{display:none}.menu-btn{display:flex}}
+
+/* ---------- menu overlay ---------- */
+.menu{position:fixed;inset:0;z-index:130;background:var(--night);color:var(--chalk);clip-path:circle(0% at calc(100% - 50px) 38px);transition:clip-path .9s var(--ease);visibility:hidden;overflow:auto}
+.menu.is-open{clip-path:circle(150% at calc(100% - 50px) 38px);visibility:visible}
+.menu__in{min-height:100%;display:grid;grid-template-rows:auto 1fr auto;padding-block:calc(env(safe-area-inset-top,0px) + 18px) calc(env(safe-area-inset-bottom,0px) + 28px)}
+.menu__top{display:flex;justify-content:space-between;align-items:center;height:44px}
+.menu__close{min-height:44px;font-family:var(--f-latin);font-size:12px;letter-spacing:.22em}
+.menu__list{list-style:none;margin:0;padding:32px 0;display:grid;align-content:center;gap:4px}
+.menu__list a{display:flex;align-items:baseline;gap:18px;font-family:var(--f-latin);font-size:clamp(32px,8vw,64px);letter-spacing:.08em;line-height:1.25;padding-block:4px}
+.menu__list small{font-family:var(--f-body);font-size:13px;letter-spacing:.1em;color:var(--chalk-dim)}
+.menu__list li{overflow:hidden}
+.menu__list li a{transform:translateY(100%);transition:transform .8s var(--ease)}
+.menu.is-open .menu__list li a{transform:none}
+.menu__list li:nth-child(2) a{transition-delay:.05s}.menu__list li:nth-child(3) a{transition-delay:.1s}.menu__list li:nth-child(4) a{transition-delay:.15s}.menu__list li:nth-child(5) a{transition-delay:.2s}.menu__list li:nth-child(6) a{transition-delay:.25s}.menu__list li:nth-child(7) a{transition-delay:.3s}
+.menu__foot{color:var(--chalk-dim)}
+html.menu-open{overflow:hidden}
+
+/* ---------- sheet index (fixed title block) ---------- */
+.sheet{position:fixed;right:var(--gutter);bottom:calc(env(safe-area-inset-bottom,0px) + 24px);z-index:95;display:grid;grid-template-columns:auto auto;border:1px solid #fff;color:#fff;mix-blend-mode:difference;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em}
+.sheet span{padding:5px 9px;border-right:1px solid #fff}
+.sheet span:last-child{border-right:0;min-width:108px}
+.sheet b{font-weight:500}
+@media (max-width:980px){.sheet{display:none}}
+
+/* ---------- mobile CTA ---------- */
+.dock{display:none}
+@media (max-width:980px){
+  .dock{position:fixed;left:0;right:0;bottom:0;z-index:96;display:grid;grid-template-columns:1fr 1fr;background:var(--night);color:var(--chalk);border-top:1px solid var(--night-rule);padding-bottom:env(safe-area-inset-bottom,0px);transition:transform .5s var(--ease)}
+  .dock a{min-height:52px;display:grid;place-items:center;font-size:14px;letter-spacing:.08em}
+  .dock a+a{border-left:1px solid var(--night-rule)}
+  .dock.is-hidden{transform:translateY(110%)}
+  body{padding-bottom:52px}
+}
+
+/* ---------- reveal ---------- */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.line{display:block;overflow:hidden}
+.line>span{display:inline-block}
+.js .split .line>span{transform:translateY(110%);transition:transform 1.2s var(--ease)}
+.js .split.in .line>span{transform:none}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;background:var(--night);color:var(--chalk);min-height:min(100svh,980px);display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.hero__cv{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero__in{position:relative;padding-block:120px 64px;display:grid;gap:36px;width:100%}
+.hero__top{display:flex;justify-content:space-between;gap:16px;color:var(--chalk-dim);flex-wrap:wrap}
+.hero h1{font-size:clamp(40px,7.4vw,112px);font-weight:800;line-height:1.18;letter-spacing:.02em}
+.hero h1 .ch{display:inline-block;transform:translateY(0);opacity:1}
+.js .hero h1 .ch{opacity:0;transform:translateY(.5em) rotate(4deg);filter:blur(8px);transition:opacity 1s var(--ease),transform 1.2s var(--ease),filter 1s var(--ease)}
+.js .hero.is-on h1 .ch{opacity:1;transform:none;filter:none}
+.hero__row{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap}
+.hero__lead{max-width:30em;color:#C8C9C6;font-size:15px}
+.hero__scroll{display:flex;align-items:center;gap:14px;color:var(--chalk-dim)}
+.hero__scroll i{width:1px;height:64px;background:var(--night-rule);position:relative;overflow:hidden}
+.hero__scroll i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--chalk);animation:drop 2.2s var(--ease) infinite}
+@keyframes drop{to{top:110%}}
+
+/* ---------- marquee ---------- */
+.marquee{background:var(--night);color:var(--chalk);border-block:1px solid var(--night-rule);overflow:hidden;padding-block:18px}
+.marquee__track{display:flex;gap:48px;width:max-content;animation:mq 38s linear infinite;font-family:var(--f-latin);font-size:clamp(20px,3vw,34px);letter-spacing:.2em;white-space:nowrap}
+.marquee__track em{font-style:normal;color:var(--chalk-dim)}
+.marquee:hover .marquee__track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- section header ---------- */
+.sec{padding-block:clamp(88px,13vw,180px)}
+.sec__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:32px;margin-bottom:clamp(40px,6vw,80px)}
+.sec__no{display:flex;gap:14px;align-items:baseline;color:var(--graphite)}
+.sec__no b{font-family:var(--f-mono);font-weight:500;font-size:11px}
+.sec__title{font-size:clamp(30px,4.4vw,60px)}
+.sec__title small{display:block;font-family:var(--f-latin);font-weight:400;font-size:12px;letter-spacing:.3em;color:var(--graphite);margin-bottom:18px}
+@media (max-width:760px){.sec__head{grid-template-columns:1fr;gap:18px}}
+
+/* ---------- ABOUT / manifesto ---------- */
+.about__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:32px}
+.manifesto{font-family:var(--f-display);font-weight:700;font-size:clamp(24px,3.3vw,46px);line-height:1.7;letter-spacing:.02em}
+.manifesto .w{opacity:.16;transition:opacity .35s linear}
+.manifesto .w.on{opacity:1}
+.about__note{margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--rule)}
+.about__note div{padding:22px 22px 0 0;display:grid;gap:8px}
+.about__note div+div{padding-left:22px;border-left:1px solid var(--rule)}
+.about__note dt{color:var(--graphite)}
+.about__note dd{margin:0;font-size:15px}
+@media (max-width:760px){.about__grid{grid-template-columns:1fr}.about__note{grid-template-columns:1fr}.about__note div+div{padding-left:0;border-left:0;border-top:1px solid var(--rule);margin-top:22px}}
+
+/* ---------- WORKS horizontal ---------- */
+.works{background:var(--night);color:var(--chalk);position:relative}
+.works__pin{position:relative;overflow:hidden;padding-block:clamp(80px,10vw,120px)}
+.works.is-pinned .works__pin{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr auto;align-content:center;padding-block:clamp(72px,9vh,110px) 40px}
+.works__vp{min-width:0;overflow:hidden}
+.works.is-pinned .works__vp{overflow:visible}
+.works.is-pinned .card{flex-basis:min(520px,calc((100vh - 360px)*1.333))}
+.works.is-pinned .card--lead{flex-basis:min(760px,calc((100vh - 360px)*1.6))}
+.works.is-pinned .card--end{flex-basis:360px}
+.works .sec__no{color:var(--chalk-dim)}
+.works .sec__title small{color:var(--chalk-dim)}
+.works__head{width:100%;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.works__count{font-family:var(--f-mono);font-size:12px;color:var(--chalk-dim)}
+.works__count b{color:var(--chalk);font-weight:500;font-size:28px;font-family:var(--f-latin)}
+.track{display:flex;gap:clamp(16px,2.4vw,36px);padding-inline:var(--gutter);will-change:transform;align-items:stretch}
+.works:not(.is-pinned) .track{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:8px}
+.works:not(.is-pinned) .track::-webkit-scrollbar{display:none}
+.card{flex:0 0 min(78vw,520px);scroll-snap-align:start;display:grid;grid-template-rows:auto auto;gap:18px;color:var(--chalk)}
+.card--lead{flex-basis:min(86vw,760px)}
+.card__fig{position:relative;aspect-ratio:4/3;max-width:100%;background:var(--night-2);border:1px solid var(--night-rule);overflow:hidden}
+.card--lead .card__fig{aspect-ratio:16/10}
+.card__fig canvas{width:100%;height:100%;transition:transform 1.2s var(--ease)}
+.card:hover .card__fig canvas{transform:scale(1.035)}
+.card__tb{position:absolute;right:0;bottom:0;display:flex;border-left:1px solid var(--night-rule);border-top:1px solid var(--night-rule);font-family:var(--f-mono);font-size:10px;color:var(--chalk-dim);background:var(--night)}
+.card__tb span{padding:5px 9px}.card__tb span+span{border-left:1px solid var(--night-rule)}
+.card__meta{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.card__meta h3{font-size:clamp(20px,2vw,26px)}
+.card__meta p{color:var(--chalk-dim);font-size:14px;margin-top:4px}
+.card__go{flex:none;font-family:var(--f-latin);font-size:11px;letter-spacing:.22em;color:var(--chalk-dim)}
+.card--end{flex-basis:min(70vw,360px);display:grid;place-content:center;justify-items:start;gap:22px;border:1px solid var(--night-rule);padding:36px}
+.card--end h3{font-size:clamp(22px,2.4vw,32px)}
+.works__bar{height:1px;background:var(--night-rule);margin-inline:var(--gutter);margin-top:36px;position:relative}
+.works__bar i{position:absolute;inset:0;background:var(--chalk);transform-origin:left;transform:scaleX(0)}
+.works:not(.is-pinned) .works__bar{display:none}
+
+/* ---------- buttons ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;gap:14px;min-height:52px;padding:0 28px;border:1px solid currentColor;border-radius:60px;font-size:14px;letter-spacing:.08em;overflow:hidden;isolation:isolate;transition:color .5s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:currentColor;border-radius:inherit;transform:translateY(101%);transition:transform .6s var(--ease)}
+.btn:hover::before{transform:none}
+.btn--on-night:hover{color:var(--night)}
+.btn--on-paper:hover{color:var(--paper)}
+.btn .arr{font-family:var(--f-latin)}
+.magnetic{transition:transform .5s var(--ease)}
+
+/* ---------- LIFE: sun study ---------- */
+.life{background:var(--paper-2)}
+.sun{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
+.sun__fig{position:relative;aspect-ratio:16/11;max-width:100%;background:var(--paper);border:1px solid var(--rule)}
+.sun__fig canvas{width:100%;height:100%}
+.sun__fig .mono{position:absolute;left:14px;top:12px;color:var(--graphite)}
+.sun__ctl{display:grid;gap:28px}
+.sun__ctl p{color:var(--graphite);max-width:32em}
+.seg{display:inline-grid;grid-template-columns:repeat(3,auto);border:1px solid var(--rule);border-radius:40px;padding:3px;width:max-content;max-width:100%}
+.seg button{min-height:40px;padding:0 18px;border-radius:40px;font-size:13px;letter-spacing:.06em;color:var(--graphite);transition:background .4s,color .4s}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.range{display:grid;gap:10px}
+.range__row{display:flex;justify-content:space-between;align-items:baseline}
+.range__time{font-family:var(--f-latin);font-size:clamp(36px,4vw,54px);letter-spacing:.06em;line-height:1;font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:1px;background:var(--ink)}
+input[type=range]::-moz-range-track{height:1px;background:var(--ink)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--sun);border:1px solid var(--ink);margin-top:-11px}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--sun);border:1px solid var(--ink)}
+.sun__data{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--rule)}
+.sun__data div{padding-top:14px;display:grid;gap:2px}
+.sun__data dt{color:var(--graphite)}
+.sun__data dd{margin:0;font-family:var(--f-latin);font-size:22px;font-variant-numeric:tabular-nums}
+@media (max-width:860px){.sun{grid-template-columns:1fr}}
+
+/* ---------- HOUSE ---------- */
+.house__scale{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;margin-bottom:40px;color:var(--graphite)}
+.house__scale i{height:1px;background:linear-gradient(90deg,var(--rule),var(--ink))}
+.house__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);perspective:1200px}
+.hcard{position:relative;display:grid;grid-template-rows:auto auto 1fr auto;gap:18px;padding:clamp(24px,2.6vw,40px);min-height:460px;border:1px solid var(--rule);background:var(--paper);transform-style:preserve-3d;transition:transform .6s var(--ease),border-color .4s;overflow:hidden}
+.hcard:hover{border-color:var(--ink)}
+.hcard__glare{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.35),transparent 45%);opacity:0;transition:opacity .4s;mix-blend-mode:soft-light}
+.hcard:hover .hcard__glare{opacity:1}
+.hcard__type{display:flex;justify-content:space-between;color:var(--graphite)}
+.hcard h3{font-family:var(--f-latin);font-weight:400;font-size:clamp(26px,2.6vw,38px);letter-spacing:.08em;transform:translateZ(30px)}
+.hcard h3 small{display:block;font-family:var(--f-display);font-weight:700;font-size:16px;letter-spacing:.04em;margin-top:6px}
+.hcard p{color:var(--graphite);font-size:15px}
+.hcard__free{display:grid;gap:8px}
+.hcard__free div{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
+.hcard__free span{height:6px;background:var(--rule)}
+.hcard__free span.on{background:var(--ink)}
+.hcard__go{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--rule);padding-top:16px;font-size:14px}
+@media (max-width:900px){.house__grid{grid-template-columns:1fr}.hcard{min-height:0}}
+
+/* ---------- PLACE ---------- */
+.place{background:var(--night);color:var(--chalk)}
+.place .sec__no,.place .sec__title small{color:var(--chalk-dim)}
+.place__grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
+.place__map{position:relative;aspect-ratio:16/10;max-width:100%;border:1px solid var(--night-rule);background:var(--night-2)}
+.place__map canvas{width:100%;height:100%}
+.place__tabs{display:inline-grid;grid-template-columns:1fr 1fr;border:1px solid var(--night-rule);border-radius:40px;padding:3px;margin-bottom:28px}
+.place__tabs button{min-height:44px;padding:0 26px;border-radius:40px;color:var(--chalk-dim);letter-spacing:.1em;transition:background .4s,color .4s}
+.place__tabs button[aria-selected="true"]{background:var(--chalk);color:var(--night)}
+.place__panel h3{font-family:var(--f-latin);font-weight:400;font-size:clamp(40px,6vw,84px);letter-spacing:.12em;line-height:1}
+.place__panel h3 small{display:block;font-family:var(--f-display);font-size:18px;letter-spacing:.2em;margin-top:14px;color:var(--chalk-dim)}
+.place__panel p{margin-top:24px;color:#BDBEBB;max-width:28em}
+.place__links{margin-top:28px;display:grid;border-top:1px solid var(--night-rule)}
+.place__links a{display:flex;justify-content:space-between;align-items:center;min-height:56px;border-bottom:1px solid var(--night-rule);transition:padding .5s var(--ease)}
+.place__links a:hover{padding-left:12px}
+@media (max-width:860px){.place__grid{grid-template-columns:1fr}}
+
+/* ---------- EVENT / VISIT ---------- */
+.visit{display:grid;grid-template-columns:1fr 1fr;min-height:min(80vh,720px);border-top:1px solid var(--rule)}
+.visit a{position:relative;display:grid;align-content:space-between;gap:48px;padding:clamp(32px,5vw,72px) var(--gutter);overflow:hidden;isolation:isolate;transition:flex .8s var(--ease)}
+.visit a+a{border-left:1px solid var(--rule)}
+.visit a::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--night);transform:scaleY(0);transform-origin:bottom;transition:transform .8s var(--ease)}
+.visit a:hover{color:var(--chalk)}
+.visit a:hover::before{transform:none}
+.visit h3{font-family:var(--f-latin);font-weight:400;font-size:clamp(48px,8vw,128px);letter-spacing:.08em;line-height:1}
+.visit h3 small{display:block;font-family:var(--f-display);font-weight:700;font-size:clamp(18px,1.8vw,24px);letter-spacing:.1em;margin-top:18px}
+.visit p{max-width:24em;color:var(--graphite);transition:color .6s}
+.visit a:hover p{color:var(--chalk-dim)}
+.visit__go{display:flex;align-items:center;gap:16px;font-size:15px}
+.visit__go i{width:56px;height:56px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;font-style:normal;font-family:var(--f-latin);transition:transform .6s var(--ease)}
+.visit a:hover .visit__go i{transform:rotate(-45deg)}
+@media (max-width:760px){.visit{grid-template-columns:1fr}.visit a+a{border-left:0;border-top:1px solid var(--rule)}}
+.event{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;border-block:1px solid var(--rule);padding-block:36px}
+.event h3{font-size:clamp(22px,2.6vw,34px)}
+.event p{color:var(--graphite);margin-top:8px;max-width:40em}
+@media (max-width:760px){.event{grid-template-columns:1fr}}
+
+/* ---------- footer ---------- */
+.foot{background:var(--night);color:var(--chalk);overflow:hidden;padding-top:clamp(64px,8vw,120px)}
+.foot__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;padding-bottom:56px;border-bottom:1px solid var(--night-rule)}
+.foot__grid h4{margin:0 0 14px;font-weight:400;color:var(--chalk-dim)}
+.foot__grid ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:14px}
+.foot__grid a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.foot__big{font-family:var(--f-latin);font-size:clamp(96px,30vw,460px);letter-spacing:.12em;line-height:.8;white-space:nowrap;margin-top:40px;display:flex;justify-content:space-between;color:var(--chalk)}
+.foot__big span{display:inline-block;transition:transform 1.3s var(--ease)}
+.js .foot__big span{transform:translateY(60%)}
+.js .foot__big.in span{transform:none}
+.foot__big span:nth-child(2){transition-delay:.08s}.foot__big span:nth-child(3){transition-delay:.16s}.foot__big span:nth-child(4){transition-delay:.24s}
+.foot__legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:22px 28px;color:var(--chalk-dim)}
+@media (max-width:760px){.foot__grid{grid-template-columns:1fr 1fr}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important}
+  html{scroll-behavior:auto}
+  .grain{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<div class="loader" aria-hidden="true">
+  <div class="loader__box">
+    <div class="loader__word"><span>F</span><span>O</span><span>R</span><span>T</span></div>
+    <div class="loader__bar"><i></i></div>
+    <div class="loader__meta mono"><span>SCALE 1:100</span><span class="loader__pct">000</span></div>
+  </div>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"><span></span></div></div>
+
+<header class="header">
+  <div class="wrap header__in">
+    <a class="logo" href="#top" aria-label="FORT トップへ">FORT</a>
+    <nav class="nav" aria-label="メイン">
+      <a href="#works">WORKS</a>
+      <a href="#life">LIFE</a>
+      <a href="#house">HOUSE</a>
+      <a href="#place">PLACE</a>
+      <a href="#event">EVENT</a>
+      <a class="nav__visit magnetic" href="#visit">VISIT</a>
+    </nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">MENU<i></i></button>
+  </div>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="メニュー">
+  <div class="wrap menu__in">
+    <div class="menu__top"><span class="logo">FORT</span><button class="menu__close" type="button">CLOSE ✕</button></div>
+    <ul class="menu__list">
+      <li><a href="#works">WORKS <small>施工事例</small></a></li>
+      <li><a href="#life">LIFE <small>暮らしと光</small></a></li>
+      <li><a href="#house">HOUSE <small>家づくり</small></a></li>
+      <li><a href="#place">PLACE <small>岡山・福山</small></a></li>
+      <li><a href="#event">EVENT <small>見学会・イベント</small></a></li>
+      <li><a href="#visit">VISIT <small>来場・相談</small></a></li>
+      <li><a href="#about">ABOUT <small>FORTについて</small></a></li>
+    </ul>
+    <p class="menu__foot mono">OKAYAMA / FUKUYAMA — ESC で閉じる</p>
+  </div>
+</div>
+
+<div class="sheet" aria-hidden="true"><span>SHEET</span><span><b class="sheet__no">A-00</b> <span class="sheet__nm" style="border:0;padding:0">COVER</span></span></div>
+
+<main id="main">
+  <!-- A-00 HERO -->
+  <section class="hero" id="top" data-sheet="A-00" data-name="COVER">
+    <canvas class="hero__cv" aria-hidden="true"></canvas>
+    <div class="wrap hero__in">
+      <div class="hero__top mono"><span>FORT — OKAYAMA / FUKUYAMA</span><span>ELEVATION 1:100 · GL±0</span></div>
+      <h1 aria-label="暮らしを、一本の線から。"><span class="hero__l1">暮らしを、</span><br><span class="hero__l2">一本の線から。</span></h1>
+      <div class="hero__row">
+        <p class="hero__lead">写真で惹かれ、考え方で納得し、実物を見たくなる家を。岡山と福山で、敷地と家族に合わせて一邸ずつ考えています。</p>
+        <a class="hero__scroll mono" href="#about"><i></i>SCROLL</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>FORT DESIGN</span><em>／</em><span>FORT PRO</span><em>／</em><span>FORT STYLE</span><em>／</em><span>OKAYAMA</span><em>／</em><span>FUKUYAMA</span><em>／</em>
+      <span>FORT DESIGN</span><em>／</em><span>FORT PRO</span><em>／</em><span>FORT STYLE</span><em>／</em><span>OKAYAMA</span><em>／</em><span>FUKUYAMA</span><em>／</em>
+    </div>
+  </div>
+
+  <!-- A-01 ABOUT -->
+  <section class="sec" id="about" data-sheet="A-01" data-name="ABOUT">
+    <div class="wrap about__grid">
+      <div class="sec__no rv"><b>A-01</b><span class="label">About</span></div>
+      <div>
+        <p class="manifesto">家は、写真で好きになり、考え方で信じられて、はじめて住みたい場所になる。FORTは岡山と福山で、光の入り方や家族の動き方から一本ずつ線を引き、その理由まで説明できる家をつくっています。</p>
+        <dl class="about__note">
+          <div class="rv"><dt class="label">Area</dt><dd>岡山・福山を中心に活動</dd></div>
+          <div class="rv"><dt class="label">Ways</dt><dd>自由設計・規格住宅・完成した住まいの三つの建て方</dd></div>
+          <div class="rv"><dt class="label">Visit</dt><dd>見学会と来場相談で、実物を確かめられます</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- A-02 WORKS -->
+  <section class="works" id="works" data-sheet="A-02" data-name="WORKS">
+    <div class="works__pin">
+      <div class="wrap works__head">
+        <div>
+          <div class="sec__no rv" style="margin-bottom:18px"><b>A-02</b><span class="label">Selected Works</span></div>
+          <h2 class="sec__title split"><small>WORKS</small><span class="line"><span>好きな形から、</span></span><span class="line"><span>FORTの家を探す。</span></span></h2>
+        </div>
+        <p class="works__count"><b class="works__cur">01</b> / <span class="works__tot">04</span></p>
+      </div>
+      <div class="works__vp">
+        <div class="track">
+          <a class="card card--lead" href="https://www.fort410.com/works/" target="_blank" rel="noopener" data-cursor="VIEW">
+            <div class="card__fig"><canvas data-draw="hiraya" aria-hidden="true"></canvas><div class="card__tb"><span>W-01</span><span>ELEVATION</span></div></div>
+            <div class="card__meta"><div><h3>平屋</h3><p>ワンフロアで暮らしが完結する住まいの事例</p></div><span class="card__go ext">FORT410.COM</span></div>
+          </a>
+          <a class="card" href="https://www.fort410.com/works/" target="_blank" rel="noopener" data-cursor="VIEW">
+            <div class="card__fig"><canvas data-draw="two" aria-hidden="true"></canvas><div class="card__tb"><span>W-02</span><span>ELEVATION</span></div></div>
+            <div class="card__meta"><div><h3>二階建て</h3><p>限られた敷地で広がりをつくる事例</p></div><span class="card__go ext">FORT410.COM</span></div>
+          </a>
+          <a class="card" href="https://www.fort410.com/works/" target="_blank" rel="noopener" data-cursor="VIEW">
+            <div class="card__fig"><canvas data-draw="court" aria-hidden="true"></canvas><div class="card__tb"><span>W-03</span><span>PLAN</span></div></div>
+            <div class="card__meta"><div><h3>中庭のある家</h3><p>外からの視線を遮り、光を内側に取り込む</p></div><span class="card__go ext">FORT410.COM</span></div>
+          </a>
+          <a class="card" href="https://www.fort410.com/works/" target="_blank" rel="noopener" data-cursor="VIEW">
+            <div class="card__fig"><canvas data-draw="void" aria-hidden="true"></canvas><div class="card__tb"><span>W-04</span><span>SECTION</span></div></div>
+            <div class="card__meta"><div><h3>吹き抜け</h3><p>上下階を一つの空気でつなぐ断面の工夫</p></div><span class="card__go ext">FORT410.COM</span></div>
+          </a>
+          <div class="card card--end">
+            <p class="label" style="color:var(--chalk-dim)">All Works</p>
+            <h3>すべての施工事例は<br>公式サイトで。</h3>
+            <a class="btn btn--on-night magnetic" href="https://www.fort410.com/works/" target="_blank" rel="noopener">施工事例一覧 <span class="arr">↗</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="works__bar" aria-hidden="true"><i></i></div>
+    </div>
+  </section>
+
+  <!-- A-03 LIFE -->
+  <section class="sec life" id="life" data-sheet="A-03" data-name="LIFE / SUN STUDY">
+    <div class="wrap">
+      <div class="sec__head">
+        <div class="sec__no rv"><b>A-03</b><span class="label">Life with FORT</span></div>
+        <h2 class="sec__title split"><small>SUN STUDY</small><span class="line"><span>夏の日差しは遮り、</span></span><span class="line"><span>冬の光は奥まで。</span></span></h2>
+      </div>
+      <div class="sun">
+        <div class="sun__fig rv">
+          <canvas class="sun__cv" aria-label="窓と軒の断面図。選んだ季節と時刻の日差しの角度を示します" role="img"></canvas>
+          <span class="mono">SECTION · OKAYAMA 34.7°N · 南面</span>
+        </div>
+        <div class="sun__ctl rv">
+          <p>軒の出と窓の高さを決めるとき、季節ごとの太陽高度を確かめます。季節と時刻を動かすと、岡山の緯度で計算した日差しが室内のどこまで届くかが変わります。</p>
+          <div class="seg" role="group" aria-label="季節">
+            <button type="button" data-decl="23.44" aria-pressed="false">夏至</button>
+            <button type="button" data-decl="0" aria-pressed="false">春分・秋分</button>
+            <button type="button" data-decl="-23.44" aria-pressed="true">冬至</button>
+          </div>
+          <div class="range">
+            <div class="range__row"><label class="label" for="sun-time">Time</label><output class="range__time" for="sun-time">12:00</output></div>
+            <input id="sun-time" type="range" min="7" max="17" step="0.25" value="12">
+          </div>
+          <dl class="sun__data">
+            <div><dt class="mono">太陽高度</dt><dd class="d-alt">—</dd></div>
+            <div><dt class="mono">室内への到達</dt><dd class="d-reach">—</dd></div>
+            <div><dt class="mono">軒の出</dt><dd>910<small class="mono"> mm</small></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A-04 HOUSE -->
+  <section class="sec" id="house" data-sheet="A-04" data-name="HOUSE">
+    <div class="wrap">
+      <div class="sec__head">
+        <div class="sec__no rv"><b>A-04</b><span class="label">House</span></div>
+        <h2 class="sec__title split"><small>THREE WAYS TO BUILD</small><span class="line"><span>建て方は、</span></span><span class="line"><span>三つから選べます。</span></span></h2>
+      </div>
+      <div class="house__scale mono rv"><span>完成した住まい</span><i></i><span>自由設計</span></div>
+      <div class="house__grid">
+        <a class="hcard rv" href="https://www.fort410.com/" target="_blank" rel="noopener" data-tilt>
+          <span class="hcard__glare"></span>
+          <div class="hcard__type mono"><span>STYLE</span><span>完成した住まい</span></div>
+          <h3>FORT STYLE<small>見て、選んで、住む。</small></h3>
+          <div style="display:grid;gap:22px;align-content:start">
+            <p>FORTが設計した住まいを、完成した状態で確かめてから選ぶ方法です。できあがった空間を自分の目で見て決めたい方に向いています。</p>
+            <div class="hcard__free"><span class="mono">設計の自由度</span><div><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+          </div>
+          <span class="hcard__go"><span class="ext">公式サイトで見る</span><span class="mono">H-03</span></span>
+        </a>
+        <a class="hcard rv" href="https://www.fort410.com/fort-pro/" target="_blank" rel="noopener" data-tilt>
+          <span class="hcard__glare"></span>
+          <div class="hcard__type mono"><span>PRO</span><span>規格住宅</span></div>
+          <h3>FORT PRO<small>選んで、仕上げる。</small></h3>
+          <div style="display:grid;gap:22px;align-content:start">
+            <p>磨き込んだプランをもとに、仕様や素材を選んで仕上げる方法です。決める範囲を絞り、進め方を分かりやすくしたい方に向いています。</p>
+            <div class="hcard__free"><span class="mono">設計の自由度</span><div><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div></div>
+          </div>
+          <span class="hcard__go"><span class="ext">FORT PROを見る</span><span class="mono">H-02</span></span>
+        </a>
+        <a class="hcard rv" href="https://www.fort410.com/" target="_blank" rel="noopener" data-tilt>
+          <span class="hcard__glare"></span>
+          <div class="hcard__type mono"><span>DESIGN</span><span>自由設計</span></div>
+          <h3>FORT DESIGN<small>白紙から、描く。</small></h3>
+          <div style="display:grid;gap:22px;align-content:start">
+            <p>敷地と家族の暮らし方から、間取りも外観も一から考える方法です。時間をかけて、自分たちだけの答えを探したい方に向いています。</p>
+            <div class="hcard__free"><span class="mono">設計の自由度</span><div><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div></div>
+          </div>
+          <span class="hcard__go"><span class="ext">公式サイトで見る</span><span class="mono">H-01</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- A-05 PLACE -->
+  <section class="sec place" id="place" data-sheet="A-05" data-name="PLACE">
+    <div class="wrap">
+      <div class="sec__head">
+        <div class="sec__no rv"><b>A-05</b><span class="label">Place</span></div>
+        <h2 class="sec__title split"><small>OKAYAMA / FUKUYAMA</small><span class="line"><span>岡山と福山、</span></span><span class="line"><span>二つの拠点で。</span></span></h2>
+      </div>
+      <div class="place__grid">
+        <div class="place__map rv"><canvas class="place__cv" role="img" aria-label="岡山市と福山市の位置関係を示す図"></canvas></div>
+        <div class="rv">
+          <div class="place__tabs" role="tablist" aria-label="地域">
+            <button type="button" role="tab" id="tab-okayama" aria-selected="true" aria-controls="panel-place" data-region="okayama">岡山</button>
+            <button type="button" role="tab" id="tab-fukuyama" aria-selected="false" aria-controls="panel-place" data-region="fukuyama" tabindex="-1">福山</button>
+          </div>
+          <div class="place__panel" id="panel-place" role="tabpanel" aria-labelledby="tab-okayama">
+            <h3 class="pl-name">OKAYAMA<small>岡山</small></h3>
+            <p class="pl-text">岡山エリアの見学会・イベントと施工事例をご案内します。来場先は各イベントのページでご確認ください。</p>
+            <div class="place__links">
+              <a class="pl-ev" href="https://www.fort410.com/info/" target="_blank" rel="noopener"><span>岡山の見学会・イベント</span><span class="ext mono">INFO</span></a>
+              <a href="https://www.fort410.com/works/" target="_blank" rel="noopener"><span>施工事例を見る</span><span class="ext mono">WORKS</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A-06 EVENT -->
+  <section class="sec" id="event" data-sheet="A-06" data-name="EVENT" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="sec__head">
+        <div class="sec__no rv"><b>A-06</b><span class="label">Event</span></div>
+        <h2 class="sec__title split"><small>OPEN HOUSE</small><span class="line"><span>図面の次は、</span></span><span class="line"><span>実物を歩いてみる。</span></span></h2>
+      </div>
+      <div class="event rv">
+        <div>
+          <h3>見学会・イベント</h3>
+          <p>開催中・予約受付中の見学会と相談会は、公式サイトの一覧に最新の日程を載せています。</p>
+        </div>
+        <a class="btn btn--on-paper magnetic" href="https://www.fort410.com/info/" target="_blank" rel="noopener">開催中のイベントを見る <span class="arr">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- A-07 VISIT -->
+  <section id="visit" data-sheet="A-07" data-name="VISIT" style="padding-top:clamp(64px,9vw,120px)">
+    <div class="visit">
+      <a href="https://www.fort410.com/info/" target="_blank" rel="noopener" data-cursor="OKAYAMA">
+        <span class="mono">V-01 · 来場・相談</span>
+        <div><h3>OKAYAMA<small>岡山で相談する</small></h3></div>
+        <div style="display:grid;gap:28px"><p>見学会や相談会の日程から、岡山の来場先を選んで予約できます。</p><span class="visit__go"><i>→</i><span class="ext">イベント一覧へ</span></span></div>
+      </a>
+      <a href="https://www.fort410.com/info/fukuyama-home-consultation/" target="_blank" rel="noopener" data-cursor="FUKUYAMA">
+        <span class="mono">V-02 · 来場・相談</span>
+        <div><h3>FUKUYAMA<small>福山で相談する</small></h3></div>
+        <div style="display:grid;gap:28px"><p>福山の家づくり相談会のページから、内容と予約方法を確認できます。</p><span class="visit__go"><i>→</i><span class="ext">福山の相談会へ</span></span></div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" data-sheet="A-08" data-name="FOOTER">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div><h4 class="label">Works</h4><ul><li><a href="https://www.fort410.com/works/" target="_blank" rel="noopener">施工事例 ↗</a></li><li><a href="#life">暮らしと光</a></li></ul></div>
+      <div><h4 class="label">House</h4><ul><li><a href="#house">三つの建て方</a></li><li><a href="https://www.fort410.com/fort-pro/" target="_blank" rel="noopener">FORT PRO ↗</a></li></ul></div>
+      <div><h4 class="label">Visit</h4><ul><li><a href="https://www.fort410.com/info/" target="_blank" rel="noopener">見学会・イベント ↗</a></li><li><a href="https://www.fort410.com/info/fukuyama-home-consultation/" target="_blank" rel="noopener">福山の相談会 ↗</a></li></ul></div>
+      <div><h4 class="label">Place</h4><ul><li><a href="#place">岡山</a></li><li><a href="#place">福山</a></li></ul></div>
+    </div>
+    <div class="foot__big" aria-hidden="true"><span>F</span><span>O</span><span>R</span><span>T</span></div>
+    <div class="foot__legal mono"><span>© FORT</span><span>PREVIEW — 写真・ロゴは公式素材に差し替え予定</span><a href="#top">BACK TO TOP ↑</a></div>
+  </div>
+</footer>
+
+<nav class="dock" aria-label="来場">
+  <a href="https://www.fort410.com/info/" target="_blank" rel="noopener">見学会</a>
+  <a href="#visit">来場相談</a>
+</nav>
+
+<script>
+(()=>{
+const d=document, root=d.documentElement;
+root.classList.add('js');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const $=(s,c=d)=>c.querySelector(s), $$=(s,c=d)=>[...c.querySelectorAll(s)];
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+const css=n=>getComputedStyle(root).getPropertyValue(n).trim();
+const DPR=Math.min(window.devicePixelRatio||1,2);
+function fit(cv){const r=cv.getBoundingClientRect();const w=Math.max(1,Math.round(r.width)),h=Math.max(1,Math.round(r.height));if(cv.width!==w*DPR||cv.height!==h*DPR){cv.width=w*DPR;cv.height=h*DPR}const c=cv.getContext('2d');c.setTransform(DPR,0,0,DPR,0,0);return{c,w,h}}
+
+/* ---------- partial line drawing helper ---------- */
+function drawSegs(c,segs,p){let total=0;segs.forEach(s=>{s.l=Math.hypot(s[2]-s[0],s[3]-s[1]);total+=s.l});let left=total*p;c.beginPath();for(const s of segs){if(left<=0)break;const t=Math.min(1,left/s.l);c.moveTo(s[0],s[1]);c.lineTo(s[0]+(s[2]-s[0])*t,s[1]+(s[3]-s[1])*t);left-=s.l}c.stroke()}
+function rect(x,y,w,h){return[[x,y,x+w,y],[x+w,y,x+w,y+h],[x+w,y+h,x,y+h],[x,y+h,x,y]]}
+function dim(c,x1,y1,x2,y2,txt,col){c.save();c.strokeStyle=col;c.fillStyle=col;c.lineWidth=.6;c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);const a=Math.atan2(y2-y1,x2-x1)+Math.PI/4;[[x1,y1],[x2,y2]].forEach(([x,y])=>{c.moveTo(x-4*Math.cos(a),y-4*Math.sin(a));c.lineTo(x+4*Math.cos(a),y+4*Math.sin(a))});c.stroke();c.font='10px "IBM Plex Mono", monospace';c.textAlign='center';c.textBaseline='bottom';c.translate((x1+x2)/2,(y1+y2)/2);if(Math.abs(x2-x1)<Math.abs(y2-y1)){c.rotate(-Math.PI/2)}c.fillText(txt,0,-3);c.restore()}
+
+/* ---------- loader ---------- */
+const loader=$('.loader');
+function startHero(){ $('.hero').classList.add('is-on'); heroStart=performance.now(); }
+if(reduce){root.classList.add('no-loader');}
+{
+  const pct=$('.loader__pct'), bar=$('.loader__bar i');let t0=performance.now();const dur=reduce?0:1500;
+  (function tick(now){const p=dur?clamp((now-t0)/dur,0,1):1;const e=1-Math.pow(1-p,3);pct.textContent=String(Math.round(e*100)).padStart(3,'0');bar.style.transform=`scaleX(${e})`;
+    if(p<1)requestAnimationFrame(tick);else{loader.classList.add('is-done');setTimeout(startHero,reduce?0:350);setTimeout(()=>loader.remove(),1400)}})(t0);
+}
+
+/* ---------- split hero title into chars ---------- */
+let ci=0;$$('.hero h1 > span').forEach(s=>{const txt=s.textContent;s.textContent='';s.setAttribute('aria-hidden','true');[...txt].forEach(ch=>{const e=d.createElement('span');e.className='ch';e.textContent=ch;e.style.transitionDelay=(ci++*0.055)+'s';s.appendChild(e)})});
+
+/* ---------- HERO canvas: drafting an elevation ---------- */
+const heroCv=$('.hero__cv');let heroStart=Infinity, mx=0, my=0, tmx=0, tmy=0;
+addEventListener('pointermove',e=>{tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5},{passive:true});
+function heroSegs(){ // virtual 1000 x 600, ground at y=470
+  const G=470,s=[];
+  s.push([40,G,960,G]);
+  s.push(...rect(250,250,300,220));            // tall volume
+  s.push([250,250,550,210]);                    // shed roof line
+  s.push([250,210,250,250],[550,210,550,250]);
+  s.push(...rect(550,340,250,130));             // low volume
+  s.push([530,340,820,340]);                    // eave line of low volume
+  s.push(...rect(280,300,110,70));              // window upper
+  s.push(...rect(420,300,100,70));
+  s.push(...rect(600,370,150,100));             // big opening
+  s.push([675,370,675,470]);
+  s.push(...rect(300,390,60,80));               // door
+  s.push([800,420,900,420],[900,420,900,470]);  // fence
+  return s;
+}
+const HS=heroSegs();
+function hero(now){
+  if(!heroCv.isConnected)return;
+  const {c,w,h}=fit(heroCv);mx+=(tmx-mx)*.06;my+=(tmy-my)*.06;
+  c.clearRect(0,0,w,h);
+  const chalk=css('--chalk'),gridc=css('--night-rule');
+  // grid (moves opposite for depth)
+  const g=Math.max(28,w/36);c.strokeStyle=gridc;c.lineWidth=1;c.globalAlpha=.55;c.beginPath();
+  const ox=(mx*-18)%g, oy=(my*-18)%g;
+  for(let x=ox;x<w;x+=g){c.moveTo(x,0);c.lineTo(x,h)}for(let y=oy;y<h;y+=g){c.moveTo(0,y);c.lineTo(w,y)}c.stroke();c.globalAlpha=1;
+  // drawing
+  const sc=Math.min(w/1000,h/600)*(w<700?1.25:.8);
+  const tx=w*(w<700?.5:.64)-500*sc+mx*30, ty=h*(w<700?.30:.27)-300*sc+my*20;
+  c.save();c.translate(tx,ty);c.scale(sc,sc);
+  const p=reduce?1:clamp((now-heroStart)/2600,0,1);const e=1-Math.pow(1-p,2.2);
+  c.strokeStyle=chalk;c.lineWidth=1.2/sc;c.globalAlpha=.9;drawSegs(c,HS,e);
+  if(p>.55){const a=clamp((p-.55)/.45,0,1);c.globalAlpha=a*.8;
+    dim(c,250,500,550,500,'5,460',chalk);dim(c,550,500,800,500,'4,550',chalk);dim(c,215,250,215,470,'6,370',chalk);
+    c.font='11px "IBM Plex Mono", monospace';c.fillStyle=chalk;c.fillText('GL±0',870,462);c.fillText('▽ 1FL +450',560,332);c.fillText('S=1:100',40,560);
+  }
+  c.restore();
+  // scanning light
+  if(!reduce){const sx=((now/40)%(w+400))-200;const gr=c.createLinearGradient(sx-120,0,sx+120,0);gr.addColorStop(0,'rgba(255,255,255,0)');gr.addColorStop(.5,'rgba(255,255,255,.035)');gr.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=gr;c.fillRect(0,0,w,h)}
+  const vis=heroCv.getBoundingClientRect().bottom>0;
+  if(vis||p<1) requestAnimationFrame(hero); else heroIdle=true;
+}
+let heroIdle=false;requestAnimationFrame(hero);
+addEventListener('scroll',()=>{if(heroIdle&&heroCv.getBoundingClientRect().bottom>0){heroIdle=false;requestAnimationFrame(hero)}},{passive:true});
+
+/* ---------- works drawings ---------- */
+const drawers={
+  hiraya(c,w,h,p,col){const u=Math.min(w/100,h/62),ox=(w-100*u)/2,oy=(h-62*u)/2,X=x=>ox+x*u,Y=y=>oy+y*u;
+    const s=[[X(4),Y(50),X(96),Y(50)],[X(12),Y(28),X(88),Y(28)],[X(8),Y(28),X(50),Y(16)],[X(50),Y(16),X(92),Y(28)],...rect(X(16),Y(28),68*u,22*u),...rect(X(22),Y(34),24*u,16*u),[X(34),Y(34),X(34),Y(50)],...rect(X(56),Y(34),10*u,10*u),...rect(X(70),Y(34),10*u,10*u)];
+    c.strokeStyle=col;c.lineWidth=1;drawSegs(c,s,p);if(p>.8){c.globalAlpha=(p-.8)*5;dim(c,X(16),Y(56),X(84),Y(56),'17,290',col);c.globalAlpha=1}},
+  two(c,w,h,p,col){const u=Math.min(w/100,h/75),ox=(w-100*u)/2,oy=(h-75*u)/2,X=x=>ox+x*u,Y=y=>oy+y*u;
+    const s=[[X(6),Y(66),X(94),Y(66)],...rect(X(26),Y(18),48*u,48*u),[X(22),Y(18),X(78),Y(10)],[X(26),Y(42),X(74),Y(42)],...rect(X(32),Y(24),16*u,12*u),...rect(X(54),Y(22),14*u,16*u),...rect(X(32),Y(48),12*u,18*u),...rect(X(50),Y(48),18*u,14*u),...rect(X(74),Y(48),14*u,18*u)];
+    c.strokeStyle=col;c.lineWidth=1;drawSegs(c,s,p);if(p>.8){c.globalAlpha=(p-.8)*5;dim(c,X(20),Y(18),X(20),Y(66),'7,280',col);c.globalAlpha=1}},
+  court(c,w,h,p,col){const u=Math.min(w/100,h/75),ox=(w-100*u)/2,oy=(h-75*u)/2,X=x=>ox+x*u,Y=y=>oy+y*u;
+    const s=[...rect(X(20),Y(8),60*u,60*u),...rect(X(38),Y(26),24*u,24*u),[X(20),Y(26),X(38),Y(26)],[X(62),Y(26),X(80),Y(26)],[X(50),Y(8),X(50),Y(26)],[X(38),Y(50),X(20),Y(50)],[X(62),Y(50),X(62),Y(68)]];
+    c.strokeStyle=col;c.lineWidth=1;drawSegs(c,s,p);
+    if(p>.6){c.globalAlpha=(p-.6)*2.5;c.setLineDash([2,3]);c.beginPath();c.moveTo(X(38),Y(26));c.lineTo(X(62),Y(50));c.moveTo(X(62),Y(26));c.lineTo(X(38),Y(50));c.stroke();c.setLineDash([]);c.font='10px "IBM Plex Mono", monospace';c.fillStyle=col;c.textAlign='center';c.fillText('COURT',X(50),Y(40));c.fillText('LDK',X(50),Y(18));c.fillText('N↑',X(90),Y(14));c.globalAlpha=1}},
+  void(c,w,h,p,col){const u=Math.min(w/100,h/75),ox=(w-100*u)/2,oy=(h-75*u)/2,X=x=>ox+x*u,Y=y=>oy+y*u;
+    const s=[[X(6),Y(66),X(94),Y(66)],...rect(X(18),Y(14),64*u,52*u),[X(18),Y(40),X(52),Y(40)],[X(52),Y(40),X(52),Y(43)],[X(14),Y(14),X(86),Y(14)],...rect(X(58),Y(18),18*u,40*u),[X(22),Y(66),X(40),Y(40)]];
+    c.strokeStyle=col;c.lineWidth=1;drawSegs(c,s,p);
+    if(p>.7){c.globalAlpha=(p-.7)*3.3;c.setLineDash([3,4]);c.beginPath();for(let i=0;i<4;i++){c.moveTo(X(60+i*4),Y(20));c.lineTo(X(44+i*4),Y(62))}c.stroke();c.setLineDash([]);c.font='10px "IBM Plex Mono", monospace';c.fillStyle=col;c.fillText('VOID',X(55),Y(30));c.globalAlpha=1}}
+};
+const cards=$$('canvas[data-draw]').map(cv=>({cv,p:reduce?1:0,target:reduce?1:0,hover:0}));
+function drawCard(o){const {c,w,h}=fit(o.cv);c.clearRect(0,0,w,h);const col=css('--chalk');
+  c.strokeStyle=css('--night-rule');c.lineWidth=1;c.beginPath();const g=w/20;for(let x=g;x<w;x+=g){c.moveTo(x,0);c.lineTo(x,h)}for(let y=g;y<h;y+=g){c.moveTo(0,y);c.lineTo(w,y)}c.globalAlpha=.5;c.stroke();c.globalAlpha=1;
+  c.save();const s=1+o.hover*.04;c.translate(w/2,h/2);c.scale(s,s);c.translate(-w/2,-h/2);drawers[o.cv.dataset.draw](c,w,h,o.p,col);c.restore()}
+function animCards(){let busy=false;cards.forEach(o=>{const d1=o.target-o.p;if(Math.abs(d1)>.002){o.p+=d1*.045;busy=true}else o.p=o.target;drawCard(o)});if(busy)requestAnimationFrame(animCards);else cardsBusy=false}
+let cardsBusy=false;const kick=()=>{if(!cardsBusy){cardsBusy=true;requestAnimationFrame(animCards)}};
+cards.forEach(o=>{const a=o.cv.closest('.card');a.addEventListener('pointerenter',()=>{if(reduce)return;o.p=0;o.hover=1;kick()});a.addEventListener('pointerleave',()=>{o.hover=0;kick()})});
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const o=cards.find(k=>k.cv===e.target);o.target=1;kick()}}),{threshold:.3});
+cards.forEach(o=>{drawCard(o);cio.observe(o.cv)});
+
+/* ---------- WORKS pinned horizontal scroll ---------- */
+const works=$('.works'), track=$('.track', works), wbar=$('.works__bar i'), wcur=$('.works__cur');
+$('.works__tot').textContent=String(cards.length).padStart(2,'0');
+const cardEls=$$('.card',track).filter(e=>!e.classList.contains('card--end'));
+let pinned=false, wDist=0;
+function layoutWorks(){
+  pinned=!reduce&&innerWidth>=900;works.classList.toggle('is-pinned',pinned);
+  if(pinned){wDist=Math.max(0,track.scrollWidth-innerWidth);works.style.height=(innerHeight+wDist)+'px'}else{works.style.height='';track.style.transform=''}
+}
+function scrollWorks(){if(!pinned)return;const r=works.getBoundingClientRect();const p=clamp(-r.top/(r.height-innerHeight||1),0,1);track.style.transform=`translate3d(${-p*wDist}px,0,0)`;wbar.style.transform=`scaleX(${p})`;const idx=clamp(Math.floor(p*(cardEls.length)),0,cardEls.length-1);wcur.textContent=String(idx+1).padStart(2,'0')}
+track.addEventListener('scroll',()=>{if(pinned)return;const idx=clamp(Math.round(track.scrollLeft/(cardEls[0].offsetWidth||1)),0,cardEls.length-1);wcur.textContent=String(idx+1).padStart(2,'0')},{passive:true});
+
+/* ---------- manifesto word highlight ---------- */
+const man=$('.manifesto');{const t=man.textContent;man.setAttribute('aria-label',t);man.textContent='';
+  const parts=t.match(/[^、。]+[、。]?/g)||[t];parts.forEach(part=>{[...part].forEach((ch,i)=>{const s=d.createElement('span');s.className='w';s.setAttribute('aria-hidden','true');s.textContent=ch;man.appendChild(s)})})}
+const words=$$('.w',man);
+function scrollMan(){const r=man.getBoundingClientRect();const p=reduce?1:clamp((innerHeight*.85-r.top)/(r.height+innerHeight*.35),0,1);const n=Math.round(p*words.length);words.forEach((w,i)=>w.classList.toggle('on',i<n))}
+
+/* ---------- section sheet indicator + header hide + progress ---------- */
+const header=$('.header'), prog=$('.progress'), dock=$('.dock'), sheetNo=$('.sheet__no'), sheetNm=$('.sheet__nm');
+const sheets=$$('[data-sheet]');let lastY=scrollY;
+function scrollUI(){const y=scrollY;const max=d.documentElement.scrollHeight-innerHeight;prog.style.transform=`scaleX(${max>0?y/max:0})`;
+  const down=y>lastY+4, up=y<lastY-4;if(y<120||up){header.classList.remove('is-hidden')}else if(down&&!root.classList.contains('menu-open')){header.classList.add('is-hidden')}
+  dock.classList.toggle('is-hidden',y<innerHeight*.6);lastY=y;
+  let cur=sheets[0];for(const s of sheets){if(s.getBoundingClientRect().top<innerHeight*.5)cur=s}sheetNo.textContent=cur.dataset.sheet;sheetNm.textContent=cur.dataset.name}
+let ticking=false;function onScroll(){if(ticking)return;ticking=true;requestAnimationFrame(()=>{scrollWorks();scrollMan();scrollUI();ticking=false})}
+addEventListener('scroll',onScroll,{passive:true});
+addEventListener('resize',()=>{layoutWorks();onScroll();cards.forEach(drawCard);drawSun();drawMap()});
+
+/* ---------- reveal ---------- */
+$$('.split').forEach(el=>$$('.line>span',el).forEach((s,i)=>s.style.transitionDelay=(i*.12)+'s'));
+const rvEls=$$('.rv,.split,.foot__big');
+if(reduce||!('IntersectionObserver' in window)){rvEls.forEach(e=>e.classList.add('in'))}else{
+  // elements already on screen at load reveal immediately so the first frame is complete
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  rvEls.forEach(e=>io.observe(e));
+  setTimeout(()=>rvEls.forEach(e=>{if(e.getBoundingClientRect().top<innerHeight)e.classList.add('in')}),50);
+}
+
+/* ---------- cursor ---------- */
+if(fine&&!reduce){
+  const cur=$('.cursor'),dot=$('.cursor__dot'),ring=$('.cursor__ring'),lab=$('.cursor__ring span');let x=innerWidth/2,y=innerHeight/2,rx=x,ry=y;
+  addEventListener('pointermove',e=>{x=e.clientX;y=e.clientY;dot.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`},{passive:true});
+  (function loop(){rx+=(x-rx)*.16;ry+=(y-ry)*.16;ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+  d.addEventListener('pointerover',e=>{const l=e.target.closest('[data-cursor]');const a=e.target.closest('a,button,input');cur.classList.toggle('is-label',!!l);cur.classList.toggle('is-link',!!a&&!l);lab.textContent=l?l.dataset.cursor:''});
+  addEventListener('pointerout',e=>{if(!e.relatedTarget){cur.style.opacity=0}});addEventListener('pointerover',()=>cur.style.opacity=1);
+}
+
+/* ---------- magnetic buttons ---------- */
+if(fine&&!reduce)$$('.magnetic').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});b.addEventListener('pointerleave',()=>b.style.transform='')});
+
+/* ---------- tilt cards ---------- */
+if(fine&&!reduce)$$('[data-tilt]').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();const px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;el.style.transform=`rotateY(${(px-.5)*10}deg) rotateX(${(.5-py)*8}deg)`;el.style.setProperty('--gx',px*100+'%');el.style.setProperty('--gy',py*100+'%')});el.addEventListener('pointerleave',()=>el.style.transform='')});
+
+/* ---------- menu ---------- */
+const menu=$('#menu'),mbtn=$('.menu-btn'),mclose=$('.menu__close');let lastFocus=null;
+function openMenu(){lastFocus=d.activeElement;menu.classList.add('is-open');root.classList.add('menu-open');mbtn.setAttribute('aria-expanded','true');setTimeout(()=>mclose.focus(),50)}
+function closeMenu(ret=true){if(!menu.classList.contains('is-open'))return;menu.classList.remove('is-open');root.classList.remove('menu-open');mbtn.setAttribute('aria-expanded','false');if(ret&&lastFocus)lastFocus.focus()}
+mbtn.addEventListener('click',openMenu);mclose.addEventListener('click',()=>closeMenu());
+$$('a',menu).forEach(a=>a.addEventListener('click',()=>closeMenu(false)));
+d.addEventListener('keydown',e=>{if(!menu.classList.contains('is-open'))return;if(e.key==='Escape'){closeMenu()}else if(e.key==='Tab'){const f=$$('a,button',menu);const first=f[0],last=f[f.length-1];if(e.shiftKey&&d.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&d.activeElement===last){e.preventDefault();first.focus()}}});
+
+/* ---------- SUN STUDY (solar altitude at Okayama 34.7°N) ---------- */
+const sunCv=$('.sun__cv'),sunIn=$('#sun-time'),sunOut=$('.range__time'),dAlt=$('.d-alt'),dReach=$('.d-reach');
+const LAT=34.7*Math.PI/180;let decl=-23.44;
+function solar(hour){const H=(hour-12)*15*Math.PI/180,dd=decl*Math.PI/180;
+  const sinAlt=Math.sin(LAT)*Math.sin(dd)+Math.cos(LAT)*Math.cos(dd)*Math.cos(H);const alt=Math.asin(sinAlt);
+  // azimuth from south (positive west)
+  const cosAz=(sinAlt*Math.sin(LAT)-Math.sin(dd))/(Math.cos(alt)*Math.cos(LAT));let az=Math.acos(clamp(cosAz,-1,1));if(H<0)az=-az;return{alt,az}}
+function drawSun(){
+  const {c,w,h}=fit(sunCv);const hour=+sunIn.value;const {alt,az}=solar(hour);
+  const ink=css('--ink'),rule=css('--rule'),sun=css('--sun'),gray=css('--graphite');
+  c.clearRect(0,0,w,h);
+  // model in mm: window head 2200, sill 300, eave depth 910 at 2500, room depth 5460
+  const S=Math.min((w*.72)/6300,(h*.62)/3100), ox=w*.22, oy=h*.86; // ox = exterior face of wall (south, left side)
+  const X=mm=>ox+mm*S, Y=mm=>oy-mm*S;
+  // effective profile angle (projected onto section plane N-S)
+  const altDeg=alt*180/Math.PI;const prof=alt>0?Math.atan(Math.tan(alt)/Math.max(.05,Math.cos(az))):0;
+  const up=alt>0&&Math.abs(az)<Math.PI/2;
+  // sky tint
+  if(up){const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,sun+'22');g.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=g;c.fillRect(0,0,w,h)}
+  // light patch: rays past eave edge (x=-910,y=2500) and sill (0,300)
+  let reach=0;
+  if(up){const t=Math.tan(prof);
+    // ray through eave tip: y = 2500 - (x+910)*t ; hits floor(y=0) at x = 2500/t - 910; limited by head 2200 at wall x=0 -> top ray starts at min(2200, 2500-910t)
+    const topAtWall=Math.min(2200,2500-910*t);
+    if(topAtWall>300){const xTop=topAtWall/t, xBot=300/t;const far=Math.min(xTop,5460), near=Math.min(xBot,5460);reach=far;
+      c.fillStyle=sun+'55';c.beginPath();c.moveTo(X(0),Y(topAtWall));c.lineTo(X(far),Y(far<5460?0:topAtWall-5460*t));c.lineTo(X(far),Y(0));c.lineTo(X(near),Y(0));c.lineTo(X(near),Y(Math.max(0,300-near*t)));c.lineTo(X(0),Y(300));c.closePath();c.fill();
+      // floor highlight
+      c.strokeStyle=sun;c.lineWidth=4;c.beginPath();c.moveTo(X(near),Y(0)+2);c.lineTo(X(far),Y(0)+2);c.stroke();
+      // incoming rays outside
+      c.strokeStyle=sun;c.lineWidth=1;c.setLineDash([4,5]);c.beginPath();for(const y0 of [topAtWall,300]){const L=2600;c.moveTo(X(-L),Y(y0+L*t));c.lineTo(X(0),Y(y0))}c.stroke();c.setLineDash([])}
+    else reach=0;
+    // sun disc: travel back along the ray through the eave tip until near the frame edge
+    let sx=X(-910),sy=Y(2500);const dx=-Math.cos(prof),dy=-Math.sin(prof);const m=26;
+    const k=Math.min(dx<0?(sx-m)/-dx:1e9,dy<0?(sy-m)/-dy:1e9);sx+=dx*k*.92;sy+=dy*k*.92;
+    const gl=c.createRadialGradient(sx,sy,0,sx,sy,60);gl.addColorStop(0,sun+'aa');gl.addColorStop(1,sun+'00');c.fillStyle=gl;c.beginPath();c.arc(sx,sy,60,0,Math.PI*2);c.fill();
+    c.fillStyle=sun;c.beginPath();c.arc(sx,sy,11,0,Math.PI*2);c.fill();
+    c.strokeStyle=sun;c.lineWidth=1;c.globalAlpha=.6;c.beginPath();c.moveTo(sx,sy);c.lineTo(X(-910),Y(2500));c.stroke();c.globalAlpha=1;
+  }
+  // structure
+  c.strokeStyle=ink;c.lineWidth=1.4;c.beginPath();
+  c.moveTo(X(-1500),Y(0));c.lineTo(X(5900),Y(0));           // ground/floor
+  c.moveTo(X(0),Y(0));c.lineTo(X(0),Y(300));                 // wall below sill
+  c.moveTo(X(0),Y(2200));c.lineTo(X(0),Y(2500));             // wall above head
+  c.moveTo(X(-910),Y(2500));c.lineTo(X(5460+300),Y(2500));   // eave + ceiling
+  c.moveTo(X(-910),Y(2500));c.lineTo(X(-910),Y(2440));
+  c.moveTo(X(5460),Y(0));c.lineTo(X(5460),Y(2500));          // north wall
+  c.moveTo(X(-910),Y(2560));c.lineTo(X(2700),Y(3100));c.lineTo(X(5760),Y(2560)); // roof
+  c.stroke();
+  c.strokeStyle=gray;c.lineWidth=.8;c.beginPath();c.moveTo(X(-40),Y(300));c.lineTo(X(-40),Y(2200));c.moveTo(X(40),Y(300));c.lineTo(X(40),Y(2200));c.stroke();
+  dim(c,X(-910),Y(2500)-12,X(0),Y(2500)-12,'910',gray);
+  dim(c,X(0),Y(0)+16,X(5460),Y(0)+16,'5,460',gray);
+  c.font='10px "IBM Plex Mono", monospace';c.fillStyle=gray;c.fillText('S 南',X(-1450),Y(0)-8);c.fillText('N 北',X(5460)+10,Y(0)-8);c.fillText('LIVING',X(2300),Y(1100));
+  // readouts
+  const hh=Math.floor(hour),mm=Math.round((hour-hh)*60);sunOut.textContent=`${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`;
+  dAlt.textContent=up?altDeg.toFixed(1)+'°':'—';
+  dReach.innerHTML=up&&reach>0?(reach>=5460?'奥の壁まで':(reach/1000).toFixed(1)+'<small class="mono"> m</small>'):'届かない';
+}
+sunIn.addEventListener('input',drawSun);
+$$('.seg button').forEach(b=>b.addEventListener('click',()=>{$$('.seg button').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');
+  const from=decl,to=+b.dataset.decl;if(reduce){decl=to;drawSun();return}const t0=performance.now();(function st(now){const p=clamp((now-t0)/700,0,1);const e=1-Math.pow(1-p,3);decl=from+(to-from)*e;drawSun();if(p<1)requestAnimationFrame(st)})(t0)}));
+// idle auto-play of the day until the user touches the slider
+let sunAuto=!reduce, sunVisible=false;
+new IntersectionObserver(es=>es.forEach(e=>{sunVisible=e.isIntersecting})).observe(sunCv);
+['pointerdown','keydown'].forEach(ev=>sunIn.addEventListener(ev,()=>sunAuto=false));
+$$('.seg button').forEach(b=>b.addEventListener('click',()=>sunAuto=false));
+setInterval(()=>{if(sunAuto&&sunVisible){let v=+sunIn.value+.25;if(v>17)v=7;sunIn.value=v;drawSun()}},160);
+
+/* ---------- PLACE map ---------- */
+const mapCv=$('.place__cv');let region='okayama',pulse=0;
+const CITIES={okayama:{lat:34.655,lon:133.919,jp:'岡山市',en:'OKAYAMA'},fukuyama:{lat:34.486,lon:133.362,jp:'福山市',en:'FUKUYAMA'}};
+function drawMap(now=0){
+  const {c,w,h}=fit(mapCv);c.clearRect(0,0,w,h);const chalk=css('--chalk'),dimc=css('--chalk-dim'),rl=css('--night-rule');
+  // lon 133.0–134.3, lat 34.25–34.95
+  const X=lon=>w*.08+(lon-133.0)/(1.3)*w*.84, Y=lat=>h*.9-(lat-34.25)/(.7)*h*.8;
+  c.strokeStyle=rl;c.lineWidth=1;c.font='10px "IBM Plex Mono", monospace';c.fillStyle=dimc;
+  for(let lo=133.0;lo<=134.31;lo+=.25){c.beginPath();c.moveTo(X(lo),0);c.lineTo(X(lo),h);c.stroke();c.fillText(lo.toFixed(2)+'°E',X(lo)+4,h-8)}
+  for(let la=34.25;la<=34.96;la+=.25){c.beginPath();c.moveTo(0,Y(la));c.lineTo(w,Y(la));c.stroke();c.fillText(la.toFixed(2)+'°N',6,Y(la)-4)}
+  const a=CITIES.okayama,b=CITIES.fukuyama;
+  c.strokeStyle=dimc;c.setLineDash([3,5]);c.beginPath();c.moveTo(X(a.lon),Y(a.lat));c.lineTo(X(b.lon),Y(b.lat));c.stroke();c.setLineDash([]);
+  // great-circle distance
+  const R=6371,toR=Math.PI/180,dl=(b.lat-a.lat)*toR,dn=(b.lon-a.lon)*toR;const hv=Math.sin(dl/2)**2+Math.cos(a.lat*toR)*Math.cos(b.lat*toR)*Math.sin(dn/2)**2;const km=2*R*Math.asin(Math.sqrt(hv));
+  c.fillStyle=chalk;c.textAlign='center';c.fillText(`${km.toFixed(0)} km`,(X(a.lon)+X(b.lon))/2,(Y(a.lat)+Y(b.lat))/2-10);c.textAlign='left';
+  for(const k of ['okayama','fukuyama']){const p=CITIES[k],on=k===region,x=X(p.lon),y=Y(p.lat);
+    if(on&&!reduce){const t=(now/1600)%1;c.strokeStyle=chalk;c.globalAlpha=1-t;c.beginPath();c.arc(x,y,6+t*34,0,Math.PI*2);c.stroke();c.globalAlpha=1}
+    c.fillStyle=on?chalk:dimc;c.beginPath();c.arc(x,y,on?6:4,0,Math.PI*2);c.fill();
+    c.font=(on?'13px':'11px')+' "Tenor Sans", sans-serif';c.fillText(p.en,x+12,y-8);c.font='11px "Zen Kaku Gothic New", sans-serif';c.fillText(p.jp,x+12,y+8)}
+}
+let mapVis=false;new IntersectionObserver(es=>es.forEach(e=>{mapVis=e.isIntersecting;if(mapVis)requestAnimationFrame(mapLoop)})).observe(mapCv);
+function mapLoop(now){drawMap(now);if(mapVis&&!reduce)requestAnimationFrame(mapLoop)}
+const PL={okayama:{name:'OKAYAMA',jp:'岡山',text:'岡山エリアの見学会・イベントと施工事例をご案内します。来場先は各イベントのページでご確認ください。',ev:'岡山の見学会・イベント',href:'https://www.fort410.com/info/'},
+          fukuyama:{name:'FUKUYAMA',jp:'福山',text:'福山エリアでは家づくり相談会を開いています。内容と予約方法は相談会のページでご確認ください。',ev:'福山の家づくり相談会',href:'https://www.fort410.com/info/fukuyama-home-consultation/'}};
+const tabs=$$('.place__tabs button'),panel=$('#panel-place');
+function setRegion(k,focus){region=k;tabs.forEach(t=>{const on=t.dataset.region===k;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(on&&focus)t.focus();if(on)panel.setAttribute('aria-labelledby',t.id)});
+  const r=PL[k];panel.animate&&!reduce&&panel.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'none'}],{duration:600,easing:'cubic-bezier(.2,.7,.1,1)'});
+  $('.pl-name',panel).innerHTML=`${r.name}<small>${r.jp}</small>`;$('.pl-text',panel).textContent=r.text;const ev=$('.pl-ev',panel);ev.href=r.href;ev.firstElementChild.textContent=r.ev;drawMap(performance.now())}
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>setRegion(t.dataset.region));t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();setRegion(tabs[(i+1)%2].dataset.region,true)}})});
+
+/* ---------- init ---------- */
+const init=()=>{layoutWorks();onScroll();drawSun();drawMap();cards.forEach(drawCard)};
+if(d.fonts&&d.fonts.ready)d.fonts.ready.then(init);init();
+})();
+</script>
+</body>
+</html>

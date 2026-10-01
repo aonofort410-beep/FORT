@@ -30,8 +30,8 @@ $tel_f = fort_opt( 'fort_tel_fukuyama', '084-982-7404' );
 				<p><a href="<?php echo esc_url( fort_url( 'okayama' ) ); ?>">岡山スタジオ</a>　<a href="tel:<?php echo esc_attr( preg_replace( '/\D/', '', $tel_o ) ); ?>"><?php echo esc_html( $tel_o ); ?></a></p>
 				<p><a href="<?php echo esc_url( fort_url( 'fukuyama' ) ); ?>">福山スタジオ</a>　<a href="tel:<?php echo esc_attr( preg_replace( '/\D/', '', $tel_f ) ); ?>"><?php echo esc_html( $tel_f ); ?></a></p>
 				<p>受付時間 9:00〜18:00 / 水曜定休</p>
-				<?php $ig = fort_opt( 'fort_instagram' ); $yt = fort_opt( 'fort_youtube_channel' ); if ( $ig || $yt ) : ?>
-				<p class="footer__sns"><?php if ( $ig ) : ?><a href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener">Instagram</a><?php endif; ?><?php if ( $yt ) : ?><a href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener">YouTube</a><?php endif; ?></p>
+				<?php if ( fort_sns() ) : ?>
+				<p class="footer__sns"><?php foreach ( fort_sns() as $label => $url ) : ?><a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $label ); ?></a><?php endforeach; ?></p>
 				<?php endif; ?>
 			</div>
 		</div>

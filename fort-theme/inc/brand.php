@@ -253,6 +253,21 @@ function fort_current_events( $region = '', $limit = 6 ) {
 	return array_slice( $out, 0, $limit );
 }
 
+/* 公式SNS・トップのコピー（初期値） */
+define( 'FORT_INSTAGRAM', 'https://www.instagram.com/fort_architecture/' );
+define( 'FORT_INSTAGRAM_FAMILY', 'https://www.instagram.com/fort_family.jp/' );
+define( 'FORT_YOUTUBE', 'https://www.youtube.com/@FORT-dg7fz' );
+define( 'FORT_HERO_COPY', 'LIFE WITH FORT.' );
+
+/** 公式SNS（フッターなどで使用） */
+function fort_sns() {
+	return array_filter( array(
+		'Instagram'        => get_theme_mod( 'fort_instagram', FORT_INSTAGRAM ),
+		'Instagram FAMILY' => get_theme_mod( 'fort_instagram_family', FORT_INSTAGRAM_FAMILY ),
+		'YouTube'          => get_theme_mod( 'fort_youtube_channel', FORT_YOUTUBE ),
+	) );
+}
+
 /* ============================================================
    4. MOVIE（YouTube）：カスタマイザーにURLを登録
 ============================================================ */
@@ -264,10 +279,16 @@ function fort_customize_v2( $wp ) {
 		$wp->add_setting( 'fort_movie_' . $i . '_title', array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
 		$wp->add_control( 'fort_movie_' . $i . '_title', array( 'label' => '動画タイトル ' . $i, 'section' => 'fort_movie', 'type' => 'text' ) );
 	}
-	$wp->add_setting( 'fort_youtube_channel', array( 'default' => '', 'sanitize_callback' => 'esc_url_raw' ) );
+	$wp->add_setting( 'fort_youtube_channel', array( 'default' => FORT_YOUTUBE, 'sanitize_callback' => 'esc_url_raw' ) );
 	$wp->add_control( 'fort_youtube_channel', array( 'label' => 'YouTubeチャンネルURL', 'section' => 'fort_movie', 'type' => 'url' ) );
-	$wp->add_setting( 'fort_instagram', array( 'default' => '', 'sanitize_callback' => 'esc_url_raw' ) );
-	$wp->add_control( 'fort_instagram', array( 'label' => 'InstagramのURL', 'section' => 'fort_contact', 'type' => 'url' ) );
+	$wp->add_setting( 'fort_instagram', array( 'default' => FORT_INSTAGRAM, 'sanitize_callback' => 'esc_url_raw' ) );
+	$wp->add_control( 'fort_instagram', array( 'label' => 'Instagram（FORT 建築）', 'section' => 'fort_contact', 'type' => 'url' ) );
+	$wp->add_setting( 'fort_instagram_family', array( 'default' => FORT_INSTAGRAM_FAMILY, 'sanitize_callback' => 'esc_url_raw' ) );
+	$wp->add_control( 'fort_instagram_family', array( 'label' => 'Instagram（FORT FAMILY）', 'section' => 'fort_contact', 'type' => 'url' ) );
+
+	// トップの大きなコピー（改行は <br>）
+	$wp->add_setting( 'fort_hero_copy', array( 'default' => FORT_HERO_COPY, 'sanitize_callback' => 'wp_kses_post' ) );
+	$wp->add_control( 'fort_hero_copy', array( 'label' => 'トップの大きなコピー（改行は <br>）', 'section' => 'fort_hero', 'type' => 'text' ) );
 }
 add_action( 'customize_register', 'fort_customize_v2', 20 );
 

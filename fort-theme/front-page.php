@@ -28,7 +28,8 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 		</div>
 		<div class="bh-hero__inner">
 			<p class="bh-hero__place">OKAYAMA / FUKUYAMA</p>
-			<h1 class="bh-hero__title"><?php echo wp_kses( fort_opt( 'fort_hero_copy', '家族に、<br>ちょうどいい家を。' ), array( 'br' => array() ) ); ?><span class="sr-only">｜<?php bloginfo( 'name' ); ?> 岡山・福山の注文住宅</span></h1>
+			<?php $copy = fort_opt( 'fort_hero_copy', FORT_HERO_COPY ); ?>
+			<h1 class="bh-hero__title<?php echo preg_match( '/[^\x00-\x7F]/', $copy ) ? '' : ' bh-hero__title--en'; ?>"><?php echo wp_kses( $copy, array( 'br' => array() ) ); ?><span class="sr-only">｜<?php bloginfo( 'name' ); ?> 岡山・福山の注文住宅</span></h1>
 			<p class="bh-hero__links">
 				<a href="<?php echo esc_url( fort_url( 'works' ) ); ?>">WORKS</a>
 				<a href="<?php echo esc_url( fort_url( 'event' ) ); ?>">EVENT</a>
@@ -138,7 +139,7 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 		<div class="bh-wrap">
 			<header class="bh-head">
 				<p class="bh-label">MOVIE</p>
-				<?php if ( fort_opt( 'fort_youtube_channel' ) ) : ?><a class="bh-more" href="<?php echo esc_url( fort_opt( 'fort_youtube_channel' ) ); ?>" target="_blank" rel="noopener">YouTube</a><?php endif; ?>
+				<?php if ( fort_opt( 'fort_youtube_channel', FORT_YOUTUBE ) ) : ?><a class="bh-more" href="<?php echo esc_url( fort_opt( 'fort_youtube_channel', FORT_YOUTUBE ) ); ?>" target="_blank" rel="noopener">YouTube</a><?php endif; ?>
 			</header>
 			<div class="bh-movie__grid bh-movie__grid--<?php echo count( $movies ); ?>">
 				<?php foreach ( $movies as $m ) : ?>

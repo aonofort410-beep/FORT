@@ -2572,3 +2572,12 @@ body.menu-open .header__visit { opacity: 0; pointer-events: none; }
 }
 /* 日本語見出しを文節で改行させる */
 .bh-nb { display: inline-block; }
+/* HEROのコピーが英字のとき（例：LIFE WITH FORT.） */
+.bh-hero__title--en {
+  font-family: var(--font-en);
+  font-weight: 300;
+  font-size: clamp(2.3rem, 11vw, 7.2rem);
+  line-height: 1.05;
+  letter-spacing: .12em;
+}
+@media (min-width: 1440px) { .bh-hero__title--en { font-size: 7.6rem; } }

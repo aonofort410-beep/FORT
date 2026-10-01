@@ -437,7 +437,7 @@ function fort_breadcrumb( $items ) {
    8. 写真のヒーローが無いページは、最初から白いヘッダーにする
 ============================================================ */
 function fort_is_solid_page() {
-	return is_post_type_archive( array( 'works', 'fort_event' ) ) || is_tax( 'works_cat' ) || is_singular( array( 'works', 'fort_event', 'model_house' ) );
+	return is_page_template( 'template-visit.php' ) || is_post_type_archive( array( 'works', 'fort_event' ) ) || is_tax( 'works_cat' ) || is_singular( array( 'works', 'fort_event', 'model_house' ) );
 }
 add_filter( 'body_class', function ( $classes ) {
 	if ( fort_is_solid_page() ) $classes[] = 'bh-solid';

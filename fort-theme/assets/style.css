@@ -2750,3 +2750,54 @@ body.bh-solid { background: var(--bh-paper); }
 .bh-mh__fig { aspect-ratio: 3 / 2; }
 .bh-mh__item a:hover .bh-wcard__fig img { transform: scale(1.03); }
 @media (min-width: 768px) { .bh-mh__list { grid-template-columns: repeat(2, 1fr); gap: 32px; } }
+
+/* ============================================================
+   32. 来場予約フォーム（入力 → 確認 → 完了）
+============================================================ */
+.bh-rsv { padding-bottom: var(--bh-space); }
+.bh-rsv__inner { max-width: 760px; margin-left: 0; }
+.bh-steps { display: flex; gap: 0; list-style: none; margin-bottom: 36px; border-bottom: 1px solid var(--bh-line); counter-reset: st; }
+.bh-steps li { counter-increment: st; padding: 0 22px 12px 0; font-size: 12px; letter-spacing: .1em; color: var(--bh-gray); }
+.bh-steps li::before { content: "0" counter(st) " "; font-family: var(--font-en); }
+.bh-steps li.is-current { color: var(--bh-ink); border-bottom: 2px solid var(--bh-ink); margin-bottom: -1px; }
+.bh-form { display: grid; gap: 36px; }
+.bh-form__group { border: 0; padding: 0; margin: 0; display: grid; gap: 22px; }
+.bh-form__group legend { font-family: var(--font-serif); font-size: 17px; letter-spacing: .06em; padding-bottom: 12px; margin-bottom: 4px; border-bottom: 1px solid var(--bh-line); width: 100%; }
+.bh-field { display: grid; gap: 8px; }
+.bh-field label { font-size: 14px; letter-spacing: .04em; }
+.bh-req, .bh-opt { margin-left: 10px; font-size: 11px; letter-spacing: .08em; padding: 1px 7px; border: 1px solid currentColor; vertical-align: 1px; }
+.bh-req { color: var(--bh-ink); }
+.bh-opt { color: var(--bh-gray); font-family: var(--font-sans); }
+.bh-input {
+  width: 100%; min-height: 52px; padding: 12px 14px;
+  border: 1px solid #b9bcbf; border-radius: 0; background: #fff; color: var(--bh-ink);
+  font: inherit; font-size: 16px; /* iOSでズームされない16px */
+  -webkit-appearance: none; appearance: none;
+}
+select.bh-input { background-image: linear-gradient(45deg, transparent 50%, var(--bh-ink) 50%), linear-gradient(135deg, var(--bh-ink) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 40px; }
+textarea.bh-input { min-height: 120px; }
+.bh-input:focus { outline: 2px solid var(--bh-ink); outline-offset: 1px; }
+.bh-input[aria-invalid="true"] { border-color: #a1271b; background: #fdf6f5; }
+.bh-field__err { font-size: 13px; color: #a1271b; }
+.bh-field__note { font-size: 12.5px; color: var(--bh-gray); line-height: 1.9; }
+.bh-field__pair { display: grid; grid-template-columns: 1fr 120px; gap: 8px; }
+.bh-field__row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.bh-field--short .bh-input { max-width: 220px; }
+.bh-check { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+.bh-check input { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--bh-ink); flex: 0 0 auto; }
+.bh-check a { text-decoration: underline; text-underline-offset: 3px; }
+.bh-form__actions .bh-btn { min-width: 260px; min-height: 60px; font-size: 15px; }
+.bh-form__alert { border: 1px solid #a1271b; color: #a1271b; padding: 14px 18px; font-size: 14px; margin-bottom: 8px; }
+.bh-form__context { padding: 18px 20px; background: var(--bh-mist); display: grid; gap: 4px; }
+.bh-form__context p { font-family: var(--font-serif); font-size: 16px; }
+.bh-form__context .bh-form__context-sub { font-family: var(--font-en); font-size: 13px; color: var(--bh-gray); }
+.bh-form__lead { font-size: 14px; line-height: 2; }
+.bh-form__confirm dd { white-space: normal; word-break: break-word; }
+.bh-linkbtn { background: none; border: 0; padding: 8px 0; font: inherit; font-size: 14px; color: var(--bh-gray); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.bh-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.bh-form--done { gap: 18px; font-size: 15px; line-height: 2.1; }
+.bh-form__done-title { font-family: var(--font-serif); font-size: clamp(1.3rem, 4.6vw, 1.8rem); line-height: 1.6; }
+.bh-form--done a[href^="tel"] { border-bottom: 1px solid var(--bh-line); }
+@media (max-width: 600px) {
+  .bh-form__actions .bh-btn { width: 100%; min-width: 0; }
+}

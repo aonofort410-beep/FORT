@@ -426,3 +426,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (window.fortTrack) window.fortTrack('works_filter', key + ':' + (state[key] || 'all'));
   });
 })();
+
+/* v2：予約フォーム — エラーがあればお知らせ欄へフォーカス */
+(function () {
+  var alert = document.getElementById('rsv-alert');
+  if (alert) alert.focus();
+})();

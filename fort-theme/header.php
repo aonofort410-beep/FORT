@@ -18,17 +18,15 @@
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="header__logo" aria-label="<?php bloginfo( 'name' ); ?> トップへ"><img class="header__logo-img header__logo-img--white" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-lockup-white.png' ); ?>" alt="FORT"><img class="header__logo-img header__logo-img--dark" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-lockup-dark.png' ); ?>" alt="" aria-hidden="true"></a>
 
 			<div class="header__right">
-				<?php if ( is_front_page() ) : ?>
-				<!-- トップページ用のナビ項目（PCで表示・スマホでは目次MENUに集約） -->
+				<!-- グローバルナビ（PCで表示・スマホでは目次MENUに集約） -->
 				<nav class="header-nav" aria-label="主要メニュー">
-					<a href="#philosophy" class="header-nav__link"><span class="header-nav__en">PHILOSOPHY</span><span class="header-nav__ja">FORTの思い</span></a>
-					<a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="header-nav__link"><span class="header-nav__en">EVENT</span><span class="header-nav__ja">見学会・イベント</span></a>
-					<a href="#performance" class="header-nav__link"><span class="header-nav__en">PERFORMANCE</span><span class="header-nav__ja">構造・性能</span></a>
-					<a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>" class="header-nav__link"><span class="header-nav__en">WORKS</span><span class="header-nav__ja">施工事例</span></a>
-					<a href="#lineup" class="header-nav__link"><span class="header-nav__en">LINEUP</span><span class="header-nav__ja">ラインナップ</span></a>
-					<a href="<?php echo esc_url( get_post_type_archive_link( 'staff' ) ); ?>" class="header-nav__link"><span class="header-nav__en">STAFF</span><span class="header-nav__ja">スタッフ</span></a>
+					<?php foreach ( fort_nav_visible() as $item ) : ?>
+					<a href="<?php echo esc_url( $item['href'] ); ?>" class="header-nav__link<?php echo 'VISIT' === $item['en'] ? ' header-nav__link--visit' : ''; ?>"><span class="header-nav__en"><?php echo esc_html( $item['en'] ); ?></span><span class="header-nav__ja"><?php echo esc_html( $item['ja'] ); ?></span></a>
+					<?php endforeach; ?>
 				</nav>
-				<?php endif; ?>
+
+				<!-- スマホ：控えめな来場予約リンク（写真やフォームの邪魔をしない大きさ） -->
+				<a href="<?php echo esc_url( fort_url( 'visit' ) ); ?>" class="header__visit">VISIT</a>
 
 				<!-- 右上の「MENU」ボタン（全ページの目次を開く。中身は script.js が生成） -->
 				<button class="menu-toggle" id="menuToggle" type="button"

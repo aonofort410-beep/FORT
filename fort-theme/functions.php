@@ -11,6 +11,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+require_once get_template_directory() . '/inc/brand.php';
+
 /* ============================================================
    1. テーマの基本サポート
 ============================================================ */
@@ -47,22 +49,22 @@ function fort_assets() {
 	wp_enqueue_script( 'fort-script', get_template_directory_uri() . '/assets/script.js', array(), $ver, true );
 
 	// 目次メニューの中身を WordPress のURLで差し込む（script.js が使用）
-	$menu = array(
-		array( 'en' => 'HOME',        'ja' => 'トップ',                 'href' => home_url( '/' ) ),
-		array( 'en' => 'PHILOSOPHY',  'ja' => 'FORTの思い',             'href' => home_url( '/#philosophy' ) ),
-		array( 'en' => 'EVENT',       'ja' => '見学会・イベント',       'href' => get_post_type_archive_link( 'fort_event' ) ),
-		array( 'en' => 'PERFORMANCE', 'ja' => '構造・性能',             'href' => home_url( '/performance/' ) ),
-		array( 'en' => 'WORKS',       'ja' => '施工事例',               'href' => get_post_type_archive_link( 'works' ) ),
-		array( 'en' => 'FORT FAMILY', 'ja' => 'お客様の声',             'href' => home_url( '/#family' ) ),
-		array( 'en' => 'LINEUP',      'ja' => '商品ラインナップ',       'href' => home_url( '/lineup/' ) ),
-		array( 'en' => 'FLOW',        'ja' => '家づくりの流れ',         'href' => home_url( '/flow/' ) ),
-		array( 'en' => 'STAFF',       'ja' => 'スタッフ紹介',           'href' => get_post_type_archive_link( 'staff' ) ),
-		array( 'en' => 'STUDIO',      'ja' => 'モデルハウス・スタジオ', 'href' => home_url( '/studio/' ) ),
-		array( 'en' => 'NEWS',        'ja' => 'お知らせ',               'href' => home_url( '/news/' ) ),
-		array( 'en' => 'COMPANY',     'ja' => '会社概要',               'href' => home_url( '/company/' ) ),
-		array( 'en' => 'CONTACT',     'ja' => 'ご予約・お問い合わせ',   'href' => home_url( '/contact/' ) ),
+	$menu = array_merge(
+		array( array( 'en' => 'HOME', 'ja' => 'トップ', 'href' => home_url( '/' ) ) ),
+		fort_nav_visible(),
+		array(
+			array( 'en' => 'STAFF',   'ja' => 'スタッフ',     'href' => fort_url( 'staff' ) ),
+			array( 'en' => 'COMPANY', 'ja' => '会社概要',     'href' => fort_url( 'company' ) ),
+			array( 'en' => 'CONTACT', 'ja' => 'お問い合わせ', 'href' => fort_url( 'contact' ) ),
+		)
 	);
-	wp_add_inline_script( 'fort-script', 'window.FORT_MENU = ' . wp_json_encode( $menu ) . ';', 'before' );
+	$links = array(
+		'visit'   => fort_url( 'visit' ),
+		'request' => fort_url( 'request' ),
+		'tel_o'   => fort_opt( 'fort_tel_okayama', '086-236-9600' ),
+		'tel_f'   => fort_opt( 'fort_tel_fukuyama', '084-982-7404' ),
+	);
+	wp_add_inline_script( 'fort-script', 'window.FORT_MENU = ' . wp_json_encode( $menu ) . '; window.FORT_LINKS = ' . wp_json_encode( $links ) . ';', 'before' );
 }
 add_action( 'wp_enqueue_scripts', 'fort_assets' );
 
@@ -130,7 +132,7 @@ function fort_post_types() {
 		'has_archive'  => true,
 		'menu_icon'    => 'dashicons-calendar-alt',
 		'menu_position'=> 7,
-		'rewrite'      => array( 'slug' => 'event' ),
+		'rewrite'      => array( 'slug' => 'info' ), // fort410.com の既存URL /info/ を維持
 		'supports'     => array( 'title', 'editor', 'thumbnail' ),
 		'show_in_rest' => true,
 	) );

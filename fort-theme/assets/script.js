@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
        { en: 英語表記, ja: 日本語, href: リンク先 }
        ページを増やしたらここに1行足してください。
   -------------------------------------------------------- */
-  var MENU = [
+  // WordPress では functions.php が window.FORT_MENU を渡す（静的HTML版は下の一覧）
+  var MENU = window.FORT_MENU || [
     { en: 'HOME',     ja: 'トップ',             href: 'index.html' },
     { en: 'PHILOSOPHY', ja: 'FORTの思い',       href: 'index.html#philosophy' },
     { en: 'EVENT',    ja: '見学会・イベント',   href: 'event.html' },
@@ -56,7 +57,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var itemsHtml = MENU.map(function (item, i) {
     var num  = ('0' + (i + 1)).slice(-2);            // 01, 02, ...
     var file = item.href.split('#')[0];              // リンク先のファイル名
-    var isActive = (file === currentFile && item.href.indexOf('#') === -1);
+    var isActive = window.FORT_MENU
+      ? (item.href.replace(/\/$/, '') === (location.origin + location.pathname).replace(/\/$/, ''))
+      : (file === currentFile && item.href.indexOf('#') === -1);
     return ''
       + '<li class="gmenu__item' + (isActive ? ' is-active' : '') + '" style="--i:' + i + '">'
       +   '<a href="' + item.href + '">'
@@ -66,6 +69,8 @@ document.addEventListener('DOMContentLoaded', function () {
       +   '</a>'
       + '</li>';
   }).join('');
+
+  var LINKS = window.FORT_LINKS || { visit: 'visit.html', request: 'request.html', tel_o: '086-236-9600', tel_f: '084-982-7404' };
 
   // オーバーレイ（目次）本体を作ってページに追加
   var overlay = document.createElement('div');
@@ -77,10 +82,10 @@ document.addEventListener('DOMContentLoaded', function () {
     +   '<ul class="gmenu__list">' + itemsHtml + '</ul>'
     +   '<div class="gmenu__foot">'
     +     '<div class="gmenu__cta">'
-    +       '<a class="btn btn--accent" href="visit.html">ご来場予約</a>'
-    +       '<a class="btn btn--outline btn--outline-light" href="request.html">資料請求</a>'
+    +       '<a class="btn btn--accent" href="' + LINKS.visit + '">来場予約</a>'
+    +       '<a class="btn btn--outline btn--outline-light" href="' + LINKS.request + '">資料請求</a>'
     +     '</div>'
-    +     '<p class="gmenu__company">株式会社FORT｜岡山・倉敷・福山エリアの家づくり<br>岡山スタジオ 086-236-9600 ／ 福山スタジオ 084-982-7404（9:00〜18:00 / 水曜定休）</p>'
+    +     '<p class="gmenu__company">株式会社FORT｜岡山・倉敷・福山エリアの家づくり<br>岡山スタジオ ' + LINKS.tel_o + ' ／ 福山スタジオ ' + LINKS.tel_f + '（9:00〜18:00 / 水曜定休）</p>'
     +   '</div>'
     + '</div>';
   body.appendChild(overlay);
@@ -330,3 +335,60 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 });
+
+/* ============================================================
+   v2：ブランドサイト用の小さな動き
+   1. EVENT の地域切り替え（ALL / OKAYAMA / FUKUYAMA）
+   2. YouTube：クリックしてから iframe を読み込む
+   3. 計測：data-track の付いたリンクのクリックを GA4 / GTM へ
+      （個人情報は送らない。送るのはイベント名とラベルだけ）
+============================================================ */
+(function () {
+  function track(name, label) {
+    var params = { link_label: label || '' };
+    if (typeof window.gtag === 'function') window.gtag('event', name, params);
+    else if (Array.isArray(window.dataLayer)) window.dataLayer.push(Object.assign({ event: name }, params));
+  }
+  window.fortTrack = track;
+
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest && e.target.closest('[data-track]');
+    if (el) track(el.getAttribute('data-track'), el.getAttribute('data-track-label'));
+  });
+
+  // 1. 地域タブ
+  document.querySelectorAll('[data-region-tabs]').forEach(function (group) {
+    var section = group.closest('section');
+    var items = section.querySelectorAll('.bh-ev');
+    var empty = section.querySelector('[data-region-empty]');
+    group.addEventListener('click', function (e) {
+      var btn = e.target.closest('button[data-region]');
+      if (!btn) return;
+      var region = btn.getAttribute('data-region');
+      group.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+      var shown = 0;
+      items.forEach(function (li) {
+        var ok = !region || li.getAttribute('data-region') === region;
+        li.hidden = !ok;
+        if (ok) shown++;
+      });
+      if (empty) empty.hidden = shown > 0;
+      track('event_filter', region || 'all');
+    });
+  });
+
+  // 2. YouTube（クリックで読み込み）
+  document.querySelectorAll('[data-yt]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.getAttribute('data-yt');
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+      iframe.title = btn.getAttribute('aria-label') || 'YouTube';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.className = 'yt-lite__frame';
+      btn.replaceWith(iframe);
+      track('movie_play', id);
+    });
+  });
+})();

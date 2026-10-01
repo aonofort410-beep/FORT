@@ -11,38 +11,33 @@ $tel_f = fort_opt( 'fort_tel_fukuyama', '084-982-7404' );
 		<div class="container footer__inner">
 			<div class="footer__brand">
 				<p class="footer__logo"><img class="footer__logo-img" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-lockup-white.png' ); ?>" alt="FORT"></p>
-				<p class="footer__copy-text">性能か、デザインか。<br>その選択をしなくていい家づくり。</p>
+				<p class="footer__copy-text">岡山・福山で、<br>家族にちょうどいい家を。</p>
 			</div>
 			<nav class="footer__nav" aria-label="フッターメニュー">
 				<ul class="footer__list">
-					<li><a href="<?php echo esc_url( home_url( '/#concept' ) ); ?>">CONCEPT</a></li>
-					<li><a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>">WORKS</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/lineup/' ) ); ?>">LINEUP</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/performance/' ) ); ?>">PERFORMANCE</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/flow/' ) ); ?>">FLOW</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/feature/' ) ); ?>">FEATURE</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/fort-pro/' ) ); ?>">FORT PRO</a></li>
-					<li><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>">EVENT</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/studio/' ) ); ?>">STUDIO</a></li>
-					<li><a href="<?php echo esc_url( get_post_type_archive_link( 'staff' ) ); ?>">STAFF</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/company/' ) ); ?>">COMPANY</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/news/' ) ); ?>">NEWS</a></li>
+					<?php foreach ( fort_nav_visible() as $item ) : ?>
+					<li><a href="<?php echo esc_url( $item['href'] ); ?>"><?php echo esc_html( $item['en'] ); ?><span><?php echo esc_html( $item['ja'] ); ?></span></a></li>
+					<?php endforeach; ?>
+					<li><a href="<?php echo esc_url( fort_url( 'staff' ) ); ?>">STAFF<span>スタッフ</span></a></li>
+					<li><a href="<?php echo esc_url( fort_url( 'company' ) ); ?>">COMPANY<span>会社概要</span></a></li>
+					<li><a href="<?php echo esc_url( fort_url( 'request' ) ); ?>">REQUEST<span>資料請求</span></a></li>
+					<li><a href="<?php echo esc_url( fort_url( 'contact' ) ); ?>">CONTACT<span>お問い合わせ</span></a></li>
+					<?php if ( fort_url( 'privacy' ) ) : ?><li><a href="<?php echo esc_url( fort_url( 'privacy' ) ); ?>">PRIVACY<span>プライバシーポリシー</span></a></li><?php endif; ?>
 				</ul>
 			</nav>
 			<div class="footer__info">
 				<p><?php bloginfo( 'name' ); ?></p>
-				<p>岡山県・倉敷市・福山市エリアで家づくりを行っています。</p>
-				<p>TEL：<?php echo esc_html( $tel_o ); ?>（岡山）／ <?php echo esc_html( $tel_f ); ?>（福山）</p>
+				<p><a href="<?php echo esc_url( fort_url( 'okayama' ) ); ?>">岡山スタジオ</a>　<a href="tel:<?php echo esc_attr( preg_replace( '/\D/', '', $tel_o ) ); ?>"><?php echo esc_html( $tel_o ); ?></a></p>
+				<p><a href="<?php echo esc_url( fort_url( 'fukuyama' ) ); ?>">福山スタジオ</a>　<a href="tel:<?php echo esc_attr( preg_replace( '/\D/', '', $tel_f ) ); ?>"><?php echo esc_html( $tel_f ); ?></a></p>
 				<p>受付時間 9:00〜18:00 / 水曜定休</p>
+				<?php $ig = fort_opt( 'fort_instagram' ); $yt = fort_opt( 'fort_youtube_channel' ); if ( $ig || $yt ) : ?>
+				<p class="footer__sns"><?php if ( $ig ) : ?><a href="<?php echo esc_url( $ig ); ?>" target="_blank" rel="noopener">Instagram</a><?php endif; ?><?php if ( $yt ) : ?><a href="<?php echo esc_url( $yt ); ?>" target="_blank" rel="noopener">YouTube</a><?php endif; ?></p>
+				<?php endif; ?>
 			</div>
 		</div>
 		<p class="footer__copyright">© <?php echo esc_html( date( 'Y' ) ); ?> FORT Inc. All Rights Reserved.</p>
 	</footer>
 
-	<div class="floating-cta">
-		<a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="floating-cta__btn floating-cta__btn--ghost">見学会予約</a>
-		<a href="<?php echo esc_url( home_url( '/#reserve' ) ); ?>" class="floating-cta__btn floating-cta__btn--accent">資料請求・相談</a>
-	</div>
 
 	<?php wp_footer(); ?>
 </body>

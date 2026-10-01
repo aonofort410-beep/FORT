@@ -437,7 +437,8 @@ function fort_breadcrumb( $items ) {
    8. 写真のヒーローが無いページは、最初から白いヘッダーにする
 ============================================================ */
 function fort_is_solid_page() {
-	return is_page_template( array( 'template-visit.php', 'template-now.php', 'template-lineup.php', 'template-fort-pro.php', 'template-place.php' ) ) || is_post_type_archive( array( 'works', 'fort_event' ) ) || is_tax( 'works_cat' ) || is_singular( array( 'works', 'fort_event', 'model_house' ) );
+	if ( is_front_page() || is_page_template( 'template-fort-design.php' ) ) return false; // 写真・黒背景のヒーローを持つページ
+	return is_page() || is_404() || is_home() || is_search() || is_archive() || is_singular();
 }
 add_filter( 'body_class', function ( $classes ) {
 	if ( fort_is_solid_page() ) $classes[] = 'bh-solid';
@@ -541,7 +542,7 @@ function fort_studios() {
 			'zip'   => '〒700-0977',
 			'addr'  => '岡山県岡山市北区問屋町9-101 タイルビル 1F',
 			'tel'   => fort_opt( 'fort_tel_okayama', '086-236-9600' ),
-			'area'  => '岡山・倉敷エリア',
+			'area'  => '岡山県全域',
 		),
 		'fukuyama' => array(
 			'name'  => '福山スタジオ',
@@ -549,7 +550,7 @@ function fort_studios() {
 			'zip'   => '〒720-0821',
 			'addr'  => '広島県福山市東川口町2丁目1-18 中国情報ビル 1F',
 			'tel'   => fort_opt( 'fort_tel_fukuyama', '084-982-7404' ),
-			'area'  => '福山エリア',
+			'area'  => '福山・尾道・三原エリア',
 		),
 	);
 }
@@ -572,4 +573,11 @@ add_action( 'after_switch_theme', function () {
 		$id = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => $title, 'post_name' => $slug, 'post_parent' => $pid ) );
 		if ( $id && ! is_wp_error( $id ) ) update_post_meta( $id, '_wp_page_template', 'template-place.php' );
 	}
+} );
+
+/** テーマ有効化時、/about/ が無ければ作成 */
+add_action( 'after_switch_theme', function () {
+	if ( get_page_by_path( 'about' ) ) return;
+	$id = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'FORTについて', 'post_name' => 'about' ) );
+	if ( $id && ! is_wp_error( $id ) ) update_post_meta( $id, '_wp_page_template', 'template-about.php' );
 } );

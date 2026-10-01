@@ -9,19 +9,13 @@ $img = get_template_directory_uri() . '/assets/images/';
 
 
     <!-- ページ見出し -->
-    <section class="subhero">
-      <div class="subhero__media">
-        <img src="<?php echo $img; ?>exterior.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
-        <div class="subhero__overlay"></div>
-      </div>
-      <div class="container subhero__inner">
-        <p class="subhero__eyebrow" data-reveal>COMPANY</p>
-        <h1 class="subhero__title" data-reveal>会社概要</h1>
-        <nav class="breadcrumb" aria-label="現在地">
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>">HOME</a><span>／</span><span>COMPANY</span>
-        </nav>
-      </div>
-    </section>
+	<header class="bh-pagehead">
+		<div class="bh-wrap">
+			<?php fort_breadcrumb( array( array( 'COMPANY', '' ) ) ); ?>
+			<p class="bh-label">COMPANY</p>
+			<h1 class="bh-pagehead__title">会社概要</h1>
+		</div>
+	</header>
 
     <!-- 会社情報テーブル -->
     <section class="section section--gray">

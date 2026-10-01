@@ -1,44 +1,39 @@
 <?php
-/** 単記事（お知らせ・イベント） */
+/** 記事（お知らせ・JOURNAL） */
 get_header();
-$img = get_template_directory_uri() . '/assets/images/';
 while ( have_posts() ) : the_post();
-	$is_event = ( 'fort_event' === get_post_type() );
-	$eyebrow  = $is_event ? 'EVENT' : 'NEWS';
-	$hero     = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'fort-hero' ) : $img . 'exterior.jpg';
+	$is_journal = 'journal' === get_post_type();
+	$label  = $is_journal ? 'JOURNAL' : 'NEWS';
+	$list   = $is_journal ? fort_url( 'journal' ) : home_url( '/news/' );
+	$terms  = $is_journal ? get_the_terms( get_the_ID(), 'journal_cat' ) : get_the_category();
+	$term   = ( $terms && ! is_wp_error( $terms ) ) ? $terms[0] : null;
 ?>
-	<section class="subhero">
-		<div class="subhero__media"><img src="<?php echo esc_url( $hero ); ?>" alt="<?php the_title_attribute(); ?>"><div class="subhero__overlay"></div></div>
-		<div class="container subhero__inner">
-			<p class="subhero__eyebrow" data-reveal><?php echo esc_html( $eyebrow ); ?></p>
-			<h1 class="subhero__title" data-reveal><?php the_title(); ?></h1>
-			<nav class="breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">HOME</a><span>／</span><span><?php the_title(); ?></span></nav>
-		</div>
-	</section>
-
-	<article class="section">
-		<div class="container" style="max-width:780px;">
-			<p class="section__label" style="text-align:left;"><?php echo esc_html( get_the_date() ); ?>
-				<?php if ( $is_event && fort_meta( 'fort_place' ) ) { echo ' ／ ' . esc_html( fort_meta( 'fort_place' ) ); } ?>
-			</p>
-			<div class="case-body" data-reveal style="margin-top:18px;">
-				<?php the_content(); ?>
+	<article class="bh-article">
+		<header class="bh-pagehead">
+			<div class="bh-wrap">
+				<?php fort_breadcrumb( array( array( $label, $list ), array( get_the_title(), '' ) ) ); ?>
+				<p class="bh-label"><?php echo esc_html( $label ); ?><?php echo $term ? '　—　' . esc_html( $term->name ) : ''; ?></p>
+				<h1 class="bh-pagehead__title"><?php the_title(); ?></h1>
+				<p class="bh-article__date"><time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?></time><?php if ( get_the_modified_date( 'Ymd' ) > get_the_date( 'Ymd' ) ) : ?>　更新 <time datetime="<?php echo esc_attr( get_the_modified_date( 'c' ) ); ?>"><?php echo esc_html( get_the_modified_date( 'Y.m.d' ) ); ?></time><?php endif; ?></p>
 			</div>
-			<div class="section__more" style="margin-top:40px;">
-				<a href="<?php echo esc_url( $is_event ? get_post_type_archive_link( 'fort_event' ) : home_url( '/news/' ) ); ?>" class="btn btn--outline">一覧へ戻る</a>
-			</div>
-		</div>
+		</header>
+		<?php if ( has_post_thumbnail() ) : ?><figure class="bh-case__main"><?php the_post_thumbnail( 'fort-hero', array( 'loading' => 'eager', 'fetchpriority' => 'high', 'alt' => '' ) ); ?></figure><?php endif; ?>
+		<div class="bh-wrap"><div class="bh-prose"><?php the_content(); ?></div></div>
+		<div class="bh-wrap bh-article__foot"><a class="bh-more" href="<?php echo esc_url( $list ); ?>">一覧へ戻る</a></div>
 	</article>
 
-	<section class="reserve section" id="reserve">
-		<div class="reserve__bg"><img src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="" aria-hidden="true"><div class="reserve__overlay"></div></div>
-		<div class="container reserve__inner">
-			<p class="section__label section__label--light" data-reveal>RESERVE &amp; CONTACT</p>
-			<h2 class="section__title section__title--light" data-reveal>お気軽にご相談ください。</h2>
-			<ul class="reserve__actions" data-reveal>
-				<li><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent btn--block">見学会予約</a></li>
-				<li><a href="<?php echo esc_url( home_url( '/#reserve' ) ); ?>" class="btn btn--light btn--block">お問い合わせ</a></li>
-			</ul>
+	<?php
+	if ( $is_journal ) :
+		$more = get_posts( array( 'post_type' => 'journal', 'posts_per_page' => 3, 'post__not_in' => array( get_the_ID() ) ) );
+		if ( $more ) : ?>
+	<section class="bh-journal bh-journal--more">
+		<div class="bh-wrap">
+			<header class="bh-head"><p class="bh-label">MORE JOURNAL</p></header>
+			<ul class="bh-journal__list"><?php foreach ( $more as $p ) : ?><li><a class="bh-journal__item" href="<?php echo esc_url( get_permalink( $p ) ); ?>"><?php if ( has_post_thumbnail( $p ) ) : ?><figure class="bh-journal__fig"><?php echo get_the_post_thumbnail( $p, 'fort-card', array( 'loading' => 'lazy', 'alt' => '' ) ); ?></figure><?php endif; ?><p class="bh-journal__meta"><?php echo esc_html( get_the_date( 'Y.m.d', $p ) ); ?></p><h3 class="bh-journal__title"><?php echo esc_html( get_the_title( $p ) ); ?></h3></a></li><?php endforeach; ?></ul>
 		</div>
 	</section>
-<?php endwhile; get_footer(); ?>
+		<?php endif;
+	endif;
+	get_template_part( 'parts/visit-cta', null, array( 'from' => $is_journal ? 'journal' : 'news' ) );
+endwhile;
+get_footer();

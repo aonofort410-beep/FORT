@@ -9,14 +9,13 @@ $depts = array(
 	'admin'        => array( 'ADMIN', '総務' ),
 );
 ?>
-	<section class="subhero">
-		<div class="subhero__media"><img src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="" aria-hidden="true"><div class="subhero__overlay"></div></div>
-		<div class="container subhero__inner">
-			<p class="subhero__eyebrow" data-reveal>STAFF</p>
-			<h1 class="subhero__title" data-reveal>チームでつくる家づくり。</h1>
-			<nav class="breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">HOME</a><span>／</span><span>STAFF</span></nav>
+	<header class="bh-pagehead">
+		<div class="bh-wrap">
+			<?php fort_breadcrumb( array( array( 'STAFF', '' ) ) ); ?>
+			<p class="bh-label">STAFF</p>
+			<h1 class="bh-pagehead__title">チームでつくる家づくり。</h1>
 		</div>
-	</section>
+	</header>
 
 	<section class="section staff-intro">
 		<div class="container staff-intro__inner">

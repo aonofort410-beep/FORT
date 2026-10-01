@@ -8,19 +8,13 @@ $img = get_template_directory_uri() . '/assets/images/';
 ?>
 
 
-    <section class="subhero">
-      <div class="subhero__media">
-        <img src="<?php echo $img; ?>exterior.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
-        <div class="subhero__overlay"></div>
-      </div>
-      <div class="container subhero__inner">
-        <p class="subhero__eyebrow" data-reveal>FEATURE</p>
-        <h1 class="subhero__title" data-reveal>テーマで深掘りする家づくり</h1>
-        <nav class="breadcrumb" aria-label="現在地">
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>">HOME</a><span>／</span><span>FEATURE</span>
-        </nav>
-      </div>
-    </section>
+	<header class="bh-pagehead">
+		<div class="bh-wrap">
+			<?php fort_breadcrumb( array( array( 'FEATURE', '' ) ) ); ?>
+			<p class="bh-label">FEATURE</p>
+			<h1 class="bh-pagehead__title">テーマで深掘りする家づくり</h1>
+		</div>
+	</header>
 
     <section class="section">
       <div class="container">

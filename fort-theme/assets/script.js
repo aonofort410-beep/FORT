@@ -432,3 +432,17 @@ document.addEventListener('DOMContentLoaded', function () {
   var alert = document.getElementById('rsv-alert');
   if (alert) alert.focus();
 })();
+
+/* v2：読み込めなかった写真は、枠ごと隠す（壊れた画像アイコンを出さない） */
+(function () {
+  function hide(img) {
+    // 画像だけが入っている枠（figure・リンク・div）までさかのぼって隠す
+    var box = img, up = img.parentElement;
+    while (up && up.tagName !== 'MAIN' && !up.textContent.trim() && up.querySelectorAll('img').length === 1) { box = up; up = up.parentElement; }
+    box.classList.add('is-missing');
+  }
+  document.querySelectorAll('main img').forEach(function (img) {
+    if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) hide(img);
+    else img.addEventListener('error', function () { hide(img); });
+  });
+})();

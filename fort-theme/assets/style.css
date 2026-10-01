@@ -2572,12 +2572,62 @@ body.menu-open .header__visit { opacity: 0; pointer-events: none; }
 }
 /* 日本語見出しを文節で改行させる */
 .bh-nb { display: inline-block; }
-/* HEROのコピーが英字のとき（例：LIFE WITH FORT.） */
-.bh-hero__title--en {
-  font-family: var(--font-en);
-  font-weight: 300;
-  font-size: clamp(2.3rem, 11vw, 7.2rem);
-  line-height: 1.05;
-  letter-spacing: .12em;
+/* ============================================================
+   HERO：公式ロゴがじわっと浮かび上がり、左下に控えめなコピー
+============================================================ */
+:root {
+  --font-hero-en: "Cormorant Garamond", "Cinzel", Georgia, serif; /* 細身のイタリック */
+  --font-hero-ja: "Shippori Mincho", "Noto Serif JP", serif;
 }
-@media (min-width: 1440px) { .bh-hero__title--en { font-size: 7.6rem; } }
+.bh-hero__media::after {
+  background: linear-gradient(180deg, rgba(14,15,16,.38) 0%, rgba(14,15,16,.30) 45%, rgba(14,15,16,.58) 100%);
+}
+.bh-hero__logo {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  padding-inline: var(--bh-gutter);
+  animation: logoReveal 5.6s cubic-bezier(.16, .72, .24, 1) .4s both;
+}
+.bh-hero__logo img { width: clamp(220px, 34vw, 440px); height: auto; filter: drop-shadow(0 2px 24px rgba(0,0,0,.25)); }
+
+.bh-hero__note {
+  position: absolute;
+  left: var(--bh-gutter);
+  bottom: calc(clamp(40px, 8vh, 88px) + env(safe-area-inset-bottom));
+  display: grid; gap: 10px;
+  color: #fff;
+  text-shadow: 0 1px 14px rgba(0,0,0,.35);
+  animation: heroNote 3.2s cubic-bezier(.16, .72, .24, 1) 2.6s both;
+}
+.bh-hero__note-en {
+  font-family: var(--font-hero-en);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  letter-spacing: .08em;
+  line-height: 1;
+}
+.bh-hero__note-ja {
+  font-family: var(--font-hero-ja);
+  font-weight: 500;
+  font-size: clamp(11px, 1.1vw, 13px);
+  letter-spacing: .22em;
+  opacity: .88;
+}
+.bh-hero .bh-hero__links {
+  position: absolute;
+  right: var(--bh-gutter);
+  bottom: calc(clamp(40px, 8vh, 88px) + env(safe-area-inset-bottom));
+  animation: heroNote 3.2s cubic-bezier(.16, .72, .24, 1) 3s both;
+}
+@keyframes heroNote {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (max-width: 600px) {
+  .bh-hero .bh-hero__links { gap: 18px; }
+  .bh-hero__note { bottom: calc(112px + env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bh-hero__logo, .bh-hero__note, .bh-hero .bh-hero__links { animation: none; }
+}

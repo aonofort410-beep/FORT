@@ -23,18 +23,25 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 				<source src="<?php echo esc_url( $img . 'hero.mp4' ); ?>" type="video/mp4">
 			</video>
 			<?php else : ?>
-			<img class="bh-hero__img" src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="FORTが手がけた住まいのキッチンとダイニング" width="2400" height="1600" fetchpriority="high" decoding="async">
+			<img class="bh-hero__img" src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="" width="2400" height="1600" fetchpriority="high" decoding="async">
 			<?php endif; ?>
 		</div>
-		<div class="bh-hero__inner">
-			<p class="bh-hero__place">OKAYAMA / FUKUYAMA</p>
-			<?php $copy = fort_opt( 'fort_hero_copy', FORT_HERO_COPY ); ?>
-			<h1 class="bh-hero__title<?php echo preg_match( '/[^\x00-\x7F]/', $copy ) ? '' : ' bh-hero__title--en'; ?>"><?php echo wp_kses( $copy, array( 'br' => array() ) ); ?><span class="sr-only">｜<?php bloginfo( 'name' ); ?> 岡山・福山の注文住宅</span></h1>
-			<p class="bh-hero__links">
-				<a href="<?php echo esc_url( fort_url( 'works' ) ); ?>">WORKS</a>
-				<a href="<?php echo esc_url( fort_url( 'event' ) ); ?>">EVENT</a>
-			</p>
+		<!-- 公式ロゴが、じわっと浮かび上がる -->
+		<div class="bh-hero__logo">
+			<h1>
+				<img src="<?php echo esc_url( $img . 'logo-white.png' ); ?>" alt="FORT 建築設計 OKAYAMA・FUKUYAMA" width="1600" height="350" fetchpriority="high" decoding="async">
+				<span class="sr-only"><?php bloginfo( 'name' ); ?>｜岡山・福山の注文住宅</span>
+			</h1>
 		</div>
+		<!-- 左下に控えめに -->
+		<p class="bh-hero__note">
+			<span class="bh-hero__note-en"><?php echo esc_html( fort_opt( 'fort_hero_copy', FORT_HERO_COPY ) ); ?></span>
+			<span class="bh-hero__note-ja"><?php echo esc_html( fort_opt( 'fort_hero_sub', FORT_HERO_SUB ) ); ?></span>
+		</p>
+		<p class="bh-hero__links">
+			<a href="<?php echo esc_url( fort_url( 'works' ) ); ?>">WORKS</a>
+			<a href="<?php echo esc_url( fort_url( 'event' ) ); ?>">EVENT</a>
+		</p>
 	</section>
 
 	<!-- 02 ABOUT：FORTとは何か -->

@@ -2833,3 +2833,277 @@ textarea.bh-input { min-height: 120px; }
   .bh-now__rail { grid-auto-columns: calc((100% - var(--bh-gutter) * 2 - 28px) / 3); }
   .bh-now__methods { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 32px; }
 }
+
+/* ============================================================
+   34. HOUSE（3つを比べる）
+============================================================ */
+.bh-hx { padding-bottom: var(--bh-space); }
+.bh-hx__grid { display: grid; gap: 72px; }
+.bh-hx__item { display: grid; gap: 12px; align-content: start; }
+.bh-hx__fig { display: block; aspect-ratio: 4 / 5; overflow: hidden; background: var(--bh-mist); margin-bottom: 10px; }
+.bh-hx__fig img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.bh-hx__fig:hover img { transform: scale(1.03); }
+.bh-hx__method { font-size: 13px; letter-spacing: .14em; color: var(--bh-gray); }
+.bh-hx__method span { font-family: var(--font-en); font-size: 11px; letter-spacing: .28em; margin-right: 12px; }
+.bh-hx__name { font-family: var(--font-en); font-weight: 400; font-size: clamp(1.8rem, 6vw, 2.4rem); letter-spacing: .12em; line-height: 1.2; color: var(--bh-ink); }
+.bh-hx__catch { font-family: var(--font-serif); font-size: 17px; line-height: 1.8; letter-spacing: .06em; }
+.bh-hx__text { font-size: 14px; line-height: 2.1; color: var(--bh-gray); }
+.bh-hx__for-label { margin-top: 8px; font-size: 12px; letter-spacing: .14em; color: var(--bh-ink); }
+.bh-hx__for { list-style: none; display: grid; gap: 6px; margin-bottom: 8px; }
+.bh-hx__for li { font-size: 14px; padding-left: 18px; position: relative; }
+.bh-hx__for li::before { content: ""; position: absolute; left: 0; top: .95em; width: 8px; height: 1px; background: var(--bh-ink); }
+.bh-hx .bh-more { justify-self: start; }
+
+.bh-cmp { padding-block: var(--bh-space); background: var(--bh-ink); color: var(--bh-paper); }
+.bh-cmp .bh-head__title { color: var(--bh-paper); }
+.bh-cmp .bh-label { color: #9a9da0; }
+.bh-cmp__scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.bh-cmp__table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px; }
+.bh-cmp__table th, .bh-cmp__table td { padding: 20px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(255,255,255,.16); font-weight: 400; line-height: 1.8; }
+.bh-cmp__table thead th { font-family: var(--font-en); font-size: 15px; letter-spacing: .14em; border-bottom-color: rgba(255,255,255,.5); }
+.bh-cmp__table tbody th { color: #a5a8ab; font-size: 12.5px; letter-spacing: .08em; white-space: nowrap; width: 8em; }
+.bh-cmp__table small { display: block; font-size: 11px; color: #a5a8ab; margin-top: 4px; line-height: 1.6; }
+.bh-cmp__note { margin-top: 28px; font-size: 14px; color: #c9cbcd; }
+.bh-house__common--light { margin-top: 20px; }
+@media (min-width: 900px) {
+  .bh-hx__grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .bh-hx__item:nth-child(2) { margin-top: 96px; }
+}
+
+/* FORT PRO */
+.bh-pagehead__title--en { font-family: var(--font-en); font-weight: 300; letter-spacing: .14em; font-size: clamp(2.2rem, 9vw, 4.6rem); line-height: 1.1; }
+.bh-hx__for--lg li { font-size: 15px; padding-block: 4px; }
+.bh-spec--mt { margin-top: 32px; }
+.bh-price { font-family: var(--font-en); font-weight: 300; font-size: clamp(2rem, 7vw, 3rem); letter-spacing: .04em; line-height: 1.2; }
+.bh-plans { padding-block: var(--bh-space); background: var(--bh-mist); }
+.bh-plans__nav { display: flex; gap: 6px; margin-bottom: 48px; position: sticky; top: calc(64px + env(safe-area-inset-top)); z-index: 5; background: var(--bh-mist); padding-block: 10px; }
+.bh-plans__nav a { flex: 1; max-width: 64px; text-align: center; font-family: var(--font-en); font-size: 15px; padding: 10px 0; border: 1px solid var(--bh-line); color: var(--bh-ink); background: var(--bh-paper); }
+.bh-plans__nav a:hover { background: var(--bh-ink); color: var(--bh-paper); }
+.bh-plan { display: grid; gap: 20px; padding-block: 48px; border-top: 1px solid var(--bh-line); scroll-margin-top: 140px; }
+.bh-plan__head { display: flex; gap: 20px; align-items: center; }
+.bh-plan__letter { font-family: var(--font-en); font-weight: 300; font-size: 64px; line-height: 1; color: var(--bh-ink); }
+.bh-plan__name { font-family: var(--font-serif); font-weight: 500; font-size: 18px; letter-spacing: .06em; }
+.bh-plan__sub { font-size: 12.5px; color: var(--bh-gray); margin-top: 4px; }
+.bh-plan__media { display: grid; gap: 12px; }
+.bh-plan__media figure { margin: 0; background: #fff; }
+.bh-plan__media img { width: 100%; height: auto; display: block; }
+.bh-plan__drawing figcaption { font-size: 11px; color: var(--bh-gray); padding: 6px 10px; }
+.bh-plan__body { display: grid; gap: 18px; font-size: 14px; line-height: 2; align-content: start; }
+.bh-plan__body .bh-more { justify-self: start; }
+.bh-plans__note { color: var(--bh-gray); }
+@media (min-width: 1024px) {
+  .bh-plan { grid-template-columns: 2fr 1fr; column-gap: 48px; }
+  .bh-plan__head { grid-column: 1 / -1; }
+  .bh-plan__media { grid-template-columns: 1.2fr 1fr; align-items: start; }
+}
+
+/* ============================================================
+   35. FORT DESIGN 特設ページ（dz-）
+   黒の上に、写真と細い線と言葉だけ。スクロールで物語が進む。
+   進み具合は design.js が --p（0〜1）として書き込み、ここで描く。
+============================================================ */
+body.dz-page {
+  --dz-black: #0b0b0c;
+  --dz-ink: #ecebe6;
+  --dz-dim: #8e8f8c;
+  --dz-line: rgba(236, 235, 230, .16);
+  --dz-display: "Cormorant Garamond", "Noto Serif JP", Georgia, serif;
+  --dz-ja: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  background: var(--dz-black);
+  color: var(--dz-ink);
+}
+/* フィルムのような粒子（ごく薄く） */
+body.dz-page::after {
+  content: ""; position: fixed; inset: -50%; z-index: 400; pointer-events: none; opacity: .055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: dzGrain 1.2s steps(6) infinite;
+}
+@keyframes dzGrain { 0%{transform:translate(0,0)} 20%{transform:translate(-3%,2%)} 40%{transform:translate(2%,-3%)} 60%{transform:translate(-2%,-1%)} 80%{transform:translate(3%,3%)} 100%{transform:translate(0,0)} }
+
+/* ヘッダーは黒の上で白、スクロール後は黒い半透明に */
+body.dz-page .header.is-scrolled { background: rgba(11, 11, 12, .72); box-shadow: none; }
+body.dz-page .header.is-scrolled .header__logo-img--white { display: block; }
+body.dz-page .header.is-scrolled .header__logo-img--dark { display: none; }
+body.dz-page .header.is-scrolled .header-nav__link,
+body.dz-page .header.is-scrolled .menu-toggle,
+body.dz-page .header.is-scrolled .header__visit { color: var(--dz-ink); }
+
+.dz { overflow: clip; }
+.dz-wrap { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: var(--bh-gutter); }
+.dz-label { font-family: var(--font-en); font-size: 11px; letter-spacing: .4em; color: var(--dz-dim); }
+.dz-h2 { font-family: var(--dz-ja); font-weight: 300; font-size: clamp(1.5rem, 5vw, 2.4rem); letter-spacing: .1em; line-height: 1.6; margin-top: 18px; }
+.dz-more { display: inline-flex; align-items: center; gap: 14px; font-size: 13px; letter-spacing: .14em; color: var(--dz-ink); padding-block: 8px; }
+.dz-more::after { content: ""; width: 34px; height: 1px; background: currentColor; transition: width .5s cubic-bezier(.2,.7,.2,1); }
+.dz-more:hover::after { width: 60px; }
+.dz-links { display: flex; flex-wrap: wrap; gap: 6px 32px; margin-top: 28px; }
+
+/* 1行ずつ、下からせり上がる */
+[data-dz-lines] > * { display: block; overflow: hidden; }
+body.dz-ready [data-dz-lines] > * { opacity: 0; transform: translateY(.9em); filter: blur(6px); transition: opacity 1.4s cubic-bezier(.2,.7,.2,1), transform 1.4s cubic-bezier(.2,.7,.2,1), filter 1.4s; transition-delay: calc(var(--li, 0) * .14s); }
+body.dz-ready [data-dz-lines].is-in > * { opacity: 1; transform: none; filter: none; }
+
+/* --- OPENING --- */
+.dz-open {
+  min-height: 100svh; display: grid; place-content: center; justify-items: center; gap: 26px;
+  padding: 120px var(--bh-gutter) 80px; text-align: center; position: relative;
+}
+.dz-open__eyebrow { font-family: var(--font-en); font-size: 11px; letter-spacing: .5em; color: var(--dz-dim); opacity: 0; animation: dzFade 1.6s .2s forwards; }
+.dz-open__title {
+  font-family: var(--dz-display); font-weight: 300; font-size: clamp(2.6rem, 11vw, 9.5rem);
+  letter-spacing: .14em; line-height: 1; margin-right: -.14em; white-space: nowrap;
+}
+.dz-open__title span { display: inline-block; opacity: 0; transform: translateY(.35em); filter: blur(12px); animation: dzLetter 2.2s cubic-bezier(.16,.72,.24,1) forwards; animation-delay: calc(.5s + var(--i) * .09s); }
+.dz-open__rule { width: 0; height: 1px; background: var(--dz-ink); opacity: .5; animation: dzRule 1.8s cubic-bezier(.2,.7,.2,1) 1.8s forwards; }
+.dz-open__sub { font-family: var(--dz-ja); font-weight: 300; font-size: clamp(14px, 1.6vw, 17px); letter-spacing: .3em; opacity: 0; animation: dzFade 2s 2.4s forwards; }
+.dz-open__scroll { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); font-family: var(--font-en); font-size: 10px; letter-spacing: .4em; color: var(--dz-dim); opacity: 0; animation: dzFade 2s 3.2s forwards; }
+.dz-open__scroll::after { content: ""; display: block; width: 1px; height: 40px; margin: 12px auto 0; background: linear-gradient(var(--dz-ink), transparent); animation: dzDrop 2.4s 3.4s infinite; transform-origin: top; }
+@keyframes dzLetter { to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes dzFade { to { opacity: 1; } }
+@keyframes dzRule { to { width: min(220px, 40vw); } }
+@keyframes dzDrop { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* --- APERTURE：窓が開いていく --- */
+.dz-ap { --p: 0; height: 240vh; position: relative; }
+.dz-ap__sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+.dz-ap__fig { position: absolute; inset: 0; margin: 0;
+  clip-path: inset(calc((1 - var(--p)) * 30%) calc((1 - var(--p)) * 36%) round calc((1 - var(--p)) * 2px));
+}
+.dz-ap__fig img { width: 100%; height: 100%; object-fit: cover; transform: scale(calc(1.35 - var(--p) * .35)); }
+.dz-ap__fig::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0, calc(.15 + var(--p) * .25)); }
+.dz-ap__words { position: relative; z-index: 1; display: grid; gap: .3em; text-align: center;
+  font-family: var(--dz-ja); font-weight: 300; font-size: clamp(1.3rem, 4.4vw, 2.6rem); letter-spacing: .24em; line-height: 1.6;
+  text-shadow: 0 2px 30px rgba(0,0,0,.5);
+}
+.dz-ap__words span { opacity: clamp(0, calc((var(--p) - .45 - var(--n, 0) * .1) * 6), 1); transform: translateY(calc((1 - clamp(0, calc((var(--p) - .45 - var(--n, 0) * .1) * 6), 1)) * 16px)); }
+.dz-ap__words span:nth-child(2) { --n: 1; }
+.dz-ap__words span:nth-child(3) { --n: 2; }
+
+/* --- CONCEPT --- */
+.dz-concept { padding-block: clamp(120px, 20vw, 260px); }
+.dz-concept__title { font-family: var(--dz-ja); font-weight: 300; font-size: clamp(1.6rem, 6vw, 3.6rem); line-height: 1.7; letter-spacing: .1em; margin-top: 28px; }
+.dz-concept__body { margin-top: 48px; font-size: clamp(14px, 1.3vw, 16px); line-height: 2.4; letter-spacing: .08em; color: #c8c8c3; max-width: 34em; }
+@media (min-width: 1024px) { .dz-concept__body { margin-left: 41.6%; } }
+
+/* --- CHAPTERS：縦スクロールで横に流れる --- */
+.dz-ch { --p: 0; height: 330vh; position: relative; }
+.dz-ch__sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.dz-ch__track { display: flex; height: 100%; width: 300vw; transform: translate3d(calc(var(--p) * -200vw), 0, 0); will-change: transform; }
+.dz-ch__panel { flex: 0 0 100vw; height: 100%; position: relative; display: grid; align-items: end; }
+.dz-ch__fig { position: absolute; inset: 0; margin: 0; overflow: hidden; }
+.dz-ch__fig img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12) translateX(calc((var(--p) - .5) * -6%)); }
+.dz-ch__fig::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.3) 55%, rgba(0,0,0,.1) 100%); }
+.dz-ch__text { position: relative; z-index: 1; padding: 0 var(--bh-gutter) clamp(72px, 12vh, 140px); max-width: 640px; display: grid; gap: 22px; }
+.dz-ch__no { font-family: var(--font-en); font-size: 11px; letter-spacing: .4em; color: #bdbdb8; }
+.dz-ch__text h3 { font-family: var(--dz-ja); font-weight: 300; font-size: clamp(1.7rem, 5vw, 3.2rem); line-height: 1.6; letter-spacing: .1em; }
+.dz-ch__text p:last-child { font-size: 14px; line-height: 2.2; color: #d0d0cb; max-width: 30em; }
+.dz-ch__panel--site { background: #121213; }
+.dz-ch__contour { position: absolute; inset: 0; width: 100%; height: 100%; }
+.dz-ch__contour ellipse { fill: none; stroke: var(--dz-ink); stroke-width: .6; opacity: .28; }
+.dz-ch__bar { position: absolute; left: var(--bh-gutter); right: var(--bh-gutter); bottom: 32px; height: 1px; background: var(--dz-line); }
+.dz-ch__bar span { display: block; height: 100%; background: var(--dz-ink); transform-origin: left; transform: scaleX(var(--p)); }
+
+/* --- DRAWING：図面が描かれる --- */
+.dz-draw { --p: 0; height: 260vh; position: relative; background: #f1f0eb; color: #121213; }
+.dz-draw__sticky { position: sticky; top: 0; min-height: 100svh; display: grid; align-items: center; padding-block: 90px 40px; }
+.dz-draw__grid { display: grid; gap: 36px; align-items: center; }
+.dz-draw .dz-label { color: #6d6e6b; }
+.dz-draw__title { font-family: var(--dz-ja); font-weight: 300; font-size: clamp(1.6rem, 5vw, 3rem); line-height: 1.6; letter-spacing: .1em; margin-top: 18px; }
+.dz-draw__steps { list-style: none; margin-top: 30px; display: grid; gap: 14px; }
+.dz-draw__steps li {
+  font-size: 14px; letter-spacing: .06em; display: grid; gap: 4px;
+  opacity: clamp(.12, calc((var(--p) * 4.4 - var(--i)) * 1.4), 1);
+  transform: translateX(calc((1 - clamp(0, calc(var(--p) * 4.4 - var(--i)), 1)) * 14px));
+}
+.dz-draw__steps span { font-family: var(--font-en); font-size: 11px; letter-spacing: .32em; color: #6d6e6b; }
+.dz-draw__svg { width: 100%; height: auto; max-height: 62vh; }
+.dz-draw__lines path { stroke: #121213; stroke-width: 1.4; stroke-linecap: square; stroke-dasharray: 1; stroke-dashoffset: calc(1 - clamp(0, calc(var(--p) * 1.35 - var(--d, 0)), 1)); }
+.dz-draw__lines path:nth-child(1) { stroke-width: 2.4; }
+.dz-draw__lines path:nth-child(2) { --d: .08; }
+.dz-draw__lines path:nth-child(3) { --d: .16; }
+.dz-draw__lines path:nth-child(4) { --d: .24; }
+.dz-draw__lines path:nth-child(5) { --d: .3; stroke-width: 1; }
+.dz-draw__lines path:nth-child(6) { --d: .34; stroke-width: 4; stroke: #8b8c88; }
+.dz-draw__notes text { font-family: var(--font-en); font-size: 11px; letter-spacing: .3em; fill: #6d6e6b; opacity: clamp(0, calc((var(--p) - .62) * 5), 1); }
+@media (min-width: 1024px) { .dz-draw__grid { grid-template-columns: 1fr 1.5fr; gap: 72px; } }
+
+/* --- FOR YOU / PRICE --- */
+.dz-for, .dz-price { padding-block: clamp(110px, 16vw, 200px); border-top: 1px solid var(--dz-line); }
+.dz-for__grid { display: grid; gap: 40px; }
+.dz-for__list { font-family: var(--dz-ja); font-weight: 300; font-size: clamp(1.05rem, 3.4vw, 1.5rem); line-height: 2.2; letter-spacing: .08em; }
+.dz-for__list > span::before { content: "— "; color: var(--dz-dim); }
+.dz-dl { margin-top: 48px; border-top: 1px solid var(--dz-line); }
+.dz-dl div { display: grid; grid-template-columns: 8em 1fr; gap: 16px; padding-block: 18px; border-bottom: 1px solid var(--dz-line); font-size: 14px; }
+.dz-dl dt { color: var(--dz-dim); font-size: 12.5px; letter-spacing: .1em; }
+.dz-price__num { font-family: var(--dz-display); font-weight: 300; font-size: clamp(3rem, 12vw, 7rem); letter-spacing: .02em; line-height: 1; }
+.dz-price__note { margin-top: 14px; font-size: 12px; color: var(--dz-dim); letter-spacing: .06em; }
+.dz-price__text { margin-top: 32px; font-size: 14px; line-height: 2.2; color: #c8c8c3; max-width: 32em; }
+@media (min-width: 1024px) { .dz-for__grid { grid-template-columns: 1fr 1.4fr; gap: 72px; } }
+
+/* --- WORKS --- */
+.dz-works { padding-block: clamp(110px, 16vw, 200px); border-top: 1px solid var(--dz-line); }
+.dz-works__rail { display: grid; grid-auto-flow: column; grid-auto-columns: min(78vw, 560px); gap: clamp(14px, 2vw, 28px); overflow-x: auto; list-style: none; margin-block: 48px 36px; padding-inline: var(--bh-gutter); scroll-snap-type: x mandatory; scrollbar-width: none; cursor: grab; }
+.dz-works__rail::-webkit-scrollbar { display: none; }
+.dz-works__rail li { scroll-snap-align: start; }
+.dz-works__rail a { display: grid; gap: 14px; color: var(--dz-ink); }
+.dz-works__rail figure { aspect-ratio: 4 / 5; overflow: hidden; margin: 0; }
+.dz-works__rail img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.6s cubic-bezier(.2,.7,.2,1), filter 1s; filter: grayscale(.25) brightness(.92); }
+.dz-works__rail a:hover img { transform: scale(1.05); filter: none; }
+.dz-works__rail p { font-family: var(--dz-ja); font-size: 15px; letter-spacing: .08em; }
+
+/* --- WORDS --- */
+.dz-words { padding-block: clamp(140px, 22vw, 300px); text-align: center; border-top: 1px solid var(--dz-line); }
+.dz-words blockquote { margin: 0; font-family: var(--dz-ja); font-weight: 300; font-size: clamp(1.2rem, 4vw, 2.3rem); line-height: 2; letter-spacing: .14em; }
+.dz-words__by { margin-top: 36px; font-family: var(--dz-display); font-style: italic; font-size: 18px; letter-spacing: .14em; color: var(--dz-dim); }
+
+/* --- VISIT --- */
+.dz-visit { padding-block: clamp(120px, 18vw, 220px); border-top: 1px solid var(--dz-line); }
+.dz-visit__title { font-family: var(--dz-ja); font-weight: 300; font-size: clamp(1.8rem, 6.4vw, 4rem); line-height: 1.6; letter-spacing: .1em; margin-top: 22px; }
+.dz-visit__text { margin-top: 24px; font-size: 14px; line-height: 2.2; color: #c8c8c3; }
+.dz-visit__choices { display: grid; gap: 12px; margin-top: 48px; max-width: 900px; }
+.dz-visit__choices a {
+  position: relative; overflow: hidden; display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 28px 26px; border: 1px solid rgba(236,235,230,.4); color: var(--dz-ink); font-family: var(--dz-ja); font-size: 16px; letter-spacing: .12em;
+  isolation: isolate;
+}
+.dz-visit__choices a::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--dz-ink); transform: scaleY(0); transform-origin: bottom; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.dz-visit__choices a:hover { color: var(--dz-black); }
+.dz-visit__choices a:hover::before { transform: scaleY(1); }
+.dz-visit__choices small { font-family: var(--font-en); font-size: 11px; letter-spacing: .36em; opacity: .7; }
+@media (min-width: 768px) { .dz-visit__choices { grid-template-columns: 1fr 1fr; } }
+
+/* --- カーソル（PCのみ・design.js が生成） --- */
+.dz-cursor { position: fixed; left: 0; top: 0; z-index: 500; pointer-events: none; width: 0; height: 0; opacity: 0; transition: opacity .3s; }
+.dz-cursor.is-on { opacity: 1; }
+.dz-cursor span {
+  position: absolute; left: -8px; top: -8px; width: 16px; height: 16px; border-radius: 50%;
+  border: 1px solid rgba(236,235,230,.85); mix-blend-mode: difference;
+  display: grid; place-items: center; font-family: var(--font-en); font-size: 0; letter-spacing: .2em; color: #fff;
+  transition: width .35s, height .35s, left .35s, top .35s, background .35s, font-size .2s;
+}
+.dz-cursor.is-link span { left: -22px; top: -22px; width: 44px; height: 44px; }
+.dz-cursor.is-label span { left: -40px; top: -40px; width: 80px; height: 80px; background: rgba(236,235,230,.9); color: #0b0b0c; font-size: 10px; mix-blend-mode: normal; }
+
+/* --- スマホ：横流れは縦に並べ替え（指のスクロールと競合させない） --- */
+@media (max-width: 767px) {
+  .dz-ch { height: auto; }
+  .dz-ch__sticky { position: static; height: auto; }
+  .dz-ch__track { flex-direction: column; width: 100%; transform: none; }
+  .dz-ch__panel { flex: none; width: 100%; min-height: 92svh; }
+  .dz-ch__fig img { transform: none; }
+  .dz-ch__bar { display: none; }
+  .dz-draw { height: 200vh; }
+}
+
+/* --- 動きを減らす設定：すべて静止状態で読めるように --- */
+@media (prefers-reduced-motion: reduce) {
+  body.dz-page::after { animation: none; }
+  .dz-open__title span, .dz-open__eyebrow, .dz-open__sub, .dz-open__scroll, .dz-open__rule { animation: none; opacity: 1; transform: none; filter: none; }
+  .dz-open__rule { width: 160px; }
+  .dz-ap, .dz-ch, .dz-draw { height: auto; --p: 1; }
+  .dz-ap__sticky, .dz-ch__sticky, .dz-draw__sticky { position: static; }
+  .dz-ap__sticky { height: 80svh; }
+  .dz-ch__track { flex-direction: column; width: 100%; transform: none; }
+  .dz-ch__panel { flex: none; width: 100%; min-height: 80svh; }
+  .dz-ch__bar, .dz-cursor { display: none; }
+  body.dz-ready [data-dz-lines] > * { opacity: 1; transform: none; filter: none; transition: none; }
+}

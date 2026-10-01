@@ -13,6 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 require_once get_template_directory() . '/inc/brand.php';
 require_once get_template_directory() . '/inc/reservation.php';
+require_once get_template_directory() . '/inc/house.php';
 
 /* ============================================================
    1. テーマの基本サポート

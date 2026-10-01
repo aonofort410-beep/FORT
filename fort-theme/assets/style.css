@@ -2576,8 +2576,7 @@ body.menu-open .header__visit { opacity: 0; pointer-events: none; }
    HERO：公式ロゴがじわっと浮かび上がり、左下に控えめなコピー
 ============================================================ */
 :root {
-  --font-hero-en: "Cormorant Garamond", "Cinzel", Georgia, serif; /* 細身のイタリック */
-  --font-hero-ja: "Shippori Mincho", "Noto Serif JP", serif;
+  --font-hero-ja: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
 }
 .bh-hero__media::after {
   background: linear-gradient(180deg, rgba(14,15,16,.38) 0%, rgba(14,15,16,.30) 45%, rgba(14,15,16,.58) 100%);
@@ -2599,19 +2598,18 @@ body.menu-open .header__visit { opacity: 0; pointer-events: none; }
   text-shadow: 0 1px 14px rgba(0,0,0,.35);
   animation: heroNote 3.2s cubic-bezier(.16, .72, .24, 1) 2.6s both;
 }
-.bh-hero__note-en {
-  font-family: var(--font-hero-en);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
-  letter-spacing: .08em;
-  line-height: 1;
-}
-.bh-hero__note-ja {
+.bh-hero__note-main {
   font-family: var(--font-hero-ja);
-  font-weight: 500;
-  font-size: clamp(11px, 1.1vw, 13px);
-  letter-spacing: .22em;
+  font-weight: 400;
+  font-size: clamp(15px, 1.5vw, 19px);
+  letter-spacing: .08em;
+  line-height: 1.6;
+}
+.bh-hero__note-sub {
+  font-family: var(--font-hero-ja);
+  font-weight: 300;
+  font-size: clamp(11px, 1.05vw, 13px);
+  letter-spacing: .12em;
   opacity: .88;
 }
 .bh-hero .bh-hero__links {

@@ -35,8 +35,8 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 		</div>
 		<!-- 左下に控えめに -->
 		<p class="bh-hero__note">
-			<span class="bh-hero__note-en"><?php echo esc_html( fort_opt( 'fort_hero_copy', FORT_HERO_COPY ) ); ?></span>
-			<span class="bh-hero__note-ja"><?php echo esc_html( fort_opt( 'fort_hero_sub', FORT_HERO_SUB ) ); ?></span>
+			<span class="bh-hero__note-main"><?php echo esc_html( fort_opt( 'fort_hero_copy', FORT_HERO_COPY ) ); ?></span>
+			<span class="bh-hero__note-sub"><?php echo esc_html( fort_opt( 'fort_hero_sub', FORT_HERO_SUB ) ); ?></span>
 		</p>
 		<p class="bh-hero__links">
 			<a href="<?php echo esc_url( fort_url( 'works' ) ); ?>">WORKS</a>

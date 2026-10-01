@@ -257,8 +257,8 @@ function fort_current_events( $region = '', $limit = 6 ) {
 define( 'FORT_INSTAGRAM', 'https://www.instagram.com/fort_architecture/' );
 define( 'FORT_INSTAGRAM_FAMILY', 'https://www.instagram.com/fort_family.jp/' );
 define( 'FORT_YOUTUBE', 'https://www.youtube.com/@FORT-dg7fz' );
-define( 'FORT_HERO_COPY', 'LIFE WITH FORT.' );
-define( 'FORT_HERO_SUB', '暮らしの一瞬一瞬を、デザインする。' );
+define( 'FORT_HERO_COPY', '暮らしを、少しかっこよく。' );
+define( 'FORT_HERO_SUB', 'いい家より、いい暮らし。' );
 
 /** 公式SNS（フッターなどで使用） */
 function fort_sns() {
@@ -289,9 +289,9 @@ function fort_customize_v2( $wp ) {
 
 	// トップ左下のコピー
 	$wp->add_setting( 'fort_hero_copy', array( 'default' => FORT_HERO_COPY, 'sanitize_callback' => 'sanitize_text_field' ) );
-	$wp->add_control( 'fort_hero_copy', array( 'label' => 'トップ左下の英字', 'section' => 'fort_hero', 'type' => 'text' ) );
+	$wp->add_control( 'fort_hero_copy', array( 'label' => 'トップ左下の1行目', 'section' => 'fort_hero', 'type' => 'text' ) );
 	$wp->add_setting( 'fort_hero_sub', array( 'default' => FORT_HERO_SUB, 'sanitize_callback' => 'sanitize_text_field' ) );
-	$wp->add_control( 'fort_hero_sub', array( 'label' => 'トップ左下の日本語', 'section' => 'fort_hero', 'type' => 'text' ) );
+	$wp->add_control( 'fort_hero_sub', array( 'label' => 'トップ左下の2行目', 'section' => 'fort_hero', 'type' => 'text' ) );
 }
 add_action( 'customize_register', 'fort_customize_v2', 20 );
 

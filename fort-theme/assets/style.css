@@ -2801,3 +2801,35 @@ textarea.bh-input { min-height: 120px; }
 @media (max-width: 600px) {
   .bh-form__actions .bh-btn { width: 100%; min-width: 0; }
 }
+
+/* ============================================================
+   33. NOW（/now/：Instagramからの入口・スマホ優先）
+============================================================ */
+.bh-now__head { padding-top: calc(clamp(110px, 14vw, 170px) + env(safe-area-inset-top)); padding-bottom: 36px; border-bottom: 1px solid var(--bh-line); }
+.bh-now__mark { width: 132px; height: auto; display: block; }
+.bh-now__title { display: flex; align-items: baseline; gap: 14px; margin-top: 26px; }
+.bh-now__date { font-family: var(--font-en); font-weight: 300; font-size: 28px; letter-spacing: .08em; color: var(--bh-ink); }
+.bh-now__lead { margin-top: 14px; font-family: var(--font-serif); font-size: 16px; line-height: 1.9; letter-spacing: .06em; }
+.bh-now__jump { display: flex; gap: 8px; margin-top: 26px; overflow-x: auto; scrollbar-width: none; }
+.bh-now__jump::-webkit-scrollbar { display: none; }
+.bh-now__jump a { flex: 0 0 auto; font-family: var(--font-en); font-size: 11px; letter-spacing: .2em; padding: 11px 14px; border: 1px solid var(--bh-line); color: var(--bh-ink); }
+.bh-now__news { padding-block: 40px; background: var(--bh-mist); }
+.bh-now__works { padding-block: var(--bh-space); border-top: 1px solid var(--bh-line); }
+.bh-now__rail {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 72%; gap: 14px;
+  overflow-x: auto; scroll-snap-type: x mandatory; list-style: none;
+  padding-inline: var(--bh-gutter); scroll-padding-inline: var(--bh-gutter); scrollbar-width: none;
+}
+.bh-now__rail::-webkit-scrollbar { display: none; }
+.bh-now__rail > li { scroll-snap-align: start; }
+.bh-now__house { padding-block: var(--bh-space); background: var(--bh-ink); color: var(--bh-paper); }
+.bh-now__house .bh-head__title { color: var(--bh-paper); }
+.bh-now__methods { list-style: none; border-top: 1px solid rgba(255,255,255,.18); }
+.bh-now__methods a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,.18); color: var(--bh-paper); }
+.bh-now__mname { font-family: var(--font-en); font-size: 20px; letter-spacing: .14em; }
+.bh-now__mtype { font-size: 12px; color: #a5a8ab; letter-spacing: .12em; }
+.bh-now__mtype::after { content: "  →"; }
+@media (min-width: 768px) {
+  .bh-now__rail { grid-auto-columns: calc((100% - var(--bh-gutter) * 2 - 28px) / 3); }
+  .bh-now__methods { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 32px; }
+}

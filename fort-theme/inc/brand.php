@@ -437,7 +437,7 @@ function fort_breadcrumb( $items ) {
    8. 写真のヒーローが無いページは、最初から白いヘッダーにする
 ============================================================ */
 function fort_is_solid_page() {
-	return is_page_template( 'template-visit.php' ) || is_post_type_archive( array( 'works', 'fort_event' ) ) || is_tax( 'works_cat' ) || is_singular( array( 'works', 'fort_event', 'model_house' ) );
+	return is_page_template( array( 'template-visit.php', 'template-now.php' ) ) || is_post_type_archive( array( 'works', 'fort_event' ) ) || is_tax( 'works_cat' ) || is_singular( array( 'works', 'fort_event', 'model_house' ) );
 }
 add_filter( 'body_class', function ( $classes ) {
 	if ( fort_is_solid_page() ) $classes[] = 'bh-solid';
@@ -521,4 +521,11 @@ add_action( 'after_switch_theme', function () {
 		update_post_meta( $id, 'fort_region', 'fukuyama' );
 		update_post_meta( $id, 'fort_mh_status', 'open' );
 	}
+} );
+
+/** テーマ有効化時、/now/ ページが無ければ作成（Instagramのプロフィールに貼るURL） */
+add_action( 'after_switch_theme', function () {
+	if ( get_page_by_path( 'now' ) ) return;
+	$id = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'NOW', 'post_name' => 'now' ) );
+	if ( $id && ! is_wp_error( $id ) ) update_post_meta( $id, '_wp_page_template', 'template-now.php' );
 } );

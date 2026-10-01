@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
      1. ヘッダー：スクロール量で見た目を切り替える
   -------------------------------------------------------- */
   function onScroll() {
-    if (window.scrollY > 60) header.classList.add('is-scrolled');
+    if (window.scrollY > 60 || body.classList.contains('bh-solid')) header.classList.add('is-scrolled');
     else header.classList.remove('is-scrolled');
   }
   onScroll();
@@ -390,5 +390,39 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.replaceWith(iframe);
       track('movie_play', id);
     });
+  });
+})();
+
+/* ============================================================
+   v2：施工事例の絞り込み（地域 / 階数 / 商品 / 特徴。グループ間は AND）
+============================================================ */
+(function () {
+  var box = document.querySelector('[data-works-filter]');
+  if (!box) return;
+  var cards = document.querySelectorAll('.bh-wgrid .bh-wcard');
+  var count = box.querySelector('[data-works-count]');
+  var empty = document.querySelector('[data-works-empty]');
+  var state = {};
+  box.addEventListener('click', function (e) {
+    var btn = e.target.closest('button[data-value]');
+    if (!btn) return;
+    var group = btn.closest('[data-group]');
+    var key = group.getAttribute('data-group');
+    state[key] = btn.getAttribute('data-value');
+    group.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+    var shown = 0;
+    cards.forEach(function (card) {
+      var ok = Object.keys(state).every(function (k) {
+        var v = state[k];
+        if (!v) return true;
+        var have = (card.getAttribute('data-' + k) || '').split(' ');
+        return have.indexOf(v) !== -1;
+      });
+      card.hidden = !ok;
+      if (ok) shown++;
+    });
+    if (count) count.textContent = shown;
+    if (empty) empty.hidden = shown > 0;
+    if (window.fortTrack) window.fortTrack('works_filter', key + ':' + (state[key] || 'all'));
   });
 })();

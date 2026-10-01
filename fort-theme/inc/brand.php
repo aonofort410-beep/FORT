@@ -337,3 +337,108 @@ function fort_media( $key ) {
 	);
 	return isset( $map[ $key ] ) ? $base . $map[ $key ] : '';
 }
+
+/* ============================================================
+   6. 施工事例（WORKS）：作品集として見せるための項目
+   ・設計担当者の名前・写真・コメントは持たない（FORTとしての設計意図を書く）
+   ・空欄の項目はページに表示しない
+============================================================ */
+function fort_works_choices() {
+	return array(
+		'fort_w_region' => array( '' => '—', 'okayama' => '岡山', 'fukuyama' => '福山' ),
+		'fort_w_floors' => array( '' => '—', 'hiraya' => '平屋', 'two' => '二階建て', 'three' => '三階建て' ),
+		'fort_w_series' => array( '' => '—', 'design' => 'FORT DESIGN', 'pro' => 'FORT PRO', 'style' => 'FORT STYLE' ),
+	);
+}
+
+function fort_works_meta_v2_cb( $post ) {
+	wp_nonce_field( 'fort_works_v2', 'fort_works_v2_nonce' );
+	$c = fort_works_choices();
+	echo '<p style="color:#666;">一覧の絞り込みと、詳細ページの文章に使います。空欄の項目はページに表示されません。設計担当者の名前は載せず、「FORTとして、なぜこの設計にしたのか」を書いてください。</p>';
+	fort_select_field( $post->ID, 'fort_w_region', '地域（絞り込み用）', $c['fort_w_region'] );
+	fort_select_field( $post->ID, 'fort_w_floors', '平屋 / 二階建て（絞り込み用）', $c['fort_w_floors'] );
+	fort_select_field( $post->ID, 'fort_w_series', '商品（絞り込み用）', $c['fort_w_series'] );
+	fort_textarea_field( $post->ID, 'fort_w_background', 'この家の背景（土地・ご要望・はじまり）' );
+	fort_textarea_field( $post->ID, 'fort_w_design', '設計上の工夫（FORTとして、なぜこの設計にしたのか）' );
+	fort_textarea_field( $post->ID, 'fort_w_life', '暮らし（住まい手の過ごし方・季節・時間）' );
+	fort_text_field( $post->ID, 'fort_w_movie', 'YouTube動画のURL（あれば）' );
+	echo '<p style="color:#666;">写真は本文に画像ブロック（ギャラリー）で並べてください。「特徴」で絞り込みたいときは右の「事例カテゴリ」（例：中庭・吹き抜け）を使います。</p>';
+}
+
+function fort_works_boxes_v2() {
+	add_meta_box( 'fort_works_meta_v2', '作品集としての情報', 'fort_works_meta_v2_cb', 'works', 'normal', 'high' );
+}
+add_action( 'add_meta_boxes', 'fort_works_boxes_v2' );
+
+function fort_save_works_v2( $post_id ) {
+	if ( ! isset( $_POST['fort_works_v2_nonce'] ) || ! wp_verify_nonce( $_POST['fort_works_v2_nonce'], 'fort_works_v2' ) ) return;
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+	if ( ! current_user_can( 'edit_post', $post_id ) ) return;
+	foreach ( fort_works_choices() as $k => $opts ) {
+		if ( isset( $_POST[ $k ] ) ) {
+			$v = sanitize_key( wp_unslash( $_POST[ $k ] ) );
+			update_post_meta( $post_id, $k, isset( $opts[ $v ] ) ? $v : '' );
+		}
+	}
+	foreach ( array( 'fort_w_background', 'fort_w_design', 'fort_w_life' ) as $k ) {
+		if ( isset( $_POST[ $k ] ) ) update_post_meta( $post_id, $k, sanitize_textarea_field( wp_unslash( $_POST[ $k ] ) ) );
+	}
+	if ( isset( $_POST['fort_w_movie'] ) ) update_post_meta( $post_id, 'fort_w_movie', esc_url_raw( wp_unslash( $_POST['fort_w_movie'] ) ) );
+}
+add_action( 'save_post', 'fort_save_works_v2' );
+
+/** 事例の絞り込み用の値とラベル */
+function fort_work_facets( $id ) {
+	$c   = fort_works_choices();
+	$out = array();
+	foreach ( array( 'region' => 'fort_w_region', 'floors' => 'fort_w_floors', 'series' => 'fort_w_series' ) as $key => $meta ) {
+		$v = get_post_meta( $id, $meta, true );
+		$out[ $key ] = ( $v && isset( $c[ $meta ][ $v ] ) ) ? array( 'value' => $v, 'label' => $c[ $meta ][ $v ] ) : null;
+	}
+	$terms = get_the_terms( $id, 'works_cat' );
+	$out['feature'] = ( $terms && ! is_wp_error( $terms ) ) ? $terms : array();
+	return $out;
+}
+
+/** 一覧は全件を1ページに（絞り込みをページ遷移なしで行うため） */
+function fort_works_all( $q ) {
+	if ( ! is_admin() && $q->is_main_query() && ( $q->is_post_type_archive( 'works' ) || $q->is_tax( 'works_cat' ) ) ) {
+		$q->set( 'posts_per_page', 60 );
+	}
+}
+add_action( 'pre_get_posts', 'fort_works_all' );
+
+/** 段落テキスト → <p>（入力された改行を活かす） */
+function fort_paras( $text ) {
+	return wpautop( esc_html( $text ) );
+}
+
+/* ============================================================
+   7. パンくず（画面表示＋構造化データ。表示しているものと同じ内容だけを出す）
+   $items: array( array( 'ラベル', 'URL' ), ... ) 最後はURLなしで現在地
+============================================================ */
+function fort_breadcrumb( $items ) {
+	$all  = array_merge( array( array( 'HOME', home_url( '/' ) ) ), $items );
+	$list = array();
+	echo '<nav class="bh-crumb" aria-label="パンくずリスト"><ol>';
+	foreach ( $all as $i => $it ) {
+		$last = ( $i === count( $all ) - 1 );
+		echo '<li>' . ( ! $last && ! empty( $it[1] ) ? '<a href="' . esc_url( $it[1] ) . '">' . esc_html( $it[0] ) . '</a>' : '<span aria-current="page">' . esc_html( $it[0] ) . '</span>' ) . '</li>';
+		$entry = array( '@type' => 'ListItem', 'position' => $i + 1, 'name' => $it[0] );
+		if ( ! empty( $it[1] ) ) $entry['item'] = $it[1];
+		$list[] = $entry;
+	}
+	echo '</ol></nav>';
+	echo '<script type="application/ld+json">' . wp_json_encode( array( '@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => $list ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>';
+}
+
+/* ============================================================
+   8. 写真のヒーローが無いページは、最初から白いヘッダーにする
+============================================================ */
+function fort_is_solid_page() {
+	return is_post_type_archive( 'works' ) || is_tax( 'works_cat' ) || is_singular( 'works' );
+}
+add_filter( 'body_class', function ( $classes ) {
+	if ( fort_is_solid_page() ) $classes[] = 'bh-solid';
+	return $classes;
+} );

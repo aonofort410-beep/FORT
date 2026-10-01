@@ -1,50 +1,78 @@
 <?php
-/** 施工事例 一覧 */
+/**
+ * 施工事例 一覧（作品集）
+ * ・写真が主役。地域 / 平屋・二階建て / 商品 / 特徴 で絞り込み（ページ遷移なし）
+ * ・JavaScriptが無くても全件が見られる
+ */
 get_header();
-$img = get_template_directory_uri() . '/assets/images/';
+$c        = fort_works_choices();
+$cards    = array();
+$present  = array( 'region' => array(), 'floors' => array(), 'series' => array(), 'feature' => array() );
+if ( have_posts() ) : while ( have_posts() ) : the_post();
+	$f = fort_work_facets( get_the_ID() );
+	foreach ( array( 'region', 'floors', 'series' ) as $k ) if ( $f[ $k ] ) $present[ $k ][ $f[ $k ]['value'] ] = $f[ $k ]['label'];
+	foreach ( $f['feature'] as $t ) $present['feature'][ $t->slug ] = $t->name;
+	$cards[] = array( 'id' => get_the_ID(), 'f' => $f );
+endwhile; endif;
+$groups = array(
+	'region'  => '地域',
+	'floors'  => '階数',
+	'series'  => '商品',
+	'feature' => '特徴',
+);
+$term = is_tax( 'works_cat' ) ? get_queried_object() : null;
 ?>
-	<section class="subhero">
-		<div class="subhero__media"><img src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="" aria-hidden="true"><div class="subhero__overlay"></div></div>
-		<div class="container subhero__inner">
-			<p class="subhero__eyebrow" data-reveal>WORKS</p>
-			<h1 class="subhero__title" data-reveal>暮らしが見える施工事例</h1>
-			<nav class="breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">HOME</a><span>／</span><span>WORKS</span></nav>
+	<header class="bh-pagehead">
+		<div class="bh-wrap">
+			<?php fort_breadcrumb( $term ? array( array( 'WORKS', fort_url( 'works' ) ), array( $term->name, '' ) ) : array( array( 'WORKS', '' ) ) ); ?>
+			<p class="bh-label">WORKS</p>
+			<h1 class="bh-pagehead__title"><?php echo $term ? esc_html( $term->name ) . 'の施工事例' : '施工事例'; ?></h1>
+			<p class="bh-pagehead__lead"><span class="bh-nb">岡山・福山でFORTが設計し、建てた住まい。</span><span class="bh-nb">写真から、気になる一棟を見つけてください。</span></p>
 		</div>
-	</section>
+	</header>
 
-	<section class="works section">
-		<div class="container">
-			<p class="page-lead" data-reveal>FORTが手がけた住まいの一例をご紹介します。<br>写真をクリックすると、間取りやこだわりの詳細をご覧いただけます。</p>
-
-			<?php
-			$terms = get_terms( array( 'taxonomy' => 'works_cat', 'hide_empty' => true ) );
-			if ( $terms && ! is_wp_error( $terms ) ) : ?>
-			<nav class="works-filter" data-reveal aria-label="カテゴリ">
-				<a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>" class="<?php echo is_post_type_archive( 'works' ) && ! is_tax() ? 'is-active' : ''; ?>">すべて</a>
-				<?php foreach ( $terms as $t ) : ?>
-				<a href="<?php echo esc_url( get_term_link( $t ) ); ?>"><?php echo esc_html( $t->name ); ?></a>
+	<section class="bh-wlist">
+		<div class="bh-wrap">
+			<?php if ( count( $cards ) > 1 && array_filter( $present ) ) : ?>
+			<div class="bh-filter" data-works-filter>
+				<?php foreach ( $groups as $g => $label ) : if ( count( $present[ $g ] ) < 1 ) continue; ?>
+				<div class="bh-filter__group" role="group" aria-label="<?php echo esc_attr( $label ); ?>で絞り込む" data-group="<?php echo esc_attr( $g ); ?>">
+					<span class="bh-filter__label"><?php echo esc_html( $label ); ?></span>
+					<button type="button" aria-pressed="true" data-value="">すべて</button>
+					<?php foreach ( $present[ $g ] as $v => $name ) : ?>
+					<button type="button" aria-pressed="false" data-value="<?php echo esc_attr( $v ); ?>"><?php echo esc_html( $name ); ?></button>
+					<?php endforeach; ?>
+				</div>
 				<?php endforeach; ?>
-			</nav>
+				<p class="bh-filter__count" aria-live="polite"><span data-works-count><?php echo count( $cards ); ?></span> 件</p>
+			</div>
 			<?php endif; ?>
 
-			<ul class="works__grid">
-				<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-					$area = fort_meta( 'fort_area' ); $price = fort_meta( 'fort_price' ); ?>
-				<li class="works__card" data-reveal>
-					<a href="<?php the_permalink(); ?>" class="works__link">
-						<figure class="works__figure"><?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'fort-card', array( 'loading' => 'lazy' ) ); } else { echo '<img src="' . esc_url( $img . 'exterior.jpg' ) . '" alt="">'; } ?></figure>
-						<div class="works__body">
-							<?php if ( $area ) : ?><p class="works__cat"><?php echo esc_html( $area ); ?></p><?php endif; ?>
-							<h2 class="works__card-title"><?php the_title(); ?></h2>
-							<?php if ( $price ) : ?><p class="works__price">建物本体<strong><?php echo esc_html( $price ); ?></strong><span class="works__price-note">※参考価格帯</span></p><?php endif; ?>
-						</div>
+			<?php if ( $cards ) : ?>
+			<ul class="bh-wgrid">
+				<?php foreach ( $cards as $i => $card ) :
+					$id = $card['id']; $f = $card['f'];
+					$meta = array_filter( array( $f['region'] ? $f['region']['label'] : '', $f['floors'] ? $f['floors']['label'] : '', $f['series'] ? $f['series']['label'] : '' ) );
+					if ( ! $meta && get_post_meta( $id, 'fort_area', true ) ) $meta = array( get_post_meta( $id, 'fort_area', true ) ); ?>
+				<li class="bh-wcard" data-region="<?php echo esc_attr( $f['region'] ? $f['region']['value'] : '' ); ?>" data-floors="<?php echo esc_attr( $f['floors'] ? $f['floors']['value'] : '' ); ?>" data-series="<?php echo esc_attr( $f['series'] ? $f['series']['value'] : '' ); ?>" data-feature="<?php echo esc_attr( implode( ' ', wp_list_pluck( $f['feature'], 'slug' ) ) ); ?>">
+					<a href="<?php echo esc_url( get_permalink( $id ) ); ?>">
+						<figure class="bh-wcard__fig"><?php
+							if ( has_post_thumbnail( $id ) ) {
+								echo get_the_post_thumbnail( $id, 'fort-hero', array( 'loading' => $i < 2 ? 'eager' : 'lazy', 'decoding' => 'async', 'alt' => '', 'sizes' => '(min-width: 1024px) 50vw, 100vw' ) );
+							} ?></figure>
+						<h2 class="bh-wcard__title"><?php echo esc_html( get_the_title( $id ) ); ?></h2>
+						<?php if ( $meta ) : ?><p class="bh-wcard__meta"><?php echo esc_html( implode( ' / ', $meta ) ); ?></p><?php endif; ?>
 					</a>
 				</li>
-				<?php endwhile; else : ?>
-				<li class="works__card"><div class="works__body"><h2 class="works__card-title">施工事例は管理画面から登録できます。</h2></div></li>
-				<?php endif; ?>
+				<?php endforeach; ?>
 			</ul>
-			<div class="section__more"><?php the_posts_pagination( array( 'mid_size' => 1 ) ); ?></div>
+			<p class="bh-event__none" hidden data-works-empty>この条件に合う施工事例は、いまはありません。</p>
+			<?php else : ?>
+			<p class="bh-event__none">施工事例は準備中です。実際の住まいは、見学会やスタジオでご覧いただけます。</p>
+			<?php endif; ?>
 		</div>
 	</section>
+
+	<?php get_template_part( 'parts/event-list', null, array( 'limit' => 4, 'heading' => true ) ); ?>
+	<?php get_template_part( 'parts/visit-cta', null, array( 'from' => 'works' ) ); ?>
 <?php get_footer(); ?>

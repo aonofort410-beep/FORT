@@ -183,18 +183,6 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 	</section>
 
 	<!-- 10 VISIT：どちらへ行くかを選んで、見学・相談へ -->
-	<section class="bh-visit" id="visit">
-		<div class="bh-visit__media"><img src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="" width="2400" height="1600" loading="lazy" decoding="async"></div>
-		<div class="bh-wrap bh-visit__inner">
-			<p class="bh-label">VISIT</p>
-			<h2 class="bh-visit__title">写真の続きは、<br>実物で。</h2>
-			<p class="bh-visit__text">素材の手ざわり、光の入り方、天井の高さ。スタジオや見学会で、実際の住まいを確かめてください。</p>
-			<div class="bh-visit__choices">
-				<a class="bh-visit__choice" href="<?php echo esc_url( fort_visit_url( array( 'area' => 'okayama' ) ) ); ?>" data-track="cta_click" data-track-label="home_visit_okayama"><span>岡山で見る</span><small>OKAYAMA</small></a>
-				<a class="bh-visit__choice" href="<?php echo esc_url( fort_visit_url( array( 'area' => 'fukuyama' ) ) ); ?>" data-track="cta_click" data-track-label="home_visit_fukuyama"><span>福山で見る</span><small>FUKUYAMA</small></a>
-			</div>
-			<p class="bh-visit__sub"><a href="<?php echo esc_url( fort_url( 'request' ) ); ?>">資料請求</a><a href="<?php echo esc_url( fort_url( 'contact' ) ); ?>">お問い合わせ</a></p>
-		</div>
-	</section>
+	<?php get_template_part( 'parts/visit-cta' ); ?>
 
 <?php get_footer(); ?>

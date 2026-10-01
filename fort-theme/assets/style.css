@@ -2629,3 +2629,100 @@ body.menu-open .header__visit { opacity: 0; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) {
   .bh-hero__logo, .bh-hero__note, .bh-hero .bh-hero__links { animation: none; }
 }
+
+/* ============================================================
+   30. WORKS（一覧・詳細）／下層ページ共通の見出し
+============================================================ */
+body.bh-solid { background: var(--bh-paper); }
+
+/* 下層ページの見出し（写真ヒーローを持たないページ） */
+.bh-pagehead { padding-top: calc(clamp(96px, 12vw, 150px) + env(safe-area-inset-top)); padding-bottom: clamp(40px, 6vw, 72px); }
+.bh-pagehead .bh-label { margin-top: clamp(28px, 4vw, 48px); }
+.bh-pagehead__title {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: clamp(1.7rem, 6.4vw, 3.2rem); line-height: 1.5; letter-spacing: .06em;
+  color: var(--bh-ink); margin-top: 14px; text-wrap: balance;
+}
+.bh-pagehead__lead { margin-top: 18px; font-size: 14px; line-height: 2.1; color: var(--bh-gray); max-width: 40em; }
+
+/* パンくず */
+.bh-crumb ol { display: flex; flex-wrap: wrap; gap: 4px 0; list-style: none; font-size: 11px; letter-spacing: .08em; color: var(--bh-gray); }
+.bh-crumb li + li::before { content: "/"; margin: 0 10px; opacity: .5; }
+.bh-crumb a { color: var(--bh-gray); }
+.bh-crumb a:hover { color: var(--bh-ink); }
+
+/* 絞り込み */
+.bh-wlist { padding-bottom: var(--bh-space); }
+.bh-filter { display: grid; gap: 10px; margin-bottom: clamp(32px, 5vw, 56px); padding-block: 18px; border-block: 1px solid var(--bh-line); }
+.bh-filter__group { display: flex; align-items: center; gap: 6px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.bh-filter__group::-webkit-scrollbar { display: none; }
+.bh-filter__label { flex: 0 0 3.5em; font-size: 11px; color: var(--bh-gray); letter-spacing: .1em; }
+.bh-filter button {
+  flex: 0 0 auto; min-height: 40px; padding: 0 14px;
+  border: 1px solid transparent; background: transparent; color: var(--bh-gray);
+  font-size: 13px; letter-spacing: .06em; cursor: pointer; white-space: nowrap;
+}
+.bh-filter button:hover { color: var(--bh-ink); }
+.bh-filter button[aria-pressed="true"] { color: var(--bh-ink); border-color: var(--bh-ink); }
+.bh-filter__count { font-family: var(--font-en); font-size: 12px; color: var(--bh-gray); letter-spacing: .1em; }
+
+/* 一覧グリッド：写真主体。PCでは大小のリズム */
+.bh-wgrid { display: grid; gap: clamp(44px, 7vw, 72px) clamp(16px, 2.4vw, 32px); list-style: none; }
+.bh-wcard a { display: grid; gap: 10px; color: var(--bh-ink); }
+.bh-wcard__fig { aspect-ratio: 4 / 5; overflow: hidden; background: var(--bh-mist); }
+.bh-wcard__fig img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.bh-wcard a:hover .bh-wcard__fig img { transform: scale(1.03); }
+.bh-wcard__title { font-family: var(--font-serif); font-weight: 500; font-size: 16px; line-height: 1.6; letter-spacing: .04em; margin-top: 4px; }
+.bh-wcard__meta { font-size: 12px; color: var(--bh-gray); letter-spacing: .06em; }
+.bh-wcard[hidden] { display: none; }
+
+/* 詳細 */
+.bh-case__main { margin: 0; }
+.bh-case__main img { width: 100%; height: auto; max-height: 92vh; object-fit: cover; }
+.bh-case__text, .bh-case__spec { padding-block: clamp(64px, 10vw, 140px); }
+.bh-case__text--design { background: var(--bh-ink); color: var(--bh-paper); }
+.bh-case__text--design .bh-label { color: #9a9da0; }
+.bh-case__cols { display: grid; gap: 22px; }
+.bh-case__cols > .bh-label span { display: block; margin-top: 10px; font-family: var(--font-serif); font-size: 13px; letter-spacing: .14em; color: inherit; }
+.bh-case__body { font-size: 15px; line-height: 2.25; max-width: 34em; display: grid; gap: 1.2em; }
+.bh-case__photos { padding-block: clamp(24px, 4vw, 48px); }
+.bh-case__content { display: grid; gap: clamp(16px, 3vw, 40px); }
+.bh-case__content > * { margin: 0; }
+.bh-case__content img { width: 100%; height: auto; }
+.bh-case__content figcaption { font-size: 12px; color: var(--bh-gray); margin-top: 8px; }
+.bh-case__content p { font-size: 15px; line-height: 2.2; max-width: 34em; }
+.bh-case__content .wp-block-gallery { display: grid; gap: clamp(12px, 2vw, 32px); }
+.bh-case__content .wp-block-gallery figure { margin: 0; }
+.bh-spec { display: grid; border-top: 1px solid var(--bh-line); max-width: 760px; }
+.bh-spec div { display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; padding-block: 14px; border-bottom: 1px solid var(--bh-line); font-size: 14px; }
+.bh-spec dt { color: var(--bh-gray); font-size: 12.5px; letter-spacing: .06em; }
+.bh-spec small { color: var(--bh-gray); margin-left: 4px; }
+.bh-case__movie { padding-bottom: clamp(64px, 10vw, 140px); }
+.bh-case__movie .bh-label { margin-bottom: 20px; }
+.bh-case__yt { max-width: 1100px; }
+.bh-related { padding-block: var(--bh-space); background: var(--bh-mist); }
+.bh-related__list { display: grid; gap: 40px; list-style: none; }
+
+@media (min-width: 768px) {
+  .bh-wgrid { grid-template-columns: repeat(2, 1fr); }
+  .bh-related__list { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .bh-related .bh-wcard__fig { aspect-ratio: 4 / 5; }
+  .bh-case__content .wp-block-gallery.columns-2,
+  .bh-case__content .wp-block-gallery.columns-3 { grid-template-columns: repeat(2, 1fr); }
+  .bh-filter { grid-template-columns: repeat(auto-fit, minmax(240px, max-content)) 1fr; align-items: center; column-gap: 32px; }
+  .bh-filter__count { justify-self: end; }
+}
+@media (min-width: 1024px) {
+  /* 6件ごとのリズム：大1・小2 ／ 小2・大1 */
+  .bh-wgrid { grid-template-columns: repeat(12, 1fr); align-items: end; }
+  .bh-wgrid .bh-wcard { grid-column: span 4; }
+  .bh-wgrid .bh-wcard:nth-child(6n+1) { grid-column: span 8; }
+  .bh-wgrid .bh-wcard:nth-child(6n+1) .bh-wcard__fig { aspect-ratio: 3 / 2; }
+  .bh-wgrid .bh-wcard:nth-child(6n+2) .bh-wcard__fig { aspect-ratio: 4 / 5; }
+  .bh-wgrid .bh-wcard:nth-child(6n+3), .bh-wgrid .bh-wcard:nth-child(6n+4), .bh-wgrid .bh-wcard:nth-child(6n+5) { grid-column: span 4; }
+  .bh-wgrid .bh-wcard:nth-child(6n+6) { grid-column: 5 / span 8; }
+  .bh-wgrid .bh-wcard:nth-child(6n+6) .bh-wcard__fig { aspect-ratio: 3 / 2; }
+  .bh-case__cols { grid-template-columns: 1fr 2fr; gap: 48px; }
+  .bh-case__content .wp-block-gallery.columns-3 { grid-template-columns: repeat(3, 1fr); }
+  .bh-case__content > p, .bh-case__content > h2, .bh-case__content > h3 { margin-left: calc(100% / 3 + 16px); }
+}

@@ -1,85 +1,136 @@
 <?php
-/** 施工事例 詳細 */
+/**
+ * 施工事例 詳細（作品集の1ページ）
+ * 作品名 → メイン写真 → この家の背景 → 写真 → 設計上の工夫 → 暮らし → 仕様 → MOVIE → 関連作品 → EVENT / VISIT
+ * ・設計担当者の名前・写真・コメントは載せない（FORTとして、なぜこの設計にしたのか を書く）
+ * ・入力されていない項目は表示しない
+ */
 get_header();
-$img = get_template_directory_uri() . '/assets/images/';
 while ( have_posts() ) : the_post();
-	$area = fort_meta( 'fort_area' );
-	$hero = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'fort-hero' ) : $img . 'hero.jpg';
+	$id  = get_the_ID();
+	$f   = fort_work_facets( $id );
+	$bg  = get_post_meta( $id, 'fort_w_background', true );
+	$ds  = get_post_meta( $id, 'fort_w_design', true );
+	$lf  = get_post_meta( $id, 'fort_w_life', true );
+	$mv  = fort_youtube_id( get_post_meta( $id, 'fort_w_movie', true ) );
+	$meta = array_filter( array( $f['region'] ? $f['region']['label'] : '', $f['floors'] ? $f['floors']['label'] : '', $f['series'] ? $f['series']['label'] : '' ) );
+	if ( ! $meta && get_post_meta( $id, 'fort_area', true ) ) $meta = array( get_post_meta( $id, 'fort_area', true ) );
+	$spec = array_filter( array(
+		'所在地'     => get_post_meta( $id, 'fort_location', true ),
+		'延床面積'   => get_post_meta( $id, 'fort_floorarea', true ),
+		'間取り'     => get_post_meta( $id, 'fort_layout', true ),
+		'竣工'       => get_post_meta( $id, 'fort_completion', true ),
+		'商品'       => $f['series'] ? $f['series']['label'] : get_post_meta( $id, 'fort_series', true ),
+		'構造・性能' => get_post_meta( $id, 'fort_spec', true ),
+		'ご家族構成' => get_post_meta( $id, 'fort_family', true ),
+		'参考価格帯' => get_post_meta( $id, 'fort_price', true ),
+	) );
+	$content = trim( get_the_content() );
+	$photo   = has_post_thumbnail() ? get_the_post_thumbnail_url( $id, 'fort-hero' ) : '';
 ?>
-	<section class="subhero">
-		<div class="subhero__media"><img src="<?php echo esc_url( $hero ); ?>" alt="<?php the_title_attribute(); ?>"><div class="subhero__overlay"></div></div>
-		<div class="container subhero__inner">
-			<p class="subhero__eyebrow" data-reveal>WORKS<?php echo $area ? ' ／ ' . esc_html( $area ) : ''; ?></p>
-			<h1 class="subhero__title" data-reveal><?php the_title(); ?></h1>
-			<nav class="breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">HOME</a><span>／</span><a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>">WORKS</a><span>／</span><span><?php the_title(); ?></span></nav>
-		</div>
-	</section>
-
-	<section class="section">
-		<div class="container">
-			<?php if ( has_excerpt() ) : ?><p class="page-lead" data-reveal><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
-
-			<?php
-			$spec = array(
-				'所在地'       => fort_meta( 'fort_location' ),
-				'ご家族構成'   => fort_meta( 'fort_family' ),
-				'延床面積'     => fort_meta( 'fort_floorarea' ),
-				'間取り'       => fort_meta( 'fort_layout' ),
-				'竣工'         => fort_meta( 'fort_completion' ),
-				'シリーズ'     => fort_meta( 'fort_series' ),
-				'構造・性能'   => fort_meta( 'fort_spec' ),
-				'参考価格帯'   => fort_meta( 'fort_price' ),
-			);
-			$has_spec = array_filter( $spec );
-			if ( $has_spec ) : ?>
-			<dl class="case-spec" data-reveal>
-				<?php foreach ( $spec as $label => $val ) : if ( ! $val ) continue; ?>
-				<div><dt><?php echo esc_html( $label ); ?></dt><dd><?php echo ( '参考価格帯' === $label ) ? '<strong>' . esc_html( $val ) . '</strong>（建物本体）' : esc_html( $val ); ?></dd></div>
-				<?php endforeach; ?>
-			</dl>
-			<?php endif; ?>
-		</div>
-	</section>
-
-	<!-- 本文（写真やストーリーは編集画面でブロックとして追加） -->
-	<section class="section section--gray">
-		<div class="container" style="max-width:880px;">
-			<div class="case-body" data-reveal>
-				<?php the_content(); ?>
+	<article class="bh-case">
+		<header class="bh-pagehead bh-pagehead--case">
+			<div class="bh-wrap">
+				<?php fort_breadcrumb( array( array( 'WORKS', fort_url( 'works' ) ), array( get_the_title(), '' ) ) ); ?>
+				<p class="bh-label">WORKS<?php echo $meta ? '　—　' . esc_html( implode( ' / ', $meta ) ) : ''; ?></p>
+				<h1 class="bh-pagehead__title"><?php the_title(); ?></h1>
+				<?php if ( has_excerpt() ) : ?><p class="bh-pagehead__lead"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 			</div>
-		</div>
-	</section>
+		</header>
 
-	<!-- CTA -->
-	<section class="reserve section" id="reserve">
-		<div class="reserve__bg"><img src="<?php echo esc_url( $img . 'exterior.jpg' ); ?>" alt="" aria-hidden="true"><div class="reserve__overlay"></div></div>
-		<div class="container reserve__inner">
-			<p class="section__label section__label--light" data-reveal>RESERVE &amp; CONTACT</p>
-			<h2 class="section__title section__title--light" data-reveal>こんな住まいを、体感しませんか？</h2>
-			<ul class="reserve__actions" data-reveal>
-				<li><a href="<?php echo esc_url( get_post_type_archive_link( 'fort_event' ) ); ?>" class="btn btn--accent btn--block">見学会予約</a></li>
-				<li><a href="<?php echo esc_url( home_url( '/#reserve' ) ); ?>" class="btn btn--light btn--block">お問い合わせ</a></li>
+		<?php if ( has_post_thumbnail() ) : ?>
+		<figure class="bh-case__main"><?php the_post_thumbnail( 'fort-hero', array( 'loading' => 'eager', 'fetchpriority' => 'high', 'decoding' => 'async', 'sizes' => '100vw', 'alt' => esc_attr( get_the_title() ) ) ); ?></figure>
+		<?php endif; ?>
+
+		<?php if ( $bg ) : ?>
+		<section class="bh-case__text">
+			<div class="bh-wrap bh-case__cols">
+				<h2 class="bh-label">BACKGROUND<span>この家の背景</span></h2>
+				<div class="bh-case__body"><?php echo fort_paras( $bg ); ?></div>
+			</div>
+		</section>
+		<?php endif; ?>
+
+		<?php if ( $content ) : ?>
+		<section class="bh-case__photos">
+			<div class="bh-wrap bh-case__content"><?php the_content(); ?></div>
+		</section>
+		<?php endif; ?>
+
+		<?php if ( $ds ) : ?>
+		<section class="bh-case__text bh-case__text--design">
+			<div class="bh-wrap bh-case__cols">
+				<h2 class="bh-label">DESIGN<span>設計上の工夫</span></h2>
+				<div class="bh-case__body"><?php echo fort_paras( $ds ); ?></div>
+			</div>
+		</section>
+		<?php endif; ?>
+
+		<?php if ( $lf ) : ?>
+		<section class="bh-case__text">
+			<div class="bh-wrap bh-case__cols">
+				<h2 class="bh-label">LIFE<span>暮らし</span></h2>
+				<div class="bh-case__body"><?php echo fort_paras( $lf ); ?></div>
+			</div>
+		</section>
+		<?php endif; ?>
+
+		<?php if ( $spec ) : ?>
+		<section class="bh-case__spec">
+			<div class="bh-wrap bh-case__cols">
+				<h2 class="bh-label">DATA<span>この家について</span></h2>
+				<dl class="bh-spec">
+					<?php foreach ( $spec as $k => $v ) : ?>
+					<div><dt><?php echo esc_html( $k ); ?></dt><dd><?php echo esc_html( $v ); ?><?php echo '参考価格帯' === $k ? '<small>（建物本体）</small>' : ''; ?></dd></div>
+					<?php endforeach; ?>
+				</dl>
+			</div>
+		</section>
+		<?php endif; ?>
+
+		<?php if ( $mv ) : ?>
+		<section class="bh-case__movie">
+			<div class="bh-wrap">
+				<h2 class="bh-label">MOVIE</h2>
+				<div class="bh-case__yt"><?php fort_youtube_lite( $mv, get_the_title() ); ?></div>
+			</div>
+		</section>
+		<?php endif; ?>
+	</article>
+
+	<?php
+	/* 関連作品：同じ商品 → 同じ地域 → 新着 の順で3件 */
+	$related = array();
+	foreach ( array( 'fort_w_series' => $f['series'], 'fort_w_region' => $f['region'] ) as $mk => $val ) {
+		if ( ! $val || count( $related ) >= 3 ) continue;
+		$related = array_merge( $related, get_posts( array( 'post_type' => 'works', 'posts_per_page' => 3 - count( $related ), 'post__not_in' => array_merge( array( $id ), wp_list_pluck( $related, 'ID' ) ), 'meta_key' => $mk, 'meta_value' => $val['value'] ) ) );
+	}
+	if ( count( $related ) < 3 ) {
+		$related = array_merge( $related, get_posts( array( 'post_type' => 'works', 'posts_per_page' => 3 - count( $related ), 'post__not_in' => array_merge( array( $id ), wp_list_pluck( $related, 'ID' ) ) ) ) );
+	}
+	if ( $related ) : ?>
+	<section class="bh-related">
+		<div class="bh-wrap">
+			<header class="bh-head">
+				<p class="bh-label">RELATED WORKS</p>
+				<a class="bh-more" href="<?php echo esc_url( fort_url( 'works' ) ); ?>">すべての施工事例</a>
+			</header>
+			<ul class="bh-related__list">
+				<?php foreach ( $related as $p ) : $rf = fort_work_facets( $p->ID ); ?>
+				<li class="bh-wcard"><a href="<?php echo esc_url( get_permalink( $p ) ); ?>">
+					<figure class="bh-wcard__fig"><?php echo get_the_post_thumbnail( $p, 'fort-card', array( 'loading' => 'lazy', 'decoding' => 'async', 'alt' => '' ) ); ?></figure>
+					<h3 class="bh-wcard__title"><?php echo esc_html( get_the_title( $p ) ); ?></h3>
+					<?php $rm = array_filter( array( $rf['region'] ? $rf['region']['label'] : '', $rf['series'] ? $rf['series']['label'] : '' ) ); if ( $rm ) : ?><p class="bh-wcard__meta"><?php echo esc_html( implode( ' / ', $rm ) ); ?></p><?php endif; ?>
+				</a></li>
+				<?php endforeach; ?>
 			</ul>
 		</div>
 	</section>
+	<?php endif; ?>
 
-	<!-- ほかの施工事例 -->
-	<section class="works section">
-		<div class="container">
-			<header class="section__head"><p class="section__label">OTHER WORKS</p><h2 class="section__title">ほかの施工事例</h2></header>
-			<ul class="works__grid">
-				<?php
-				$others = new WP_Query( array( 'post_type' => 'works', 'posts_per_page' => 3, 'post__not_in' => array( get_the_ID() ), 'orderby' => 'rand' ) );
-				while ( $others->have_posts() ) : $others->the_post(); $oa = fort_meta( 'fort_area' ); ?>
-				<li class="works__card" data-reveal>
-					<a href="<?php the_permalink(); ?>" class="works__link">
-						<figure class="works__figure"><?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'fort-card', array( 'loading' => 'lazy' ) ); } else { echo '<img src="' . esc_url( $img . 'ldk.jpg' ) . '" alt="">'; } ?></figure>
-						<div class="works__body"><?php if ( $oa ) : ?><p class="works__cat"><?php echo esc_html( $oa ); ?></p><?php endif; ?><h3 class="works__card-title"><?php the_title(); ?></h3></div>
-					</a>
-				</li>
-				<?php endwhile; wp_reset_postdata(); ?>
-			</ul>
-			<div class="section__more"><a href="<?php echo esc_url( get_post_type_archive_link( 'works' ) ); ?>" class="btn btn--outline">施工事例の一覧へ戻る</a></div>
-		</div>
-	</section>
-<?php endwhile; get_footer(); ?>
+	<?php
+	$region = $f['region'] ? $f['region']['value'] : '';
+	get_template_part( 'parts/event-list', null, array( 'limit' => 3, 'heading' => true, 'region' => $region ) );
+	get_template_part( 'parts/visit-cta', null, array( 'from' => 'works_detail', 'photo' => $photo, 'title' => 'この空気感を、<br>実物で。' ) );
+endwhile;
+get_footer();

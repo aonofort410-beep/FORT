@@ -2587,7 +2587,7 @@ body.menu-open .header__visit { opacity: 0; pointer-events: none; }
   padding-inline: var(--bh-gutter);
   animation: logoReveal 5.6s cubic-bezier(.16, .72, .24, 1) .4s both;
 }
-.bh-hero__logo img { width: clamp(220px, 34vw, 440px); height: auto; filter: drop-shadow(0 2px 24px rgba(0,0,0,.25)); }
+.bh-hero__logo img { width: clamp(180px, 28vw, 380px); height: auto; filter: brightness(0) invert(1) drop-shadow(0 2px 24px rgba(0,0,0,.25)); } /* 黒の文字ロゴを白で表示 */
 
 .bh-hero__note {
   position: absolute;

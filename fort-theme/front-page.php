@@ -29,7 +29,7 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 		<!-- 公式ロゴが、じわっと浮かび上がる -->
 		<div class="bh-hero__logo">
 			<h1>
-				<img src="<?php echo esc_url( $img . 'logo-white.png' ); ?>" alt="FORT 建築設計 OKAYAMA・FUKUYAMA" width="1600" height="350" fetchpriority="high" decoding="async">
+				<img src="<?php echo esc_url( $img . 'fort-mark.png' ); ?>" alt="FORT" width="460" height="107" fetchpriority="high" decoding="async">
 				<span class="sr-only"><?php bloginfo( 'name' ); ?>｜岡山・福山の注文住宅</span>
 			</h1>
 		</div>

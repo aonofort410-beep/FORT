@@ -16,6 +16,7 @@ get_header();
 	</header>
 
 	<?php get_template_part( 'parts/event-list', null, array( 'limit' => 30, 'heading' => true, 'kind' => 'limited', 'label' => 'LIMITED', 'title' => '期間限定の見学会', 'visit' => false ) ); ?>
+	<?php get_template_part( 'parts/model-houses' ); ?>
 	<?php get_template_part( 'parts/event-list', null, array( 'limit' => 30, 'heading' => true, 'kind' => 'permanent', 'label' => 'ALWAYS', 'title' => 'いつでも参加できる相談会', 'visit' => false ) ); ?>
 
 	<?php get_template_part( 'parts/visit-cta', null, array( 'from' => 'event', 'title' => '日程が合わなくても、<br>見に来られます。' ) ); ?>

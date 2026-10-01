@@ -2742,3 +2742,11 @@ body.bh-solid { background: var(--bh-paper); }
 .bh-about__links { display: flex; flex-wrap: wrap; gap: 8px 28px; }
 .bh-event + .bh-event { border-top: 1px solid var(--bh-line); }
 @media (max-width: 600px) { .bh-evd__top-cta .bh-btn, .bh-evd__reserve .bh-btn { width: 100%; } .bh-evd__reserve { justify-items: stretch; } }
+
+/* モデルハウス */
+.bh-mh { padding-block: var(--bh-space); border-top: 1px solid var(--bh-line); }
+.bh-mh__list { display: grid; gap: 44px; list-style: none; }
+.bh-mh__item a { display: grid; gap: 10px; color: var(--bh-ink); }
+.bh-mh__fig { aspect-ratio: 3 / 2; }
+.bh-mh__item a:hover .bh-wcard__fig img { transform: scale(1.03); }
+@media (min-width: 768px) { .bh-mh__list { grid-template-columns: repeat(2, 1fr); gap: 32px; } }

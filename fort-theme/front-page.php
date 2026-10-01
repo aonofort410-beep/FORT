@@ -159,6 +159,7 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 
 	<!-- 08 EVENT：岡山 / 福山。期間限定と常設を分けて表示 -->
 	<?php get_template_part( 'parts/event-list', null, array( 'limit' => 6, 'heading' => true ) ); ?>
+	<?php get_template_part( 'parts/model-houses' ); ?>
 
 	<!-- 09 PLACE：活動している地域 -->
 	<section class="bh-place" id="place">

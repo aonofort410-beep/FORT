@@ -437,9 +437,88 @@ function fort_breadcrumb( $items ) {
    8. 写真のヒーローが無いページは、最初から白いヘッダーにする
 ============================================================ */
 function fort_is_solid_page() {
-	return is_post_type_archive( array( 'works', 'fort_event' ) ) || is_tax( 'works_cat' ) || is_singular( array( 'works', 'fort_event' ) );
+	return is_post_type_archive( array( 'works', 'fort_event' ) ) || is_tax( 'works_cat' ) || is_singular( array( 'works', 'fort_event', 'model_house' ) );
 }
 add_filter( 'body_class', function ( $classes ) {
 	if ( fort_is_solid_page() ) $classes[] = 'bh-solid';
 	return $classes;
+} );
+
+/* ============================================================
+   9. モデルハウス（管理画面「モデルハウス」から追加・編集）
+   ・公開中 / 公開終了 を切り替えるだけで、サイト上の表示が変わる
+   ・イベント一覧（/info/）と各モデルハウスのページ（/model-house/スラッグ/）に表示
+============================================================ */
+function fort_register_model_house() {
+	register_post_type( 'model_house', array(
+		'labels' => array(
+			'name'          => 'モデルハウス',
+			'singular_name' => 'モデルハウス',
+			'add_new'       => '新規追加',
+			'add_new_item'  => 'モデルハウスを追加',
+			'edit_item'     => 'モデルハウスを編集',
+			'all_items'     => 'モデルハウス一覧',
+		),
+		'public'        => true,
+		'has_archive'   => false,
+		'menu_icon'     => 'dashicons-building',
+		'menu_position' => 7,
+		'rewrite'       => array( 'slug' => 'model-house' ),
+		'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+		'show_in_rest'  => true,
+	) );
+}
+add_action( 'init', 'fort_register_model_house' );
+
+function fort_mh_meta_cb( $post ) {
+	wp_nonce_field( 'fort_mh', 'fort_mh_nonce' );
+	echo '<p style="color:#666;">写真は「アイキャッチ画像」（メイン）と本文のギャラリーへ。空欄の項目はページに表示されません。</p>';
+	fort_select_field( $post->ID, 'fort_region', '地域', array( '' => '選択してください', 'okayama' => '岡山', 'fukuyama' => '福山' ) );
+	fort_select_field( $post->ID, 'fort_mh_status', '公開状態', array( 'open' => '公開中（見学できる）', 'closed' => '公開終了' ) );
+	fort_text_field( $post->ID, 'fort_place', '場所（住所または地名）', '例：福山市下加茂町' );
+	fort_text_field( $post->ID, 'fort_time', '見学できる時間', '例：10:00〜17:00（水曜定休）' );
+	fort_text_field( $post->ID, 'fort_mh_method', '見学方法', '例：予約制（当日予約も可）' );
+	fort_text_field( $post->ID, 'fort_duration', '所要時間の目安', '例：約60〜90分' );
+	fort_text_field( $post->ID, 'fort_parking', '駐車場', '例：敷地内に2台' );
+	fort_textarea_field( $post->ID, 'fort_see', 'この家で見られること' );
+	fort_select_field( $post->ID, 'fort_w_series', '商品（任意）', array( '' => '—', 'design' => 'FORT DESIGN', 'pro' => 'FORT PRO', 'style' => 'FORT STYLE' ) );
+}
+add_action( 'add_meta_boxes', function () {
+	add_meta_box( 'fort_mh_meta', 'モデルハウスの情報', 'fort_mh_meta_cb', 'model_house', 'normal', 'high' );
+} );
+
+add_action( 'save_post_model_house', function ( $post_id ) {
+	if ( ! isset( $_POST['fort_mh_nonce'] ) || ! wp_verify_nonce( $_POST['fort_mh_nonce'], 'fort_mh' ) ) return;
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+	if ( ! current_user_can( 'edit_post', $post_id ) ) return;
+	$sel = array( 'fort_region' => array( '', 'okayama', 'fukuyama' ), 'fort_mh_status' => array( 'open', 'closed' ), 'fort_w_series' => array( '', 'design', 'pro', 'style' ) );
+	foreach ( $sel as $k => $ok ) {
+		if ( isset( $_POST[ $k ] ) ) { $v = sanitize_key( wp_unslash( $_POST[ $k ] ) ); update_post_meta( $post_id, $k, in_array( $v, $ok, true ) ? $v : $ok[0] ); }
+	}
+	foreach ( array( 'fort_place', 'fort_time', 'fort_mh_method', 'fort_duration', 'fort_parking' ) as $k ) {
+		if ( isset( $_POST[ $k ] ) ) update_post_meta( $post_id, $k, sanitize_text_field( wp_unslash( $_POST[ $k ] ) ) );
+	}
+	if ( isset( $_POST['fort_see'] ) ) update_post_meta( $post_id, 'fort_see', sanitize_textarea_field( wp_unslash( $_POST['fort_see'] ) ) );
+} );
+
+/** 見学できるモデルハウス（地域で絞り込み可） */
+function fort_model_houses( $region = '' ) {
+	$out = array();
+	foreach ( get_posts( array( 'post_type' => 'model_house', 'posts_per_page' => 20, 'orderby' => 'menu_order date', 'order' => 'ASC' ) ) as $p ) {
+		if ( 'closed' === get_post_meta( $p->ID, 'fort_mh_status', true ) ) continue;
+		if ( $region && get_post_meta( $p->ID, 'fort_region', true ) !== $region ) continue;
+		$out[] = $p;
+	}
+	return $out;
+}
+
+/** テーマ有効化時、モデルハウスが1件も無ければ「福山下加茂モデルハウス」を下書きで用意（中身は管理画面で入力） */
+add_action( 'after_switch_theme', function () {
+	fort_register_model_house();
+	if ( get_posts( array( 'post_type' => 'model_house', 'post_status' => 'any', 'posts_per_page' => 1 ) ) ) return;
+	$id = wp_insert_post( array( 'post_type' => 'model_house', 'post_status' => 'draft', 'post_title' => '福山下加茂モデルハウス', 'post_name' => 'fukuyama-shimokamo' ) );
+	if ( $id && ! is_wp_error( $id ) ) {
+		update_post_meta( $id, 'fort_region', 'fukuyama' );
+		update_post_meta( $id, 'fort_mh_status', 'open' );
+	}
 } );

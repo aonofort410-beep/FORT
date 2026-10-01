@@ -2726,3 +2726,19 @@ body.bh-solid { background: var(--bh-paper); }
   .bh-case__content .wp-block-gallery.columns-3 { grid-template-columns: repeat(3, 1fr); }
   .bh-case__content > p, .bh-case__content > h2, .bh-case__content > h3 { margin-left: calc(100% / 3 + 16px); }
 }
+
+/* ============================================================
+   31. EVENT（一覧・詳細）
+============================================================ */
+.bh-btn--fill { background: var(--bh-ink); color: var(--bh-paper); }
+.bh-btn--fill:hover { background: transparent; color: var(--bh-ink); }
+.bh-evd__meta { margin-top: clamp(28px, 4vw, 48px); }
+.bh-evd__date { margin-top: 14px; font-family: var(--font-en); font-size: clamp(1rem, 3.6vw, 1.3rem); letter-spacing: .08em; color: var(--bh-ink); }
+.bh-evd__top-cta { margin-top: 28px; }
+.bh-evd__reserve { display: grid; gap: 16px; justify-items: start; margin-top: 32px; }
+.bh-evd__tel { font-size: 13px; color: var(--bh-gray); }
+.bh-evd__tel a { color: var(--bh-ink); border-bottom: 1px solid var(--bh-line); }
+.bh-about--compact { padding-block: clamp(64px, 10vw, 120px); border-top: 1px solid var(--bh-line); }
+.bh-about__links { display: flex; flex-wrap: wrap; gap: 8px 28px; }
+.bh-event + .bh-event { border-top: 1px solid var(--bh-line); }
+@media (max-width: 600px) { .bh-evd__top-cta .bh-btn, .bh-evd__reserve .bh-btn { width: 100%; } .bh-evd__reserve { justify-items: stretch; } }

@@ -234,13 +234,14 @@ function fort_event_dates( $id = null ) {
 }
 
 /** 今参加できるイベント（終了・受付停止を除く）。地域を指定可 */
-function fort_current_events( $region = '', $limit = 6 ) {
+function fort_current_events( $region = '', $limit = 6, $kind = '' ) {
 	$q = get_posts( array( 'post_type' => 'fort_event', 'posts_per_page' => 50, 'orderby' => 'date', 'order' => 'DESC' ) );
 	$out = array();
 	foreach ( $q as $p ) {
 		$s = fort_event_state( $p->ID );
 		if ( in_array( $s['status'], array( 'ended', 'paused' ), true ) ) continue;
 		if ( $region && $s['region'] !== $region ) continue;
+		if ( $kind && $s['kind'] !== $kind ) continue;
 		$out[] = $p;
 	}
 	// 期間限定を先に、開始日の近い順
@@ -436,7 +437,7 @@ function fort_breadcrumb( $items ) {
    8. 写真のヒーローが無いページは、最初から白いヘッダーにする
 ============================================================ */
 function fort_is_solid_page() {
-	return is_post_type_archive( 'works' ) || is_tax( 'works_cat' ) || is_singular( 'works' );
+	return is_post_type_archive( array( 'works', 'fort_event' ) ) || is_tax( 'works_cat' ) || is_singular( array( 'works', 'fort_event' ) );
 }
 add_filter( 'body_class', function ( $classes ) {
 	if ( fort_is_solid_page() ) $classes[] = 'bh-solid';

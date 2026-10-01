@@ -3107,3 +3107,19 @@ body.dz-ready [data-dz-lines].is-in > * { opacity: 1; transform: none; filter: n
   .dz-ch__bar, .dz-cursor { display: none; }
   body.dz-ready [data-dz-lines] > * { opacity: 1; transform: none; filter: none; transition: none; }
 }
+
+/* ============================================================
+   36. PLACE（岡山・福山）
+============================================================ */
+.bh-place--index { padding-top: 0; }
+.bh-region { position: relative; min-height: 72svh; display: grid; align-items: end; background: var(--bh-ink); color: #fff; overflow: hidden; }
+.bh-region__bg { position: absolute; inset: 0; margin: 0; }
+.bh-region__bg img { width: 100%; height: 100%; object-fit: cover; opacity: .6; }
+.bh-region__inner { position: relative; padding-top: 120px; padding-bottom: clamp(40px, 7vw, 80px); }
+.bh-region .bh-crumb a, .bh-region .bh-crumb ol { color: rgba(255,255,255,.75); }
+.bh-region__name { margin-top: 28px; font-family: var(--font-en); font-weight: 300; font-size: clamp(3.4rem, 17vw, 12rem); letter-spacing: .06em; line-height: .95; }
+.bh-region__sub { margin-top: 18px; font-family: var(--font-serif); font-size: clamp(15px, 2vw, 19px); letter-spacing: .14em; }
+.bh-studio { padding-block: clamp(64px, 10vw, 140px); border-top: 1px solid var(--bh-line); }
+.bh-studio__map { display: inline-block; margin-top: 8px; font-size: 13px; border-bottom: 1px solid var(--bh-ink); }
+.bh-studio a[href^="tel"] { border-bottom: 1px solid var(--bh-line); }
+.bh-visit__choices:has(> :only-child) { grid-template-columns: minmax(0, 420px); }

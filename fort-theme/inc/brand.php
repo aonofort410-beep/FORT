@@ -437,7 +437,7 @@ function fort_breadcrumb( $items ) {
    8. 写真のヒーローが無いページは、最初から白いヘッダーにする
 ============================================================ */
 function fort_is_solid_page() {
-	return is_page_template( array( 'template-visit.php', 'template-now.php', 'template-lineup.php', 'template-fort-pro.php' ) ) || is_post_type_archive( array( 'works', 'fort_event' ) ) || is_tax( 'works_cat' ) || is_singular( array( 'works', 'fort_event', 'model_house' ) );
+	return is_page_template( array( 'template-visit.php', 'template-now.php', 'template-lineup.php', 'template-fort-pro.php', 'template-place.php' ) ) || is_post_type_archive( array( 'works', 'fort_event' ) ) || is_tax( 'works_cat' ) || is_singular( array( 'works', 'fort_event', 'model_house' ) );
 }
 add_filter( 'body_class', function ( $classes ) {
 	if ( fort_is_solid_page() ) $classes[] = 'bh-solid';
@@ -528,4 +528,48 @@ add_action( 'after_switch_theme', function () {
 	if ( get_page_by_path( 'now' ) ) return;
 	$id = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'NOW', 'post_name' => 'now' ) );
 	if ( $id && ! is_wp_error( $id ) ) update_post_meta( $id, '_wp_page_template', 'template-now.php' );
+} );
+
+/* ============================================================
+   10. PLACE（岡山・福山）：スタジオ情報は1か所で管理
+============================================================ */
+function fort_studios() {
+	return array(
+		'okayama' => array(
+			'name'  => '岡山スタジオ',
+			'en'    => 'OKAYAMA',
+			'zip'   => '〒700-0977',
+			'addr'  => '岡山県岡山市北区問屋町9-101 タイルビル 1F',
+			'tel'   => fort_opt( 'fort_tel_okayama', '086-236-9600' ),
+			'area'  => '岡山・倉敷エリア',
+		),
+		'fukuyama' => array(
+			'name'  => '福山スタジオ',
+			'en'    => 'FUKUYAMA',
+			'zip'   => '〒720-0821',
+			'addr'  => '広島県福山市東川口町2丁目1-18 中国情報ビル 1F',
+			'tel'   => fort_opt( 'fort_tel_fukuyama', '084-982-7404' ),
+			'area'  => '福山エリア',
+		),
+	);
+}
+function fort_map_url( $addr ) {
+	return 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $addr );
+}
+
+/** テーマ有効化時、PLACE のページ（/place/・/place/okayama/・/place/fukuyama/）が無ければ作成 */
+add_action( 'after_switch_theme', function () {
+	$parent = get_page_by_path( 'place' );
+	if ( ! $parent ) {
+		$pid = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'PLACE', 'post_name' => 'place' ) );
+		if ( ! $pid || is_wp_error( $pid ) ) return;
+		update_post_meta( $pid, '_wp_page_template', 'template-place.php' );
+	} else {
+		$pid = $parent->ID;
+	}
+	foreach ( array( 'okayama' => '岡山', 'fukuyama' => '福山' ) as $slug => $title ) {
+		if ( get_page_by_path( 'place/' . $slug ) ) continue;
+		$id = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => $title, 'post_name' => $slug, 'post_parent' => $pid ) );
+		if ( $id && ! is_wp_error( $id ) ) update_post_meta( $id, '_wp_page_template', 'template-place.php' );
+	}
 } );

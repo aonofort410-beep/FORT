@@ -12,7 +12,7 @@
  */
 add_filter( 'body_class', function ( $c ) { $c[] = 'dz-page'; return $c; } );
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'fort-dz-font', 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap', array(), null );
+	wp_enqueue_style( 'fort-dz-font', 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300&family=Noto+Serif+JP:wght@200;300&display=swap', array(), null );
 	wp_enqueue_script( 'fort-design', get_template_directory_uri() . '/assets/design.js', array(), '1.0.0', true );
 } );
 get_header();
@@ -23,10 +23,12 @@ $works = array_values( array_filter( $works, 'has_post_thumbnail' ) );
 $title = str_split( 'FORT DESIGN' );
 ?>
 	<div class="dz">
+	<!-- 背景に漂う、ぼかしたグレーの光（透明感の土台） -->
+	<div class="dz-ambient" aria-hidden="true"><span></span><span></span><span></span></div>
 
 	<!-- OPENING：文字が1文字ずつ浮かぶ -->
 	<section class="dz-open" aria-labelledby="dz-title">
-		<p class="dz-open__eyebrow">FULL ORDER HOUSE</p>
+		<p class="dz-open__eyebrow">FORT — FULL ORDER HOUSE</p>
 		<h1 class="dz-open__title" id="dz-title" aria-label="FORT DESIGN">
 			<?php foreach ( $title as $i => $ch ) : ?><span style="--i:<?php echo (int) $i; ?>" aria-hidden="true"><?php echo ' ' === $ch ? '&nbsp;' : esc_html( $ch ); ?></span><?php endforeach; ?>
 		</h1>
@@ -67,7 +69,7 @@ $title = str_split( 'FORT DESIGN' );
 			<div class="dz-ch__track">
 				<article class="dz-ch__panel">
 					<figure class="dz-ch__fig"><img src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="素材の質感が見えるキッチンとダイニング" width="2400" height="1600" loading="lazy" decoding="async"></figure>
-					<div class="dz-ch__text">
+					<div class="dz-ch__text dz-glass">
 						<p class="dz-ch__no">01 — MATERIAL</p>
 						<h3>本物の素材が、<br>時を味方にする。</h3>
 						<p>無垢材、塗り壁、石、タイル。年月を重ねるほどに表情を増す素材を、適材適所で。深まる質感が、住まいに静かな風格を与えます。</p>
@@ -75,7 +77,7 @@ $title = str_split( 'FORT DESIGN' );
 				</article>
 				<article class="dz-ch__panel">
 					<figure class="dz-ch__fig"><img src="<?php echo esc_url( fort_media( 'design' ) ); ?>" alt="光と余白のある空間" width="2000" height="1333" loading="lazy" decoding="async"></figure>
-					<div class="dz-ch__text">
+					<div class="dz-ch__text dz-glass">
 						<p class="dz-ch__no">02 — LIGHT &amp; SPACE</p>
 						<h3>光を、<br>間取りの主役に。</h3>
 						<p>窓の位置・高さ・大きさを一邸ごとに計算し、時間とともに移ろう光を取り込みます。余白のある空間が、暮らしにゆとりをもたらします。</p>
@@ -87,7 +89,7 @@ $title = str_split( 'FORT DESIGN' );
 						<ellipse cx="<?php echo 300 + $r * 6; ?>" cy="<?php echo 320 - $r * 4; ?>" rx="<?php echo $a; ?>" ry="<?php echo $b; ?>" transform="rotate(<?php echo -18 + $r * 3; ?> 300 300)"></ellipse>
 						<?php endfor; ?>
 					</svg>
-					<div class="dz-ch__text">
+					<div class="dz-ch__text dz-glass">
 						<p class="dz-ch__no">03 — SITE</p>
 						<h3>土地の個性を、<br>価値に変える。</h3>
 						<p>変形地・狭小地・眺望のある敷地。条件を制約ではなく個性ととらえ、その土地でしか生まれない住まいへと昇華させます。</p>
@@ -105,7 +107,7 @@ $title = str_split( 'FORT DESIGN' );
 				<div class="dz-draw__head">
 					<p class="dz-label">PROCESS</p>
 					<h2 class="dz-draw__title">対話から、<br>一本の線へ。</h2>
-					<ol class="dz-draw__steps">
+					<ol class="dz-draw__steps dz-glass">
 						<li style="--i:0"><span>HEARING</span>暮らしと理想を、聞かせていただく</li>
 						<li style="--i:1"><span>SITE</span>土地の光・風・眺めを読む</li>
 						<li style="--i:2"><span>DRAWING</span>その家族のためだけの線を引く</li>
@@ -134,7 +136,7 @@ $title = str_split( 'FORT DESIGN' );
 
 	<!-- FOR YOU（他の商品ページと同じ項目） -->
 	<section class="dz-for">
-		<div class="dz-wrap dz-for__grid">
+		<div class="dz-wrap dz-for__grid dz-glass dz-glass--card">
 			<div>
 				<p class="dz-label">FOR YOU</p>
 				<h2 class="dz-h2">こんな方に。</h2>
@@ -168,7 +170,7 @@ $title = str_split( 'FORT DESIGN' );
 
 	<!-- PRICE -->
 	<section class="dz-price">
-		<div class="dz-wrap dz-for__grid">
+		<div class="dz-wrap dz-for__grid dz-glass dz-glass--card">
 			<div><p class="dz-label">PRICE</p><h2 class="dz-h2">価格の考え方</h2></div>
 			<div>
 				<p class="dz-price__num"><?php echo esc_html( $it['price'] ); ?></p>

@@ -3178,3 +3178,103 @@ body.dz-ready [data-dz-lines].is-in > * { opacity: 1; transform: none; filter: n
 /* 既存テンプレート（会社概要・性能・流れ など）を新しい見出しに合わせる */
 body.bh-solid .section--gray { background: var(--bh-mist); }
 body.bh-solid main > .section:first-of-type { padding-top: 0; }
+
+/* ============================================================
+   35-2. FORT DESIGN：ブラック×グレーの透明感（洗練版）
+   ・背景にぼかしたグレーの光が漂い、文章はすりガラスの板に載る
+   ・ロゴは極細の幾何学サンセリフを広い字間で
+============================================================ */
+body.dz-page {
+  --dz-black: #0a0b0c;
+  --dz-ink: #e9eaeb;
+  --dz-dim: #8b8f93;
+  --dz-line: rgba(233, 234, 235, .1);
+  --dz-glass: rgba(255, 255, 255, .045);
+  --dz-glass-line: rgba(255, 255, 255, .12);
+  --dz-sans: "Jost", "Helvetica Neue", Arial, sans-serif;
+  --dz-ja: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  background: radial-gradient(120% 80% at 50% 0%, #17191b 0%, var(--dz-black) 60%) fixed, var(--dz-black);
+}
+body.dz-page::after { opacity: .03; }
+
+/* 漂う光 */
+.dz-ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.dz-ambient span { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .5; animation: dzFloat 28s ease-in-out infinite alternate; }
+.dz-ambient span:nth-child(1) { width: 52vw; height: 52vw; left: -12vw; top: -10vw; background: radial-gradient(circle, rgba(120,126,132,.45), transparent 65%); }
+.dz-ambient span:nth-child(2) { width: 44vw; height: 44vw; right: -14vw; top: 30vh; background: radial-gradient(circle, rgba(170,174,178,.28), transparent 65%); animation-duration: 34s; animation-delay: -8s; }
+.dz-ambient span:nth-child(3) { width: 60vw; height: 60vw; left: 20vw; bottom: -30vw; background: radial-gradient(circle, rgba(90,96,102,.4), transparent 65%); animation-duration: 40s; animation-delay: -16s; }
+@keyframes dzFloat { 0% { transform: translate3d(0,0,0) scale(1); } 100% { transform: translate3d(6vw,-4vh,0) scale(1.12); } }
+.dz > section { position: relative; z-index: 1; }
+
+/* すりガラス */
+.dz-glass {
+  background: linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.02));
+  border: 1px solid var(--dz-glass-line);
+  -webkit-backdrop-filter: blur(22px) saturate(120%);
+  backdrop-filter: blur(22px) saturate(120%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 30px 80px -40px rgba(0,0,0,.8);
+}
+.dz-glass--card { padding: clamp(32px, 5vw, 72px); border-radius: 2px; }
+@media (max-width: 767px) { .dz-glass--card { padding: 32px 22px; } .dz-wrap.dz-glass--card { width: auto; margin-inline: 16px; } }
+
+/* --- OPENING：極細・広い字間のロゴ --- */
+.dz-open { gap: 30px; }
+.dz-open__eyebrow { font-family: var(--dz-sans); font-weight: 300; font-size: 10px; letter-spacing: .6em; }
+.dz-open__title {
+  font-family: var(--dz-sans); font-weight: 200;
+  font-size: clamp(1.9rem, 7.2vw, 6rem);
+  letter-spacing: .42em; margin-right: -.42em; line-height: 1.1;
+}
+/* 光沢のある白〜グレーのグラデーションを1文字ずつに（親にかけると動く文字に描画されないため） */
+.dz-open__title span { background: linear-gradient(180deg, #fafbfc 0%, #b9bec3 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.dz-open__title span { filter: blur(16px); transform: translateY(.18em); animation-duration: 2.8s; animation-delay: calc(.5s + var(--i) * .07s); }
+.dz-open__rule { background: linear-gradient(90deg, transparent, var(--dz-ink), transparent); opacity: .55; }
+.dz-open__sub { font-weight: 200; letter-spacing: .4em; font-size: clamp(12px, 1.3vw, 15px); color: #c9ccd0; }
+@media (max-width: 600px) { .dz-open__title { letter-spacing: .28em; margin-right: -.28em; font-size: 2rem; } }
+
+/* 共通の英字・見出しを細く */
+.dz-label { font-family: var(--dz-sans); font-weight: 300; letter-spacing: .5em; }
+.dz-h2, .dz-concept__title, .dz-ch__text h3, .dz-draw__title, .dz-visit__title, .dz-words blockquote, .dz-ap__words { font-weight: 200; }
+.dz-more { font-weight: 300; }
+
+/* --- APERTURE：窓の縁をガラスの線に --- */
+.dz-ap__fig { outline: 1px solid rgba(255,255,255,calc(.25 - var(--p) * .25)); outline-offset: -1px; }
+.dz-ap__fig::after { background: linear-gradient(180deg, rgba(10,11,12,.15), rgba(10,11,12, calc(.25 + var(--p) * .3))); }
+
+/* --- CHAPTERS：本文をガラスの板に --- */
+.dz-ch__fig::after { background: linear-gradient(90deg, rgba(10,11,12,.55) 0%, rgba(10,11,12,.15) 60%, rgba(10,11,12,.05) 100%); }
+.dz-ch__text.dz-glass { margin: 0 var(--bh-gutter) clamp(64px, 11vh, 120px); padding: clamp(28px, 3.4vw, 48px); max-width: 560px; }
+.dz-ch__panel--site { background: radial-gradient(90% 70% at 60% 40%, #1c1f22, #0d0e10); }
+.dz-ch__contour ellipse { stroke: #cfd3d7; opacity: .18; }
+.dz-ch__no { font-family: var(--dz-sans); font-weight: 300; }
+
+/* --- DRAWING：グラファイトの上に、白く光る線 --- */
+.dz-draw { background: linear-gradient(180deg, transparent, rgba(255,255,255,.02) 20%, rgba(255,255,255,.02) 80%, transparent); color: var(--dz-ink); }
+.dz-draw .dz-label, .dz-draw__steps span { color: var(--dz-dim); }
+.dz-draw__steps.dz-glass { padding: 26px 28px; gap: 16px; }
+.dz-draw__svg { filter: drop-shadow(0 0 6px rgba(220,226,232,.25)); }
+.dz-draw__lines path { stroke: #e9eaeb; stroke-width: 1; }
+.dz-draw__lines path:nth-child(1) { stroke-width: 1.6; }
+.dz-draw__lines path:nth-child(6) { stroke: #8b8f93; stroke-width: 3; }
+.dz-draw__notes text { fill: #8b8f93; font-family: var(--dz-sans); }
+.dz-draw__svg { background: linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.01)); border: 1px solid var(--dz-glass-line); padding: clamp(10px, 2vw, 24px); }
+
+/* --- FOR / PRICE / WORDS / VISIT --- */
+.dz-for, .dz-price { border-top: 0; padding-block: clamp(80px, 12vw, 160px); }
+.dz-dl { border-top-color: var(--dz-line); }
+.dz-price__num { font-family: var(--dz-sans); font-weight: 200; letter-spacing: .06em; }
+.dz-words, .dz-visit, .dz-works { border-top-color: var(--dz-line); }
+.dz-words__by { font-family: var(--dz-sans); font-style: normal; font-weight: 300; font-size: 11px; letter-spacing: .5em; }
+.dz-works__rail img { filter: grayscale(.4) brightness(.88) contrast(1.05); }
+.dz-visit__choices a {
+  background: linear-gradient(135deg, rgba(255,255,255,.07), rgba(255,255,255,.015));
+  border-color: var(--dz-glass-line);
+  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+  font-weight: 300;
+}
+.dz-visit__choices a::before { background: rgba(233,234,235,.92); }
+
+/* ヘッダーもガラスに */
+body.dz-page .header.is-scrolled { background: rgba(10,11,12,.45); -webkit-backdrop-filter: blur(20px) saturate(120%); backdrop-filter: blur(20px) saturate(120%); border-bottom: 1px solid rgba(255,255,255,.08); }
+
+@media (prefers-reduced-motion: reduce) { .dz-ambient span { animation: none; } }

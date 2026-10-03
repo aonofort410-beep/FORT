@@ -3687,3 +3687,5 @@ main:focus { outline: none; }
 .bh-hero__slides .bh-hero__img { position: absolute; inset: 0; opacity: 0; transform: scale(1.08); transition: opacity 2.4s ease, transform 9s linear; }
 .bh-hero__slides .bh-hero__img.is-on { opacity: 1; transform: scale(1); }
 @media (prefers-reduced-motion: reduce) { .bh-hero__slides .bh-hero__img { transition: opacity 1s; transform: none; } }
+.bh-hero__slides picture.bh-hero__img { display: block; }
+.bh-hero__slides picture.bh-hero__img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }

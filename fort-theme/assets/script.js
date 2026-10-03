@@ -524,15 +524,16 @@ document.addEventListener('DOMContentLoaded', function () {
 (function () {
   var box = document.querySelector('[data-hero-slides]');
   if (!box) return;
-  var imgs = box.querySelectorAll('img');
+  var imgs = box.querySelectorAll('.bh-hero__img');
   if (imgs.length < 2) return;
+  var pic = function (el) { return el.querySelector('img') || el; };
   var i = 0;
   setInterval(function () {
     if (document.hidden || window.scrollY > window.innerHeight) return;
     var next = (i + 1) % imgs.length;
-    if (!imgs[next].complete) { imgs[next].loading = 'eager'; return; }
+    if (!pic(imgs[next]).complete) { pic(imgs[next]).loading = 'eager'; return; }
     imgs[i].classList.remove('is-on'); imgs[next].classList.add('is-on'); i = next;
   }, 7000);
   // 2枚目以降は最初の表示が落ち着いてから読み込む
-  window.addEventListener('load', function () { imgs.forEach(function (im) { im.loading = 'eager'; }); });
+  window.addEventListener('load', function () { imgs.forEach(function (im) { pic(im).loading = 'eager'; }); });
 })();

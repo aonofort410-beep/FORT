@@ -29,8 +29,13 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 				if ( ! $slides ) $slides[] = $img . 'hero.jpg';
 				?>
 			<div class="bh-hero__slides" data-hero-slides>
-				<?php foreach ( $slides as $i => $src ) : ?>
-				<img class="bh-hero__img<?php echo 0 === $i ? ' is-on' : ''; ?>" src="<?php echo esc_url( $src ); ?>" alt="" width="2400" height="1600" <?php echo 0 === $i ? 'fetchpriority="high"' : 'loading="lazy"'; ?> decoding="async">
+				<?php foreach ( $slides as $i => $src ) :
+					// スマホ（幅767px以下）は縦の写真 hero-sp-○.jpg があればそちらを表示。iPad・PCは横の写真
+					$sp = get_template_directory() . '/assets/images/hero-sp-' . ( $i + 1 ) . '.jpg'; ?>
+				<picture class="bh-hero__img<?php echo 0 === $i ? ' is-on' : ''; ?>">
+					<?php if ( count( $slides ) > 1 && file_exists( $sp ) ) : ?><source media="(max-width: 767px)" srcset="<?php echo esc_url( $img . 'hero-sp-' . ( $i + 1 ) . '.jpg' ); ?>"><?php endif; ?>
+					<img src="<?php echo esc_url( $src ); ?>" alt="" width="2400" height="1600" <?php echo 0 === $i ? 'fetchpriority="high"' : 'loading="lazy"'; ?> decoding="async">
+				</picture>
 				<?php endforeach; ?>
 			</div>
 			<?php endif; ?>

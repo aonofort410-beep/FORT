@@ -28,7 +28,7 @@ $img = get_template_directory_uri() . '/assets/images/';
         <dl class="company-table" data-reveal>
           <div><dt>会社名</dt><dd>株式会社FORT（フォート）</dd></div>
           <div><dt>設立</dt><dd>平成28年</dd></div>
-          <div><dt>代表者</dt><dd>代表取締役　中村 亜樹</dd></div>
+          <div><dt>代表者</dt><dd>代表取締役　先本 英司</dd></div>
           <div><dt>資本金</dt><dd>1,000万円</dd></div>
           <div>
             <dt>所在地</dt>

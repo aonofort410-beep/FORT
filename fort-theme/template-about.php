@@ -70,7 +70,7 @@ $studios = fort_studios();
 				<dl class="bh-spec">
 					<div><dt>会社名</dt><dd>株式会社FORT（フォート）</dd></div>
 					<div><dt>設立</dt><dd>平成28年</dd></div>
-					<div><dt>代表者</dt><dd>代表取締役　中村 亜樹</dd></div>
+					<div><dt>代表者</dt><dd>代表取締役　先本 英司</dd></div>
 					<div><dt>事業内容</dt><dd>注文住宅・規格住宅・建売住宅の設計および施工 ほか</dd></div>
 					<div><dt>対応エリア</dt><dd>岡山県全域（一部エリアはご相談ください）、福山市・尾道市・三原市</dd></div>
 				</dl>

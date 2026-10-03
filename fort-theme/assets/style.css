@@ -3622,3 +3622,16 @@ body.st-modal-open { overflow: hidden; }
   transition: background-position 1.6s cubic-bezier(.2,.7,.2,1), letter-spacing .6s cubic-bezier(.2,.7,.2,1);
 }
 .bh-place__item:hover .bh-place__name--img { background-position: 50% 30%; letter-spacing: .05em; }
+
+/* 40. 調整：PCメニューを大きく／3つのFORT・スタッフの列をそろえる */
+@media (min-width: 1120px) {
+  .header-nav { gap: 34px; }
+  .header-nav__en { font-size: 11px; }
+  .header-nav__ja { font-size: 14.5px; }
+  .header-nav__link--visit { padding: 9px 20px; }
+}
+.bh-house__grid .bh-house__item:nth-child(n) { margin-top: 0; }
+.bh-house__grid { align-items: start; }
+.st-grid .st-card:nth-child(n) { margin-top: 0; }
+.st-grid { align-items: start; }
+.bh-hx__item:nth-child(n) { margin-top: 0; }

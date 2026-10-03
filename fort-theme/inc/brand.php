@@ -66,11 +66,12 @@ function fort_visit_url( $args = array() ) {
 /** グローバルナビ（ヘッダー・目次・フッターで共通） */
 function fort_nav_items() {
 	return array(
-		array( 'en' => 'WORKS',   'ja' => '施工事例',       'href' => fort_url( 'works' ) ),
 		array( 'en' => 'HOUSE',   'ja' => '家づくり',       'href' => fort_url( 'house' ) ),
 		array( 'en' => 'EVENT',   'ja' => '見学会・イベント', 'href' => fort_url( 'event' ) ),
-		array( 'en' => 'JOURNAL', 'ja' => '読みもの',       'href' => fort_url( 'journal' ), 'needs' => 'journal' ),
+		array( 'en' => 'PERFORMANCE', 'ja' => '構造・性能', 'href' => fort_url( 'performance' ) ),
+		array( 'en' => 'WORKS',   'ja' => '施工事例',       'href' => fort_url( 'works' ) ),
 		array( 'en' => 'PLACE',   'ja' => '岡山・福山',     'href' => fort_url( 'place' ) ),
+		array( 'en' => 'JOURNAL', 'ja' => '読みもの',       'href' => fort_url( 'journal' ), 'needs' => 'journal' ),
 		array( 'en' => 'ABOUT',   'ja' => 'FORTについて',   'href' => fort_url( 'about' ) ),
 		array( 'en' => 'VISIT',   'ja' => '来場予約',       'href' => fort_url( 'visit' ) ),
 	);

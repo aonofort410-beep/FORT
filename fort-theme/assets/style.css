@@ -3689,3 +3689,14 @@ main:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) { .bh-hero__slides .bh-hero__img { transition: opacity 1s; transform: none; } }
 .bh-hero__slides picture.bh-hero__img { display: block; }
 .bh-hero__slides picture.bh-hero__img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+
+/* 47. 上部バー：項目が8つになったので、すべて並ぶ幅（1280px〜）でだけ表示。それ以下は MENU にまとめる */
+@media (min-width: 1120px) and (max-width: 1279px) {
+  .header-nav { display: none; }
+  .header__visit { display: inline-flex; }
+}
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .header-nav { gap: 22px; }
+  .header-nav__ja { font-size: 13.5px; }
+}
+.header__logo, .header__brand { flex-shrink: 0; }

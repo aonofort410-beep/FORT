@@ -519,3 +519,20 @@ document.addEventListener('DOMContentLoaded', function () {
     (function loop() { cx += (x - cx) * .2; cy += (y - cy) * .2; c.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)'; requestAnimationFrame(loop); })();
   }
 })();
+
+/* HERO スライドショー：7秒ごとにゆっくり次の写真へ（画面外・タブ非表示のときは止める） */
+(function () {
+  var box = document.querySelector('[data-hero-slides]');
+  if (!box) return;
+  var imgs = box.querySelectorAll('img');
+  if (imgs.length < 2) return;
+  var i = 0;
+  setInterval(function () {
+    if (document.hidden || window.scrollY > window.innerHeight) return;
+    var next = (i + 1) % imgs.length;
+    if (!imgs[next].complete) { imgs[next].loading = 'eager'; return; }
+    imgs[i].classList.remove('is-on'); imgs[next].classList.add('is-on'); i = next;
+  }, 7000);
+  // 2枚目以降は最初の表示が落ち着いてから読み込む
+  window.addEventListener('load', function () { imgs.forEach(function (im) { im.loading = 'eager'; }); });
+})();

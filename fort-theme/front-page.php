@@ -22,8 +22,17 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 			<video class="bh-hero__img" autoplay muted loop playsinline preload="metadata" poster="<?php echo esc_url( $img . 'hero.jpg' ); ?>">
 				<source src="<?php echo esc_url( $img . 'hero.mp4' ); ?>" type="video/mp4">
 			</video>
-			<?php else : ?>
-			<img class="bh-hero__img" src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="" width="2400" height="1600" fetchpriority="high" decoding="async">
+			<?php else :
+				// hero-1.jpg 〜 hero-9.jpg があればゆっくり切り替わるスライドショー（無ければ hero.jpg 1枚）
+				$slides = array();
+				for ( $i = 1; $i <= 9; $i++ ) if ( file_exists( get_template_directory() . '/assets/images/hero-' . $i . '.jpg' ) ) $slides[] = $img . 'hero-' . $i . '.jpg';
+				if ( ! $slides ) $slides[] = $img . 'hero.jpg';
+				?>
+			<div class="bh-hero__slides" data-hero-slides>
+				<?php foreach ( $slides as $i => $src ) : ?>
+				<img class="bh-hero__img<?php echo 0 === $i ? ' is-on' : ''; ?>" src="<?php echo esc_url( $src ); ?>" alt="" width="2400" height="1600" <?php echo 0 === $i ? 'fetchpriority="high"' : 'loading="lazy"'; ?> decoding="async">
+				<?php endforeach; ?>
+			</div>
 			<?php endif; ?>
 		</div>
 		<!-- 公式ロゴが、じわっと浮かび上がる -->

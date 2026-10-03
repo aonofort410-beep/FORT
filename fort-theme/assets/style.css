@@ -3681,3 +3681,9 @@ main:focus { outline: none; }
   .bh-place__grid { column-gap: 0; }
   .bh-place__item:first-child { padding-right: 40px; }
 }
+
+/* 46. HERO：ゆっくり切り替わるスライドショー（フェード＋ゆるいズーム） */
+.bh-hero__slides { position: absolute; inset: 0; overflow: hidden; }
+.bh-hero__slides .bh-hero__img { position: absolute; inset: 0; opacity: 0; transform: scale(1.08); transition: opacity 2.4s ease, transform 9s linear; }
+.bh-hero__slides .bh-hero__img.is-on { opacity: 1; transform: scale(1); }
+@media (prefers-reduced-motion: reduce) { .bh-hero__slides .bh-hero__img { transition: opacity 1s; transform: none; } }

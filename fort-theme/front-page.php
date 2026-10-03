@@ -167,12 +167,12 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 			</header>
 			<div class="bh-place__grid">
 				<a class="bh-place__item" href="<?php echo esc_url( fort_url( 'okayama' ) ); ?>">
-					<span class="bh-place__name">OKAYAMA</span>
+					<?php echo fort_place_name( 'okayama', 'OKAYAMA' ); // phpcs:ignore ?>
 					<span class="bh-place__ja">岡山スタジオ</span>
 					<span class="bh-place__tel"><?php echo esc_html( $tel_o ); ?></span>
 				</a>
 				<a class="bh-place__item" href="<?php echo esc_url( fort_url( 'fukuyama' ) ); ?>">
-					<span class="bh-place__name">FUKUYAMA</span>
+					<?php echo fort_place_name( 'fukuyama', 'FUKUYAMA' ); // phpcs:ignore ?>
 					<span class="bh-place__ja">福山スタジオ</span>
 					<span class="bh-place__tel"><?php echo esc_html( $tel_f ); ?></span>
 				</a>

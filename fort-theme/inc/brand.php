@@ -581,3 +581,25 @@ add_action( 'after_switch_theme', function () {
 	$id = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'FORTについて', 'post_name' => 'about' ) );
 	if ( $id && ! is_wp_error( $id ) ) update_post_meta( $id, '_wp_page_template', 'template-about.php' );
 } );
+
+/* ============================================================
+   11. スタジオの写真（トップ・PLACE の大きな OKAYAMA / FUKUYAMA の文字を写真で塗る）
+   外観 → カスタマイズ →「FORT：連絡先」で写真を選ぶ。未設定なら文字だけで表示
+============================================================ */
+add_action( 'customize_register', function ( $wp ) {
+	foreach ( array( 'okayama' => '岡山', 'fukuyama' => '福山' ) as $k => $n ) {
+		$wp->add_setting( 'fort_studio_img_' . $k, array( 'default' => '', 'sanitize_callback' => 'esc_url_raw' ) );
+		$wp->add_control( new WP_Customize_Image_Control( $wp, 'fort_studio_img_' . $k, array( 'label' => $n . 'スタジオの写真（大きな文字の中に表示）', 'section' => 'fort_contact' ) ) );
+	}
+}, 40 );
+
+function fort_studio_img( $region ) {
+	return get_theme_mod( 'fort_studio_img_' . $region, '' );
+}
+
+/** 大きな地域名。スタジオの写真があれば、文字の形に写真を切り抜いて表示 */
+function fort_place_name( $region, $text ) {
+	$img = fort_studio_img( $region );
+	if ( ! $img ) return '<span class="bh-place__name">' . esc_html( $text ) . '</span>';
+	return '<span class="bh-place__name bh-place__name--img" style="--img:url(' . esc_url( $img ) . ')">' . esc_html( $text ) . '</span>';
+}

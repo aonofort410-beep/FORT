@@ -84,7 +84,7 @@ $studios = fort_studios();
 			<header class="bh-head"><p class="bh-label">PLACE</p><h2 class="bh-head__title"><span class="bh-nb">岡山と福山に、</span><span class="bh-nb">スタジオがあります。</span></h2></header>
 			<div class="bh-place__grid">
 				<?php foreach ( $studios as $key => $st ) : ?>
-				<a class="bh-place__item" href="<?php echo esc_url( fort_url( $key ) ); ?>"><span class="bh-place__name"><?php echo esc_html( $st['en'] ); ?></span><span class="bh-place__ja"><?php echo esc_html( $st['name'] ); ?></span><span class="bh-place__tel"><?php echo esc_html( $st['tel'] ); ?></span></a>
+				<a class="bh-place__item" href="<?php echo esc_url( fort_url( $key ) ); ?>"><?php echo fort_place_name( $key, $st['en'] ); // phpcs:ignore ?><span class="bh-place__ja"><?php echo esc_html( $st['name'] ); ?></span><span class="bh-place__tel"><?php echo esc_html( $st['tel'] ); ?></span></a>
 				<?php endforeach; ?>
 			</div>
 		</div>

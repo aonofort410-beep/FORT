@@ -81,4 +81,76 @@
       requestAnimationFrame(loop);
     })();
   }
+
+  /* 4. 平面図：画面に入ったら、CADで1本ずつ線を引くように描く
+        ① 外周の補助線（薄い破線）を引く → ② ペン先が線を1本ずつなぞる → ③ 細部（部屋名など）が浮かぶ */
+  var plan = document.querySelector('.dz-draw__plan');
+  if (plan) {
+    var svg = plan.querySelector('svg');
+    var lines = Array.prototype.slice.call(svg.querySelectorAll('.dz-plan__lines line'));
+    var guidesG = svg.querySelector('.dz-plan__guides');
+    var pen = svg.querySelector('.dz-plan__pen');
+    var vb = svg.viewBox.baseVal;
+    var NS = 'http://www.w3.org/2000/svg';
+    var steps = Array.prototype.slice.call(document.querySelectorAll('.dz-draw__steps li'));
+    lines.forEach(function (l) { l.setAttribute('pathLength', '1'); l.style.strokeDashoffset = '1'; });
+
+    var seg = lines.map(function (l) {
+      var x1 = +l.getAttribute('x1'), y1 = +l.getAttribute('y1'), x2 = +l.getAttribute('x2'), y2 = +l.getAttribute('y2');
+      return { el: l, x1: x1, y1: y1, x2: x2, y2: y2, len: Math.hypot(x2 - x1, y2 - y1) };
+    });
+    // 線の長さに応じた時間（短い線ほど速く、全体でおよそ9秒）
+    var TOTAL = 9000, raw = seg.map(function (s, i) {
+      var travel = i ? Math.hypot(s.x1 - seg[i - 1].x2, s.y1 - seg[i - 1].y2) : 0;
+      return { draw: 40 + Math.sqrt(s.len) * 14, lift: Math.min(travel, 300) * .35 + 14 };
+    });
+    var sum = raw.reduce(function (a, r) { return a + r.draw + r.lift; }, 0), k = TOTAL / sum;
+    var t = 0; seg.forEach(function (s, i) { s.start = t + raw[i].lift * k; s.end = s.start + raw[i].draw * k; t = s.end; });
+
+    function ease(x) { return x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
+
+    function drawGuides(done) {
+      var outer = seg.filter(function (s) { return s.el.classList.contains('o'); });
+      outer.forEach(function (s, i) {
+        var g = document.createElementNS(NS, 'line');
+        if (s.y1 === s.y2) { g.setAttribute('x1', vb.x - 40); g.setAttribute('x2', vb.width + 40); g.setAttribute('y1', s.y1); g.setAttribute('y2', s.y2); }
+        else { g.setAttribute('y1', vb.y - 40); g.setAttribute('y2', vb.height + 40); g.setAttribute('x1', s.x1); g.setAttribute('x2', s.x2); }
+        g.setAttribute('pathLength', '1');
+        g.style.animationDelay = (i * 70) + 'ms';
+        guidesG.appendChild(g);
+      });
+      setTimeout(done, outer.length * 70 + 600);
+    }
+
+    function run() {
+      plan.classList.add('is-drawing');
+      drawGuides(function () {
+        var t0 = performance.now(), idx = 0;
+        (function frame(now) {
+          var el = now - t0;
+          while (idx < seg.length && seg[idx].end <= el) { seg[idx].el.style.strokeDashoffset = '0'; idx++; }
+          if (idx < seg.length) {
+            var s = seg[idx], p = el < s.start ? 0 : ease((el - s.start) / (s.end - s.start));
+            s.el.style.strokeDashoffset = String(1 - p);
+            // ペン先：線を引いている間は線の先端、持ち上げている間は次の線の始点へ移動
+            var px, py;
+            if (el < s.start && idx > 0) { var prev = seg[idx - 1], q = ease(Math.min(1, (el - prev.end) / Math.max(1, s.start - prev.end))); px = prev.x2 + (s.x1 - prev.x2) * q; py = prev.y2 + (s.y1 - prev.y2) * q; pen.classList.add('is-up'); }
+            else { px = s.x1 + (s.x2 - s.x1) * p; py = s.y1 + (s.y2 - s.y1) * p; pen.classList.remove('is-up'); }
+            pen.setAttribute('cx', px); pen.setAttribute('cy', py);
+            var stage = Math.min(steps.length - 1, Math.floor(idx / seg.length * steps.length));
+            steps.forEach(function (li, j) { li.classList.toggle('is-on', j <= stage); });
+            requestAnimationFrame(frame);
+          } else {
+            plan.classList.add('is-done');
+            steps.forEach(function (li) { li.classList.add('is-on'); });
+          }
+        })(t0);
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var po = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { po.disconnect(); setTimeout(run, 300); } }, { threshold: .45 });
+      po.observe(plan);
+    } else { run(); }
+  }
 })();

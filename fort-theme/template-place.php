@@ -25,7 +25,7 @@ if ( ! $region ) : /* ---------- /place/：2つの地域の入口 ---------- */ 
 			<div class="bh-place__grid">
 				<?php foreach ( $studios as $key => $st ) : ?>
 				<a class="bh-place__item" href="<?php echo esc_url( fort_url( $key ) ); ?>">
-					<span class="bh-place__name"><?php echo esc_html( $st['en'] ); ?></span>
+					<?php echo fort_place_name( $key, $st['en'] ); // phpcs:ignore ?>
 					<span class="bh-place__ja"><?php echo esc_html( $st['name'] ); ?>　<?php echo esc_html( $st['area'] ); ?></span>
 					<span class="bh-place__tel"><?php echo esc_html( $st['tel'] ); ?></span>
 				</a>

@@ -446,3 +446,58 @@ document.addEventListener('DOMContentLoaded', function () {
     else img.addEventListener('error', function () { hide(img); });
   });
 })();
+
+/* ============================================================
+   v2：STAFF ページ
+   1. FORT → comFORT → efFORT → FORTune（前後の文字だけが入れ替わる）
+   2. 部門の絞り込み
+   3. プロフィールをモーダルで開く（Escで閉じる。JSが無ければ個別ページへ）
+   4. PCでは写真の上で「PROFILE」の丸いカーソル
+============================================================ */
+(function () {
+  var words = document.querySelector('[data-st-words]');
+  if (words && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    var groups = words.querySelectorAll('.st-words__pre, .st-words__post, .st-words__ja');
+    var n = groups[0].children.length, cur = 0;
+    setInterval(function () {
+      cur = (cur + 1) % n;
+      groups.forEach(function (g) { Array.prototype.forEach.call(g.children, function (el, i) { el.classList.toggle('is-on', i === cur); }); });
+    }, 2600);
+  }
+
+  var filter = document.querySelector('[data-st-filter]');
+  if (filter) {
+    var cards = document.querySelectorAll('.st-card');
+    filter.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-dept]'); if (!b) return;
+      var d = b.getAttribute('data-dept');
+      filter.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      var k = 0;
+      cards.forEach(function (c) { var ok = !d || c.getAttribute('data-dept') === d; c.hidden = !ok; if (ok) { c.style.setProperty('--i', k++); c.classList.remove('is-shown'); void c.offsetWidth; c.classList.add('is-shown'); } });
+    });
+  }
+
+  var modal = document.getElementById('st-modal');
+  if (modal && typeof modal.showModal === 'function') {
+    var body = modal.querySelector('[data-st-body]'), last = null;
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('[data-st-open]'); if (!a) return;
+      var tpl = document.getElementById('st-profile-' + a.getAttribute('data-st-open')); if (!tpl) return;
+      e.preventDefault(); last = a;
+      body.innerHTML = ''; body.appendChild(tpl.content.cloneNode(true));
+      modal.showModal(); document.body.classList.add('st-modal-open');
+    });
+    function close() { modal.close(); }
+    modal.addEventListener('close', function () { document.body.classList.remove('st-modal-open'); if (last) last.focus(); });
+    modal.querySelector('[data-st-close]').addEventListener('click', close);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+  }
+
+  if (document.querySelector('.st-grid') && window.matchMedia && matchMedia('(pointer: fine)').matches) {
+    var c = document.createElement('div'); c.className = 'st-cursor'; c.setAttribute('aria-hidden', 'true'); c.textContent = 'PROFILE';
+    document.body.appendChild(c);
+    var x = 0, y = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', function (e) { x = e.clientX; y = e.clientY; c.classList.toggle('is-on', !!e.target.closest('.st-card__link')); }, { passive: true });
+    (function loop() { cx += (x - cx) * .2; cy += (y - cy) * .2; c.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)'; requestAnimationFrame(loop); })();
+  }
+})();

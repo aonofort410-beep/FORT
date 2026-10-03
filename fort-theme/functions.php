@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 require_once get_template_directory() . '/inc/brand.php';
 require_once get_template_directory() . '/inc/reservation.php';
 require_once get_template_directory() . '/inc/house.php';
+require_once get_template_directory() . '/inc/staff.php';
 
 /* ============================================================
    1. テーマの基本サポート
@@ -117,7 +118,7 @@ function fort_post_types() {
 		'menu_icon'    => 'dashicons-groups',
 		'menu_position'=> 6,
 		'rewrite'      => array( 'slug' => 'staff' ),
-		'supports'     => array( 'title', 'thumbnail', 'page-attributes' ), // page-attributes=並び順
+		'supports'     => array( 'title', 'editor', 'thumbnail', 'page-attributes' ), // editor=ひとこと／page-attributes=並び順
 		'show_in_rest' => true,
 	) );
 

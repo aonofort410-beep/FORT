@@ -96,7 +96,7 @@ $title = str_split( 'FORT DESIGN' );
 	</section>
 
 	<!-- DRAWING：スクロールで図面が描かれる -->
-	<section class="dz-draw" data-progress aria-label="対話から図面へ">
+	<section class="dz-draw" aria-label="対話から図面へ">
 		<div class="dz-draw__sticky">
 			<div class="dz-wrap dz-draw__grid">
 				<div class="dz-draw__head">

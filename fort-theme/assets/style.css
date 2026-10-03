@@ -3457,3 +3457,48 @@ body.dz-ready [data-dz-reveal].is-in img { transform: none; }
   .dz-draw__plan img { -webkit-mask-image: none; mask-image: none; }
   .dz-draw__scan { display: none; }
 }
+
+/* ============================================================
+   35-5. FORT DESIGN：線が1本ずつ引かれる平面図／1文字ずつ浮かぶ言葉
+============================================================ */
+/* 平面図：細い線が順に引かれ、最後に部屋名や家具などの細部が浮かぶ */
+.dz-draw__plan { display: grid; }
+.dz-draw__plan > * { grid-area: 1 / 1; }
+.dz-plan__svg { width: 100%; height: auto; max-height: 64vh; overflow: visible; }
+.dz-plan__svg line {
+  stroke: #eceef0; stroke-width: 1; stroke-linecap: square; vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1; stroke-dashoffset: calc(1 - clamp(0, (var(--p) * 1.25 - var(--d)) * 5, 1));
+  opacity: calc(.35 + clamp(0, (var(--p) * 1.25 - var(--d)) * 5, 1) * .65);
+}
+.dz-plan__svg line.w { stroke-width: 1.6; }
+.dz-plan__svg { filter: drop-shadow(0 0 3px rgba(236,238,240,.35)); }
+.dz-plan__detail { width: 100%; height: auto; max-height: 64vh; object-fit: contain; -webkit-mask-image: none; mask-image: none;
+  opacity: clamp(0, (var(--p) - .82) * 6, .55); filter: none; }
+.dz-draw__plan img:not(.dz-plan__detail) { display: none; }
+
+/* 言葉：1文字ずつ、下から滑らかに */
+[data-dz-chars] > span { display: block; overflow: hidden; padding-bottom: .08em; }
+.dz-chars-ready .dz-char { display: inline-block; opacity: 0; transform: translateY(105%) rotate(4deg); filter: blur(6px);
+  transition: transform 1.3s cubic-bezier(.16,.84,.24,1), opacity 1.1s ease, filter 1.3s ease; transition-delay: calc(.25s + var(--c) * .055s); }
+.dz-chars-ready.is-in .dz-char { opacity: 1; transform: none; filter: none; }
+/* 写真はゆっくり寄っていく */
+.dz-still__fig img { transform: scale(1.08); transition: transform 7s cubic-bezier(.2,.6,.2,1); }
+.dz-still__fig.is-in img { transform: scale(1); }
+@media (max-width: 767px) { .dz-plan__svg, .dz-plan__detail { max-height: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .dz-plan__svg line { stroke-dashoffset: 0; opacity: 1; }
+  .dz-plan__detail { opacity: .55; }
+  .dz-chars-ready .dz-char { opacity: 1; transform: none; filter: none; transition: none; }
+}
+@media (max-width: 767px) {
+  /* スマホでも短く画面に留めて、線が最後まで引かれるように */
+  .dz-draw { height: 170vh; }
+  .dz-draw__sticky { position: sticky; top: 0; min-height: 100svh; padding-block: 76px 20px; align-items: start; }
+  .dz-draw__title { font-size: 1.45rem; margin-top: 10px; }
+  .dz-draw__steps.dz-glass { display: flex; flex-wrap: wrap; gap: 6px 10px; padding: 12px 14px; margin-top: 16px; font-size: 0; }
+  .dz-draw__steps li { display: inline; font-size: 0; transform: none; }
+  .dz-draw__steps li span { font-size: 10px; letter-spacing: .24em; }
+  .dz-draw__steps li + li span::before { content: "→ "; color: var(--dz-dim); }
+  .dz-plan__svg, .dz-plan__detail { max-height: 50svh; }
+  .dz-draw__plan { padding: 12px; }
+}

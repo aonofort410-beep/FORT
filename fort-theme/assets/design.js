@@ -31,8 +31,21 @@
   window.addEventListener('resize', onScroll);
   update();
 
+  /* 2-0. 1文字ずつ浮かび上がる（[data-dz-chars] の各行を文字に分ける） */
+  document.querySelectorAll('[data-dz-chars]').forEach(function (box) {
+    var n = 0;
+    Array.prototype.forEach.call(box.children, function (line) {
+      var text = line.textContent;
+      line.setAttribute('aria-label', text);
+      line.innerHTML = text.split('').map(function (ch) {
+        return '<span class="dz-char" aria-hidden="true" style="--c:' + (n++) + '">' + ch + '</span>';
+      }).join('');
+    });
+    box.classList.add('dz-chars-ready');
+  });
+
   /* 2. 行ごとの浮かび上がり */
-  var lineBoxes = document.querySelectorAll('[data-dz-lines], [data-dz-reveal]');
+  var lineBoxes = document.querySelectorAll('[data-dz-lines], [data-dz-reveal], [data-dz-chars]');
   lineBoxes.forEach(function (box) {
     Array.prototype.forEach.call(box.children, function (line, i) { line.style.setProperty('--li', i); });
   });

@@ -40,7 +40,7 @@ $title = str_split( 'FORT DESIGN' );
 	<!-- STILL：写真1枚と、3つの言葉（長いスクロールなし） -->
 	<section class="dz-still" aria-label="FORT DESIGN の住まい">
 		<figure class="dz-still__fig" data-dz-reveal><img src="<?php echo esc_url( fort_media( 'design' ) ); ?>" alt="FORT DESIGN の住まい" width="2000" height="1333" loading="lazy" decoding="async"></figure>
-		<p class="dz-still__words" data-dz-lines><span>土地の個性、</span><span>光の入り方、</span><span>家族の時間。</span></p>
+		<p class="dz-still__words" data-dz-chars><span>土地の個性、</span><span>光の入り方、</span><span>家族の時間。</span></p>
 	</section>
 
 	<!-- CONCEPT -->
@@ -110,9 +110,9 @@ $title = str_split( 'FORT DESIGN' );
 					</ol>
 				</div>
 				<figure class="dz-draw__plan">
-					<img src="<?php echo esc_url( $img . 'design-plan.png' ); ?>" alt="FORT DESIGN の平面図（中庭のある1階）" width="1816" height="1946" loading="lazy" decoding="async">
-					<span class="dz-draw__scan" aria-hidden="true"></span>
-					<figcaption>FORT DESIGN の実際の平面図より</figcaption>
+					<?php // 平面図の線（1本ずつ描かれる）。parts/design-plan.svg は図面画像から取り出した線
+					echo file_get_contents( get_template_directory() . '/parts/design-plan.svg' ); // phpcs:ignore -- テーマ内の固定SVG ?>
+					<img class="dz-plan__detail" src="<?php echo esc_url( $img . 'design-plan.png' ); ?>" alt="FORT DESIGN の平面図" width="1816" height="1946" loading="lazy" decoding="async">
 				</figure>
 			</div>
 		</div>

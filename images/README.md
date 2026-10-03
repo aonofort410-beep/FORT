@@ -100,7 +100,7 @@
 | ▢ | `staff-yamashita.jpg` | `staff-yamashita-2.jpg` | 山下 唯 ／ 設計 |
 | ▢ | `staff-kobayashi.jpg` | `staff-kobayashi-2.jpg` | 古林 真希 ／ 設計 |
 | ▢ | `staff-matsukawa.jpg` | `staff-matsukawa-2.jpg` | 松川 琳斗 ／ 設計 |
-| ▢ | `staff-murakami.jpg` | `staff-murakami-2.jpg` | 村上 芽生 ／ 設計 |
+| ▢ | `staff-murakami.jpg` | `staff-murakami-2.jpg` | 村上 芽衣 ／ 設計 |
 | ▢ | `staff-nagataki.jpg` | `staff-nagataki-2.jpg` | 長瀧 渉 ／ 工務 |
 | ▢ | `staff-matsuzaki.jpg` | `staff-matsuzaki-2.jpg` | 松﨑 真紀 ／ 工務 |
 | ▢ | `staff-ishida.jpg` | `staff-ishida-2.jpg` | 石田 一成 ／ 工務 |

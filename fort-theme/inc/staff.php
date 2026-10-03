@@ -49,16 +49,23 @@ function fort_staff_role( $role, $dept_ja ) {
 	return implode( ' ／ ', $parts );
 }
 
-/** 一覧の並び：営業 → 設計コーディネート → 工務 → 総務（部門内は管理画面の順番 → 登録順） */
+/**
+ * 一覧の並び
+ * 1) 下の標準の並び（スラッグ）
+ * 2) 新しく追加したスタッフは、管理画面の「順序」→ 部門（営業 → 設計コーディネート → 工務 → 総務）→ 登録順で後ろに並ぶ
+ */
+function fort_staff_default_order() {
+	return array( 'aono', 'kawasaki', 'nakao', 'nagataki', 'sakamoto', 'yamashita', 'matsukawa', 'murakami', 'kobayashi', 'matsuzaki', 'ishida', 'hikasa', 'nakamura-ryoko' );
+}
 function fort_staff_sort( $list ) {
-	$order = array_flip( array_keys( fort_staff_depts() ) );
-	$i = 0;
-	foreach ( $list as &$s ) $s['_i'] = $i++;
+	$dept  = array_flip( array_keys( fort_staff_depts() ) );
+	$slugs = array_flip( fort_staff_default_order() );
+	foreach ( $list as $i => &$s ) {
+		$p    = get_post( $s['id'] );
+		$mo   = (int) $p->menu_order;
+		$s['_k'] = array( $slugs[ $p->post_name ] ?? 999, $mo > 0 ? 0 : 1, $mo, $dept[ $s['dept'] ] ?? 99, $i );
+	}
 	unset( $s );
-	usort( $list, function ( $a, $b ) use ( $order ) {
-		$da = $order[ $a['dept'] ] ?? 99;
-		$db = $order[ $b['dept'] ] ?? 99;
-		return $da === $db ? $a['_i'] - $b['_i'] : $da - $db;
-	} );
+	usort( $list, function ( $a, $b ) { return $a['_k'] <=> $b['_k']; } );
 	return $list;
 }

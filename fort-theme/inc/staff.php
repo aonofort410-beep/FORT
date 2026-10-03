@@ -31,7 +31,7 @@ function fort_staff_data( $p ) {
 		'dept_en' => isset( $depts[ $dept ] ) ? $depts[ $dept ][0] : '',
 		'role'  => get_post_meta( $p->ID, 'fort_role', true ),
 		'cred'  => ( $cred && '—' !== $cred ) ? $cred : '',
-		'photo' => has_post_thumbnail( $p ) ? get_the_post_thumbnail_url( $p, 'large' ) : '',
+		'photo' => has_post_thumbnail( $p ) ? get_the_post_thumbnail_url( $p, 'large' ) : ( file_exists( get_template_directory() . '/assets/images/staff/' . $p->post_name . '.jpg' ) ? get_template_directory_uri() . '/assets/images/staff/' . $p->post_name . '.jpg' : '' ),
 		'msg'   => trim( wp_strip_all_tags( get_post_field( 'post_content', $p ) ) ),
 		'url'   => get_permalink( $p ),
 	);

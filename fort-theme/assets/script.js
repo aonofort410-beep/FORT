@@ -1,3 +1,15 @@
+/* ページを開いたら、必ず一番上から表示（#付きリンクのときだけその位置へ） */
+(function () {
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+  function toTop() {
+    if (location.hash) return;
+    var h = document.documentElement, b = h.style.scrollBehavior;
+    h.style.scrollBehavior = 'auto'; window.scrollTo(0, 0); h.style.scrollBehavior = b;
+  }
+  toTop();
+  window.addEventListener('pageshow', function (e) { if (e.persisted) toTop(); });
+})();
+
 /* ============================================================
    株式会社FORT ブランドサイト / JavaScript
    ------------------------------------------------------------

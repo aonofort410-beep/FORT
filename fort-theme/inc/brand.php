@@ -327,6 +327,8 @@ function fort_youtube_lite( $id, $title ) {
    ※ テーマ同梱の画像が無い箇所は、すでにサイトにアップ済みの写真を使います
 ============================================================ */
 function fort_media( $key ) {
+	// テーマ内に house-○○.jpg があればそちらを優先（差し替えはファイルを置き換えるだけ）
+	if ( file_exists( get_template_directory() . '/assets/images/house-' . $key . '.jpg' ) ) return get_template_directory_uri() . '/assets/images/house-' . $key . '.jpg';
 	$base = 'https://www.fort410.com/wp/wp-content/uploads/2026/07/';
 	$map  = array(
 		'hero'        => '%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC-scaled.jpg',
@@ -603,5 +605,6 @@ function fort_studio_img( $region ) {
 function fort_place_name( $region, $text ) {
 	$img = fort_studio_img( $region );
 	if ( ! $img ) return '<span class="bh-place__name">' . esc_html( $text ) . '</span>';
-	return '<span class="bh-place__name bh-place__name--img" style="--img:url(' . esc_url( $img ) . ')">' . esc_html( $text ) . '</span>';
+	// 写真をカードで見せ、地域名は写真の下に濃い文字で（読みやすさ優先）
+	return '<figure class="bh-place__fig"><img src="' . esc_url( $img ) . '" alt="FORT ' . esc_attr( $text ) . ' STUDIO" loading="lazy" decoding="async"></figure><span class="bh-place__name">' . esc_html( $text ) . '</span>';
 }

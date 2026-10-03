@@ -12,7 +12,7 @@ while ( have_posts() ) : the_post();
 					<p class="st-card__dept"><?php echo esc_html( $s['dept_en'] ); ?></p>
 					<h1 class="st-modal__name"><?php echo esc_html( $s['name'] ); ?></h1>
 					<p class="st-modal__en"><?php echo esc_html( $s['en'] ); ?></p>
-					<dl class="bh-spec"><div><dt>役職</dt><dd><?php echo esc_html( $s['role'] ); ?></dd></div><?php if ( $s['cred'] ) : ?><div><dt>資格</dt><dd><?php echo esc_html( $s['cred'] ); ?></dd></div><?php endif; ?></dl>
+					<dl class="bh-spec"><div><dt>部門</dt><dd><?php echo esc_html( $s['dept_ja'] ); ?></dd></div><?php if ( $s['role'] ) : ?><div><dt>役職</dt><dd><?php echo esc_html( $s['role'] ); ?></dd></div><?php endif; ?><?php if ( $s['cred'] ) : ?><div><dt>資格</dt><dd><?php echo esc_html( $s['cred'] ); ?></dd></div><?php endif; ?></dl>
 					<?php if ( $s['msg'] ) : ?><p class="st-modal__msg"><?php echo nl2br( esc_html( $s['msg'] ) ); ?></p><?php endif; ?>
 					<p><a class="bh-more" href="<?php echo esc_url( fort_url( 'staff' ) ); ?>">スタッフ一覧へ</a></p>
 				</div>

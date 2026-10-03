@@ -10,7 +10,7 @@
 get_header();
 $depts = fort_staff_depts();
 $q     = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => -1, 'orderby' => array( 'menu_order' => 'ASC', 'date' => 'ASC' ) ) );
-$staff = array_map( 'fort_staff_data', $q->posts );
+$staff = fort_staff_sort( array_map( 'fort_staff_data', $q->posts ) );
 $has   = array();
 foreach ( $staff as $s ) if ( $s['dept'] ) $has[ $s['dept'] ] = true;
 $words = array(
@@ -66,7 +66,7 @@ $words = array(
 						</figure>
 						<p class="st-card__dept"><?php echo esc_html( $s['dept_en'] ); ?></p>
 						<h2 class="st-card__name"><?php echo esc_html( $s['name'] ); ?></h2>
-						<p class="st-card__role"><?php echo esc_html( $s['role'] ); ?><?php echo $s['cred'] ? '<br><span>' . esc_html( $s['cred'] ) . '</span>' : ''; ?></p>
+						<p class="st-card__role"><?php echo esc_html( $s['dept_ja'] . ( $s['role'] ? ' ／ ' . $s['role'] : '' ) ); ?><?php echo $s['cred'] ? '<br><span>' . esc_html( $s['cred'] ) . '</span>' : ''; ?></p>
 					</a>
 					<!-- プロフィール（モーダルで開く中身） -->
 					<template id="st-profile-<?php echo (int) $s['id']; ?>">
@@ -76,7 +76,7 @@ $words = array(
 								<p class="st-card__dept"><?php echo esc_html( $s['dept_en'] ); ?></p>
 								<h2 class="st-modal__name"><?php echo esc_html( $s['name'] ); ?></h2>
 								<p class="st-modal__en"><?php echo esc_html( $s['en'] ); ?></p>
-								<dl class="bh-spec"><div><dt>役職</dt><dd><?php echo esc_html( $s['role'] ); ?></dd></div><?php if ( $s['cred'] ) : ?><div><dt>資格</dt><dd><?php echo esc_html( $s['cred'] ); ?></dd></div><?php endif; ?></dl>
+								<dl class="bh-spec"><div><dt>部門</dt><dd><?php echo esc_html( $s['dept_ja'] ); ?></dd></div><?php if ( $s['role'] ) : ?><div><dt>役職</dt><dd><?php echo esc_html( $s['role'] ); ?></dd></div><?php endif; ?><?php if ( $s['cred'] ) : ?><div><dt>資格</dt><dd><?php echo esc_html( $s['cred'] ); ?></dd></div><?php endif; ?></dl>
 								<?php if ( $s['msg'] ) : ?><p class="st-modal__msg"><?php echo nl2br( esc_html( $s['msg'] ) ); ?></p><?php endif; ?>
 							</div>
 						</div>

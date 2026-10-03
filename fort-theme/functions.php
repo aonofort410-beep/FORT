@@ -189,11 +189,11 @@ function fort_staff_meta_cb( $post ) {
 	wp_nonce_field( 'fort_meta', 'fort_meta_nonce' );
 	$dept = get_post_meta( $post->ID, 'fort_dept', true );
 	echo '<p style="margin:10px 0;"><label style="display:block;font-weight:600;margin-bottom:4px;">部門</label><select name="fort_dept" style="width:100%;padding:6px;">';
-	foreach ( array( 'sales' => '営業（コンサルティングコーディネーター）', 'design' => '設計（デザインコーディネーター）', 'construction' => '工務（エンジニアリングコーディネーター）', 'admin' => '総務' ) as $k => $v ) {
+	foreach ( array( 'sales' => '営業', 'design' => '設計コーディネート', 'construction' => '工務', 'admin' => '総務' ) as $k => $v ) {
 		echo '<option value="' . esc_attr( $k ) . '" ' . selected( $dept, $k, false ) . '>' . esc_html( $v ) . '</option>';
 	}
 	echo '</select></p>';
-	fort_text_field( $post->ID, 'fort_role',    '職種（肩書き）', '例：コンサルティングコーディネーター' );
+	fort_text_field( $post->ID, 'fort_role',    '役職（任意）', '例：店長　※部門名は自動で表示されます' );
 	fort_text_field( $post->ID, 'fort_name_en', '氏名（英字）', '例：Hiroki Aono' );
 	fort_text_field( $post->ID, 'fort_cred',    '資格・役職など（名前の下に表示）', '例：二級建築士' );
 }

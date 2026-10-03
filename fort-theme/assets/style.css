@@ -3641,3 +3641,25 @@ body.st-modal-open { overflow: hidden; }
 .skip-link:focus { top: 12px; }
 main:focus { outline: none; }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+/* 42. HOUSE：カードの中で3つを比べる（項目の高さを横一列にそろえる） */
+.bh-hx__spec { display: contents; }
+.bh-hx__spec > div { display: grid; gap: 4px; padding-block: 12px; border-top: 1px solid var(--bh-line); }
+.bh-hx__spec dt { font-size: 11px; letter-spacing: .18em; color: var(--bh-gray); }
+.bh-hx__spec dd { font-size: 14px; line-height: 1.9; }
+.bh-hx__item > .bh-more { margin-top: 6px; }
+@media (min-width: 900px) {
+  .bh-hx__grid { grid-template-rows: repeat(10, auto); row-gap: 0; }
+  .bh-hx__item { grid-row: span 10; grid-template-rows: subgrid; gap: 0; }
+  .bh-hx__item > * { margin-block: 0 12px; }
+}
+
+/* 43. PLACE：スタジオ写真のカード＋地域名 */
+.bh-place__fig { grid-column: 1 / -1; aspect-ratio: 3 / 2; overflow: hidden; background: #1c1d1f; margin-bottom: 18px; }
+.bh-place__fig img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s cubic-bezier(.2,.7,.2,1), filter .8s; filter: saturate(.85); }
+.bh-place__item:hover .bh-place__fig img { transform: scale(1.04); filter: saturate(1); }
+.bh-place__fig + .bh-place__name { font-weight: 400; font-size: clamp(2.2rem, 10vw, 4.8rem); color: var(--bh-ink); }
+@media (min-width: 768px) { .bh-place__fig + .bh-place__name { font-size: clamp(2.4rem, 4.6vw, 4.8rem); } }
+
+.bh-hx__fig.is-missing, .bh-hx__fig:has(img.is-missing) { display: block !important; }
+.bh-house__common--light a { color: var(--bh-ink); }

@@ -40,7 +40,7 @@ if ( ! $region ) : /* ---------- /place/：2つの地域の入口 ---------- */ 
 	$works = array_values( array_filter( $works, 'has_post_thumbnail' ) );
 	$term  = taxonomy_exists( 'journal_cat' ) ? get_term_by( 'slug', $region, 'journal_cat' ) : false;
 	$posts = $term ? get_posts( array( 'post_type' => 'journal', 'posts_per_page' => 3, 'tax_query' => array( array( 'taxonomy' => 'journal_cat', 'terms' => $term->term_id ) ) ) ) : array();
-	$hero  = $works ? get_the_post_thumbnail_url( $works[0], 'fort-hero' ) : '';
+	$hero  = fort_studio_img( $region ) ?: ( $works ? get_the_post_thumbnail_url( $works[0], 'fort-hero' ) : '' );
 	?>
 	<header class="bh-region">
 		<?php if ( $hero ) : ?><figure class="bh-region__bg"><img src="<?php echo esc_url( $hero ); ?>" alt="" fetchpriority="high" decoding="async"></figure><?php endif; ?>

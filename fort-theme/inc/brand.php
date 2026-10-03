@@ -594,7 +594,9 @@ add_action( 'customize_register', function ( $wp ) {
 }, 40 );
 
 function fort_studio_img( $region ) {
-	return get_theme_mod( 'fort_studio_img_' . $region, '' );
+	$img = get_theme_mod( 'fort_studio_img_' . $region, '' );
+	if ( ! $img && file_exists( get_template_directory() . '/assets/images/studio-' . $region . '.jpg' ) ) $img = get_template_directory_uri() . '/assets/images/studio-' . $region . '.jpg';
+	return $img;
 }
 
 /** 大きな地域名。スタジオの写真があれば、文字の形に写真を切り抜いて表示 */

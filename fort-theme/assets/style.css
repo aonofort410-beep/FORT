@@ -3390,3 +3390,70 @@ body.dz-page .header.is-scrolled { background: rgba(10,11,12,.45); -webkit-backd
 .bh-hx__points li::before { content: "✓ "; color: var(--bh-ink); }
 .bh-hx__price { margin-block: 10px 6px; padding: 14px 16px; background: var(--bh-mist); font-family: var(--font-serif); font-size: 18px; letter-spacing: .04em; }
 .bh-hx__price small { display: block; font-family: var(--font-sans); font-size: 11px; color: var(--bh-gray); margin-top: 2px; }
+
+/* ============================================================
+   35-4. FORT DESIGN：1画面の写真／誌面の3章／実際の平面図
+============================================================ */
+/* 写真の幕が開く（画面に入ったとき1回） */
+/* 写真の上に黒い幕を重ね、画面に入ったら上へ開く（写真自体は隠さないので判定が確実） */
+[data-dz-reveal] { position: relative; }
+body.dz-ready [data-dz-reveal]::before { content: ""; position: absolute; inset: 0; z-index: 2; background: var(--dz-black); transform-origin: top; transition: transform 1.6s cubic-bezier(.7,0,.2,1); }
+body.dz-ready [data-dz-reveal] img { transform: scale(1.12); transition: transform 2.4s cubic-bezier(.2,.7,.2,1); }
+body.dz-ready [data-dz-reveal].is-in::before { transform: scaleY(0); }
+body.dz-ready [data-dz-reveal].is-in img { transform: none; }
+
+/* STILL：写真1枚＋3つの言葉 */
+.dz-still { position: relative; height: 86svh; min-height: 480px; display: grid; align-items: end; overflow: hidden; }
+.dz-still__fig { position: absolute !important; inset: 0; margin: 0; }
+.dz-still__fig img { width: 100%; height: 100%; object-fit: cover; }
+.dz-still__fig::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,11,12,.1) 30%, rgba(10,11,12,.75) 100%); }
+.dz-still__words { position: relative; z-index: 1; padding: 0 var(--bh-gutter) clamp(40px, 8vh, 96px); display: grid; gap: .2em;
+  font-family: var(--dz-ja); font-weight: 200; font-size: clamp(1.4rem, 4vw, 2.6rem); letter-spacing: .2em; line-height: 1.7; }
+
+/* CHAPTERS：交互の誌面レイアウト */
+.dz-chap { padding-block: clamp(56px, 8vw, 120px); }
+.dz-chap__row { display: grid; gap: 24px; align-items: center; }
+.dz-chap__row + .dz-chap__row { margin-top: clamp(56px, 9vw, 130px); }
+.dz-chap__fig { margin: 0; aspect-ratio: 4 / 3; overflow: hidden; background: #16181a; position: relative; }
+.dz-chap__fig img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.15) brightness(.9); }
+.dz-chap__fig--site { background: radial-gradient(90% 80% at 55% 45%, #1e2124, #0e0f11); }
+.dz-chap__fig--site svg { width: 100%; height: 100%; }
+.dz-chap__fig--site ellipse { fill: none; stroke: #d5d9dd; stroke-width: .7; opacity: .22; }
+.dz-chap__text { display: grid; gap: 18px; }
+.dz-chap__no { font-family: var(--dz-sans); font-weight: 300; font-size: 11px; letter-spacing: .5em; color: var(--dz-dim); display: flex; align-items: baseline; gap: 16px; }
+.dz-chap__no span { font-weight: 200; font-size: clamp(2.6rem, 6vw, 4.4rem); letter-spacing: .02em; color: var(--dz-ink); line-height: 1; }
+.dz-chap__text h3 { font-family: var(--dz-ja); font-weight: 200; font-size: clamp(1.5rem, 3.4vw, 2.5rem); line-height: 1.6; letter-spacing: .1em; }
+.dz-chap__text p:last-child { font-size: 14px; line-height: 2.2; color: #c4c7ca; max-width: 28em; }
+@media (min-width: 900px) {
+  .dz-chap__row { grid-template-columns: 7fr 5fr; gap: clamp(40px, 6vw, 96px); }
+  .dz-chap__row--rev { grid-template-columns: 5fr 7fr; }
+  .dz-chap__row--rev .dz-chap__fig { order: 2; }
+  .dz-chap__row:nth-child(2) .dz-chap__fig { aspect-ratio: 3 / 4; }
+}
+
+/* DRAWING：実際の平面図が、スクロールに合わせて描き出される */
+.dz-draw { height: 150vh; }
+.dz-draw__plan { position: relative; margin: 0; padding: clamp(14px, 2.4vw, 32px); border: 1px solid var(--dz-glass-line);
+  background: linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.01)); }
+.dz-draw__plan img { display: block; width: 100%; height: auto; max-height: 64vh; object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(220,226,232,.35));
+  -webkit-mask-image: linear-gradient(160deg, #000 calc(var(--p) * 140% - 25%), transparent calc(var(--p) * 140% - 5%));
+          mask-image: linear-gradient(160deg, #000 calc(var(--p) * 140% - 25%), transparent calc(var(--p) * 140% - 5%)); }
+.dz-draw__scan { position: absolute; left: 0; right: 0; height: 1px; top: calc(4% + var(--p) * 92%);
+  background: linear-gradient(90deg, transparent, rgba(236,238,240,.9), transparent); box-shadow: 0 0 18px rgba(236,238,240,.5);
+  opacity: calc(1 - var(--p) * var(--p)); pointer-events: none; }
+.dz-draw__plan figcaption { margin-top: 12px; font-size: 11px; letter-spacing: .14em; color: var(--dz-dim); }
+@media (max-width: 767px) {
+  .dz-still { height: 70svh; }
+  .dz-still__words { font-size: 1.35rem; }
+  .dz-chap { padding-block: 40px; }
+  .dz-chap__row + .dz-chap__row { margin-top: 48px; }
+  .dz-chap__fig { margin-inline: calc(var(--bh-gutter) * -1); }
+  .dz-draw__plan img { max-height: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.dz-ready [data-dz-reveal]::before { display: none; }
+  body.dz-ready [data-dz-reveal] img { transform: none; }
+  .dz-draw__plan img { -webkit-mask-image: none; mask-image: none; }
+  .dz-draw__scan { display: none; }
+}

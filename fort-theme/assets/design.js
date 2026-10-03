@@ -2,7 +2,7 @@
    FORT DESIGN 特設ページの動き
    ・[data-progress] の要素に、スクロールの進み具合 --p（0〜1）を書き込む
      （見た目の変化は CSS 側で --p を使って描く）
-   ・[data-dz-lines] の行を、画面に入ったら1行ずつ浮かび上がらせる
+   ・[data-dz-lines] の行を、画面に入ったら1行ずつ浮かび上がらせる（[data-dz-reveal] は写真の幕が開く）
    ・PC（マウス操作）だけ、追従する小さなカーソルを表示
    ・「動きを減らす」設定では何もしない（CSSが静的表示に切り替える）
 ============================================================ */
@@ -32,7 +32,7 @@
   update();
 
   /* 2. 行ごとの浮かび上がり */
-  var lineBoxes = document.querySelectorAll('[data-dz-lines]');
+  var lineBoxes = document.querySelectorAll('[data-dz-lines], [data-dz-reveal]');
   lineBoxes.forEach(function (box) {
     Array.prototype.forEach.call(box.children, function (line, i) { line.style.setProperty('--li', i); });
   });

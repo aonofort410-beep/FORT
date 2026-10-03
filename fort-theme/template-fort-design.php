@@ -37,12 +37,10 @@ $title = str_split( 'FORT DESIGN' );
 		<p class="dz-open__scroll" aria-hidden="true">SCROLL</p>
 	</section>
 
-	<!-- APERTURE：小さな窓から、写真が画面いっぱいに広がる -->
-	<section class="dz-ap" data-progress aria-label="FORT DESIGN の住まい">
-		<div class="dz-ap__sticky">
-			<figure class="dz-ap__fig"><img src="<?php echo esc_url( fort_media( 'design' ) ); ?>" alt="FORT DESIGN の住まい" width="2000" height="1333" decoding="async"></figure>
-			<p class="dz-ap__words"><span>土地の個性、</span><span>光の入り方、</span><span>家族の時間。</span></p>
-		</div>
+	<!-- STILL：写真1枚と、3つの言葉（長いスクロールなし） -->
+	<section class="dz-still" aria-label="FORT DESIGN の住まい">
+		<figure class="dz-still__fig" data-dz-reveal><img src="<?php echo esc_url( fort_media( 'design' ) ); ?>" alt="FORT DESIGN の住まい" width="2000" height="1333" loading="lazy" decoding="async"></figure>
+		<p class="dz-still__words" data-dz-lines><span>土地の個性、</span><span>光の入り方、</span><span>家族の時間。</span></p>
 	</section>
 
 	<!-- CONCEPT -->
@@ -63,40 +61,37 @@ $title = str_split( 'FORT DESIGN' );
 		</div>
 	</section>
 
-	<!-- CHAPTERS：縦スクロールで横に流れる3章 -->
-	<section class="dz-ch" data-progress aria-label="FORT DESIGN の3つのこだわり">
-		<div class="dz-ch__sticky">
-			<div class="dz-ch__track">
-				<article class="dz-ch__panel">
-					<figure class="dz-ch__fig"><img src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="素材の質感が見えるキッチンとダイニング" width="2400" height="1600" loading="lazy" decoding="async"></figure>
-					<div class="dz-ch__text dz-glass">
-						<p class="dz-ch__no">01 — MATERIAL</p>
-						<h3>本物の素材が、<br>時を味方にする。</h3>
-						<p>無垢材、塗り壁、石、タイル。年月を重ねるほどに表情を増す素材を、適材適所で。深まる質感が、住まいに静かな風格を与えます。</p>
-					</div>
-				</article>
-				<article class="dz-ch__panel">
-					<figure class="dz-ch__fig"><img src="<?php echo esc_url( fort_media( 'design' ) ); ?>" alt="光と余白のある空間" width="2000" height="1333" loading="lazy" decoding="async"></figure>
-					<div class="dz-ch__text dz-glass">
-						<p class="dz-ch__no">02 — LIGHT &amp; SPACE</p>
-						<h3>光を、<br>間取りの主役に。</h3>
-						<p>窓の位置・高さ・大きさを一邸ごとに計算し、時間とともに移ろう光を取り込みます。余白のある空間が、暮らしにゆとりをもたらします。</p>
-					</div>
-				</article>
-				<article class="dz-ch__panel dz-ch__panel--site">
-					<svg class="dz-ch__contour" viewBox="0 0 600 600" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
-						<?php for ( $r = 1; $r <= 9; $r++ ) : $a = 40 + $r * 26; $b = 28 + $r * 20; ?>
-						<ellipse cx="<?php echo 300 + $r * 6; ?>" cy="<?php echo 320 - $r * 4; ?>" rx="<?php echo $a; ?>" ry="<?php echo $b; ?>" transform="rotate(<?php echo -18 + $r * 3; ?> 300 300)"></ellipse>
-						<?php endfor; ?>
+	<!-- CHAPTERS：写真と言葉を交互に（誌面のように） -->
+	<section class="dz-chap" aria-label="FORT DESIGN の3つのこだわり">
+		<div class="dz-wrap">
+			<article class="dz-chap__row">
+				<figure class="dz-chap__fig" data-dz-reveal><img src="<?php echo esc_url( $img . 'hero.jpg' ); ?>" alt="素材の質感が見えるキッチンとダイニング" width="2400" height="1600" loading="lazy" decoding="async"></figure>
+				<div class="dz-chap__text" data-dz-lines>
+					<p class="dz-chap__no"><span>01</span>MATERIAL</p>
+					<h3>本物の素材が、<br>時を味方にする。</h3>
+					<p>無垢材、塗り壁、石、タイル。年月を重ねるほどに表情を増す素材を、適材適所で。深まる質感が、住まいに静かな風格を与えます。</p>
+				</div>
+			</article>
+			<article class="dz-chap__row dz-chap__row--rev">
+				<figure class="dz-chap__fig" data-dz-reveal><img src="<?php echo esc_url( fort_media( 'design' ) ); ?>" alt="光と余白のある空間" width="2000" height="1333" loading="lazy" decoding="async"></figure>
+				<div class="dz-chap__text" data-dz-lines>
+					<p class="dz-chap__no"><span>02</span>LIGHT &amp; SPACE</p>
+					<h3>光を、<br>間取りの主役に。</h3>
+					<p>窓の位置・高さ・大きさを一邸ごとに計算し、時間とともに移ろう光を取り込みます。余白のある空間が、暮らしにゆとりをもたらします。</p>
+				</div>
+			</article>
+			<article class="dz-chap__row">
+				<figure class="dz-chap__fig dz-chap__fig--site" data-dz-reveal aria-hidden="true">
+					<svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice">
+						<?php for ( $r = 1; $r <= 11; $r++ ) : ?><ellipse cx="<?php echo 300 + $r * 5; ?>" cy="<?php echo 230 - $r * 3; ?>" rx="<?php echo 30 + $r * 26; ?>" ry="<?php echo 20 + $r * 18; ?>" transform="rotate(<?php echo -16 + $r * 3; ?> 300 225)"></ellipse><?php endfor; ?>
 					</svg>
-					<div class="dz-ch__text dz-glass">
-						<p class="dz-ch__no">03 — SITE</p>
-						<h3>土地の個性を、<br>価値に変える。</h3>
-						<p>変形地・狭小地・眺望のある敷地。条件を制約ではなく個性ととらえ、その土地でしか生まれない住まいへと昇華させます。</p>
-					</div>
-				</article>
-			</div>
-			<div class="dz-ch__bar" aria-hidden="true"><span></span></div>
+				</figure>
+				<div class="dz-chap__text" data-dz-lines>
+					<p class="dz-chap__no"><span>03</span>SITE</p>
+					<h3>土地の個性を、<br>価値に変える。</h3>
+					<p>変形地・狭小地・眺望のある敷地。条件を制約ではなく個性ととらえ、その土地でしか生まれない住まいへと昇華させます。</p>
+				</div>
+			</article>
 		</div>
 	</section>
 
@@ -114,22 +109,11 @@ $title = str_split( 'FORT DESIGN' );
 						<li style="--i:3"><span>BUILD</span>図面を、住まいへ</li>
 					</ol>
 				</div>
-				<svg class="dz-draw__svg" viewBox="0 0 640 440" aria-hidden="true">
-					<g class="dz-draw__lines" fill="none">
-						<path pathLength="1" d="M40 40 H600 V400 H40 Z"/>
-						<path pathLength="1" d="M40 220 H230 M230 40 V160 M230 200 V400 M330 40 V130 M330 300 V400"/>
-						<path pathLength="1" d="M330 130 H470 V300 H330 Z"/>
-						<path pathLength="1" d="M470 220 H600 M520 40 V120 M520 160 V220"/>
-						<path pathLength="1" d="M230 160 A40 40 0 0 1 270 200 M330 260 A40 40 0 0 0 290 300 M520 120 A40 40 0 0 1 560 160"/>
-						<path pathLength="1" d="M100 40 H180 M400 400 H540 M600 270 V350 M40 280 V350"/>
-					</g>
-					<g class="dz-draw__notes">
-						<text x="120" y="135">LIVING</text>
-						<text x="365" y="222">COURT</text>
-						<text x="110" y="315">KITCHEN</text>
-						<text x="520" y="320">ROOM</text>
-					</g>
-				</svg>
+				<figure class="dz-draw__plan">
+					<img src="<?php echo esc_url( $img . 'design-plan.png' ); ?>" alt="FORT DESIGN の平面図（中庭のある1階）" width="1816" height="1946" loading="lazy" decoding="async">
+					<span class="dz-draw__scan" aria-hidden="true"></span>
+					<figcaption>FORT DESIGN の実際の平面図より</figcaption>
+				</figure>
 			</div>
 		</div>
 	</section>

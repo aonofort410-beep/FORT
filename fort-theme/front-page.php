@@ -71,6 +71,10 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 		</div>
 	</section>
 
+	<!-- 03 EVENT（ABOUTのすぐ後）：岡山 / 福山。期間限定と常設を分けて表示 -->
+	<?php get_template_part( 'parts/event-list', null, array( 'limit' => 6, 'heading' => true ) ); ?>
+	<?php get_template_part( 'parts/model-houses' ); ?>
+
 	<?php
 	/* 03 SELECTED WORKS：写真のある施工事例だけを誌面レイアウトで */
 	$works = get_posts( array( 'post_type' => 'works', 'posts_per_page' => 5, 'meta_key' => '_thumbnail_id' ) );
@@ -167,10 +171,6 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 		</div>
 	</section>
 	<?php endif; ?>
-
-	<!-- 08 EVENT：岡山 / 福山。期間限定と常設を分けて表示 -->
-	<?php get_template_part( 'parts/event-list', null, array( 'limit' => 6, 'heading' => true ) ); ?>
-	<?php get_template_part( 'parts/model-houses' ); ?>
 
 	<!-- 09 PLACE：活動している地域 -->
 	<section class="bh-place" id="place">

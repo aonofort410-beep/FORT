@@ -92,11 +92,8 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 			</header>
 			<div class="bh-house__grid">
 				<?php
-				$houses = array(
-					array( 'design', 'FORT DESIGN', '自由設計', '土地と暮らしを読み解き、ゼロから設計する。間取りも素材も、その家族のためだけに。' ),
-					array( 'pro', 'FORT PRO', '規格住宅', 'PLAN A〜F の6つのプランをもとに、内装や設備を選んで自分たちらしく仕上げる。' ),
-					array( 'style', 'FORT STYLE', '完成した住まい', '土地・建物・外構までそろった、FORTの建売住宅。実物を見て選び、すぐに暮らしはじめられる。' ),
-				);
+				$houses = array();
+				foreach ( fort_house_items() as $k => $it ) $houses[] = array( $k, $it['name'], $it['method'], $it['catch'] );
 				foreach ( $houses as $h ) :
 					$ext = 0 !== strpos( fort_url( $h[0] ), home_url() ); ?>
 				<a class="bh-house__item" href="<?php echo esc_url( fort_url( $h[0] ) ); ?>"<?php echo $ext ? ' target="_blank" rel="noopener"' : ''; ?>>

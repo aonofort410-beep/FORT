@@ -33,7 +33,7 @@ $title = str_split( 'FORT DESIGN' );
 			<?php foreach ( $title as $i => $ch ) : ?><span style="--i:<?php echo (int) $i; ?>" aria-hidden="true"><?php echo ' ' === $ch ? '&nbsp;' : esc_html( $ch ); ?></span><?php endforeach; ?>
 		</h1>
 		<span class="dz-open__rule" aria-hidden="true"></span>
-		<p class="dz-open__sub">設計士とつくる、唯一無二の住まい。</p>
+		<p class="dz-open__sub">理想を、ゼロからカタチにする。</p>
 		<p class="dz-open__scroll" aria-hidden="true">SCROLL</p>
 	</section>
 
@@ -146,6 +146,7 @@ $title = str_split( 'FORT DESIGN' );
 				<dl class="dz-dl">
 					<div><dt>設計の自由度</dt><dd><?php echo esc_html( $it['freedom'] ); ?></dd></div>
 					<div><dt>選べる範囲</dt><dd><?php echo esc_html( $it['choose'] ); ?></dd></div>
+					<div><dt>家づくり</dt><dd>専属設計士と共に</dd></div>
 					<div><dt>対応できる土地</dt><dd>変形地・狭小地など、難しい土地にも対応</dd></div>
 				</dl>
 			</div>
@@ -173,7 +174,7 @@ $title = str_split( 'FORT DESIGN' );
 		<div class="dz-wrap dz-for__grid dz-glass dz-glass--card">
 			<div><p class="dz-label">PRICE</p><h2 class="dz-h2">価格の考え方</h2></div>
 			<div>
-				<p class="dz-price__num"><?php echo esc_html( $it['price'] ); ?></p>
+				<p class="dz-price__lead"><?php echo esc_html( fort_house_price( $it ) ); ?></p>
 				<p class="dz-price__note"><?php echo esc_html( $it['price_note'] ); ?></p>
 				<p class="dz-price__text">完全自由設計のため、まずはご予算とご要望をお聞かせください。どこに力を注ぎ、どこを抑えるか。最適なバランスを一緒に考えます。</p>
 				<p class="dz-links"><a class="dz-more" href="<?php echo esc_url( fort_url( 'flow' ) ); ?>">家づくりの流れ</a><a class="dz-more" href="<?php echo esc_url( fort_url( 'performance' ) ); ?>">構造・性能</a><a class="dz-more" href="<?php echo esc_url( fort_url( 'house' ) ); ?>">3つを比べる</a></p>

@@ -35,6 +35,8 @@ $rows  = array(
 					<p class="bh-hx__text"><?php echo esc_html( $it['text'] ); ?></p>
 					<p class="bh-hx__for-label">こんな方に</p>
 					<ul class="bh-hx__for"><?php foreach ( $it['for'] as $f ) : ?><li><?php echo esc_html( $f ); ?></li><?php endforeach; ?></ul>
+					<ul class="bh-hx__points"><?php foreach ( $it['points'] as $f ) : ?><li><?php echo esc_html( $f ); ?></li><?php endforeach; ?></ul>
+					<p class="bh-hx__price"><?php echo esc_html( fort_house_price( $it ) ); ?><small><?php echo esc_html( $it['price_note'] ); ?></small></p>
 					<a class="bh-more" href="<?php echo esc_url( $url ); ?>"<?php echo $ext ? ' target="_blank" rel="noopener"' : ''; ?>><?php echo esc_html( $it['name'] ); ?><?php echo $ext ? '（公式サイト）' : 'を詳しく'; ?></a>
 				</article>
 				<?php endforeach; ?>
@@ -50,18 +52,40 @@ $rows  = array(
 					<thead><tr><th scope="col"><span class="sr-only">項目</span></th><?php foreach ( $items as $it ) : ?><th scope="col"><?php echo esc_html( $it['name'] ); ?></th><?php endforeach; ?></tr></thead>
 					<tbody>
 						<?php foreach ( $rows as $k => $label ) : ?>
-						<tr><th scope="row"><?php echo esc_html( $label ); ?></th><?php foreach ( $items as $it ) : ?><td><?php echo esc_html( $it[ $k ] ); ?><?php if ( 'price' === $k ) : ?><small><?php echo esc_html( $it['price_note'] ); ?></small><?php endif; ?></td><?php endforeach; ?></tr>
+						<tr><th scope="row"><?php echo esc_html( $label ); ?></th><?php foreach ( $items as $it ) : ?><td><?php echo esc_html( 'price' === $k ? fort_house_price( $it ) : $it[ $k ] ); ?><?php if ( 'price' === $k ) : ?><small><?php echo esc_html( $it['price_note'] ); ?></small><?php endif; ?></td><?php endforeach; ?></tr>
 						<?php endforeach; ?>
 						<tr><th scope="row">こんな方に</th><?php foreach ( $items as $it ) : ?><td><?php echo esc_html( $it['for'][0] ); ?></td><?php endforeach; ?></tr>
 					</tbody>
 				</table>
 			</div>
-			<p class="bh-cmp__note">性能・保証・家づくりの流れは、3つ共通です。</p>
+			<p class="bh-cmp__note">性能の詳しい数値（耐震・断熱・気密・換気・保証）は「構造・性能」でご覧いただけます。</p>
 			<ul class="bh-house__common bh-house__common--light">
 				<li><a href="<?php echo esc_url( fort_url( 'performance' ) ); ?>">構造・性能</a></li>
 				<li><a href="<?php echo esc_url( fort_url( 'flow' ) ); ?>">家づくりの流れ</a></li>
 				<li><a href="<?php echo esc_url( fort_url( 'works' ) ); ?>">施工事例</a></li>
 			</ul>
+		</div>
+	</section>
+
+	<!-- 設備グレード比較表 -->
+	<section class="bh-eq" id="equipment">
+		<div class="bh-wrap">
+			<header class="bh-head">
+				<p class="bh-label">EQUIPMENT</p>
+				<h2 class="bh-head__title"><span class="bh-nb">暮らしの快適さは、</span><span class="bh-nb">設備で変わる。</span></h2>
+				<p class="bh-eq__lead">FORTが標準で採用する設備を、3つのシリーズで比べました。</p>
+			</header>
+			<div class="bh-cmp__scroll" tabindex="0" role="region" aria-label="設備グレード比較表（横にスクロールできます）">
+				<table class="bh-eq__table">
+					<thead><tr><th scope="col"><span class="sr-only">項目</span></th><?php foreach ( array( 'style', 'pro', 'design' ) as $k ) : $it = $items[ $k ]; ?><th scope="col"><?php echo esc_html( $it['name'] ); ?><small><?php echo esc_html( $it['method'] ); ?></small></th><?php endforeach; ?></tr></thead>
+					<tbody>
+						<?php foreach ( fort_equipment_table() as $row ) : ?>
+						<tr><th scope="row"><?php echo esc_html( $row[0] ); ?><small><?php echo esc_html( $row[1] ); ?></small></th><?php foreach ( $row[2] as $cell ) : ?><td><?php echo fort_br( $cell ); ?></td><?php endforeach; ?></tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+			<p class="bh-eq__note">掲載の内容は時期により変更となる場合があります。詳しくはスタッフまでお問い合わせください。</p>
 		</div>
 	</section>
 

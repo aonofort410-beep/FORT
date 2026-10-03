@@ -430,6 +430,8 @@ function fort_rsv_render() {
 	if ( 'done' === $state ) {
 		$now = 'done';
 		fort_rsv_done();
+		// 計測：予約完了（地域のみ。個人情報は送らない）
+		echo '<script>window.addEventListener("load",function(){window.fortTrack&&window.fortTrack("reservation_complete",' . wp_json_encode( sanitize_key( $_GET['area'] ?? '' ) ) . ');});</script>';
 	} elseif ( 'confirm' === $step ) {
 		$v = fort_rsv_collect( $_POST );
 		$errors = fort_rsv_validate( $v );

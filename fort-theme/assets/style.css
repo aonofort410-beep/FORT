@@ -3635,3 +3635,9 @@ body.st-modal-open { overflow: hidden; }
 .st-grid .st-card:nth-child(n) { margin-top: 0; }
 .st-grid { align-items: start; }
 .bh-hx__item:nth-child(n) { margin-top: 0; }
+
+/* 41. アクセシビリティ：キーボード操作時のみ「本文へ移動」を表示 */
+.skip-link { position: fixed; left: 12px; top: -60px; z-index: 9999; padding: 10px 16px; background: #141516; color: #fff; font-size: 13px; letter-spacing: .06em; transition: top .2s; }
+.skip-link:focus { top: 12px; }
+main:focus { outline: none; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }

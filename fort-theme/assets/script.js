@@ -353,7 +353,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.addEventListener('click', function (e) {
     var el = e.target.closest && e.target.closest('[data-track]');
-    if (el) track(el.getAttribute('data-track'), el.getAttribute('data-track-label'));
+    if (el) { track(el.getAttribute('data-track'), el.getAttribute('data-track-label')); return; }
+    // 電話・Instagram・YouTube へのリンクは自動で計測（番号やURLの種類だけ）
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var h = a.getAttribute('href');
+    if (h.indexOf('tel:') === 0) track('tel_click', h.slice(4));
+    else if (/instagram\.com|youtube\.com/.test(h)) track('sns_click', a.hostname);
   });
 
   // 1. 地域タブ

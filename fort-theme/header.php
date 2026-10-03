@@ -12,6 +12,7 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<a class="skip-link" href="#main">本文へ移動</a>
 
 	<header class="header" id="header">
 		<div class="header__inner container">
@@ -38,4 +39,4 @@
 		</div>
 	</header>
 
-	<main>
+	<main id="main" tabindex="-1">

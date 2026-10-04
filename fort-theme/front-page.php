@@ -99,7 +99,24 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 	</section>
 	<?php endif; ?>
 
-	<?php /* 04 LIFE WITH FORT：暮らしの写真がそろうまで非表示（架空の画像は使わない） */ ?>
+	<?php
+	/* 04 LIFE WITH FORT：暮らしの写真（人が写った写真）。assets/images/life-1.jpg〜 を置くと自動で表示。無ければ非表示 */
+	$life = fort_life_photos();
+	if ( $life ) : ?>
+	<section class="bh-life" id="life">
+		<div class="bh-wrap">
+			<header class="bh-head">
+				<p class="bh-label">LIFE WITH FORT</p>
+				<h2 class="bh-head__title"><span class="bh-nb">家の中に、</span><span class="bh-nb">それぞれの暮らし。</span></h2>
+			</header>
+			<div class="bh-life__grid bh-life__grid--<?php echo min( 5, count( $life ) ); ?>">
+				<?php foreach ( array_slice( $life, 0, 5 ) as $i => $src ) : ?>
+				<figure class="bh-life__fig"><img src="<?php echo esc_url( $src ); ?>" alt="" loading="lazy" decoding="async"></figure>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</section>
+	<?php endif; ?>
 
 	<!-- 05 HOUSE：グレードではなく、家づくりの方法の違い -->
 	<section class="bh-house" id="house">

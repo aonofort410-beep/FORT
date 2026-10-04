@@ -3764,3 +3764,93 @@ main:focus { outline: none; }
   .pf-fig__val { font-size: 27px; }
   .pf-fig__scale text { font-size: 18px; }
 }
+
+/* 49. 読みやすい改行（スマホで単語の途中で折れないように） */
+body { word-break: auto-phrase; line-break: strict; }
+h1, h2, h3, .bh-head__title, .bh-pagehead__title, .pf-sec__catch, .pf-point__main { text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
+.bh-nb { display: inline-block; }
+/* スマホ：ひとかたまりの言葉が1行に収まる大きさに */
+@media (max-width: 599px) {
+  .bh-pagehead .bh-pagehead__title { font-size: min(1.7rem, 6vw) !important; letter-spacing: .04em; line-height: 1.6; }
+  .bh-head .bh-head__title { font-size: min(1.45rem, 5.4vw) !important; letter-spacing: .04em; line-height: 1.7; }
+  .pf-intro__body br { display: none; }
+}
+
+/* 50. 構造・性能：章ごとの色で、伝えたいことをはっきり */
+#seismic     { --acc: #3d5a73; --acc-soft: #e6ecf1; }
+#insulation  { --acc: #b0724a; --acc-soft: #f4ebe4; }
+#airtight    { --acc: #4f7a6a; --acc-soft: #e7efeb; }
+#ventilation { --acc: #4f87ad; --acc-soft: #e5eff6; }
+#support     { --acc: #a08a5c; --acc-soft: #f3efe6; }
+.pf-sec.pf-sec--alt { background: var(--acc-soft); }
+.pf-sec { background: linear-gradient(180deg, transparent, var(--acc-soft) 160%); }
+.pf-band::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: var(--acc); z-index: 2; }
+.pf-band__txt span { color: #fff; }
+.pf-band__txt b { display: inline-block; justify-self: start; padding: 4px 10px; background: var(--acc); opacity: 1; }
+.pf-sec__catch { color: var(--acc) !important; font-weight: 500; }
+
+.pf-point { padding: clamp(22px, 4vw, 34px) clamp(20px, 4vw, 36px); background: var(--acc); color: #fff; display: grid; gap: 8px; }
+.pf-point__label { font-family: var(--font-en); font-size: 11px; letter-spacing: .4em; opacity: .75; }
+.pf-point__main { font-family: var(--font-serif); font-weight: 500; font-size: clamp(1.35rem, 3.6vw, 2rem); letter-spacing: .06em; line-height: 1.5; }
+.pf-point__sub { font-size: 14px; line-height: 1.9; opacity: .92; }
+
+.pf-sec .pf-fig { border-color: transparent; box-shadow: 0 1px 0 rgba(0,0,0,.04); background: #fff; }
+.pf-sec .pf-fig__bar rect { fill: var(--acc); }
+.pf-sec .pf-fig__bar rect.is-light { fill: color-mix(in srgb, var(--acc) 30%, #fff); }
+.pf-sec .pf-fig__bar rect.is-light + text { fill: var(--bh-ink); }
+.pf-sec .pf-fig__bar rect.is-dash { fill: color-mix(in srgb, var(--acc) 12%, #fff); stroke: var(--acc); }
+.pf-sec .pf-fig__val { fill: var(--acc); font-weight: 500; }
+.pf-sec .pf-fig__box { fill: var(--acc); }
+.pf-sec .pf-fig__flow, .pf-sec .pf-fig__head { stroke: var(--acc); }
+.pf-sec .pf-fig__house { fill: var(--acc-soft); stroke: var(--acc); }
+
+.pf-sec .pf-duo > div { background: #fff; border-color: color-mix(in srgb, var(--acc) 30%, #fff); }
+.pf-sec .pf-duo > div.is-plus { background: var(--acc); border-color: var(--acc); }
+.pf-sec .pf-duo__num { color: var(--acc); }
+.pf-sec .pf-duo > div.is-plus .pf-duo__num { color: #fff; }
+.pf-sec .pf-note { border-left-color: var(--acc); background: #fff; }
+.pf-sec .pf-note__title { color: var(--acc); font-weight: 500; }
+.pf-sec .pf-merits li::before { color: var(--acc); font-weight: 600; }
+.pf-sec .pf-items dt { color: var(--acc); }
+.pf-sec .pf-items dt small { color: var(--bh-gray); }
+.pf-sec .pf-warranty li { background: #fff; border-color: transparent; border-top: 3px solid var(--acc); }
+.pf-sec .pf-warranty b { color: var(--acc); }
+.pf-sec .pf-timeline li::before { background: var(--acc); }
+
+/* 数字のまとめも章の色で */
+.pf-keys__list li:nth-child(1) { --acc: #3d5a73; }
+.pf-keys__list li:nth-child(2) { --acc: #b0724a; }
+.pf-keys__list li:nth-child(3) { --acc: #4f7a6a; }
+.pf-keys__list li:nth-child(4) { --acc: #4f87ad; }
+.pf-keys__list li:nth-child(5) { --acc: #a08a5c; }
+.pf-keys__list a { border-top: 4px solid var(--acc); }
+.pf-keys__list em { color: var(--acc); }
+.pf-keys__label { color: var(--acc); font-weight: 600; }
+.pf-table thead th.is-plus { background: #a08a5c; }
+
+/* グレード比較表：スマホは「項目」を上に、STANDARD／PLUS を横並びに */
+@media (max-width: 599px) {
+  .pf-grade .bh-cmp__scroll { overflow: visible; }
+  .pf-table { min-width: 0; width: 100%; }
+  .pf-table thead tr, .pf-table tbody tr { display: grid; grid-template-columns: 1fr 1fr; }
+  .pf-table thead th:first-child { display: none; }
+  .pf-table tbody th[scope=row] { grid-column: 1 / -1; padding: 14px 0 4px; border-bottom: 0; font-weight: 600; }
+  .pf-table td, .pf-table thead th { padding: 8px 10px 14px; font-size: 13.5px; }
+  .pf-table thead th small { font-size: 11px; }
+}
+@media (max-width: 599px) { .bh-pagehead__lead .bh-nb, .bh-eq__lead .bh-nb { display: inline; } }
+
+/* 51. LIFE WITH FORT：暮らしの写真（不揃いのモザイク） */
+.bh-life { padding-block: var(--bh-space); }
+.bh-life__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.bh-life__fig { margin: 0; overflow: hidden; aspect-ratio: 4 / 5; background: var(--bh-mist); }
+.bh-life__fig:first-child { grid-column: 1 / -1; aspect-ratio: 3 / 2; }
+.bh-life__fig img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s cubic-bezier(.2,.7,.2,1); }
+.bh-life__fig:hover img { transform: scale(1.03); }
+@media (min-width: 900px) {
+  .bh-life__grid { grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .bh-life__fig { grid-column: span 2; }
+  .bh-life__fig:first-child { grid-column: span 4; grid-row: span 2; aspect-ratio: auto; }
+}
+.pf-sec .pf-fig__flow.is-out, .pf-sec .pf-fig__head.is-out { stroke: #b3aca3; }

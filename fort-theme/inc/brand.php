@@ -609,3 +609,15 @@ function fort_place_name( $region, $text ) {
 	// 写真をカードで見せ、地域名は写真の下に濃い文字で（読みやすさ優先）
 	return '<figure class="bh-place__fig"><img src="' . esc_url( $img ) . '" alt="FORT ' . esc_attr( $text ) . ' STUDIO" loading="lazy" decoding="async"></figure><span class="bh-place__name">' . esc_html( $text ) . '</span>';
 }
+
+/* ============================================================
+   暮らしの写真（人が写った写真）
+   assets/images/life-1.jpg 〜 life-12.jpg を置くと、トップの LIFE WITH FORT と各ページの差し込みに使われる
+============================================================ */
+function fort_life_photos() {
+	$out = array();
+	for ( $i = 1; $i <= 12; $i++ ) {
+		if ( file_exists( get_template_directory() . '/assets/images/life-' . $i . '.jpg' ) ) $out[] = get_template_directory_uri() . '/assets/images/life-' . $i . '.jpg';
+	}
+	return $out;
+}

@@ -85,9 +85,10 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 		<div class="bh-wrap pf-sec__grid">
 			<header class="pf-sec__head"><span class="pf-sec__no">01</span><h2>耐震性能</h2><p class="pf-sec__catch">大切な家族を守る、確かな強さを。</p></header>
 			<div class="pf-sec__body">
+				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">全棟、耐震等級3。</p><p class="pf-point__sub">一棟ごとに許容応力度計算で、構造の安全性を確かめます。</p></div>
 				<p>FORTでは、デザインだけではなく、万が一の地震に備えた構造の強さも大切にしています。PRO・DESIGNシリーズでは全棟、耐震等級3×許容応力度計算を採用。さらにPLUS仕様では、制振ダンパーを採用しています。</p>
 				<figure class="pf-fig">
-					<svg viewBox="0 0 560 220" role="img" aria-label="耐震等級3は、建築基準法で想定する地震力の1.5倍に耐える強さ">
+					<svg viewBox="0 40 560 180" role="img" aria-label="耐震等級3は、建築基準法で想定する地震力の1.5倍に耐える強さ">
 						<g class="pf-fig__bar"><rect x="40" y="58" width="300" height="34" class="is-light"/><text x="48" y="80">建築基準法（等級1）</text><text x="350" y="80" class="pf-fig__val">1.0</text></g>
 						<g class="pf-fig__bar"><rect x="40" y="112" width="450" height="34"/><text x="48" y="134" class="is-inv">耐震等級3</text><text x="500" y="134" class="pf-fig__val">1.5倍</text></g>
 						<line x1="40" y1="170" x2="540" y2="170" class="pf-fig__axisline"/>
@@ -109,6 +110,7 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 		<div class="bh-wrap pf-sec__grid">
 			<header class="pf-sec__head"><span class="pf-sec__no">02</span><h2>断熱性能</h2><p class="pf-sec__catch">夏は涼しく、冬は暖かい。快適が続く住まいを。</p></header>
 			<div class="pf-sec__body">
+				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">断熱等級6を標準に。</p><p class="pf-point__sub">UA値 0.46以下。PLUS仕様なら 0.34以下まで高めます。</p></div>
 				<p>FORTは、外の暑さや寒さの影響を受けにくい、高い断熱性能を備えています。一年を通して、快適に過ごしやすい住まいを目指します。</p>
 				<dl class="pf-items">
 					<div><dt>断熱等級6<small>高い断熱性能</small></dt><dd>夏の暑さ・冬の寒さを室内に伝えにくく、快適に過ごしやすい性能です。</dd></div>
@@ -137,6 +139,7 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 		<div class="bh-wrap pf-sec__grid">
 			<header class="pf-sec__head"><span class="pf-sec__no">03</span><h2>気密性能</h2><p class="pf-sec__catch">家のすき間まで、性能として考える。</p></header>
 			<div class="pf-sec__body">
+				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">全棟で、気密を実測。</p><p class="pf-point__sub">C値 0.5以下。PLUS仕様なら 0.2以下。完成した住まいで、数値を確かめます。</p></div>
 				<p>断熱材を厚くするだけでは、快適な家にはなりません。わずかなすき間から外気が入り、室内の空気が逃げてしまいます。FORTでは、完成した住宅の気密性能をC値で確認。設計上の性能だけでなく、実際に建てた家の施工精度まで数値で確かめます。</p>
 				<figure class="pf-fig">
 					<svg viewBox="0 0 560 180" role="img" aria-label="C値（小さいほどすき間が少ない）STANDARD 0.5以下、PLUS 0.2以下。全棟実測">
@@ -168,6 +171,7 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 		<div class="bh-wrap pf-sec__grid">
 			<header class="pf-sec__head"><span class="pf-sec__no">04</span><h2>換気性能</h2><p class="pf-sec__catch">きれいな空気を、24時間つづける。</p></header>
 			<div class="pf-sec__body">
+				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">第一種換気（熱交換）を標準に。</p><p class="pf-point__sub">STANDARD・PLUSともに、熱を逃がしにくい24時間換気です。</p></div>
 				<p>住まいの快適さは、断熱や気密だけでは完成しません。FORTでは、24時間換気（熱交換）を採用し、室内の空気をきれいな状態へ保ちます。汚れた空気を屋外へ出しながら、新鮮な空気を取り込み、できるだけ室内の温度に近づけて届けます。一年を通して、快適で心地よい室内環境を支えます。</p>
 				<figure class="pf-fig">
 					<svg viewBox="0 0 560 250" role="img" aria-label="第一種換気（熱交換）のしくみ：外の新鮮な空気を、室内の熱を移してから取り込み、汚れた空気は熱を残して外へ出す">
@@ -205,6 +209,7 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 		<div class="bh-wrap pf-sec__grid">
 			<header class="pf-sec__head"><span class="pf-sec__no">05</span><h2>保証・アフターサポート</h2><p class="pf-sec__catch">建てたあとも、ずっと安心を。</p></header>
 			<div class="pf-sec__body">
+				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">躯体・防水は最長60年。</p><p class="pf-point__sub">初期保証20年。当社指定の定期点検・メンテナンスを条件に、最長60年まで保証します。</p></div>
 				<p>大切な住まいに、長く安心して暮らしていただくために、充実した保証制度とアフターサポート体制を整えています。構造・防水から地盤・白蟻・設備の保証、定期点検まで、ずっと寄り添います。</p>
 				<figure class="pf-fig">
 					<svg viewBox="0 0 560 236" role="img" aria-label="保証期間：躯体・防水 初期20年（延長で最長60年）、地盤補強20年、白蟻10年、設備10年">

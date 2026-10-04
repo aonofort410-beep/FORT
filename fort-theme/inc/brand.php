@@ -633,3 +633,10 @@ add_action( 'after_switch_theme', function () {
 	}
 	flush_rewrite_rules();
 }, 5 );
+
+/** モデルハウスのメイン写真：アイキャッチ → 無ければテーマ内の mh-スラッグ.jpg */
+function fort_mh_photo( $p, $size = 'fort-hero' ) {
+	if ( has_post_thumbnail( $p ) ) return get_the_post_thumbnail_url( $p, $size );
+	$f = '/assets/images/mh-' . get_post_field( 'post_name', $p ) . '.jpg';
+	return file_exists( get_template_directory() . $f ) ? get_template_directory_uri() . $f : '';
+}

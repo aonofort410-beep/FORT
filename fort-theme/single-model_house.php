@@ -37,8 +37,8 @@ while ( have_posts() ) : the_post();
 			</div>
 		</header>
 
-		<?php if ( has_post_thumbnail() ) : ?>
-		<figure class="bh-case__main"><?php the_post_thumbnail( 'fort-hero', array( 'loading' => 'eager', 'fetchpriority' => 'high', 'decoding' => 'async', 'sizes' => '100vw', 'alt' => esc_attr( get_the_title() ) ) ); ?></figure>
+		<?php $mh_img = fort_mh_photo( get_post() ); if ( $mh_img ) : ?>
+		<figure class="bh-case__main"><img src="<?php echo esc_url( $mh_img ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" fetchpriority="high" decoding="async"></figure>
 		<?php endif; ?>
 
 		<?php if ( $see ) : ?>

@@ -23,7 +23,7 @@ $names = array( 'okayama' => '岡山', 'fukuyama' => '福山' );
 				$place = get_post_meta( $p->ID, 'fort_place', true );
 				$method = get_post_meta( $p->ID, 'fort_mh_method', true ); ?>
 			<li class="bh-mh__item"><a href="<?php echo esc_url( get_permalink( $p ) ); ?>" data-track="event_view" data-track-label="model_<?php echo esc_attr( $p->post_name ); ?>">
-				<?php if ( has_post_thumbnail( $p ) ) : ?><figure class="bh-wcard__fig bh-mh__fig"><?php echo get_the_post_thumbnail( $p, 'fort-hero', array( 'loading' => 'lazy', 'decoding' => 'async', 'alt' => '', 'sizes' => '(min-width: 768px) 50vw, 100vw' ) ); ?></figure><?php endif; ?>
+				<?php $mh_img = fort_mh_photo( $p ); if ( $mh_img ) : ?><figure class="bh-wcard__fig bh-mh__fig"><img src="<?php echo esc_url( $mh_img ); ?>" alt="<?php echo esc_attr( get_the_title( $p ) ); ?>" loading="lazy" decoding="async"></figure><?php endif; ?>
 				<p class="bh-ev__meta"><span class="bh-ev__state bh-ev__state--permanent">公開中</span><?php if ( isset( $names[ $r ] ) ) : ?><span><?php echo esc_html( $names[ $r ] ); ?></span><?php endif; ?><?php if ( $method ) : ?><span><?php echo esc_html( $method ); ?></span><?php endif; ?></p>
 				<h3 class="bh-wcard__title"><?php echo esc_html( get_the_title( $p ) ); ?></h3>
 				<?php if ( $place ) : ?><p class="bh-wcard__meta"><?php echo esc_html( $place ); ?></p><?php endif; ?>

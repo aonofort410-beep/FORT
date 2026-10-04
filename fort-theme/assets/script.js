@@ -556,7 +556,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var pic = function (el) { return el.querySelector('img') || el; };
   var i = 0;
   setInterval(function () {
-    if (document.hidden || window.scrollY > window.innerHeight) return;
+    if (document.hidden || window.scrollY > 10) return; // スクロールが始まったら、その時点の写真で止める
     var next = (i + 1) % imgs.length;
     if (!pic(imgs[next]).complete) { pic(imgs[next]).loading = 'eager'; return; }
     imgs[i].classList.remove('is-on'); imgs[next].classList.add('is-on'); i = next;

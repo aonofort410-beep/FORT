@@ -4229,3 +4229,10 @@ body.home .bh-hero__media { filter: blur(calc(var(--hb, 0) * 5px)) brightness(ca
 body.home main > :not(.bh-hero) { background: rgba(174,176,173,.58) !important; -webkit-backdrop-filter: blur(6px) saturate(110%); backdrop-filter: blur(6px) saturate(110%); }
 body.home main > :is(.bh-house, .bh-event + .bh-mh, .bh-life) { background: rgba(160,162,159,.64) !important; }
 body.home main > .bh-visit { background: transparent !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+/* 65. 来場予約の帯（写真の続きは、実物で。）：全ページで写真を透かさず、そのまま見せる */
+.bh-visit { background: #1f2224 !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; isolation: isolate; }
+.bh-visit__media { z-index: 0; }
+.bh-visit__media img { opacity: 1 !important; filter: none !important; }
+.bh-visit__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20,22,24,.62) 0%, rgba(20,22,24,.38) 55%, rgba(20,22,24,.18) 100%) !important; }
+.bh-visit > :not(.bh-visit__media) { position: relative; z-index: 1; }

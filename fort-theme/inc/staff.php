@@ -55,7 +55,7 @@ function fort_staff_role( $role, $dept_ja ) {
  * 2) 新しく追加したスタッフは、管理画面の「順序」→ 部門（営業 → 設計コーディネート → 工務 → 総務）→ 登録順で後ろに並ぶ
  */
 function fort_staff_default_order() {
-	return array( 'aono', 'kawasaki', 'nakao', 'nagataki', 'sakamoto', 'yamashita', 'matsukawa', 'murakami', 'kobayashi', 'matsuzaki', 'ishida', 'hikasa', 'nakamura-ryoko' );
+	return array( 'aono', 'kawasaki', 'nakao', 'nagataki', 'sakamoto', 'yamashita', 'kobayashi', 'matsukawa', 'murakami', 'matsuzaki', 'ishida', 'hikasa', 'nakamura-ryoko' );
 }
 function fort_staff_sort( $list ) {
 	$dept  = array_flip( array_keys( fort_staff_depts() ) );

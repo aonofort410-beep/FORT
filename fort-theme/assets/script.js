@@ -537,3 +537,15 @@ document.addEventListener('DOMContentLoaded', function () {
   // 2枚目以降は最初の表示が落ち着いてから読み込む
   window.addEventListener('load', function () { imgs.forEach(function (im) { pic(im).loading = 'eager'; }); });
 })();
+
+/* 構造・性能：写真と図を、画面に入ったら動かす */
+(function () {
+  var els = document.querySelectorAll('.pf-fig, .pf-band');
+  if (!els.length) return;
+  document.documentElement.classList.add('js');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('is-in'); }); return; }
+  var io = new IntersectionObserver(function (ents) {
+    ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+  }, { threshold: 0.3 });
+  els.forEach(function (e) { io.observe(e); });
+})();

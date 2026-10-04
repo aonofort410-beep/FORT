@@ -97,7 +97,7 @@ function fort_assets() {
 	$links['logo']      = get_template_directory_uri() . '/assets/images/fort-mark.png';
 	$links['instagram'] = fort_opt( 'fort_instagram', FORT_INSTAGRAM );
 	$links['youtube']   = fort_opt( 'fort_youtube_channel', FORT_YOUTUBE );
-	wp_add_inline_script( 'fort-script', 'window.FORT_MENU = ' . wp_json_encode( $menu ) . '; window.FORT_LINKS = ' . wp_json_encode( $links ) . '; window.FORT_MENU_GROUPS = ' . wp_json_encode( array( 'groups' => $groups, 'main' => $main ) ) . ';', 'before' );
+	wp_add_inline_script( 'fort-script', 'window.FORT_MENU = ' . wp_json_encode( $menu, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '; window.FORT_LINKS = ' . wp_json_encode( $links, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '; window.FORT_MENU_GROUPS = ' . wp_json_encode( array( 'groups' => $groups, 'main' => $main ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . ';', 'before' );
 }
 add_action( 'wp_enqueue_scripts', 'fort_assets' );
 

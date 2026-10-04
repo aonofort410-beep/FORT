@@ -3918,3 +3918,73 @@ body:not(.dz-page) .bh-visit__media img { opacity: .78; }
 body:not(.dz-page) .bh-visit__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(30,36,40,.55), rgba(30,36,40,.15)); }
 body:not(.dz-page) .bh-visit :is(h2, p, a) { text-shadow: 0 1px 12px rgba(0,0,0,.25); }
 body:not(.dz-page) .bh-visit__choice { border-radius: 999px; background: rgba(255,255,255,.12); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+
+/* ============================================================
+   53. 参考：建築家サイトの骨格（ロゴ＋MENUだけの上部バー／右からスライドする目次／
+       ゆったりした余白・小さく上品な文字・あたたかいオフホワイト）
+============================================================ */
+body:not(.dz-page) { --bh-paper: #f5f4f1; --bh-mist: #ebe9e4; background: #f5f4f1; }
+body:not(.dz-page) .footer { background: #ebe9e4; }
+
+/* 上部バー：ナビの羅列をやめ、ロゴ・来場予約・MENU だけに（全画面幅） */
+.header-nav { display: none !important; }
+.header__visit { display: inline-flex !important; }
+.header { transition: background .5s, transform .5s; }
+body:not(.dz-page) .header.is-scrolled { background: rgba(245,244,241,.78); }
+.menu-toggle__bars { width: 30px; }
+.menu-toggle__bars span:nth-child(2) { display: none; }
+.menu-toggle__bars span:nth-child(1) { transform: translateY(-2px); }
+.menu-toggle__bars span:nth-child(3) { transform: translateY(2px); }
+body.menu-open .menu-toggle { opacity: 0; pointer-events: none; }
+
+/* 目次：右からスライドするパネル。背景はぼかして暗く */
+.gmenu.gmenu--side { background: rgba(20,22,24,.32); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); overflow: hidden; }
+.gmenu--side .gmenu__panel {
+  position: absolute; top: 0; right: 0; bottom: 0; width: min(620px, 88vw); max-width: none; margin: 0;
+  padding: clamp(28px, 6vh, 64px) clamp(28px, 5vw, 72px) 40px; display: grid; align-content: start; gap: clamp(28px, 5vh, 48px);
+  background: #e6e2db; color: #2e3336; overflow-y: auto;
+  transform: translateX(100%); transition: transform .7s cubic-bezier(.7,0,.2,1);
+}
+.gmenu--side.is-open .gmenu__panel { transform: none; }
+.gmenu--side a { color: inherit; text-decoration: none; }
+.gmenu__close { position: absolute; top: clamp(18px, 4vh, 40px); right: clamp(18px, 4vw, 48px); width: 48px; height: 48px; border: 0; background: none; cursor: pointer; }
+.gmenu__close span { position: absolute; left: 10px; right: 10px; top: 50%; height: 1px; background: #2e3336; transform: rotate(35deg); transition: transform .4s; }
+.gmenu__close span + span { transform: rotate(-35deg); }
+.gmenu__close:hover span { transform: rotate(0); }
+.gmenu__brand { font-family: var(--font-logo); font-size: 30px; letter-spacing: .32em; line-height: 1; display: grid; gap: 10px; }
+.gmenu__brand small { font-family: var(--font-en); font-size: 9px; letter-spacing: .4em; color: #7c8287; }
+.gmenu__groups { display: grid; grid-template-columns: 1fr; gap: 28px; }
+@media (min-width: 560px) { .gmenu__groups { grid-template-columns: 1fr 1fr; } }
+.gmenu__gtitle { font-family: var(--font-en); font-size: 12px; letter-spacing: .3em; margin-bottom: 12px; color: #2e3336; }
+.gmenu__gtitle small { margin-left: 10px; font-family: var(--font-sans); font-size: 10px; letter-spacing: .1em; color: #7c8287; }
+.gmenu__group ul, .gmenu__main { list-style: none; margin: 0; padding: 0; }
+.gmenu__group a { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 7px 0; font-size: 14px; letter-spacing: .06em; }
+.gmenu__group a small { font-size: 10.5px; color: #7c8287; letter-spacing: .08em; }
+.gmenu__main { display: grid; gap: 4px; padding-top: 22px; border-top: 1px solid rgba(46,51,54,.14); }
+.gmenu__main a { display: flex; align-items: baseline; gap: 16px; padding: 6px 0; font-family: var(--font-en); font-size: clamp(18px, 2.2vw, 22px); letter-spacing: .14em; }
+.gmenu__main a small { font-family: var(--font-sans); font-size: 11px; letter-spacing: .1em; color: #7c8287; }
+.gmenu--side a:hover span, .gmenu--side a:hover { opacity: .6; }
+.gmenu__info { font-size: 12px; line-height: 1.9; color: #4a5054; display: grid; gap: 6px; }
+.gmenu__co { font-size: 13px; color: #2e3336; }
+.gmenu__info dl { display: flex; gap: 28px; margin: 0; }
+.gmenu__info dt { font-family: var(--font-en); font-size: 10px; letter-spacing: .3em; color: #7c8287; }
+.gmenu__info dd { margin: 0; font-family: var(--font-en); font-size: 15px; letter-spacing: .06em; }
+.gmenu__sns { display: flex; gap: 18px; font-family: var(--font-en); letter-spacing: .14em; }
+.gmenu--side .gmenu__group li, .gmenu--side .gmenu__main li { opacity: 0; transform: translateY(8px); transition: opacity .6s, transform .6s; }
+.gmenu--side.is-open .gmenu__group li, .gmenu--side.is-open .gmenu__main li { opacity: 1; transform: none; transition-delay: .35s; }
+body.menu-open { overflow: hidden; }
+
+/* SELECTED WORKS：大きな写真を縦に並べ、下に小さなキャプション */
+body:not(.dz-page) .bh-works__grid { display: grid !important; grid-template-columns: 1fr !important; gap: clamp(36px, 6vw, 80px) !important; }
+body:not(.dz-page) .bh-works__grid .bh-work { grid-column: auto !important; grid-row: auto !important; margin: 0 !important; }
+body:not(.dz-page) .bh-works__grid .bh-work__fig { aspect-ratio: 16 / 9; border-radius: 0; }
+body:not(.dz-page) .bh-work__cap { margin-top: 12px; font-size: 12px; letter-spacing: .08em; display: flex; gap: 10px; }
+@media (max-width: 599px) { body:not(.dz-page) .bh-works__grid .bh-work__fig { aspect-ratio: 4 / 3; } }
+
+/* 文字はやや小さく、余白を広く（上品に） */
+body:not(.dz-page) .bh-head__title { font-size: clamp(1.4rem, 2.6vw, 2.1rem); }
+body:not(.dz-page) .bh-pagehead__title { font-size: clamp(1.6rem, 3.2vw, 2.6rem); }
+.gmenu.gmenu--side { z-index: 1000; }
+.gmenu--side .gmenu__close span { display: block; position: absolute; left: 10px; right: 10px; top: 50%; width: auto; height: 1px; margin: 0; background: #2e3336; transform: rotate(35deg) !important; }
+.gmenu--side .gmenu__close span:last-child { transform: rotate(-35deg) !important; }
+.gmenu--side .gmenu__close:hover span { opacity: .6; }

@@ -69,7 +69,31 @@ function fort_assets() {
 		'tel_o'   => fort_opt( 'fort_tel_okayama', '086-236-9600' ),
 		'tel_f'   => fort_opt( 'fort_tel_fukuyama', '084-982-7404' ),
 	);
-	wp_add_inline_script( 'fort-script', 'window.FORT_MENU = ' . wp_json_encode( $menu ) . '; window.FORT_LINKS = ' . wp_json_encode( $links ) . ';', 'before' );
+	// 右からスライドする目次（分類ごと）
+	$groups = array(
+		array( 'title' => 'HOUSE', 'ja' => '家づくり', 'items' => array(
+			array( 'FORT DESIGN', 'フルオーダー', fort_url( 'design' ) ),
+			array( 'FORT PRO', 'セミオーダー', fort_url( 'pro' ) ),
+			array( 'FORT STYLE', '規格住宅', fort_url( 'style' ) ),
+			array( 'Compare', '3つを比べる', fort_url( 'house' ) ),
+			array( 'Performance', '構造・性能', fort_url( 'performance' ) ),
+			array( 'Flow', '家づくりの流れ', fort_url( 'flow' ) ),
+		) ),
+		array( 'title' => 'VISIT', 'ja' => '見る・会う', 'items' => array(
+			array( 'Event', '見学会・イベント', fort_url( 'event' ) ),
+			array( 'Works', '施工事例', fort_url( 'works' ) ),
+			array( 'Place', '岡山・福山スタジオ', fort_url( 'place' ) ),
+			array( 'Reservation', '来場予約', fort_url( 'visit' ) ),
+		) ),
+	);
+	$main = array( array( 'ABOUT', 'FORTについて', fort_url( 'about' ) ), array( 'STAFF', 'スタッフ', fort_url( 'staff' ) ) );
+	if ( fort_has_posts( 'journal' ) ) $main[] = array( 'JOURNAL', '読みもの', fort_url( 'journal' ) );
+	$main[] = array( 'COMPANY', '会社概要', fort_url( 'company' ) );
+	$main[] = array( 'CONTACT', 'お問い合わせ', fort_url( 'contact' ) );
+	$links['home']      = home_url( '/' );
+	$links['instagram'] = fort_opt( 'fort_instagram', FORT_INSTAGRAM );
+	$links['youtube']   = fort_opt( 'fort_youtube_channel', FORT_YOUTUBE );
+	wp_add_inline_script( 'fort-script', 'window.FORT_MENU = ' . wp_json_encode( $menu ) . '; window.FORT_LINKS = ' . wp_json_encode( $links ) . '; window.FORT_MENU_GROUPS = ' . wp_json_encode( array( 'groups' => $groups, 'main' => $main ) ) . ';', 'before' );
 }
 add_action( 'wp_enqueue_scripts', 'fort_assets' );
 

@@ -89,6 +89,31 @@ document.addEventListener('DOMContentLoaded', function () {
   overlay.className = 'gmenu';
   overlay.id = 'globalMenu';
   overlay.setAttribute('aria-hidden', 'true');
+  var G = window.FORT_MENU_GROUPS;
+  var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  if (G) {
+    // 右からスライドする目次：分類ごとに英字＋日本語、下に会社情報
+    overlay.className = 'gmenu gmenu--side';
+    overlay.innerHTML = ''
+      + '<div class="gmenu__panel" role="dialog" aria-label="メニュー">'
+      +   '<button class="gmenu__close" type="button" aria-label="閉じる"><span></span><span></span></button>'
+      +   '<a class="gmenu__brand" href="' + LINKS.home + '">FORT<small>OKAYAMA · FUKUYAMA</small></a>'
+      +   '<div class="gmenu__groups">'
+      +     G.groups.map(function (g) {
+              return '<div class="gmenu__group"><p class="gmenu__gtitle">' + esc(g.title) + '<small>' + esc(g.ja) + '</small></p><ul>'
+                + g.items.map(function (it) { return '<li><a href="' + it[2] + '"><span>' + esc(it[0]) + '</span><small>' + esc(it[1]) + '</small></a></li>'; }).join('')
+                + '</ul></div>';
+            }).join('')
+      +   '</div>'
+      +   '<ul class="gmenu__main">' + G.main.map(function (it) { return '<li><a href="' + it[2] + '">' + esc(it[0]) + '<small>' + esc(it[1]) + '</small></a></li>'; }).join('') + '</ul>'
+      +   '<div class="gmenu__info">'
+      +     '<p class="gmenu__co">株式会社FORT</p>'
+      +     '<dl><div><dt>OKAYAMA</dt><dd><a href="tel:' + LINKS.tel_o.replace(/\D/g, '') + '">' + LINKS.tel_o + '</a></dd></div><div><dt>FUKUYAMA</dt><dd><a href="tel:' + LINKS.tel_f.replace(/\D/g, '') + '">' + LINKS.tel_f + '</a></dd></div></dl>'
+      +     '<p class="gmenu__hours">9:00〜18:00 / 水曜定休</p>'
+      +     '<p class="gmenu__sns">' + (LINKS.instagram ? '<a href="' + LINKS.instagram + '" target="_blank" rel="noopener">Instagram</a>' : '') + (LINKS.youtube ? '<a href="' + LINKS.youtube + '" target="_blank" rel="noopener">YouTube</a>' : '') + '</p>'
+      +   '</div>'
+      + '</div>';
+  } else
   overlay.innerHTML = ''
     + '<div class="gmenu__panel">'
     +   '<ul class="gmenu__list">' + itemsHtml + '</ul>'
@@ -123,6 +148,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (toggle) toggle.addEventListener('click', toggleMenu);
+  var closeBtn = overlay.querySelector('.gmenu__close');
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
 
   // 背景（パネルの外）をクリックしたら閉じる
   overlay.addEventListener('click', function (e) {

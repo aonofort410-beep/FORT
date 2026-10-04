@@ -4209,3 +4209,18 @@ body:not(.dz-page) .pf-band { margin-bottom: clamp(32px, 5vw, 64px); }
 body:not(.dz-page) .bh-event + .bh-mh, body:not(.dz-page) .bh-event + .bh-event { padding-top: calc(var(--bh-space) * .6); }
 body:not(.dz-page) .bh-about__grid { row-gap: 20px; }
 .gmenu__brand img { filter: brightness(0) invert(1); }
+
+/* ============================================================
+   64. トップ：ヒーロー写真をページ全体の背景に固定
+   スクロールすると写真がぼけて暗くなり、各セクションは半透明のグレー＋すりガラスで読みやすく
+============================================================ */
+body.home .bh-hero { overflow: visible; background: transparent; }
+body.home .bh-hero__media { position: fixed; inset: 0; z-index: -1; transform: scale(calc(1 + var(--hb, 0) * .06)); filter: blur(calc(var(--hb, 0) * 14px)) brightness(calc(1 - var(--hb, 0) * .28)) saturate(calc(1 - var(--hb, 0) * .3)); transition: filter .15s linear; will-change: filter, transform; }
+body.home main { background: transparent !important; }
+body.home { background: #2a2d2f; }
+/* ヒーロー以降のセクション：半透明のグレー（写真がうっすら透ける） */
+body.home main > :not(.bh-hero) { position: relative; background: rgba(174,176,173,.80) !important; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+body.home main > :is(.bh-house, .bh-event + .bh-mh, .bh-life) { background: rgba(162,164,161,.84) !important; }
+body.home main > .bh-visit { background: transparent !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
+body.home .footer { position: relative; }
+@media (prefers-reduced-motion: reduce) { body.home .bh-hero__media { filter: brightness(calc(1 - var(--hb, 0) * .28)); transform: none; } }

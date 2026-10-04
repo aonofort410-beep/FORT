@@ -576,3 +576,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.3 });
   els.forEach(function (e) { io.observe(e); });
 })();
+
+/* トップ：スクロールに合わせて背景のヒーロー写真をぼかす（--hb：0〜1） */
+(function () {
+  if (!document.body.classList.contains('home')) return;
+  var media = document.querySelector('.bh-hero__media');
+  if (!media) return;
+  var ticking = false;
+  function update() {
+    var p = Math.min(1, Math.max(0, window.scrollY / (window.innerHeight * 0.7)));
+    media.style.setProperty('--hb', p.toFixed(3));
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+})();

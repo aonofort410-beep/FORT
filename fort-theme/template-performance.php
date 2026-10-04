@@ -229,7 +229,7 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 				</ul>
 				<p class="pf-fine">※ 躯体・防水の保証は、当社指定の定期点検・メンテナンスを実施いただくことが条件となります。※ 地盤補強の保証は、当社が採用する鋼管杭工法の地盤補強工事に対する保証です。※ 白蟻の保証は、基礎パッキン工法（10年）およびシロアリ防除施工（5年）の保証です。※ 設備保証の対象機器・保証内容の詳細は、スタッフまでお問い合わせください。</p>
 				<p class="pf-sub">アフターメンテナンス（定期点検）</p>
-				<ol class="pf-timeline"><li>1年点検</li><li>2年点検</li><li>5年点検</li><li>9年6ヵ月点検</li></ol>
+				<ol class="pf-timeline"><li><span class="pf-timeline__no">01</span><b>1<small>年</small></b><span>点検</span></li><li><span class="pf-timeline__no">02</span><b>2<small>年</small></b><span>点検</span></li><li><span class="pf-timeline__no">03</span><b>5<small>年</small></b><span>点検</span></li><li><span class="pf-timeline__no">04</span><b>9<small>年</small>6<small>ヵ月</small></b><span>点検</span></li></ol>
 				<div class="pf-note"><p class="pf-note__title">迅速な対応で、いつでもサポート</p><p>万が一のトラブルやお困りごとにも、専任スタッフが迅速に対応します。ご相談はお電話・LINEなど、いつでもお気軽にご連絡ください。</p></div>
 			</div>
 		</div>

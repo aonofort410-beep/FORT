@@ -48,7 +48,7 @@ function fort_assets() {
 	// Google Fonts
 	// Googleフォント（WordPressは同じ名前のパラメータを1つにまとめてしまうため、書体ごとに読み込む）
 	wp_enqueue_style( 'fort-gfont', 'https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600&display=swap', array(), null );
-	wp_enqueue_style( 'fort-gfont-en', 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap', array(), null );
+	wp_enqueue_style( 'fort-gfont-en', 'https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap', array(), null );
 	// 本体スタイル
 	wp_enqueue_style( 'fort-style', get_template_directory_uri() . '/assets/style.css', array(), $ver );
 	// WordPress必須のstyle.css（テーマ情報）も一応読み込み
@@ -94,7 +94,7 @@ function fort_assets() {
 	$main[] = array( 'COMPANY', '会社概要', fort_url( 'company' ) );
 	$main[] = array( 'CONTACT', 'お問い合わせ', fort_url( 'contact' ) );
 	$links['home']      = home_url( '/' );
-	$links['logo']      = get_template_directory_uri() . '/assets/images/logo-lockup-white.png';
+	$links['logo']      = get_template_directory_uri() . '/assets/images/fort-mark.png';
 	$links['instagram'] = fort_opt( 'fort_instagram', FORT_INSTAGRAM );
 	$links['youtube']   = fort_opt( 'fort_youtube_channel', FORT_YOUTUBE );
 	wp_add_inline_script( 'fort-script', 'window.FORT_MENU = ' . wp_json_encode( $menu ) . '; window.FORT_LINKS = ' . wp_json_encode( $links ) . '; window.FORT_MENU_GROUPS = ' . wp_json_encode( array( 'groups' => $groups, 'main' => $main ) ) . ';', 'before' );

@@ -4133,3 +4133,79 @@ body:not(.dz-page) .pf-keys__list :is(em, .pf-keys__label) { color: color-mix(in
   .bh-gallery { grid-template-columns: 1fr 1fr; }
   .bh-gallery__item:nth-child(3n+1) { grid-column: 1 / -1; }
 }
+
+/* 59. 平面図：描き終わったら、線を完成図（実際の図面）にすっと差し替える
+   → 最後まで描き切った状態になり、スマホで線と図面が二重に見えない */
+.dz .dz-plan__lines { transition: opacity 1.6s ease .3s; }
+.dz-draw__plan.is-done .dz-plan__lines { opacity: 0; }
+.dz-draw__plan.is-done .dz-plan__guides { opacity: 0 !important; }
+.dz-draw__plan.is-done .dz-plan__detail { opacity: 1 !important; }
+
+/* 60. 英字・数字は以前の書体（Jost）に戻す。数字は字幅・高さをそろえる */
+:root, body { --font-en: "Jost", "Shippori Mincho B1", sans-serif; --font-en-display: "Jost", "Shippori Mincho B1", sans-serif; }
+:is(.bh-label, .header-nav__en, .header__visit, .menu-toggle__txt, .gmenu__gtitle, .gmenu__main a, .gmenu__group a > span, .gmenu__brand small, .gmenu__info dt, .gmenu__info dd, .gmenu__sns, .bh-hx__name, .bh-house__name, .bh-place__name, .pf-keys__list em, .pf-duo__num, .pf-band__txt span, .pf-band__txt b, .pf-sec__no, .bh-hero__news time, .bh-hero__scroll, .st-card__dept, .st-card__en, .bh-work__meta, .bh-filter__count, .bh-filter button sup, .bh-tabs button, .bh-breadcrumb, .pf-fig__val, .pf-fig__scale text) { font-family: "Jost", "Shippori Mincho B1", sans-serif !important; }
+body { font-variant-numeric: lining-nums; }
+:is(.pf-keys__list em, .pf-duo__num, .bh-hx__price, .pf-fig__val, .gmenu__info dd, .bh-place__tel, .pf-warranty b, .bh-ev__date, time) { font-variant-numeric: lining-nums tabular-nums; font-feature-settings: "lnum" 1, "tnum" 1; }
+.pf-keys__list em, .pf-duo__num { font-weight: 300; letter-spacing: .02em; }
+.bh-hx__price, .pf-warranty b { font-family: "Jost", "Shippori Mincho B1", sans-serif; font-weight: 400; }
+.gmenu__brand img { width: 150px; }
+
+/* 61. 構造・性能：ポップさを抑えて、落ち着いた色に */
+#seismic     { --acc: #56636d; --acc-soft: #a7abac; }
+#insulation  { --acc: #806f62; --acc-soft: #aeaaa5; }
+#airtight    { --acc: #5f6e66; --acc-soft: #a7aca8; }
+#ventilation { --acc: #5b6a76; --acc-soft: #a6abae; }
+#support     { --acc: #857a63; --acc-soft: #adaaa3; }
+.pf-keys__list li { --acc: #3a3f42 !important; }
+body:not(.dz-page) .pf-keys__list :is(em, .pf-keys__label) { color: #1c1f20; }
+.pf-keys__list a { border-top-width: 1px; border-top-color: #1c1f20; }
+/* POINT：濃いチャコールに、章の色の細い線 */
+.pf-point { background: #1f2224; border-left: 3px solid var(--acc); }
+.pf-point__label { color: color-mix(in srgb, var(--acc) 50%, #fff); opacity: 1; }
+.pf-band::before { height: 3px; }
+.pf-band__txt b { background: rgba(20,22,24,.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+body:not(.dz-page) .pf-sec .pf-duo > div.is-plus { background: #1f2224; border-color: #1f2224; }
+.pf-table thead th.is-plus { background: #1f2224 !important; }
+body:not(.dz-page) .pf-sec .pf-fig__bar rect { fill: #2a2e31; }
+body:not(.dz-page) .pf-sec .pf-fig__bar rect.is-light { fill: #9fa4a6; }
+body:not(.dz-page) .pf-sec .pf-fig__bar rect.is-light + text { fill: #1c1f20; }
+body:not(.dz-page) .pf-sec .pf-fig__val { fill: #1c1f20; }
+body:not(.dz-page) .pf-sec .pf-fig__box { fill: #2a2e31; }
+body:not(.dz-page) .pf-sec .pf-fig__flow { stroke: #2a2e31; }
+body:not(.dz-page) .pf-sec .pf-fig__flow.is-out, body:not(.dz-page) .pf-sec .pf-fig__head.is-out { stroke: #8d9294; }
+
+/* アフターメンテナンス：線の上に、年数を大きく */
+.pf-timeline { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 8px 0 0; padding: 0; text-align: left; position: relative; }
+.pf-timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 22px; height: 1px; background: #1c1f20; }
+.pf-timeline li { position: relative; display: grid; justify-items: start; gap: 4px; padding: 0 12px 0 0; }
+.pf-timeline li::before { content: "" !important; width: 9px !important; height: 9px !important; border-radius: 0 !important; background: #1c1f20 !important; transform: rotate(45deg); margin: 18px 0 14px; }
+.pf-timeline__no { font-family: "Jost", sans-serif; font-size: 10px; letter-spacing: .3em; color: #5f6467; position: absolute; top: 0; left: 0; }
+.pf-timeline b { font-family: "Jost", sans-serif; font-weight: 300; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1; letter-spacing: .02em; color: #1c1f20; font-variant-numeric: lining-nums; }
+.pf-timeline b small { font-family: "Shippori Mincho B1", serif; font-size: .38em; margin: 0 .15em; font-weight: 500; }
+.pf-timeline li > span:last-child { font-size: 12px; letter-spacing: .2em; color: #3f4447; }
+@media (max-width: 599px) { .pf-timeline { grid-template-columns: 1fr 1fr; row-gap: 22px; } .pf-timeline::before { display: none; } .pf-timeline li { border-top: 1px solid #1c1f20; } .pf-timeline li::before { display: none; } .pf-timeline__no { position: static; margin-top: 10px; } }
+
+/* グレード比較表：タブレット・スマホでも横スクロールなし（項目を上、STANDARD／PLUSを横並び） */
+@media (max-width: 899px) {
+  .pf-grade .bh-cmp__scroll { overflow: visible; }
+  .pf-table { min-width: 0 !important; width: 100%; table-layout: fixed; }
+  .pf-table thead tr, .pf-table tbody tr { display: grid; grid-template-columns: 1fr 1fr; }
+  .pf-table thead th:first-child { display: none; }
+  .pf-table tbody th[scope=row] { grid-column: 1 / -1; padding: 16px 0 6px; border-bottom: 0; font-weight: 600; }
+  .pf-table td, .pf-table thead th { padding: 10px 12px 14px; font-size: 13.5px; word-break: auto-phrase; overflow-wrap: anywhere; }
+}
+
+/* 62. ページ上部の写真（見学会・相談会など） */
+.bh-pagephoto { margin: 0 var(--bh-gutter) clamp(8px, 2vw, 24px); height: clamp(220px, 42vw, 520px); overflow: hidden; border-radius: 6px; background: #969895; }
+.bh-pagephoto img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 63. 余白を詰める（トップ・各ページ共通） */
+body:not(.dz-page) { --bh-space: clamp(56px, 8vw, 112px); }
+body:not(.dz-page) .bh-pagehead { padding-top: calc(clamp(84px, 9vw, 120px) + env(safe-area-inset-top)); padding-bottom: clamp(24px, 3.5vw, 44px); }
+body:not(.dz-page) .bh-head { margin-bottom: clamp(24px, 3.5vw, 44px); }
+body:not(.dz-page) :is(.bh-event, .bh-mh, .bh-life, .bh-journal, .bh-movie, .bh-place, .bh-house, .bh-about, .bh-works, .pf-sec, .pf-grade, .bh-eq, .bh-hx, .st-members, .st-points, .bh-wlist) { padding-top: var(--bh-space); padding-bottom: var(--bh-space); }
+body:not(.dz-page) .pf-sec { padding-top: 0; }
+body:not(.dz-page) .pf-band { margin-bottom: clamp(32px, 5vw, 64px); }
+body:not(.dz-page) .bh-event + .bh-mh, body:not(.dz-page) .bh-event + .bh-event { padding-top: calc(var(--bh-space) * .6); }
+body:not(.dz-page) .bh-about__grid { row-gap: 20px; }
+.gmenu__brand img { filter: brightness(0) invert(1); }

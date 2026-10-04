@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
     overlay.innerHTML = ''
       + '<div class="gmenu__panel" role="dialog" aria-label="メニュー">'
       +   '<button class="gmenu__close" type="button" aria-label="閉じる"><span></span><span></span></button>'
-      +   '<a class="gmenu__brand" href="' + LINKS.home + '">FORT<small>OKAYAMA · FUKUYAMA</small></a>'
+      +   '<a class="gmenu__brand" href="' + LINKS.home + '"><img src="' + LINKS.logo + '" alt="FORT 建築設計 OKAYAMA・FUKUYAMA"></a>'
       +   '<div class="gmenu__groups">'
       +     G.groups.map(function (g) {
               return '<div class="gmenu__group"><p class="gmenu__gtitle">' + esc(g.title) + '<small>' + esc(g.ja) + '</small></p><ul>'

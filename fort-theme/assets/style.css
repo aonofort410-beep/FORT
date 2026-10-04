@@ -4093,3 +4093,32 @@ body:not(.dz-page) .bh-input { background: #e6e7e4; }
 .gmenu--side .gmenu__main a { grid-template-columns: 7.3em 1fr !important; }
 .gmenu--side small { white-space: nowrap; }
 @media (max-width: 420px) { .gmenu--side .gmenu__group a { grid-template-columns: 10em 1fr !important; } }
+
+/* 57. グレーをさらに濃く／メニューは会社ロゴ */
+body:not(.dz-page) {
+  --bh-ink:   #151718;
+  --bh-paper: #aeb0ad;
+  --bh-mist:  #a2a4a1;
+  --bh-gray:  #43484b;
+  --bh-line:  rgba(21, 23, 24, .2);
+  background: #aeb0ad;
+  color: #1c1f20;
+}
+body:not(.dz-page) main { background: #aeb0ad; }
+body:not(.dz-page) .header.is-scrolled { background: rgba(174,176,173,.82); }
+body:not(.dz-page) .bh-house, body:not(.dz-page) .bh-now__house, body:not(.dz-page) .pf-grade, body:not(.dz-page) .bh-event + .bh-event { background: #a2a4a1; }
+body:not(.dz-page) :is(.bh-label, .pf-keys__note, .bh-house__text, .bh-house__method, .bh-wcard__meta) { color: #3f4447; }
+body:not(.dz-page) :is(.bh-house__fig, .st-card__fig, .bh-hx__fig) { background: #969895; }
+body:not(.dz-page) .pf-fig, body:not(.dz-page) .pf-sec .pf-fig, body:not(.dz-page) .pf-sec .pf-note, body:not(.dz-page) .pf-sec .pf-warranty li, body:not(.dz-page) .pf-keys__list a, body:not(.dz-page) .pf-sec .pf-duo > div:not(.is-plus) { background: #c3c5c2; }
+body:not(.dz-page) .pf-keys__list a:hover { background: #cfd1ce; }
+body:not(.dz-page) .bh-input { background: #c9cbc8; }
+#seismic     { --acc-soft: #a9b0b4; }
+#insulation  { --acc-soft: #b4ada7; }
+#airtight    { --acc-soft: #a8b2ad; }
+#ventilation { --acc-soft: #a8b1b8; }
+#support     { --acc-soft: #b3afa4; }
+.gmenu__brand img { display: block; width: 168px; height: auto; }
+/* 濃いグレーの上でも読めるよう、章の色の文字は少し深く */
+body:not(.dz-page) .pf-sec :is(.pf-sec__catch, .pf-items dt, .pf-note__title, .pf-duo__num, .pf-warranty b, .pf-merits li::before) { color: color-mix(in srgb, var(--acc) 62%, #111) !important; }
+body:not(.dz-page) .pf-sec .pf-duo > div.is-plus .pf-duo__num { color: #fff !important; }
+body:not(.dz-page) .pf-keys__list :is(em, .pf-keys__label) { color: color-mix(in srgb, var(--acc) 70%, #111); }

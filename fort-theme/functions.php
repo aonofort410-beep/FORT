@@ -93,6 +93,7 @@ function fort_assets() {
 	$main[] = array( 'COMPANY', '会社概要', fort_url( 'company' ) );
 	$main[] = array( 'CONTACT', 'お問い合わせ', fort_url( 'contact' ) );
 	$links['home']      = home_url( '/' );
+	$links['logo']      = get_template_directory_uri() . '/assets/images/logo-lockup-white.png';
 	$links['instagram'] = fort_opt( 'fort_instagram', FORT_INSTAGRAM );
 	$links['youtube']   = fort_opt( 'fort_youtube_channel', FORT_YOUTUBE );
 	wp_add_inline_script( 'fort-script', 'window.FORT_MENU = ' . wp_json_encode( $menu ) . '; window.FORT_LINKS = ' . wp_json_encode( $links ) . '; window.FORT_MENU_GROUPS = ' . wp_json_encode( array( 'groups' => $groups, 'main' => $main ) ) . ';', 'before' );

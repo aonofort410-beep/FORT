@@ -3988,3 +3988,40 @@ body:not(.dz-page) .bh-pagehead__title { font-size: clamp(1.6rem, 3.2vw, 2.6rem)
 .gmenu--side .gmenu__close span { display: block; position: absolute; left: 10px; right: 10px; top: 50%; width: auto; height: 1px; margin: 0; background: #2e3336; transform: rotate(35deg) !important; }
 .gmenu--side .gmenu__close span:last-child { transform: rotate(-35deg) !important; }
 .gmenu--side .gmenu__close:hover span { opacity: .6; }
+
+/* 54. トップの最初の画面：写真＋中央にFORT＋右下に最新のお知らせ1行 */
+.bh-hero__links { display: none; }
+.bh-hero__news { position: absolute; right: var(--bh-gutter); bottom: clamp(22px, 4vh, 40px); z-index: 3; display: flex; gap: 14px; align-items: baseline; max-width: min(46vw, 520px); color: #fff; font-size: 12px; letter-spacing: .08em; text-decoration: none; text-shadow: 0 1px 10px rgba(0,0,0,.35); }
+.bh-hero__news time { font-family: var(--font-en); font-size: 11px; opacity: .85; flex: none; }
+.bh-hero__news span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-bottom: 1px solid rgba(255,255,255,.5); padding-bottom: 2px; }
+.bh-hero__news:hover span { border-color: #fff; }
+.bh-hero__scroll { position: absolute; left: 50%; bottom: 0; z-index: 3; margin: 0; transform: translateX(-50%); padding-bottom: 64px; font-family: var(--font-en); font-size: 9px; letter-spacing: .4em; color: rgba(255,255,255,.8); }
+.bh-hero__scroll::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 1px; height: 52px; background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,0)); animation: heroScroll 2.4s cubic-bezier(.6,0,.2,1) infinite; transform-origin: top; }
+@keyframes heroScroll { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+@media (max-width: 599px) {
+  .bh-hero__news { left: var(--bh-gutter); right: var(--bh-gutter); max-width: none; bottom: 18px; justify-content: flex-end; }
+  .bh-hero__note { bottom: 64px !important; }
+  .bh-hero__scroll { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .bh-hero__scroll::after { animation: none; } }
+
+/* 55. 施工事例一覧：左に分類（件数つき）、右に写真 */
+.bh-wlist .bh-filter button sup { font-family: var(--font-en); font-size: 9px; margin-left: 4px; color: #868c90; vertical-align: super; }
+@media (min-width: 1024px) {
+  .bh-wlist__layout { display: grid; grid-template-columns: 220px 1fr; gap: 0 clamp(40px, 5vw, 80px); align-items: start; }
+  .bh-wlist__layout > .bh-filter { position: sticky; top: 110px; display: grid; gap: 28px; margin: 0; padding: 0; border: 0; background: none; }
+  .bh-wlist__layout .bh-filter__group { display: grid; justify-items: start; gap: 2px; }
+  .bh-wlist__layout .bh-filter__label { font-family: var(--font-en); font-size: 10px; letter-spacing: .3em; color: #868c90; margin-bottom: 8px; }
+  .bh-wlist__layout .bh-filter__group button { all: unset; cursor: pointer; padding: 4px 0; font-size: 14px; letter-spacing: .08em; color: #868c90; border-bottom: 1px solid transparent; transition: color .3s, border-color .3s; }
+  .bh-wlist__layout .bh-filter__group button:hover, .bh-wlist__layout .bh-filter__group button[aria-pressed="true"] { color: #2e3336; border-color: #2e3336; }
+  .bh-wlist__layout .bh-filter__count { font-family: var(--font-en); font-size: 11px; letter-spacing: .2em; color: #868c90; }
+  .bh-wlist__layout > .bh-wgrid, .bh-wlist__layout > .bh-event__none { grid-column: 2; }
+  .bh-wlist__layout > .bh-wgrid { grid-template-columns: 1fr 1fr; gap: 56px 24px; }
+}
+@media (min-width: 1024px) { .bh-wlist__layout > .bh-filter { grid-template-columns: 1fr !important; } }
+@media (min-width: 1024px) {
+  .bh-wlist__layout > .bh-wgrid > .bh-wcard { grid-column: auto !important; margin: 0 !important; }
+  .bh-wlist__layout > .bh-wgrid .bh-wcard__fig { aspect-ratio: 4 / 3; }
+  .bh-wlist__layout .bh-filter__count { justify-self: start; }
+}
+@media (min-width: 1024px) { .bh-wlist__layout > .bh-wgrid { align-items: start; } .bh-wlist__layout > .bh-wgrid .bh-wcard__fig { aspect-ratio: 4 / 3 !important; height: auto !important; } }

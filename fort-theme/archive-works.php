@@ -8,10 +8,11 @@ get_header();
 $c        = fort_works_choices();
 $cards    = array();
 $present  = array( 'region' => array(), 'floors' => array(), 'series' => array(), 'feature' => array() );
+$counts   = array();
 if ( have_posts() ) : while ( have_posts() ) : the_post();
 	$f = fort_work_facets( get_the_ID() );
-	foreach ( array( 'region', 'floors', 'series' ) as $k ) if ( $f[ $k ] ) $present[ $k ][ $f[ $k ]['value'] ] = $f[ $k ]['label'];
-	foreach ( $f['feature'] as $t ) $present['feature'][ $t->slug ] = $t->name;
+	foreach ( array( 'region', 'floors', 'series' ) as $k ) if ( $f[ $k ] ) { $present[ $k ][ $f[ $k ]['value'] ] = $f[ $k ]['label']; $counts[ $k ][ $f[ $k ]['value'] ] = ( $counts[ $k ][ $f[ $k ]['value'] ] ?? 0 ) + 1; }
+	foreach ( $f['feature'] as $t ) { $present['feature'][ $t->slug ] = $t->name; $counts['feature'][ $t->slug ] = ( $counts['feature'][ $t->slug ] ?? 0 ) + 1; }
 	$cards[] = array( 'id' => get_the_ID(), 'f' => $f );
 endwhile; endif;
 $groups = array(
@@ -32,15 +33,15 @@ $term = is_tax( 'works_cat' ) ? get_queried_object() : null;
 	</header>
 
 	<section class="bh-wlist">
-		<div class="bh-wrap">
+		<div class="bh-wrap bh-wlist__layout">
 			<?php if ( count( $cards ) > 1 && array_filter( $present ) ) : ?>
 			<div class="bh-filter" data-works-filter>
 				<?php foreach ( $groups as $g => $label ) : if ( count( $present[ $g ] ) < 1 ) continue; ?>
 				<div class="bh-filter__group" role="group" aria-label="<?php echo esc_attr( $label ); ?>で絞り込む" data-group="<?php echo esc_attr( $g ); ?>">
 					<span class="bh-filter__label"><?php echo esc_html( $label ); ?></span>
-					<button type="button" aria-pressed="true" data-value="">すべて</button>
+					<button type="button" aria-pressed="true" data-value="">すべて<sup><?php echo count( $cards ); ?></sup></button>
 					<?php foreach ( $present[ $g ] as $v => $name ) : ?>
-					<button type="button" aria-pressed="false" data-value="<?php echo esc_attr( $v ); ?>"><?php echo esc_html( $name ); ?></button>
+					<button type="button" aria-pressed="false" data-value="<?php echo esc_attr( $v ); ?>"><?php echo esc_html( $name ); ?><sup><?php echo (int) ( $counts[ $g ][ $v ] ?? 0 ); ?></sup></button>
 					<?php endforeach; ?>
 				</div>
 				<?php endforeach; ?>

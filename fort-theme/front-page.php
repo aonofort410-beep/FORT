@@ -52,10 +52,13 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 			<span class="bh-hero__note-main"><?php echo esc_html( fort_opt( 'fort_hero_copy', FORT_HERO_COPY ) ); ?></span>
 			<span class="bh-hero__note-sub"><?php echo esc_html( fort_opt( 'fort_hero_sub', FORT_HERO_SUB ) ); ?></span>
 		</p>
-		<p class="bh-hero__links">
-			<a href="<?php echo esc_url( fort_url( 'works' ) ); ?>">WORKS</a>
-			<a href="<?php echo esc_url( fort_url( 'event' ) ); ?>">EVENT</a>
-		</p>
+		<?php
+		// 右下に最新のお知らせを1行（イベント・読みものの新しい順）
+		$news = get_posts( array( 'post_type' => array_values( array_filter( array( 'fort_event', post_type_exists( 'journal' ) ? 'journal' : '' ) ) ), 'numberposts' => 1 ) );
+		if ( $news ) : $n = $news[0]; ?>
+		<a class="bh-hero__news" href="<?php echo esc_url( get_permalink( $n ) ); ?>"><time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d', $n ) ); ?>"><?php echo esc_html( get_the_date( 'y.m.d', $n ) ); ?></time><span><?php echo esc_html( get_the_title( $n ) ); ?></span></a>
+		<?php endif; ?>
+		<p class="bh-hero__scroll" aria-hidden="true">SCROLL</p>
 	</section>
 
 	<!-- 02 ABOUT：FORTとは何か -->

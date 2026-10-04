@@ -24,16 +24,19 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 			</video>
 			<?php else :
 				// hero-1.jpg 〜 hero-9.jpg があればゆっくり切り替わるスライドショー（無ければ hero.jpg 1枚）
-				$slides = array();
-				for ( $i = 1; $i <= 9; $i++ ) if ( file_exists( get_template_directory() . '/assets/images/hero-' . $i . '.jpg' ) ) $slides[] = $img . 'hero-' . $i . '.jpg';
+				// 「FORT 設定」で選んだ写真を優先。無ければテーマ内の hero-○.jpg
+				$slides = array(); $sp_set = array();
+				foreach ( fort_ids( fort_setting( 'hero_pc' ) ) as $aid ) { $u = wp_get_attachment_image_url( $aid, 'full' ); if ( $u ) $slides[] = $u; }
+				foreach ( fort_ids( fort_setting( 'hero_sp' ) ) as $aid ) { $u = wp_get_attachment_image_url( $aid, 'large' ); if ( $u ) $sp_set[] = $u; }
+				if ( ! $slides ) for ( $i = 1; $i <= 9; $i++ ) if ( file_exists( get_template_directory() . '/assets/images/hero-' . $i . '.jpg' ) ) $slides[] = $img . 'hero-' . $i . '.jpg';
 				if ( ! $slides ) $slides[] = $img . 'hero.jpg';
 				?>
 			<div class="bh-hero__slides" data-hero-slides>
 				<?php foreach ( $slides as $i => $src ) :
 					// スマホ（幅767px以下）は縦の写真 hero-sp-○.jpg があればそちらを表示。iPad・PCは横の写真
-					$sp = get_template_directory() . '/assets/images/hero-sp-' . ( $i + 1 ) . '.jpg'; ?>
+					$sp_url = $sp_set ? ( $sp_set[ $i ] ?? '' ) : ( file_exists( get_template_directory() . '/assets/images/hero-sp-' . ( $i + 1 ) . '.jpg' ) ? $img . 'hero-sp-' . ( $i + 1 ) . '.jpg' : '' ); ?>
 				<picture class="bh-hero__img<?php echo 0 === $i ? ' is-on' : ''; ?>">
-					<?php if ( count( $slides ) > 1 && file_exists( $sp ) ) : ?><source media="(max-width: 767px)" srcset="<?php echo esc_url( $img . 'hero-sp-' . ( $i + 1 ) . '.jpg' ); ?>"><?php endif; ?>
+					<?php if ( $sp_url ) : ?><source media="(max-width: 767px)" srcset="<?php echo esc_url( $sp_url ); ?>"><?php endif; ?>
 					<img src="<?php echo esc_url( $src ); ?>" alt="" width="2400" height="1600" <?php echo 0 === $i ? 'fetchpriority="high"' : 'loading="lazy"'; ?> decoding="async">
 				</picture>
 				<?php endforeach; ?>

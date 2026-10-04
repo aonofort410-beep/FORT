@@ -11,6 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+require_once get_template_directory() . '/inc/admin.php';
 require_once get_template_directory() . '/inc/brand.php';
 require_once get_template_directory() . '/inc/reservation.php';
 require_once get_template_directory() . '/inc/contact.php';
@@ -283,7 +284,9 @@ add_action( 'customize_register', 'fort_customize' );
 
 /* カスタマイザー値の取得ヘルパー */
 function fort_opt( $key, $default = '' ) {
-	return get_theme_mod( $key, $default );
+	// 「FORT 設定」に入力があればそちらを優先（テーマ有効化前でも設定できるように）
+	$v = function_exists( 'fort_setting' ) ? fort_setting( $key ) : '';
+	return '' !== $v ? $v : get_theme_mod( $key, $default );
 }
 
 /* ============================================================

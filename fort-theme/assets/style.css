@@ -4122,3 +4122,14 @@ body:not(.dz-page) .bh-input { background: #c9cbc8; }
 body:not(.dz-page) .pf-sec :is(.pf-sec__catch, .pf-items dt, .pf-note__title, .pf-duo__num, .pf-warranty b, .pf-merits li::before) { color: color-mix(in srgb, var(--acc) 62%, #111) !important; }
 body:not(.dz-page) .pf-sec .pf-duo > div.is-plus .pf-duo__num { color: #fff !important; }
 body:not(.dz-page) .pf-keys__list :is(em, .pf-keys__label) { color: color-mix(in srgb, var(--acc) 70%, #111); }
+
+/* 58. 施工事例・モデルハウスの写真ギャラリー（管理画面で選んだ写真） */
+.bh-case__gallery { padding-block: clamp(40px, 6vw, 80px); }
+.bh-gallery { display: grid; grid-template-columns: 1fr; gap: clamp(12px, 2vw, 24px); }
+.bh-gallery__item { margin: 0; }
+.bh-gallery__item img { width: 100%; height: auto; display: block; border-radius: 6px; }
+.bh-gallery__item figcaption { margin-top: 8px; font-size: 12px; letter-spacing: .06em; color: var(--bh-gray); }
+@media (min-width: 900px) {
+  .bh-gallery { grid-template-columns: 1fr 1fr; }
+  .bh-gallery__item:nth-child(3n+1) { grid-column: 1 / -1; }
+}

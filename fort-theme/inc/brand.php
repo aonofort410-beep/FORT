@@ -328,6 +328,8 @@ function fort_youtube_lite( $id, $title ) {
    ※ テーマ同梱の画像が無い箇所は、すでにサイトにアップ済みの写真を使います
 ============================================================ */
 function fort_media( $key ) {
+	// 「FORT 設定」で選んだ商品写真を優先
+	if ( in_array( $key, array( 'design', 'pro', 'style' ), true ) && fort_setting_img( 'house_' . $key, 'fort-hero' ) ) return fort_setting_img( 'house_' . $key, 'fort-hero' );
 	// テーマ内に house-○○.jpg があればそちらを優先（差し替えはファイルを置き換えるだけ）
 	if ( file_exists( get_template_directory() . '/assets/images/house-' . $key . '.jpg' ) ) return get_template_directory_uri() . '/assets/images/house-' . $key . '.jpg';
 	$base = 'https://www.fort410.com/wp/wp-content/uploads/2026/07/';
@@ -597,7 +599,8 @@ add_action( 'customize_register', function ( $wp ) {
 }, 40 );
 
 function fort_studio_img( $region ) {
-	$img = get_theme_mod( 'fort_studio_img_' . $region, '' );
+	$img = fort_setting_img( 'studio_' . $region, 'fort-hero' );
+	if ( ! $img ) $img = get_theme_mod( 'fort_studio_img_' . $region, '' );
 	if ( ! $img && file_exists( get_template_directory() . '/assets/images/studio-' . $region . '.jpg' ) ) $img = get_template_directory_uri() . '/assets/images/studio-' . $region . '.jpg';
 	return $img;
 }
@@ -621,3 +624,12 @@ function fort_life_photos() {
 	}
 	return $out;
 }
+
+/** 本番切り替え時：プレビュー中に「非公開」で用意したページを公開にする（プラグイン「FORT 新デザイン プレビュー」併用時） */
+add_action( 'after_switch_theme', function () {
+	foreach ( array( 'about', 'now', 'place', 'place/okayama', 'place/fukuyama', 'contact', 'visit' ) as $path ) {
+		$p = get_page_by_path( $path );
+		if ( $p && 'private' === $p->post_status ) wp_update_post( array( 'ID' => $p->ID, 'post_status' => 'publish' ) );
+	}
+	flush_rewrite_rules();
+}, 5 );

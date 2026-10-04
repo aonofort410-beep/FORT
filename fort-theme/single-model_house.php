@@ -50,6 +50,10 @@ while ( have_posts() ) : the_post();
 		</section>
 		<?php endif; ?>
 
+		<?php $gal = fort_gallery_html( get_the_ID() ); if ( $gal ) : ?>
+		<section class="bh-case__gallery"><div class="bh-wrap"><?php echo $gal; // 画像タグは WordPress が生成 ?></div></section>
+		<?php endif; ?>
+
 		<?php if ( trim( get_the_content() ) ) : ?>
 		<section class="bh-case__photos"><div class="bh-wrap bh-case__content"><?php the_content(); ?></div></section>
 		<?php endif; ?>

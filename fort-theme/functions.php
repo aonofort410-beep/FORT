@@ -45,7 +45,7 @@ add_action( 'after_setup_theme', 'fort_setup' );
 function fort_assets() {
 	$ver = '1.0.0';
 	// Google Fonts
-	wp_enqueue_style( 'fort-gfont', 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&display=swap', array(), null );
+	wp_enqueue_style( 'fort-gfont', 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&display=swap', array(), null );
 	// 本体スタイル
 	wp_enqueue_style( 'fort-style', get_template_directory_uri() . '/assets/style.css', array(), $ver );
 	// WordPress必須のstyle.css（テーマ情報）も一応読み込み

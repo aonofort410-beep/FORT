@@ -3854,3 +3854,67 @@ p, li, dd { text-wrap: pretty; }
   .bh-life__fig:first-child { grid-column: span 4; grid-row: span 2; aspect-ratio: auto; }
 }
 .pf-sec .pf-fig__flow.is-out, .pf-sec .pf-fig__head.is-out { stroke: #b3aca3; }
+
+/* ============================================================
+   52. 透明感のあるトーン（全体）
+   白をベースに、細いゴシック・やわらかい文字色・すりガラスのヘッダー。
+   黒い面は減らし、写真と余白で見せる。（FORT DESIGN のページは対象外）
+============================================================ */
+body:not(.dz-page) {
+  --bh-ink:   #2e3336;
+  --bh-paper: #ffffff;
+  --bh-mist:  #f3f5f5;
+  --bh-gray:  #868c90;
+  --bh-line:  rgba(46, 51, 54, .1);
+  --font-serif: "Noto Sans JP", system-ui, sans-serif;
+  background: #fff;
+  color: #3a3f43;
+}
+/* 見出しは細く、軽く */
+body:not(.dz-page) :is(h1, h2, h3, .bh-head__title, .bh-pagehead__title, .bh-about__title, .pf-sec__catch, .pf-point__main, .bh-hx__catch, .st-head__title) { font-family: "Noto Sans JP", sans-serif; font-weight: 300; }
+body:not(.dz-page) :is(.bh-head__title, .bh-pagehead__title) { color: #2e3336; letter-spacing: .08em; }
+body:not(.dz-page) .bh-label { color: #9aa3a8; letter-spacing: .32em; }
+
+/* すりガラスのヘッダー */
+body:not(.dz-page) .header.is-scrolled { background: rgba(255,255,255,.72); -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%); box-shadow: 0 1px 0 rgba(46,51,54,.06); }
+
+/* 黒い面 → 明るい面に */
+body:not(.dz-page) .bh-house, body:not(.dz-page) .bh-now__house { background: #f3f5f5; color: #3a3f43; }
+body:not(.dz-page) .bh-house__fig { background: #e8ecec; }
+body:not(.dz-page) .bh-house__common a { color: #3a3f43; }
+body:not(.dz-page) .bh-house__text, body:not(.dz-page) .bh-house__method { color: #868c90; }
+body:not(.dz-page) :is(.bh-house, .bh-now__house) :is(.bh-label, .bh-head__title, .bh-house__name) { color: #2e3336; }
+
+/* 写真は角をほんの少し丸く、やわらかく */
+body:not(.dz-page) :is(.bh-work__fig, .bh-house__fig, .bh-hx__fig, .bh-place__fig, .bh-life__fig, .bh-journal__fig, .bh-wcard__fig, .bh-mh__fig, .bh-ev__fig, .pf-intro__fig, .st-card__fig, .pf-fig, .pf-point, .pf-keys__list, .bh-hx__price) { border-radius: 10px; overflow: hidden; }
+body:not(.dz-page) .st-card__fig { background: #e8ecec; }
+
+/* ボタン：角丸のやさしい形 */
+body:not(.dz-page) :is(.bh-btn, .header-nav__link--visit, .bh-tabs button) { border-radius: 999px; }
+body:not(.dz-page) .bh-btn--fill { background: #2e3336; }
+
+/* フッター：明るいグレー */
+body:not(.dz-page) .footer { background: #f3f5f5; color: #3a3f43; }
+body:not(.dz-page) .footer :is(a, p, li) { color: #3a3f43; }
+body:not(.dz-page) .footer :is(small, span) { color: #868c90; }
+body:not(.dz-page) .footer * { border-color: rgba(46,51,54,.1); }
+
+/* 構造・性能の色は少し明るく、透明感を */
+#seismic     { --acc: #4d7393; --acc-soft: #eef3f7; }
+#insulation  { --acc: #c0865e; --acc-soft: #faf3ee; }
+#airtight    { --acc: #5f9483; --acc-soft: #eff6f3; }
+#ventilation { --acc: #5d9cc4; --acc-soft: #eef6fb; }
+#support     { --acc: #b39b6a; --acc-soft: #f8f5ee; }
+body:not(.dz-page) .pf-band::after { background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.35)); }
+
+/* スマホのページタイトル：ひとまとまりごとに改行（例：見えない性能が、／これからの暮らしを支える。） */
+@media (max-width: 599px) {
+  .bh-pagehead .bh-pagehead__title .bh-nb { display: block; }
+  .bh-pagehead .bh-pagehead__title { font-size: min(1.6rem, 6vw) !important; letter-spacing: .02em; }
+}
+/* 来場予約の帯：写真を明るく、文字は影で読ませる */
+body:not(.dz-page) .bh-visit { background: #49525a; }
+body:not(.dz-page) .bh-visit__media img { opacity: .78; }
+body:not(.dz-page) .bh-visit__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(30,36,40,.55), rgba(30,36,40,.15)); }
+body:not(.dz-page) .bh-visit :is(h2, p, a) { text-shadow: 0 1px 12px rgba(0,0,0,.25); }
+body:not(.dz-page) .bh-visit__choice { border-radius: 999px; background: rgba(255,255,255,.12); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }

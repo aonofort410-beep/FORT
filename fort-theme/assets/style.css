@@ -4236,3 +4236,29 @@ body.home main > .bh-visit { background: transparent !important; -webkit-backdro
 .bh-visit__media img { opacity: 1 !important; filter: none !important; }
 .bh-visit__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20,22,24,.62) 0%, rgba(20,22,24,.38) 55%, rgba(20,22,24,.18) 100%) !important; }
 .bh-visit > :not(.bh-visit__media) { position: relative; z-index: 1; }
+
+/* 66. 画像の角は丸めず、角張らせる（全体） */
+body:not(.dz-page) :is(.bh-work__fig, .bh-house__fig, .bh-hx__fig, .bh-place__fig, .bh-life__fig, .bh-journal__fig, .bh-wcard__fig, .bh-mh__fig, .bh-ev__fig, .pf-intro__fig, .st-card__fig, .st-modal__fig, .pf-fig, .pf-point, .pf-keys__list, .bh-hx__price, .bh-pagephoto, .bh-gallery__item img, .bh-case__main, .bh-case__main img, .bh-wcard__fig img, .bh-ev__fig img) { border-radius: 0 !important; }
+.pf-fig svg { overflow: visible; }
+
+/* 67. 岡山・福山の各ページ：大きな地域名が iPhone の画面幅に収まるように */
+.bh-region__inner { max-width: 100%; overflow-wrap: anywhere; }
+@media (max-width: 599px) {
+  .bh-region h1, .bh-region__title, .bh-region .bh-place__name { font-size: min(13.5vw, 3.4rem) !important; letter-spacing: .02em !important; line-height: 1.1; }
+  .bh-region__inner { padding-inline: 20px; }
+}
+
+/* 68. STANDARD／PLUS の比較カードを見やすく */
+body:not(.dz-page) .pf-sec .pf-duo { grid-template-columns: 1fr 1fr; gap: 10px; }
+body:not(.dz-page) .pf-sec .pf-duo > div { padding: 20px 18px; gap: 8px; border: 1px solid rgba(28,31,32,.18); }
+body:not(.dz-page) .pf-sec .pf-duo > div:not(.is-plus) { background: #e6e7e4 !important; color: #1c1f20; }
+body:not(.dz-page) .pf-sec .pf-duo > div:not(.is-plus) .pf-duo__num { color: #1c1f20 !important; }
+.pf-duo__label { opacity: 1 !important; font-size: 11px; letter-spacing: .28em; color: inherit; }
+.pf-duo > div:not(.is-plus) .pf-duo__label { color: #4a4f52; }
+.pf-duo > div.is-plus .pf-duo__label { color: #b9bdbf; }
+.pf-duo__num { white-space: nowrap; font-size: clamp(1.6rem, 6.4vw, 2.4rem) !important; line-height: 1.1; }
+.pf-duo__num small { font-size: 12px !important; margin-left: 3px; }
+.pf-duo > div > p:last-child { font-size: 13px; line-height: 1.8; }
+@media (max-width: 420px) { .pf-duo__num { font-size: 1.5rem !important; } .pf-duo > div { padding: 16px 14px !important; } }
+@media (max-width: 599px) { .bh-region .bh-region__name { font-size: min(13vw, 3.4rem) !important; letter-spacing: .02em !important; line-height: 1.1; } .bh-region .bh-region__sub { font-size: 13px; } }
+@media (max-width: 360px) { .header__logo-img { width: 118px !important; height: auto; } .header__visit { font-size: 10px; } .menu-toggle__txt { display: none; } }

@@ -88,9 +88,9 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">全棟、耐震等級3。</p><p class="pf-point__sub">一棟ごとに許容応力度計算で、構造の安全性を確かめます。</p></div>
 				<p>FORTでは、デザインだけではなく、万が一の地震に備えた構造の強さも大切にしています。PRO・DESIGNシリーズでは全棟、耐震等級3×許容応力度計算を採用。さらにPLUS仕様では、制振ダンパーを採用しています。</p>
 				<figure class="pf-fig">
-					<svg viewBox="0 40 560 180" role="img" aria-label="耐震等級3は、建築基準法で想定する地震力の1.5倍に耐える強さ">
-						<g class="pf-fig__bar"><rect x="40" y="58" width="300" height="34" class="is-light"/><text x="48" y="80">建築基準法（等級1）</text><text x="350" y="80" class="pf-fig__val">1.0</text></g>
-						<g class="pf-fig__bar"><rect x="40" y="112" width="450" height="34"/><text x="48" y="134" class="is-inv">耐震等級3</text><text x="500" y="134" class="pf-fig__val">1.5倍</text></g>
+					<svg viewBox="0 40 560 180" overflow="visible" role="img" aria-label="耐震等級3は、建築基準法で想定する地震力の1.5倍に耐える強さ">
+						<g class="pf-fig__bar"><rect x="40" y="58" width="260" height="34" class="is-light"/><text x="48" y="80">建築基準法（等級1）</text><text x="310" y="80" class="pf-fig__val">1.0</text></g>
+						<g class="pf-fig__bar"><rect x="40" y="112" width="390" height="34"/><text x="48" y="134" class="is-inv">耐震等級3</text><text x="440" y="134" class="pf-fig__val">1.5倍</text></g>
 						<line x1="40" y1="170" x2="540" y2="170" class="pf-fig__axisline"/>
 						<text x="40" y="200" class="pf-fig__cap">想定する地震力に対して、倒壊・崩壊しない強さ</text>
 					</svg>
@@ -120,8 +120,8 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 				<figure class="pf-fig">
 					<svg viewBox="0 0 560 180" role="img" aria-label="UA値（小さいほど熱が逃げにくい）STANDARD 0.46以下、PLUS 0.34以下">
 						<text x="40" y="24" class="pf-fig__cap">UA値（W/m²K）… 短いほど、熱が逃げにくい家</text>
-						<g class="pf-fig__bar"><rect x="40" y="46" width="414" height="34" class="is-light"/><text x="48" y="68">STANDARD</text><text x="464" y="68" class="pf-fig__val">0.46</text></g>
-						<g class="pf-fig__bar"><rect x="40" y="100" width="306" height="34"/><text x="48" y="122" class="is-inv">PLUS</text><text x="356" y="122" class="pf-fig__val">0.34</text></g>
+						<g class="pf-fig__bar"><rect x="40" y="46" width="380" height="34" class="is-light"/><text x="48" y="68">STANDARD</text><text x="430" y="68" class="pf-fig__val">0.46</text></g>
+						<g class="pf-fig__bar"><rect x="40" y="100" width="281" height="34"/><text x="48" y="122" class="is-inv">PLUS</text><text x="331" y="122" class="pf-fig__val">0.34</text></g>
 						<line x1="40" y1="156" x2="540" y2="156" class="pf-fig__axisline"/>
 					</svg>
 				</figure>
@@ -144,8 +144,8 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 				<figure class="pf-fig">
 					<svg viewBox="0 0 560 180" role="img" aria-label="C値（小さいほどすき間が少ない）STANDARD 0.5以下、PLUS 0.2以下。全棟実測">
 						<text x="40" y="24" class="pf-fig__cap">C値（cm²/m²）… 床面積1m²あたりのすき間。短いほど高気密</text>
-						<g class="pf-fig__bar"><rect x="40" y="46" width="400" height="34" class="is-light"/><text x="48" y="68">STANDARD</text><text x="450" y="68" class="pf-fig__val">0.5</text></g>
-						<g class="pf-fig__bar"><rect x="40" y="100" width="160" height="34"/><text x="48" y="122" class="is-inv">PLUS</text><text x="210" y="122" class="pf-fig__val">0.2</text></g>
+						<g class="pf-fig__bar"><rect x="40" y="46" width="380" height="34" class="is-light"/><text x="48" y="68">STANDARD</text><text x="430" y="68" class="pf-fig__val">0.5</text></g>
+						<g class="pf-fig__bar"><rect x="40" y="100" width="152" height="34"/><text x="48" y="122" class="is-inv">PLUS</text><text x="202" y="122" class="pf-fig__val">0.2</text></g>
 						<line x1="40" y1="156" x2="540" y2="156" class="pf-fig__axisline"/>
 					</svg>
 				</figure>

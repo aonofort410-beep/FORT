@@ -4025,3 +4025,71 @@ body:not(.dz-page) .bh-pagehead__title { font-size: clamp(1.6rem, 3.2vw, 2.6rem)
   .bh-wlist__layout .bh-filter__count { justify-self: start; }
 }
 @media (min-width: 1024px) { .bh-wlist__layout > .bh-wgrid { align-items: start; } .bh-wlist__layout > .bh-wgrid .bh-wcard__fig { aspect-ratio: 4 / 3 !important; height: auto !important; } }
+
+/* ============================================================
+   56. シックなグレー × 高級感のある書体で統一
+   和文：しっぽり明朝 B1 ／ 欧文：Cormorant Garamond
+============================================================ */
+:root, body {
+  --font-sans: "Shippori Mincho B1", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --font-serif: "Shippori Mincho B1", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --font-hero-ja: "Shippori Mincho B1", "Yu Mincho", serif;
+  --font-en: "Cormorant Garamond", "Shippori Mincho B1", serif;
+  --font-en-display: "Cormorant Garamond", "Shippori Mincho B1", serif;
+}
+body, button, input, select, textarea { font-family: "Shippori Mincho B1", "Yu Mincho", "Hiragino Mincho ProN", serif; }
+body:not(.dz-page) :is(h1, h2, h3, .bh-head__title, .bh-pagehead__title, .bh-about__title, .pf-sec__catch, .pf-point__main, .bh-hx__catch, .st-head__title) { font-family: "Shippori Mincho B1", serif; font-weight: 500; }
+/* 英字（ラベル・メニュー・数字）は Cormorant Garamond に */
+:is(.bh-label, .header-nav__en, .header__visit, .menu-toggle__txt, .gmenu__gtitle, .gmenu__main a, .gmenu__group a > span, .gmenu__brand small, .gmenu__info dt, .gmenu__info dd, .gmenu__sns, .bh-hx__name, .bh-house__name, .bh-place__name, .pf-keys__list em, .pf-duo__num, .pf-band__txt span, .pf-band__txt b, .pf-sec__no, .bh-hero__news time, .bh-hero__scroll, .st-card__dept, .st-card__en, .bh-work__meta, .bh-filter__count, .bh-filter button sup, .bh-tabs button, .bh-breadcrumb) { font-family: "Cormorant Garamond", "Shippori Mincho B1", serif; }
+.pf-fig svg { font-family: "Shippori Mincho B1", serif; }
+.pf-fig__val, .pf-fig__scale text { font-family: "Cormorant Garamond", serif; }
+
+/* シックなグレーのベース */
+body:not(.dz-page) {
+  --bh-ink:   #1f2224;
+  --bh-paper: #d8d9d6;
+  --bh-mist:  #cbccc8;
+  --bh-gray:  #5f6467;
+  --bh-line:  rgba(31, 34, 36, .16);
+  background: #d8d9d6;
+  color: #2a2d2f;
+}
+body:not(.dz-page) main { background: #d8d9d6; }
+body:not(.dz-page) .header.is-scrolled { background: rgba(216,217,214,.78); }
+body:not(.dz-page) .bh-house, body:not(.dz-page) .bh-now__house, body:not(.dz-page) .pf-grade, body:not(.dz-page) .bh-event + .bh-event { background: #cbccc8; }
+body:not(.dz-page) .footer { background: #24272a; color: #c9cbc8; }
+body:not(.dz-page) .footer :is(a, p, li) { color: #d9dbd8; }
+body:not(.dz-page) .footer :is(small, span) { color: #8d9296; }
+body:not(.dz-page) .footer * { border-color: rgba(255,255,255,.1); }
+body:not(.dz-page) .footer__logo-img { filter: invert(1) brightness(1.6); }
+body:not(.dz-page) :is(.bh-label, .pf-keys__note) { color: #6b7073; }
+body:not(.dz-page) :is(.bh-house__fig, .st-card__fig, .bh-hx__fig) { background: #c1c3bf; }
+body:not(.dz-page) .pf-fig, body:not(.dz-page) .pf-sec .pf-fig, body:not(.dz-page) .pf-sec .pf-note, body:not(.dz-page) .pf-sec .pf-warranty li, body:not(.dz-page) .pf-keys__list a, body:not(.dz-page) .pf-sec .pf-duo > div:not(.is-plus) { background: #e4e5e2; }
+body:not(.dz-page) .pf-keys__list a:hover { background: #eeeeec; }
+/* 構造・性能の章の背景も、グレーの中でほんのり色づく程度に */
+#seismic     { --acc-soft: #d3d8db; }
+#insulation  { --acc-soft: #dcd6d1; }
+#airtight    { --acc-soft: #d2d9d5; }
+#ventilation { --acc-soft: #d1d9de; }
+#support     { --acc-soft: #dbd8cf; }
+body:not(.dz-page) .bh-input { background: #e6e7e4; }
+
+/* メニュー：グレーのパネル。英字と日本語を列でそろえる */
+.gmenu--side .gmenu__panel { background: #2a2d30; color: #e4e5e2; }
+.gmenu--side .gmenu__close span { background: #e4e5e2; }
+.gmenu__brand { color: #f0f0ee; }
+.gmenu__gtitle { color: #f0f0ee; font-size: 13px; }
+.gmenu__gtitle small, .gmenu__group a small, .gmenu__main a small, .gmenu__brand small, .gmenu__info dt { color: #8f9498; }
+.gmenu__info, .gmenu__co { color: #c9cbc8; }
+.gmenu__main { border-top-color: rgba(255,255,255,.12); }
+.gmenu__group a { display: grid; grid-template-columns: 9.5em 1fr; align-items: baseline; justify-content: start; gap: 12px; font-size: 16px; padding: 6px 0; }
+.gmenu__group a small { text-align: left; font-size: 11px; letter-spacing: .12em; }
+.gmenu__main a { display: grid; grid-template-columns: 7.5em 1fr; align-items: baseline; gap: 12px; font-size: clamp(20px, 2.4vw, 24px); }
+.gmenu__main a small { font-size: 11px; }
+@media (min-width: 560px) { .gmenu__groups { grid-template-columns: 1fr 1fr; column-gap: 40px; } .gmenu__group a { grid-template-columns: 8.5em 1fr; } }
+/* メニュー：英字の列幅を全項目で統一し、日本語は1行に */
+.gmenu--side .gmenu__groups { grid-template-columns: 1fr !important; gap: 30px; }
+.gmenu--side .gmenu__group a, .gmenu--side .gmenu__main a { grid-template-columns: 11em 1fr !important; }
+.gmenu--side .gmenu__main a { grid-template-columns: 7.3em 1fr !important; }
+.gmenu--side small { white-space: nowrap; }
+@media (max-width: 420px) { .gmenu--side .gmenu__group a { grid-template-columns: 10em 1fr !important; } }

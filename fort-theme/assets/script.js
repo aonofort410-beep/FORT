@@ -591,3 +591,20 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   update();
 })();
+
+/* EVENT 横スライド・モデルハウス全面スライド */
+(function(){
+  document.querySelectorAll('[data-ev-slider]').forEach(function(w){
+    var list=w.querySelector('.bh-event__list'), b=w.querySelectorAll('.bh-evslide__btn');
+    if(!list) return;
+    function upd(){ var max=list.scrollWidth-list.clientWidth-2; w.classList.toggle('is-static',max<=0); b[0].disabled=list.scrollLeft<=2; b[1].disabled=list.scrollLeft>=max; }
+    b.forEach(function(x){ x.addEventListener('click',function(){ var it=list.querySelector('.bh-ev:not([hidden])'); var step=it?it.getBoundingClientRect().width+parseFloat(getComputedStyle(list).columnGap||0):list.clientWidth; list.scrollBy({left:step*(+x.dataset.dir),behavior:'smooth'}); }); });
+    list.addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); document.addEventListener('click',function(){ setTimeout(upd,50); }); upd();
+  });
+  document.querySelectorAll('[data-mh-slides]').forEach(function(s){
+    var imgs=s.querySelectorAll('.bh-mhs__img'), i=0;
+    if(imgs.length<2){ if(imgs[0]) imgs[0].style.transition='transform 20s linear', imgs[0].classList.remove('is-on'), requestAnimationFrame(function(){ imgs[0].style.opacity=1; imgs[0].classList.add('is-on'); }); return; }
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    setInterval(function(){ imgs[i].classList.remove('is-on'); i=(i+1)%imgs.length; imgs[i].classList.add('is-on'); },6000);
+  });
+})();

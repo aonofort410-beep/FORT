@@ -28,7 +28,7 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 		<div class="bh-wrap pf-intro__grid">
 			<figure class="pf-intro__fig"><img src="<?php echo esc_url( $img . 'perf-interior.jpg' ); ?>" alt="大きな窓から光が入るFORTの住まいのリビング" width="938" height="1224" fetchpriority="high" decoding="async"></figure>
 			<div class="pf-intro__body">
-				<p>耐震性・断熱性・気密性・換気性能。<br>住まいの基本性能を高い基準で確保することで、快適で安心して暮らせる住まいをつくります。<br>FORTが大切にしている、見えない部分のこだわりです。</p>
+				<p>耐震性・断熱性・気密性・換気性能。<br>FORTは、どの家にも守る「FORTの基準」を持ったうえで、<br>それ以上をどこまで求めるかは、ご家族と話しながら決めていきます。<br>最高値をすべての家に押しつけるのではなく、<br>十人十色の想いに合わせて、性能と構造を選ぶ家づくりです。</p>
 				<nav class="pf-toc" aria-label="このページの内容">
 					<p class="bh-label">CONTENTS</p>
 					<ol>
@@ -38,6 +38,22 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 					</ol>
 				</nav>
 			</div>
+		</div>
+	</section>
+
+	<!-- 考え方：基準＋選べる -->
+	<section class="pf-policy" aria-labelledby="pf-policy-title">
+		<div class="bh-wrap">
+			<header class="bh-head">
+				<p class="bh-label">OUR POLICY</p>
+				<h2 class="bh-head__title" id="pf-policy-title"><span class="bh-nb">性能は、</span><span class="bh-nb">想いに合わせて選ぶもの。</span></h2>
+				<p class="bh-eq__lead">冬の暖かさを何より大切にしたいご家族もいれば、地震への備えを最優先にしたいご家族もいます。<br>FORTは最高の数値もご提案できますが、まずはこだわりたい部分を伺い、その想いに合う性能と構造を一緒に選びます。</p>
+			</header>
+			<ol class="pf-policy__list">
+				<li><span class="pf-policy__no">01</span><p class="pf-policy__en">FORT STANDARD</p><h3>どの家にも、FORTの基準。</h3><p>耐震等級3（許容応力度計算）・断熱等級6・C値0.5以下（全棟実測）・第一種換気。選び方が違っても、ここは下げません。</p></li>
+				<li><span class="pf-policy__no">02</span><p class="pf-policy__en">LISTEN</p><h3>こだわりたい部分を伺う。</h3><p>暖かさ、静けさ、地震への備え、光熱費、ご予算。暮らしの中で何を大切にしたいかを、最初にじっくり伺います。</p></li>
+				<li><span class="pf-policy__no">03</span><p class="pf-policy__en">CHOOSE</p><h3>想いに合わせて、選ぶ。</h3><p>STANDARD と、さらに高めた PLUS。数値と費用のバランスを見ながら、そのご家族に合った性能と構造をご提案します。</p></li>
+			</ol>
 		</div>
 	</section>
 
@@ -51,7 +67,7 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 				<li><a href="#ventilation"><span class="pf-keys__label">換気</span><b>第<em>1</em>種</b><small>24時間換気（熱交換）</small></a></li>
 				<li><a href="#support"><span class="pf-keys__label">保証</span><b>最長<em>60</em>年</b><small>躯体・防水（初期20年）</small></a></li>
 			</ul>
-			<p class="pf-keys__note">PRO・DESIGNシリーズの STANDARD／PLUS 仕様の数値です。</p>
+			<p class="pf-keys__note">PRO・DESIGNシリーズの FORT基準（STANDARD）と、選べる最高値（PLUS）です。</p>
 		</div>
 	</section>
 
@@ -60,8 +76,8 @@ $contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 
 		<div class="bh-wrap">
 			<header class="bh-head">
 				<p class="bh-label">GRADE</p>
-				<h2 class="bh-head__title"><span class="bh-nb">性能を選ぶのではない。</span><span class="bh-nb">暮らし方を選ぶ。</span></h2>
-				<p class="bh-eq__lead">2つの性能グレードをご用意し、ライフスタイルやご予算に合わせてお選びいただけます。</p>
+				<h2 class="bh-head__title"><span class="bh-nb">基準を守って、</span><span class="bh-nb">その先は想いで選ぶ。</span></h2>
+				<p class="bh-eq__lead">STANDARD が FORT の基準、PLUS がご提案できる最高値です。どこにこだわりたいかを伺いながら、ライフスタイルやご予算に合わせてお選びいただけます。</p>
 			</header>
 			<div class="bh-cmp__scroll" tabindex="0" role="region" aria-label="性能グレードの比較（横にスクロールできます）">
 				<table class="pf-table">

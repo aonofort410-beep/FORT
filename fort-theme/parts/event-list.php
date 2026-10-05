@@ -41,6 +41,7 @@ $names   = array( 'okayama' => '岡山', 'fukuyama' => '福山' );
 		<?php endif; ?>
 
 		<?php if ( $events ) : ?>
+		<div class="bh-evslide" data-ev-slider>
 		<ul class="bh-event__list">
 			<?php foreach ( $events as $p ) :
 				$s     = fort_event_state( $p->ID );
@@ -64,6 +65,8 @@ $names   = array( 'okayama' => '岡山', 'fukuyama' => '福山' );
 			</li>
 			<?php endforeach; ?>
 		</ul>
+		<div class="bh-evslide__nav"><button type="button" class="bh-evslide__btn" data-dir="-1" aria-label="前へ">←</button><button type="button" class="bh-evslide__btn" data-dir="1" aria-label="次へ">→</button></div>
+		</div>
 		<p class="bh-event__none" hidden data-region-empty>この地域で受付中のイベントは、いまはありません。スタジオでの見学・相談はご希望の日時で予約できます。</p>
 		<?php else : ?>
 		<p class="bh-event__none"><?php echo 'permanent' === $kind ? '常設の相談会・モデルハウスは、準備ができしだいここに掲載します。' : 'いま受付中の見学会はありません。スタジオでの見学・相談は、ご希望の日時で予約できます。'; ?></p>

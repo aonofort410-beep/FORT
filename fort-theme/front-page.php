@@ -80,7 +80,7 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 
 	<!-- 03 EVENT（ABOUTのすぐ後）：岡山 / 福山。期間限定と常設を分けて表示 -->
 	<?php get_template_part( 'parts/event-list', null, array( 'limit' => 6, 'heading' => true ) ); ?>
-	<?php get_template_part( 'parts/model-houses' ); ?>
+	<?php get_template_part( 'parts/model-houses', null, array( 'slide' => true ) ); ?>
 
 	<?php
 	/* 03 SELECTED WORKS：写真のある施工事例だけを誌面レイアウトで */
@@ -154,28 +154,8 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 		</div>
 	</section>
 
-	<?php
-	/* 06 JOURNAL：記事があるときだけ */
-	$journal = post_type_exists( 'journal' ) ? get_posts( array( 'post_type' => 'journal', 'posts_per_page' => 3 ) ) : array();
-	if ( $journal ) : ?>
-	<section class="bh-journal" id="journal">
-		<div class="bh-wrap">
-			<header class="bh-head">
-				<p class="bh-label">JOURNAL</p>
-				<a class="bh-more" href="<?php echo esc_url( fort_url( 'journal' ) ); ?>">すべての記事</a>
-			</header>
-			<ul class="bh-journal__list">
-				<?php foreach ( $journal as $p ) : $terms = get_the_terms( $p, 'journal_cat' ); ?>
-				<li><a class="bh-journal__item" href="<?php echo esc_url( get_permalink( $p ) ); ?>">
-					<?php if ( has_post_thumbnail( $p ) ) : ?><figure class="bh-journal__fig"><?php echo get_the_post_thumbnail( $p, 'fort-card', array( 'loading' => 'lazy', 'decoding' => 'async', 'alt' => '' ) ); ?></figure><?php endif; ?>
-					<p class="bh-journal__meta"><?php echo $terms && ! is_wp_error( $terms ) ? esc_html( $terms[0]->name ) . ' — ' : ''; ?><time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d', $p ) ); ?>"><?php echo esc_html( get_the_date( 'Y.m.d', $p ) ); ?></time></p>
-					<h3 class="bh-journal__title"><?php echo esc_html( get_the_title( $p ) ); ?></h3>
-				</a></li>
-				<?php endforeach; ?>
-			</ul>
-		</div>
-	</section>
-	<?php endif; ?>
+	<?php /* JOURNAL はトップには出さず、メニューから */ ?>
+
 
 	<?php
 	/* 07 MOVIE：YouTube はクリックするまで読み込まない */

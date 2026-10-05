@@ -1,229 +1,154 @@
 <?php
 /*
  * Template Name: 構造・性能
- * PERFORMANCE STANDARD（FORTの資料「PERFORMANCE STANDARD」01〜05 にもとづく）
- *   グレード比較 → 01 耐震 → 02 断熱 → 03 気密 → 04 換気 → 05 保証・アフターサポート → 来場予約
- * ・数値は inc/house.php の fort_performance_grades() と、このファイル内の文言のみ
+ * PERFORMANCE：性能も、暮らしに合わせて設計する。
+ *   OUR POLICY → 考え方と最高基準の表 → 01 構造 → 02 制振 → 03 断熱 → 04 気密 → 05 窓 → 06 換気 → RANGE → 07 保証 → 来場予約
+ * ・文言と数値は FORT 提供の原稿（2026.10）どおり
  */
 get_header();
-$img      = get_template_directory_uri() . '/assets/images/';
-/** 各章の頭に入る大きな写真（実際のFORTの住まい） */
+$img = get_template_directory_uri() . '/assets/images/';
+/** 各章の頭に入る大きな写真 */
 $band = function ( $no, $en, $title, $photo, $pos = '50% 50%' ) use ( $img ) { ?>
 	<div class="pf-band" aria-hidden="true">
 		<img src="<?php echo esc_url( $img . $photo ); ?>" alt="" loading="lazy" decoding="async" style="object-position:<?php echo esc_attr( $pos ); ?>">
 		<p class="pf-band__txt"><span><?php echo esc_html( $no ); ?></span><b><?php echo esc_html( $en ); ?></b><?php echo esc_html( $title ); ?></p>
 	</div>
 <?php };
-$contents = array( 'seismic' => '耐震性能', 'insulation' => '断熱性能', 'airtight' => '気密性能', 'ventilation' => '換気性能', 'support' => '保証・アフターサポート' );
+/** 写真を2〜3枚並べる帯 */
+$strip = function ( $photos ) use ( $img ) { ?>
+	<div class="pf-strip pf-strip--<?php echo count( $photos ); ?>" aria-hidden="true"><?php foreach ( $photos as $ph ) : ?><figure><img src="<?php echo esc_url( $img . $ph ); ?>" alt="" loading="lazy" decoding="async"></figure><?php endforeach; ?></div>
+<?php };
+/** 章 */
+$chapter = function ( $id, $no, $en, $ja, $photo, $pos, $title, $body, $hl, $side, $alt = false ) use ( $band, $img ) { ?>
+	<section class="pf-ch<?php echo $alt ? ' pf-ch--alt' : ''; ?>" id="<?php echo esc_attr( $id ); ?>">
+		<?php $band( $no, $en, $ja, $photo, $pos ); ?>
+		<div class="bh-wrap pf-ch__grid">
+			<div class="pf-ch__text">
+				<p class="pf-ch__no"><?php echo esc_html( $no . ' / ' . $en ); ?></p>
+				<h2 class="pf-ch__title"><?php echo $title; ?></h2>
+				<div class="pf-ch__body"><?php echo $body; ?></div>
+				<?php if ( $hl ) : ?><div class="pf-hl"><?php foreach ( $hl as $h ) : ?><div class="pf-hl__item"><p class="pf-hl__label"><?php echo esc_html( $h[0] ); ?></p><p class="pf-hl__val"><?php echo $h[1]; ?></p></div><?php endforeach; ?></div><?php endif; ?>
+			</div>
+			<figure class="pf-ch__fig"><img src="<?php echo esc_url( $img . $side ); ?>" alt="" loading="lazy" decoding="async"></figure>
+		</div>
+	</section>
+<?php };
+$contents = array( 'structure' => '構造・耐震', 'damping' => '制振', 'insulation' => '断熱', 'airtight' => '気密', 'window' => '窓', 'ventilation' => '換気', 'support' => '保証・アフターサポート' );
+$table = array(
+	array( '耐震', '建物・間取り・予算に合わせて設計', '耐震等級3まで対応', 'structure' ),
+	array( '構造計算', '必要に応じて選択', '許容応力度計算 対応', 'structure' ),
+	array( '制振', '求める安心に合わせて選択', 'evoltz 対応', 'damping' ),
+	array( '断熱', 'UA値0.46以下を基準に設計', 'UA値0.34以下まで対応', 'insulation' ),
+	array( '気密', '<b>C値0.5以下</b>を基準', '現在の実測平均 C値0.2以下', 'airtight' ),
+	array( '窓', '方角・開口・デザインに合わせて選定', 'APW430等まで対応', 'window' ),
+	array( '換気', '暮らし・空調計画に合わせて選択', '第一種熱交換換気まで対応', 'ventilation' ),
+);
+$p = function ( $t ) { return '<p>' . implode( '</p><p>', array_map( function ( $x ) { return str_replace( "\n", '<br>', $x ); }, $t ) ) . '</p>'; };
 ?>
-	<header class="bh-pagehead">
-		<div class="bh-wrap">
-			<?php fort_breadcrumb( array( array( 'HOUSE', fort_url( 'house' ) ), array( 'PERFORMANCE', '' ) ) ); ?>
-			<p class="bh-label">PERFORMANCE STANDARD</p>
-			<h1 class="bh-pagehead__title"><span class="bh-nb">見えない性能が、</span><span class="bh-nb">これからの暮らしを支える。</span></h1>
+	<header class="pf-hero">
+		<img class="pf-hero__img" src="<?php echo esc_url( $img . 'perf-interior.jpg' ); ?>" alt="" fetchpriority="high" decoding="async">
+		<div class="pf-hero__txt">
+			<p class="pf-hero__en">PERFORMANCE</p>
+			<h1 class="pf-hero__title"><span class="bh-nb">性能も、</span><span class="bh-nb">暮らしに合わせて</span><span class="bh-nb">設計する。</span></h1>
 		</div>
 	</header>
+	<div class="bh-wrap pf-crumb"><?php fort_breadcrumb( array( array( 'HOUSE', fort_url( 'house' ) ), array( 'PERFORMANCE', '' ) ) ); ?></div>
 
-	<section class="pf-intro">
-		<div class="bh-wrap pf-intro__grid">
-			<figure class="pf-intro__fig"><img src="<?php echo esc_url( $img . 'perf-interior.jpg' ); ?>" alt="大きな窓から光が入るFORTの住まいのリビング" width="938" height="1224" fetchpriority="high" decoding="async"></figure>
-			<div class="pf-intro__body">
-				<p>耐震性・断熱性・気密性・換気性能。<br>FORTは、どの家にも守る「FORTの基準」を持ったうえで、<br>それ以上をどこまで求めるかは、ご家族と話しながら決めていきます。<br>最高値をすべての家に押しつけるのではなく、<br>十人十色の想いに合わせて、性能と構造を選ぶ家づくりです。</p>
-				<nav class="pf-toc" aria-label="このページの内容">
-					<p class="bh-label">CONTENTS</p>
-					<ol>
-						<?php $i = 0; foreach ( $contents as $id => $name ) : $i++; ?>
-						<li><a href="#<?php echo esc_attr( $id ); ?>"><span><?php echo esc_html( sprintf( '%02d', $i ) ); ?></span><?php echo esc_html( $name ); ?></a></li>
-						<?php endforeach; ?>
-					</ol>
-				</nav>
-			</div>
-		</div>
-	</section>
-
-	<!-- 考え方：基準＋選べる -->
-	<section class="pf-policy" aria-labelledby="pf-policy-title">
-		<div class="bh-wrap">
-			<header class="bh-head">
+	<!-- OUR POLICY -->
+	<section class="pf-pol">
+		<div class="bh-wrap pf-pol__grid">
+			<div class="pf-pol__text">
 				<p class="bh-label">OUR POLICY</p>
-				<h2 class="bh-head__title" id="pf-policy-title"><span class="bh-nb">性能は、</span><span class="bh-nb">想いに合わせて選ぶもの。</span></h2>
-				<p class="bh-eq__lead">冬の暖かさを何より大切にしたいご家族もいれば、地震への備えを最優先にしたいご家族もいます。<br>FORTは最高の数値もご提案できますが、まずはこだわりたい部分を伺い、その想いに合う性能と構造を一緒に選びます。</p>
-			</header>
-			<ol class="pf-policy__list">
-				<li><span class="pf-policy__no">01</span><p class="pf-policy__en">FORT STANDARD</p><h3>どの家にも、FORTの基準。</h3><p>耐震等級3（許容応力度計算）・断熱等級6・C値0.5以下（全棟実測）・第一種換気。選び方が違っても、ここは下げません。</p></li>
-				<li><span class="pf-policy__no">02</span><p class="pf-policy__en">LISTEN</p><h3>こだわりたい部分を伺う。</h3><p>暖かさ、静けさ、地震への備え、光熱費、ご予算。暮らしの中で何を大切にしたいかを、最初にじっくり伺います。</p></li>
-				<li><span class="pf-policy__no">03</span><p class="pf-policy__en">CHOOSE</p><h3>想いに合わせて、選ぶ。</h3><p>STANDARD と、さらに高めた PLUS。数値と費用のバランスを見ながら、そのご家族に合った性能と構造をご提案します。</p></li>
-			</ol>
+				<p class="pf-pol__lead">性能は、高ければ高いほどいい。<br>FORTは、そうは考えていません。</p>
+				<p>どこに建てるのか。<br>どんな間取りにするのか。<br>どれくらいの快適性や安心を求めるのか。<br>そして、家づくりにどこまで予算をかけるのか。</p>
+				<p>その答えは、家族によって違います。</p>
+				<p>だからFORTでは、ひとつの性能仕様をすべての家に当てはめるのではなく、<strong>暮らしと予算に合わせて、性能そのものを設計します。</strong></p>
+				<p>そのうえで、FORTがどこまで性能を高められるのか。<br>私たちは、その「最高基準」も数字で明確にしています。</p>
+			</div>
+			<div class="pf-pol__figs">
+				<figure><img src="<?php echo esc_url( $img . 'hero-3.jpg' ); ?>" alt="" loading="lazy" decoding="async"></figure>
+				<figure><img src="<?php echo esc_url( $img . 'house-design.jpg' ); ?>" alt="" loading="lazy" decoding="async"></figure>
+			</div>
 		</div>
 	</section>
 
-	<!-- 数字でひと目で -->
-	<section class="pf-keys" aria-label="FORTの性能をひと目で">
-		<div class="bh-wrap">
-			<ul class="pf-keys__list">
-				<li><a href="#seismic"><span class="pf-keys__label">耐震</span><b>等級<em>3</em></b><small>全棟 許容応力度計算</small></a></li>
-				<li><a href="#insulation"><span class="pf-keys__label">断熱</span><b>等級<em>6</em></b><small>UA値 0.46以下（PLUS 0.34以下）</small></a></li>
-				<li><a href="#airtight"><span class="pf-keys__label">気密</span><b>C値<em>0.5</em><i>以下</i></b><small>全棟実測（PLUS 0.2以下）</small></a></li>
-				<li><a href="#ventilation"><span class="pf-keys__label">換気</span><b>第<em>1</em>種</b><small>24時間換気（熱交換）</small></a></li>
-				<li><a href="#support"><span class="pf-keys__label">保証</span><b>最長<em>60</em>年</b><small>躯体・防水（初期20年）</small></a></li>
-			</ul>
-			<p class="pf-keys__note">PRO・DESIGNシリーズの FORT基準（STANDARD）と、選べる最高値（PLUS）です。</p>
-		</div>
-	</section>
-
-	<!-- 性能グレード -->
-	<section class="pf-grade" id="grade">
+	<!-- PERFORMANCE 表 -->
+	<section class="pf-std" id="grade">
 		<div class="bh-wrap">
 			<header class="bh-head">
-				<p class="bh-label">GRADE</p>
-				<h2 class="bh-head__title"><span class="bh-nb">基準を守って、</span><span class="bh-nb">その先は想いで選ぶ。</span></h2>
-				<p class="bh-eq__lead">STANDARD が FORT の基準、PLUS がご提案できる最高値です。どこにこだわりたいかを伺いながら、ライフスタイルやご予算に合わせてお選びいただけます。</p>
+				<p class="bh-label">PERFORMANCE</p>
+				<h2 class="bh-head__title"><span class="bh-nb">基準を持って、</span><span class="bh-nb">その先は想いで選ぶ。</span></h2>
+				<p class="bh-eq__lead">すべてを最高性能にすることが、すべての家族にとっての正解ではありません。<br>FORTでは、基本となる性能を持ちながら、構造・断熱・窓・換気・制振まで、一邸ごとに必要な性能を選択できます。</p>
 			</header>
-			<div class="bh-cmp__scroll" tabindex="0" role="region" aria-label="性能グレードの比較（横にスクロールできます）">
-				<table class="pf-table">
-					<thead><tr><th scope="col"><span class="sr-only">項目</span></th>
-						<th scope="col">STANDARD<small>基本性能をしっかり確保した、安心のスタンダードグレード</small></th>
-						<th scope="col" class="is-plus">PLUS<small>さらに快適・安心を追求した、上位グレード</small></th></tr></thead>
-					<tbody>
-						<?php foreach ( fort_performance_grades() as $r ) : ?>
-						<tr><th scope="row"><?php echo esc_html( $r[0] ); ?></th><td><?php echo fort_br( $r[1] ); ?></td><td class="is-plus"><?php echo fort_br( $r[2] ); ?></td></tr>
-						<?php endforeach; ?>
-					</tbody>
-				</table>
+			<div class="pf-std__table" role="table" aria-label="FORTの考え方と最高基準・実績">
+				<div class="pf-std__row pf-std__row--head" role="row"><span role="columnheader"></span><span role="columnheader">FORTの考え方</span><span role="columnheader">最高基準・実績</span></div>
+				<?php foreach ( $table as $r ) : ?>
+				<a class="pf-std__row" role="row" href="#<?php echo esc_attr( $r[3] ); ?>"><b role="rowheader"><?php echo esc_html( $r[0] ); ?></b><span role="cell" data-h="FORTの考え方"><?php echo wp_kses( $r[1], array( 'b' => array() ) ); ?></span><strong role="cell" data-h="最高基準・実績"><?php echo esc_html( $r[2] ); ?></strong></a>
+				<?php endforeach; ?>
 			</div>
-			<p class="bh-eq__note">FORT STYLE（規格住宅）の仕様は、<a href="<?php echo esc_url( fort_url( 'house' ) ); ?>#equipment">設備グレード比較表</a>をご覧ください。プランや仕様により採用内容が異なる場合があります。</p>
+			<nav class="pf-toc2" aria-label="このページの内容"><?php $i = 0; foreach ( $contents as $id => $name ) : $i++; ?><a href="#<?php echo esc_attr( $id ); ?>"><span><?php echo esc_html( sprintf( '%02d', $i ) ); ?></span><?php echo esc_html( $name ); ?></a><?php endforeach; ?></nav>
 		</div>
 	</section>
 
-	<!-- 01 耐震 -->
-	<section class="pf-sec" id="seismic">
-		<?php $band( '01', 'SEISMIC', '耐震性能', 'hero-2.jpg', '50% 40%' ); ?>
-		<div class="bh-wrap pf-sec__grid">
-			<header class="pf-sec__head"><span class="pf-sec__no">01</span><h2>耐震性能</h2><p class="pf-sec__catch">大切な家族を守る、確かな強さを。</p></header>
-			<div class="pf-sec__body">
-				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">全棟、耐震等級3。</p><p class="pf-point__sub">一棟ごとに許容応力度計算で、構造の安全性を確かめます。</p></div>
-				<p>FORTでは、デザインだけではなく、万が一の地震に備えた構造の強さも大切にしています。PRO・DESIGNシリーズでは全棟、耐震等級3×許容応力度計算を採用。さらにPLUS仕様では、制振ダンパーを採用しています。</p>
-				<figure class="pf-fig">
-					<svg viewBox="0 40 560 180" overflow="visible" role="img" aria-label="耐震等級3は、建築基準法で想定する地震力の1.5倍に耐える強さ">
-						<g class="pf-fig__bar"><rect x="40" y="58" width="260" height="34" class="is-light"/><text x="48" y="80">建築基準法（等級1）</text><text x="310" y="80" class="pf-fig__val">1.0</text></g>
-						<g class="pf-fig__bar"><rect x="40" y="112" width="390" height="34"/><text x="48" y="134" class="is-inv">耐震等級3</text><text x="440" y="134" class="pf-fig__val">1.5倍</text></g>
-						<line x1="40" y1="170" x2="540" y2="170" class="pf-fig__axisline"/>
-						<text x="40" y="200" class="pf-fig__cap">想定する地震力に対して、倒壊・崩壊しない強さ</text>
-					</svg>
-				</figure>
-				<dl class="pf-items">
-					<div><dt>耐震等級3<small>住宅性能の最高等級</small></dt><dd>想定される地震力の1.5倍に対して、倒壊・崩壊しない程度の強さ。</dd></div>
-					<div><dt>許容応力度計算<small>全棟実施</small></dt><dd>一棟ごとに構造の安全性を計算し、見えない安心まで確認します。</dd></div>
-					<div><dt>制振ダンパー<small>PLUS仕様に採用</small></dt><dd>地震の揺れを吸収し、建物への負担を軽減します。</dd></div>
-				</dl>
+	<?php
+	$chapter( 'structure', '01', 'STRUCTURE', '構造・耐震', 'hero-2.jpg', '50% 40%',
+		'<span class="bh-nb">地震への備えも、</span><span class="bh-nb">一つの答えに決めない。</span>',
+		$p( array( '家の大きさや形、間取り、建築地、そして求める安心。', '条件が違えば、構造に対する考え方も変わります。', 'FORTでは、耐震性能についても一つの仕様に固定するのではなく、一邸ごとの条件に合わせて構造計画をご提案します。', 'より高い耐震性能を求める場合には<strong>耐震等級3</strong>まで対応。さらに、構造をより詳細に検証する<strong>許容応力度計算</strong>も選択できます。' ) ),
+		array( array( '最高基準', '耐震等級3<small>＋ 許容応力度計算</small>' ) ), 'pro/persp-a.jpg' );
+	$chapter( 'damping', '02', 'DAMPING', '制振', 'hero-5.jpg', '50% 50%',
+		'<span class="bh-nb">強くするだけでなく、</span><span class="bh-nb">揺れを抑える。</span>',
+		$p( array( '耐震は、建物そのものの強さを考えること。', 'そしてもう一つ、地震の揺れによって建物が受ける負担を抑えるという考え方があります。', 'FORTでは、希望に応じて木造住宅用制振装置<strong>evoltz［エヴォルツ］</strong>にも対応。', '耐震性能に制振という考え方を加えることで、繰り返す地震への備えをさらに高めることができます。' ) ),
+		array( array( 'OPTION', '制振ダンパー<small>evoltz 対応</small>' ) ), 'house-pro.jpg', true );
+	$strip( array( 'hero-1.jpg', 'pro/persp-c.jpg', 'studio-fukuyama.jpg' ) );
+	$chapter( 'insulation', '03', 'INSULATION', '断熱', 'hero-3.jpg', '50% 55%',
+		'UA値 0.46 <span class="pf-arrow">→</span> 0.34',
+		$p( array( '断熱性能も、一つの数値だけをすべての家に求めることはしません。', '建築地、間取り、窓の大きさ、日射、空調計画。そして、どこまで室内環境に快適性を求めるのか。', 'それらを考えながら、その家に必要な断熱性能を設計します。', '数字だけを追うのではなく、その性能によって、暮らしがどう変わるのかまで考えます。' ) ),
+		array( array( 'FORT BASE', 'UA値 0.46<small>以下</small>' ), array( 'HIGH PERFORMANCE', 'UA値 0.34<small>以下まで対応</small>' ) ), 'pro/persp-b.jpg' );
+	$chapter( 'airtight', '04', 'AIRTIGHTNESS', '気密', 'hero-1.jpg', '50% 50%',
+		'<span class="bh-nb">C値0.5以下。</span><span class="bh-nb">そして、実測平均0.2以下。</span>',
+		$p( array( '気密性能は、カタログ上の性能ではありません。', 'どれだけ丁寧に施工されたかによって変わる、住宅そのものの施工品質です。', 'FORTでは<strong>C値0.5以下</strong>を気密性能の基準としています。そして現在の施工実績では、<strong>実測平均 C値0.2以下</strong>を確保しています。', '設計上の数値だけではなく、実際の建物で測定する。数字で施工品質を確認することも、FORTの性能への考え方です。' ) ),
+		array( array( 'FORT BASE', 'C値 0.5<small>以下</small>' ), array( '実測平均', 'C値 0.2<small>以下</small>' ) ), 'studio-okayama.jpg', true );
+	$strip( array( 'mh-fukuyama-shimokamo.jpg', 'hero-4.jpg' ) );
+	$chapter( 'window', '05', 'WINDOW', '窓', 'hero-4.jpg', '50% 50%',
+		'<span class="bh-nb">景色も、デザインも、</span><span class="bh-nb">断熱も。</span>',
+		$p( array( '窓は、断熱性能だけで決めるものではありません。', 'どこから光を入れるのか。どんな景色を切り取るのか。どれくらい大きな窓をつくりたいのか。', 'FORTでは、断熱性能とデザインの両方を考えながら、一邸ごとに窓を選定します。', '性能のために窓を小さくするのではなく、デザインと性能のバランスを設計します。' ) ),
+		array( array( 'PERFORMANCE RANGE', 'APW330等 <span class="pf-arrow">→</span> APW430等<small>まで対応</small>' ) ), 'pro/persp-d.jpg' );
+	$chapter( 'ventilation', '06', 'VENTILATION', '換気', 'hero-5.jpg', '50% 40%',
+		'<span class="bh-nb">換気も、</span><span class="bh-nb">暮らしに合わせて選ぶ。</span>',
+		$p( array( '換気方式についても、一つの設備をすべての住宅に固定するのではなく、', '断熱性能、気密性能、空調計画、暮らし方、ご予算を踏まえてご提案します。', 'より高い省エネルギー性や室内環境を求める場合には、<strong>第一種熱交換換気</strong>にも対応します。' ) ),
+		array( array( '最高基準', '第一種<small>熱交換換気</small>' ) ), 'pro/persp-e.jpg', true );
+	?>
+
+	<!-- FORT PERFORMANCE RANGE -->
+	<section class="pf-range">
+		<img class="pf-range__bg" src="<?php echo esc_url( $img . 'hero-2.jpg' ); ?>" alt="" loading="lazy" decoding="async">
+		<div class="bh-wrap pf-range__in">
+			<p class="pf-range__label">FORT PERFORMANCE RANGE</p>
+			<h2 class="pf-range__title">どこまで求めるかも、家づくり。</h2>
+			<ul class="pf-range__list">
+				<li>耐震等級3</li><li>許容応力度計算</li><li>制振ダンパー evoltz</li><li>UA値 0.34以下</li><li>実測平均 C値 0.2以下</li><li>APW430等</li><li>第一種熱交換換気</li>
+			</ul>
+			<div class="pf-range__text">
+				<p>FORTには、ここまで性能を高められる選択肢があります。<br>でも、それをすべての家に必要だとは考えていません。</p>
+				<p>家づくりに使える予算には限りがあります。</p>
+				<p>性能にかける予算。<br>デザインにかける予算。<br>家具や外構にかける予算。<br>そして、建てた後の暮らしに残す予算。</p>
+				<p>その全部を見ながら、<br>その家族にとって本当に必要な性能を一緒に考える。</p>
 			</div>
 		</div>
 	</section>
-
-	<!-- 02 断熱 -->
-	<section class="pf-sec pf-sec--alt" id="insulation">
-		<?php $band( '02', 'INSULATION', '断熱性能', 'hero-3.jpg', '50% 55%' ); ?>
-		<div class="bh-wrap pf-sec__grid">
-			<header class="pf-sec__head"><span class="pf-sec__no">02</span><h2>断熱性能</h2><p class="pf-sec__catch">夏は涼しく、冬は暖かい。快適が続く住まいを。</p></header>
-			<div class="pf-sec__body">
-				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">断熱等級6を標準に。</p><p class="pf-point__sub">UA値 0.46以下。PLUS仕様なら 0.34以下まで高めます。</p></div>
-				<p>FORTは、外の暑さや寒さの影響を受けにくい、高い断熱性能を備えています。一年を通して、快適に過ごしやすい住まいを目指します。</p>
-				<dl class="pf-items">
-					<div><dt>断熱等級6<small>高い断熱性能</small></dt><dd>夏の暑さ・冬の寒さを室内に伝えにくく、快適に過ごしやすい性能です。</dd></div>
-					<div><dt>UA値<small>熱の逃げにくさを表す数値</small></dt><dd>数値が小さいほど断熱性能が高くなります。STANDARD 0.46以下／PLUS 0.34以下。</dd></div>
-					<div><dt>窓の断熱性能<small>窓からの熱の出入りを抑える</small></dt><dd>窓の性能を高めることで、より快適な室内環境につながります。STANDARD APW330（樹脂サッシ／ペアガラス）／PLUS APW430（樹脂サッシ／トリプルガラス）。</dd></div>
-				</dl>
-				<figure class="pf-fig">
-					<svg viewBox="0 0 560 180" role="img" aria-label="UA値（小さいほど熱が逃げにくい）STANDARD 0.46以下、PLUS 0.34以下">
-						<text x="40" y="24" class="pf-fig__cap">UA値（W/m²K）… 短いほど、熱が逃げにくい家</text>
-						<g class="pf-fig__bar"><rect x="40" y="46" width="380" height="34" class="is-light"/><text x="48" y="68">STANDARD</text><text x="430" y="68" class="pf-fig__val">0.46</text></g>
-						<g class="pf-fig__bar"><rect x="40" y="100" width="281" height="34"/><text x="48" y="122" class="is-inv">PLUS</text><text x="331" y="122" class="pf-fig__val">0.34</text></g>
-						<line x1="40" y1="156" x2="540" y2="156" class="pf-fig__axisline"/>
-					</svg>
-				</figure>
-				<div class="pf-duo">
-					<div><p class="pf-duo__label">STANDARD</p><p class="pf-duo__num">UA 0.46<small>以下</small></p><p>高い断熱性能を標準に。</p></div>
-					<div class="is-plus"><p class="pf-duo__label">PLUS</p><p class="pf-duo__num">UA 0.34<small>以下</small></p><p>さらに熱を逃がしにくい、ワンランク上の断熱仕様。</p></div>
-				</div>
-			</div>
+	<section class="pf-close">
+		<div class="bh-wrap">
+			<p class="pf-close__title"><span class="bh-nb">性能を選ぶのではなく、</span><span class="bh-nb">性能まで設計する。</span></p>
+			<p class="pf-close__sub">それが、FORTの家づくりです。</p>
 		</div>
+		<?php $strip( array( 'house-design.jpg', 'hero-1.jpg', 'pro/persp-f.jpg' ) ); ?>
 	</section>
 
-	<!-- 03 気密 -->
-	<section class="pf-sec" id="airtight">
-		<?php $band( '03', 'AIRTIGHT', '気密性能', 'hero-1.jpg', '50% 50%' ); ?>
-		<div class="bh-wrap pf-sec__grid">
-			<header class="pf-sec__head"><span class="pf-sec__no">03</span><h2>気密性能</h2><p class="pf-sec__catch">家のすき間まで、性能として考える。</p></header>
-			<div class="pf-sec__body">
-				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">全棟で、気密を実測。</p><p class="pf-point__sub">C値 0.5以下。PLUS仕様なら 0.2以下。完成した住まいで、数値を確かめます。</p></div>
-				<p>断熱材を厚くするだけでは、快適な家にはなりません。わずかなすき間から外気が入り、室内の空気が逃げてしまいます。FORTでは、完成した住宅の気密性能をC値で確認。設計上の性能だけでなく、実際に建てた家の施工精度まで数値で確かめます。</p>
-				<figure class="pf-fig">
-					<svg viewBox="0 0 560 180" role="img" aria-label="C値（小さいほどすき間が少ない）STANDARD 0.5以下、PLUS 0.2以下。全棟実測">
-						<text x="40" y="24" class="pf-fig__cap">C値（cm²/m²）… 床面積1m²あたりのすき間。短いほど高気密</text>
-						<g class="pf-fig__bar"><rect x="40" y="46" width="380" height="34" class="is-light"/><text x="48" y="68">STANDARD</text><text x="430" y="68" class="pf-fig__val">0.5</text></g>
-						<g class="pf-fig__bar"><rect x="40" y="100" width="152" height="34"/><text x="48" y="122" class="is-inv">PLUS</text><text x="202" y="122" class="pf-fig__val">0.2</text></g>
-						<line x1="40" y1="156" x2="540" y2="156" class="pf-fig__axisline"/>
-					</svg>
-				</figure>
-				<div class="pf-duo">
-					<div><p class="pf-duo__label">STANDARD</p><p class="pf-duo__num">C 0.5<small>以下</small></p><p>高気密・全棟実測</p></div>
-					<div class="is-plus"><p class="pf-duo__label">PLUS</p><p class="pf-duo__num">C 0.2<small>以下</small></p><p>さらに高気密・全棟実測</p></div>
-				</div>
-				<div class="pf-note"><p class="pf-note__title">C値とは？</p><p>住宅全体に、どれくらい「すき間」があるかを表す数値。単位は cm²/m²。数値が小さいほど気密性能が高い住宅です。</p></div>
-				<ol class="pf-merits">
-					<li><b>冷暖房した空気を逃がしにくい</b>すき間からの漏気を抑えることで、外気の影響を受けにくくなります。</li>
-					<li><b>計画した換気を機能させやすい</b>給気・排気を計画したルートで行いやすくなります。</li>
-					<li><b>断熱性能を活かす</b>すき間から空気が出入りすれば、高性能な断熱材の効果を十分に活かせません。</li>
-					<li><b>壁の中への湿気の侵入を抑える</b>気密化は、壁体内結露を抑える観点でも重要です。</li>
-				</ol>
-				<div class="pf-note"><p class="pf-note__title">測るから、分かる。</p><p>気密性能は、材料のスペックだけで決まるものではなく、窓まわり・配管・配線・壁や床の取り合いなど、現場の施工精度によっても変わります。だからFORTでは、専用機器を使用して気密性能を測定。完成した住まいの性能をC値として確認します。</p></div>
-			</div>
-		</div>
-	</section>
-
-	<!-- 04 換気 -->
-	<section class="pf-sec pf-sec--alt" id="ventilation">
-		<?php $band( '04', 'VENTILATION', '換気性能', 'hero-5.jpg', '50% 40%' ); ?>
-		<div class="bh-wrap pf-sec__grid">
-			<header class="pf-sec__head"><span class="pf-sec__no">04</span><h2>換気性能</h2><p class="pf-sec__catch">きれいな空気を、24時間つづける。</p></header>
-			<div class="pf-sec__body">
-				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">第一種換気（熱交換）を標準に。</p><p class="pf-point__sub">STANDARD・PLUSともに、熱を逃がしにくい24時間換気です。</p></div>
-				<p>住まいの快適さは、断熱や気密だけでは完成しません。FORTでは、24時間換気（熱交換）を採用し、室内の空気をきれいな状態へ保ちます。汚れた空気を屋外へ出しながら、新鮮な空気を取り込み、できるだけ室内の温度に近づけて届けます。一年を通して、快適で心地よい室内環境を支えます。</p>
-				<figure class="pf-fig">
-					<svg viewBox="0 0 560 250" role="img" aria-label="第一種換気（熱交換）のしくみ：外の新鮮な空気を、室内の熱を移してから取り込み、汚れた空気は熱を残して外へ出す">
-						<path d="M110 100 L280 24 L450 100 L450 228 L110 228 Z" class="pf-fig__house"/>
-						<rect x="234" y="92" width="92" height="46" class="pf-fig__box"/><text x="280" y="120" text-anchor="middle" class="pf-fig__s is-inv">熱交換</text>
-						<path d="M14 104 L224 104" class="pf-fig__flow"/><path d="M222 98 l10 6 l-10 6" class="pf-fig__head"/>
-						<text x="14" y="82" class="pf-fig__s">外の新鮮な空気</text>
-						<path d="M326 104 L400 104 L400 196 L300 196" class="pf-fig__flow"/><path d="M304 190 l-10 6 l10 6" class="pf-fig__head"/>
-						<text x="246" y="220" class="pf-fig__s">室温に近づけて給気</text>
-						<path d="M170 176 L170 128 L224 128" class="pf-fig__flow is-out"/>
-						<path d="M326 128 L546 128" class="pf-fig__flow is-out"/><path d="M536 122 l10 6 l-10 6" class="pf-fig__head is-out"/>
-						<text x="462" y="152" class="pf-fig__s">汚れた空気</text>
-						<text x="118" y="206" class="pf-fig__s">室内の空気</text>
-					</svg>
-				</figure>
-				<dl class="pf-items">
-					<div><dt>対象グレード</dt><dd>STANDARD・PLUS</dd></div>
-					<div><dt>換気方式</dt><dd>第一種換気（熱交換）</dd></div>
-				</dl>
-				<div class="pf-note"><p class="pf-note__title">24時間換気（熱交換）とは？</p><p>外の新鮮な空気を取り込みながら、室内の汚れた空気を排出します。熱をできるだけ逃がしにくくする仕組みです。</p></div>
-				<ol class="pf-merits">
-					<li><b>冷暖房効率を保ちやすい</b>室内の温度をできるだけ保ちながら換気できます。</li>
-					<li><b>きれいな空気を保ちやすい</b>汚れた空気を外へ出し、新鮮な空気を取り込みます。</li>
-					<li><b>計画換気がしやすい</b>必要な換気を安定して行いやすくなります。</li>
-					<li><b>一年中快適</b>夏も冬も、心地よい室内環境を支えます。</li>
-				</ol>
-				<div class="pf-note"><p class="pf-note__title">FORTの考え方</p><p>どちらが優れているかではなく、快適な暮らしを支える換気性能を標準化。FORTでは、STANDARD・PLUSともに第一種換気（熱交換）を採用しています。</p></div>
-			</div>
-		</div>
-	</section>
-
-	<!-- 05 保証 -->
+	<!-- 07 保証 -->
 	<section class="pf-sec" id="support">
-		<?php $band( '05', 'SUPPORT', '保証・アフターサポート', 'studio-okayama.jpg', '50% 60%' ); ?>
+		<?php $band( '07', 'SUPPORT', '保証・アフターサポート', 'studio-okayama.jpg', '50% 60%' ); ?>
 		<div class="bh-wrap pf-sec__grid">
-			<header class="pf-sec__head"><span class="pf-sec__no">05</span><h2>保証・アフターサポート</h2><p class="pf-sec__catch">建てたあとも、ずっと安心を。</p></header>
+			<header class="pf-sec__head"><span class="pf-sec__no">07</span><h2>保証・アフターサポート</h2><p class="pf-sec__catch">建てたあとも、ずっと安心を。</p></header>
 			<div class="pf-sec__body">
 				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">躯体・防水は最長60年。</p><p class="pf-point__sub">初期保証20年。当社指定の定期点検・メンテナンスを条件に、最長60年まで保証します。</p></div>
 				<p>大切な住まいに、長く安心して暮らしていただくために、充実した保証制度とアフターサポート体制を整えています。構造・防水から地盤・白蟻・設備の保証、定期点検まで、ずっと寄り添います。</p>

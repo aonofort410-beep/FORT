@@ -4293,3 +4293,46 @@ body:not(.dz-page) .bh-input { background: #ffffff; }
 /* トップ：背景の写真の上は、半透明の白で */
 body.home main > :not(.bh-hero):not(.bh-visit) { background: rgba(255,255,255,.72) !important; }
 body.home main > :is(.bh-house, .bh-event + .bh-mh, .bh-life) { background: rgba(242,243,242,.78) !important; }
+
+/* ============================================================
+   70. トップの背景固定（透かし）をやめる。白に、設計図のような細い線を添える
+============================================================ */
+body.home .bh-hero { overflow: hidden; }
+body.home .bh-hero__media { position: absolute !important; z-index: auto; filter: none !important; transform: none !important; }
+body.home { background: #fff; }
+body.home main > :not(.bh-hero):not(.bh-visit) { background: #fff !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+body.home main > :is(.bh-house, .bh-event + .bh-mh, .bh-life) { background: #f4f5f4 !important; }
+
+/* 背景：うっすらと縦の基準線（左右の余白の位置と中央）。図面のガイド線のイメージ */
+body:not(.dz-page) main { position: relative; isolation: isolate; }
+body:not(.dz-page) main::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(rgba(28,31,32,.07), rgba(28,31,32,.07)) var(--bh-gutter) 0 / 1px 100% no-repeat,
+    linear-gradient(rgba(28,31,32,.07), rgba(28,31,32,.07)) calc(100% - var(--bh-gutter)) 0 / 1px 100% no-repeat,
+    linear-gradient(rgba(28,31,32,.045), rgba(28,31,32,.045)) 50% 0 / 1px 100% no-repeat;
+}
+body:not(.dz-page) main > :is(section, header, div):not(.bh-hero):not(.bh-visit):not(.bh-house):not(.pf-grade):not(.bh-mh) { background-color: transparent !important; }
+body.home main > :not(.bh-hero):not(.bh-visit):not(.bh-house):not(.bh-mh):not(.bh-life) { background: transparent !important; }
+
+/* セクションの区切り：細い横線＋左端に小さな四角（基準点） */
+body:not(.dz-page) main > :is(.bh-about, .bh-event, .bh-works, .bh-house, .bh-journal, .bh-movie, .bh-place, .bh-life, .bh-mh, .pf-sec, .pf-grade, .bh-hx, .bh-eq, .st-members, .bh-wlist) { position: relative; border-top: 1px solid rgba(28,31,32,.1); }
+body:not(.dz-page) main > :is(.bh-about, .bh-event, .bh-works, .bh-house, .bh-journal, .bh-movie, .bh-place, .bh-life, .bh-mh, .pf-grade, .bh-hx, .bh-eq, .st-members, .bh-wlist)::before {
+  content: ""; position: absolute; top: -4px; left: calc(var(--bh-gutter) - 3.5px); width: 7px; height: 7px; background: #1c1f20;
+}
+body:not(.dz-page) .pf-sec { border-top: 0 !important; }
+
+/* ラベル（ABOUT / EVENT など）の前に短い線 */
+body:not(.dz-page) main .bh-label { display: inline-flex; align-items: center; gap: 12px; }
+body:not(.dz-page) main .bh-label::before { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .7; }
+body:not(.dz-page) .bh-visit .bh-label::before { background: #fff; }
+/* 見出しの下に細い線を少しだけ */
+body:not(.dz-page) .bh-pagehead { position: relative; }
+body:not(.dz-page) .bh-pagehead::after { content: ""; position: absolute; left: var(--bh-gutter); right: var(--bh-gutter); bottom: 0; height: 1px; background: rgba(28,31,32,.12); }
+body:not(.dz-page) main::before {
+  background:
+    linear-gradient(rgba(28,31,32,.08), rgba(28,31,32,.08)) var(--bh-gutter) 0 / 1px 100% no-repeat,
+    linear-gradient(rgba(28,31,32,.08), rgba(28,31,32,.08)) calc(100% - var(--bh-gutter)) 0 / 1px 100% no-repeat;
+}
+body:not(.dz-page) main .bh-label { align-self: start; }
+body:not(.dz-page) .bh-about__grid > .bh-label { margin-top: .9em; }

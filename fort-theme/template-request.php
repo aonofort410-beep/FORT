@@ -28,7 +28,7 @@ $img = get_template_directory_uri() . "/assets/images/";
           <li class="why__card" data-reveal>
             <span class="why__num">01</span>
             <h2 class="why__card-title">会社案内・コンセプトブック</h2>
-            <p class="why__card-text">FORTの家づくりの考え方や、性能・デザイン・価格のバランスについてご紹介します。</p>
+            <p class="why__card-text">FORTの家づくりの考え方や、性能・デザイン・構造へのこだわりについてご紹介します。</p>
           </li>
           <li class="why__card" data-reveal>
             <span class="why__num">02</span>

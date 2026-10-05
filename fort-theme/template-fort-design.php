@@ -48,13 +48,13 @@ $title = str_split( 'FORT DESIGN' );
 		<div class="dz-wrap">
 			<p class="dz-label">CONCEPT</p>
 			<h2 class="dz-concept__title" data-dz-lines>
-				<span>「ちょうどいい」を超えて、</span>
-				<span>理想を、その先へ。</span>
+				<span>想いのすべてを、</span>
+				<span>ゼロから、かたちに。</span>
 			</h2>
 			<div class="dz-concept__body" data-dz-lines>
-				<span>性能・デザイン・価格のバランスを大切にするFORT。</span>
-				<span>その思想はそのままに、FORT DESIGN は</span>
-				<span>“もう一段上の理想”を叶えるための自由設計です。</span>
+				<span>家族それぞれの想いに寄り添うFORT。</span>
+				<span>その想いを、もっとも自由なかたちで叶えるのが</span>
+				<span>完全自由設計の FORT DESIGN です。</span>
 				<span>素材の質感、空間の余白、光と影の設計まで。</span>
 				<span>暮らす人のためだけに、ていねいに仕立てます。</span>
 			</div>

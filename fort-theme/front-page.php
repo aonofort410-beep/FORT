@@ -69,9 +69,10 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 		<div class="bh-wrap bh-about__grid">
 			<p class="bh-label">ABOUT</p>
 			<div class="bh-about__body">
-				<h2 class="bh-about__title"><span class="bh-nb">性能か、デザインか。</span><span class="bh-nb">その間にある、</span><span class="bh-nb">ちょうどいい家。</span></h2>
+				<h2 class="bh-about__title"><span class="bh-nb">家族の数だけ、</span><span class="bh-nb">想いがある。</span><span class="bh-nb">その想いを、かたちに。</span></h2>
 				<p>FORTは、岡山と福山で住まいを設計し、建てている会社です。</p>
-				<p>性能だけを追えば、家は高くなる。デザインだけを追えば、暮らしにくくなる。営業・設計・工務がひとつのチームになり、家族が無理なく長く暮らせるバランスを、一棟ずつ探しています。</p>
+				<p>家づくりへの想いは、十人十色。性能・デザイン・構造へのこだわりはそのままに、一つひとつの家族の想いに寄り添い、本当に求めているものを一緒に見つけ、かたちにしていきます。</p>
+				<p>当たり前のようで、つい忘れがちなこと。それを、FORTはいちばん大切にしています。</p>
 				<a class="bh-more" href="<?php echo esc_url( fort_url( 'about' ) ); ?>">FORTについて</a>
 			</div>
 		</div>

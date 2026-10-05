@@ -4262,3 +4262,34 @@ body:not(.dz-page) .pf-sec .pf-duo > div:not(.is-plus) .pf-duo__num { color: #1c
 @media (max-width: 420px) { .pf-duo__num { font-size: 1.5rem !important; } .pf-duo > div { padding: 16px 14px !important; } }
 @media (max-width: 599px) { .bh-region .bh-region__name { font-size: min(13vw, 3.4rem) !important; letter-spacing: .02em !important; line-height: 1.1; } .bh-region .bh-region__sub { font-size: 13px; } }
 @media (max-width: 360px) { .header__logo-img { width: 118px !important; height: auto; } .header__visit { font-size: 10px; } .menu-toggle__txt { display: none; } }
+
+/* ============================================================
+   69. 白ベースに戻す（グレー → 白）。文字は濃いチャコール、面は淡いグレー
+============================================================ */
+body:not(.dz-page) {
+  --bh-ink:   #1c1f20;
+  --bh-paper: #ffffff;
+  --bh-mist:  #f2f3f2;
+  --bh-gray:  #6b7073;
+  --bh-line:  rgba(28, 31, 32, .12);
+  background: #ffffff;
+  color: #2a2d2f;
+}
+body:not(.dz-page) main { background: #ffffff; }
+body:not(.dz-page) .header.is-scrolled { background: rgba(255,255,255,.82); }
+body:not(.dz-page) .bh-house, body:not(.dz-page) .bh-now__house, body:not(.dz-page) .pf-grade, body:not(.dz-page) .bh-event + .bh-event { background: #f2f3f2; }
+body:not(.dz-page) :is(.bh-label, .pf-keys__note, .bh-house__text, .bh-house__method, .bh-wcard__meta) { color: #6b7073; }
+body:not(.dz-page) :is(.bh-house__fig, .st-card__fig, .bh-hx__fig) { background: #e6e8e7; }
+body:not(.dz-page) .pf-fig, body:not(.dz-page) .pf-sec .pf-fig, body:not(.dz-page) .pf-sec .pf-note, body:not(.dz-page) .pf-sec .pf-warranty li, body:not(.dz-page) .pf-keys__list a { background: #ffffff; }
+body:not(.dz-page) .pf-sec .pf-duo > div:not(.is-plus) { background: #f2f3f2 !important; }
+body:not(.dz-page) .pf-keys__list a:hover { background: #f2f3f2; }
+body:not(.dz-page) .bh-input { background: #ffffff; }
+/* 構造・性能：章の背景はごく淡く */
+#seismic     { --acc-soft: #f1f3f4; }
+#insulation  { --acc-soft: #f4f2f0; }
+#airtight    { --acc-soft: #f1f3f2; }
+#ventilation { --acc-soft: #f1f3f5; }
+#support     { --acc-soft: #f4f3f0; }
+/* トップ：背景の写真の上は、半透明の白で */
+body.home main > :not(.bh-hero):not(.bh-visit) { background: rgba(255,255,255,.72) !important; }
+body.home main > :is(.bh-house, .bh-event + .bh-mh, .bh-life) { background: rgba(242,243,242,.78) !important; }

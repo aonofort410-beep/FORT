@@ -122,7 +122,7 @@ while ( have_posts() ) : the_post();
 		<div class="bh-wrap bh-about__grid">
 			<p class="bh-label">ABOUT FORT</p>
 			<div class="bh-about__body">
-				<p>FORTは、岡山と福山で住まいを設計し、建てている会社です。性能とデザインと価格の「ちょうどいい」バランスを、一棟ずつ探しています。</p>
+				<p>FORTは、岡山と福山で住まいを設計し、建てている会社です。家族それぞれの想いに寄り添い、一棟ずつかたちにしています。</p>
 				<p class="bh-about__links"><a class="bh-more" href="<?php echo esc_url( fort_url( 'about' ) ); ?>">FORTについて</a><a class="bh-more" href="<?php echo esc_url( fort_url( 'house' ) ); ?>">家づくりの方法</a></p>
 			</div>
 		</div>

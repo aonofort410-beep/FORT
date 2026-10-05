@@ -12,7 +12,7 @@ $studios = fort_studios();
 		<div class="bh-wrap">
 			<?php fort_breadcrumb( array( array( 'ABOUT', '' ) ) ); ?>
 			<p class="bh-label">ABOUT</p>
-			<h1 class="bh-pagehead__title">家族に、<br>ちょうどいい家を。</h1>
+			<h1 class="bh-pagehead__title"><span class="bh-nb">十人十色の想いを、</span><span class="bh-nb">かたちに。</span></h1>
 		</div>
 	</header>
 	<figure class="bh-case__main"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero.jpg' ); ?>" alt="FORTが手がけた住まいのキッチンとダイニング" width="2400" height="1600" fetchpriority="high" decoding="async"></figure>
@@ -21,19 +21,20 @@ $studios = fort_studios();
 		<div class="bh-wrap bh-case__cols">
 			<h2 class="bh-label">PHILOSOPHY<span>FORTの思い</span></h2>
 			<div class="bh-case__body bh-about-lead">
-				<p>性能だけを追い求めれば、家は高くなる。<br>デザインだけを追い求めれば、暮らしにくくなる。</p>
-				<p>FORTは、性能・デザイン・価格のちょうどいいバランスを考えます。家族が無理なく、長く豊かに暮らせること。それが、FORTの家づくりです。</p>
+				<p>家づくりへの想いは、家族の数だけあります。<br>同じ家族は、ひとつとしてありません。</p>
+				<p>FORTは、性能・デザイン・構造へのこだわりはそのままに、お客様がFORTに寄せてくださる想い、そして本当に求めていることに耳を傾けます。一つひとつの家族の想いに寄り添い、その想いを、かたちにする。</p>
+				<p>当たり前のようで、つい忘れがちなこと。それを、FORTの理念として、いちばん大切にしています。</p>
 			</div>
 		</div>
 	</section>
 
 	<section class="bh-balance">
 		<div class="bh-wrap">
-			<p class="bh-label">BALANCE</p>
+			<p class="bh-label">OUR WAY</p>
 			<ul class="bh-balance__list">
-				<li><span>DESIGN</span>デザインを、あきらめない。</li>
-				<li><span>PERFORMANCE</span>性能に、妥協しない。</li>
-				<li><span>PRICE</span>だから、家族に「ちょうどいい」。</li>
+				<li><span>LISTEN</span>まず、想いを聞くことから。</li>
+				<li><span>CRAFT</span>性能・デザイン・構造に、こだわる。</li>
+				<li><span>SHAPE</span>その家族だけの答えを、かたちに。</li>
 			</ul>
 		</div>
 	</section>

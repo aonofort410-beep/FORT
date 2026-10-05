@@ -14,7 +14,7 @@ function fort_seo_plugin_active() {
 
 /** ページごとの説明文 */
 function fort_meta_description() {
-	$default = '岡山・福山の注文住宅・規格住宅のFORT。性能とデザインのちょうどいいバランスで、家族が無理なく長く暮らせる家を、営業・設計・工務のチームでつくります。見学会・モデルハウス・来場予約受付中。';
+	$default = '岡山・福山の注文住宅・規格住宅のFORT。十人十色の家族の想いに寄り添い、性能・デザイン・構造にこだわった家を、営業・設計・工務のチームでつくります。見学会・モデルハウス・来場予約受付中。';
 	if ( is_front_page() ) return $default;
 	if ( is_singular() ) {
 		$p = get_post();
@@ -90,7 +90,7 @@ add_action( 'wp_loaded', function () {
 	if ( 'llms.txt' !== $path ) return;
 	header( 'Content-Type: text/plain; charset=utf-8' );
 	$out  = "# FORT（株式会社FORT）\n\n";
-	$out .= "> 岡山・福山で注文住宅を設計・施工する住宅会社。性能とデザインのバランスを重視し、営業・設計・工務のチームで家づくりを行う。\n\n";
+	$out .= "> 岡山・福山で注文住宅を設計・施工する住宅会社。理念は「十人十色の家族の想いに寄り添い、かたちにする」。性能・デザイン・構造にこだわり、営業・設計・工務のチームで家づくりを行う。\n\n";
 	$out .= "## 家づくりの種類\n";
 	foreach ( fort_house_items() as $k => $it ) $out .= '- ' . $it['name'] . '（' . $it['method'] . '）: ' . $it['catch'] . ' ' . fort_url( $k ) . "\n";
 	$out .= "\n## スタジオ\n";

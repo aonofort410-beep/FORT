@@ -4336,3 +4336,11 @@ body:not(.dz-page) main::before {
 }
 body:not(.dz-page) main .bh-label { align-self: start; }
 body:not(.dz-page) .bh-about__grid > .bh-label { margin-top: .9em; }
+
+/* 71. 装飾の線は取りやめ（基準線・区切りの四角・ラベル前の線・見出し下の線） */
+body:not(.dz-page) main::before { content: none !important; }
+body:not(.dz-page) main > :is(.bh-about, .bh-event, .bh-works, .bh-house, .bh-journal, .bh-movie, .bh-place, .bh-life, .bh-mh, .pf-grade, .bh-hx, .bh-eq, .st-members, .bh-wlist)::before { content: none !important; }
+body:not(.dz-page) main > :is(.bh-about, .bh-event, .bh-works, .bh-house, .bh-journal, .bh-movie, .bh-place, .bh-life, .bh-mh, .pf-grade, .bh-hx, .bh-eq, .st-members, .bh-wlist) { border-top: 0 !important; }
+body:not(.dz-page) main .bh-label::before { content: none !important; }
+body:not(.dz-page) main .bh-label { display: block; }
+body:not(.dz-page) .bh-pagehead::after { content: none !important; }

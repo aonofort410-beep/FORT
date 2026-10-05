@@ -28,6 +28,12 @@ while ( have_posts() ) : the_post();
 	$reserve = fort_visit_url( array( 'area' => $s['region'], 'event' => get_post_field( 'post_name', $id ) ) );
 ?>
 	<article class="bh-evd">
+		<?php if ( $open ) : ?>
+		<nav class="bh-evtabs" aria-label="このイベントを予約する">
+			<a href="<?php echo esc_url( $reserve ); ?>" data-track="reservation_start" data-track-label="event_tab_<?php echo esc_attr( get_post_field( 'post_name', $id ) ); ?>"><span>サイトから予約する</span></a>
+			<?php if ( $tel ) : ?><a href="tel:<?php echo esc_attr( preg_replace( '/\D/', '', $tel ) ); ?>" data-track="tel_click" data-track-label="event_tab_tel"><span>電話で予約する</span></a><?php endif; ?>
+		</nav>
+		<?php endif; ?>
 		<header class="bh-pagehead">
 			<div class="bh-wrap">
 				<?php fort_breadcrumb( array( array( 'EVENT', fort_url( 'event' ) ), array( get_the_title(), '' ) ) ); ?>

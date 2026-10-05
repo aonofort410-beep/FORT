@@ -47,16 +47,19 @@ $names   = array( 'okayama' => '岡山', 'fukuyama' => '福山' );
 				$dates = fort_event_dates( $p->ID );
 				$place = get_post_meta( $p->ID, 'fort_place', true );
 				$badge = get_post_meta( $p->ID, 'fort_badge', true ); ?>
-			<li class="bh-ev" data-region="<?php echo esc_attr( $s['region'] ); ?>">
-				<a class="bh-ev__link<?php echo has_post_thumbnail( $p ) ? ' bh-ev__link--fig' : ''; ?>" href="<?php echo esc_url( get_permalink( $p ) ); ?>" data-track="event_view" data-track-label="<?php echo esc_attr( $p->post_name ); ?>">
-					<?php if ( has_post_thumbnail( $p ) ) : ?><figure class="bh-ev__fig"><?php echo get_the_post_thumbnail( $p, 'fort-card', array( 'loading' => 'lazy', 'decoding' => 'async', 'alt' => '' ) ); ?></figure><?php endif; ?>
-					<p class="bh-ev__meta">
+			<li class="bh-ev bh-ev--<?php echo esc_attr( $s['status'] ); ?>" data-region="<?php echo esc_attr( $s['region'] ); ?>">
+				<a class="bh-ev__link bh-ev__link--fig" href="<?php echo esc_url( get_permalink( $p ) ); ?>" data-track="event_view" data-track-label="<?php echo esc_attr( $p->post_name ); ?>">
+					<figure class="bh-ev__fig">
+						<?php if ( has_post_thumbnail( $p ) ) : echo get_the_post_thumbnail( $p, 'fort-card', array( 'loading' => 'lazy', 'decoding' => 'async', 'alt' => '' ) ); else : ?><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero-4.jpg' ); ?>" alt="" loading="lazy" decoding="async"><?php endif; ?>
 						<span class="bh-ev__state bh-ev__state--<?php echo esc_attr( 'permanent' === $s['kind'] && 'open' === $s['status'] ? 'permanent' : $s['status'] ); ?>"><?php echo esc_html( $s['label'] ); ?></span>
-						<?php if ( $badge ) : ?><span><?php echo esc_html( $badge ); ?></span><?php endif; ?>
-						<?php if ( isset( $names[ $s['region'] ] ) ) : ?><span><?php echo esc_html( $names[ $s['region'] ] ); ?></span><?php endif; ?>
-					</p>
-					<h3 class="bh-ev__title"><?php echo esc_html( get_the_title( $p ) ); ?></h3>
-					<?php if ( $dates || $place ) : ?><p class="bh-ev__when"><?php echo esc_html( trim( $dates . '　' . $place ) ); ?></p><?php endif; ?>
+						<?php if ( in_array( $s['status'], array( 'ended', 'full' ), true ) ) : ?><span class="bh-ev__closed"><?php echo 'full' === $s['status'] ? 'FULL' : 'CLOSED'; ?></span><?php endif; ?>
+					</figure>
+					<h3 class="bh-ev__title"><?php if ( $badge ) : ?><span class="bh-ev__kind">【<?php echo esc_html( $badge ); ?>】</span><?php endif; ?><?php echo esc_html( get_the_title( $p ) ); ?></h3>
+					<dl class="bh-ev__info">
+						<?php if ( $dates ) : ?><div><dt>日程</dt><dd><?php echo esc_html( $dates ); ?></dd></div><?php endif; ?>
+						<?php if ( $place || isset( $names[ $s['region'] ] ) ) : ?><div><dt>場所</dt><dd><?php echo esc_html( $place ?: $names[ $s['region'] ] ); ?></dd></div><?php endif; ?>
+					</dl>
+					<span class="bh-ev__go" aria-hidden="true">→</span>
 				</a>
 			</li>
 			<?php endforeach; ?>

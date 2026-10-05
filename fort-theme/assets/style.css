@@ -4344,3 +4344,50 @@ body:not(.dz-page) main > :is(.bh-about, .bh-event, .bh-works, .bh-house, .bh-jo
 body:not(.dz-page) main .bh-label::before { content: none !important; }
 body:not(.dz-page) main .bh-label { display: block; }
 body:not(.dz-page) .bh-pagehead::after { content: none !important; }
+
+/* ==========================================================
+   72. EVENT：写真ヘッダー＋大きな正方形カード（es-archi 参考）
+   ========================================================== */
+.bh-evhero{position:relative;height:clamp(260px,42vw,520px);overflow:hidden;background:#222}
+.bh-evhero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.72)}
+.bh-evhero__txt{position:relative;height:100%;display:grid;place-content:center;text-align:center;color:#fff;gap:6px}
+.bh-evhero__en{margin:0;font-family:"Jost",sans-serif;font-weight:300;font-size:clamp(40px,7vw,84px);letter-spacing:.06em;line-height:1}
+.bh-evhero__ja{margin:0;font-size:clamp(14px,1.4vw,17px);font-weight:500;letter-spacing:.2em}
+.bh-evhero__sub{padding-top:18px;padding-bottom:8px}
+.bh-evhero__lead{margin:22px 0 0;font-size:14px;line-height:2;color:var(--bh-ink-soft,#555)}
+.post-type-archive-fort_event .bh-pagephoto{display:none}
+
+.bh-event__list{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:48px 32px!important;list-style:none;padding:0}
+@media (max-width:960px){.bh-event__list{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media (max-width:600px){.bh-event__list{grid-template-columns:1fr!important;gap:36px!important}}
+.bh-ev{border:0!important;padding:0!important;background:none!important}
+.bh-ev__link{display:block!important;position:relative;color:inherit;text-decoration:none;padding:0!important}
+.bh-ev__fig{display:block!important;grid-row:auto!important;position:relative;margin:0 0 16px!important;aspect-ratio:1/1;overflow:hidden;background:var(--bh-mist,#f2f3f2);width:100%!important}
+.bh-ev__fig img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.bh-ev__link:hover .bh-ev__fig img{transform:scale(1.04)}
+.bh-ev__fig .bh-ev__state{position:absolute;top:14px;left:14px;width:64px;height:64px;border-radius:50%!important;display:grid;place-items:center;text-align:center;font-size:12px;letter-spacing:.06em;background:#1c1f20;color:#fff;padding:0;line-height:1.3}
+.bh-ev__fig .bh-ev__state--permanent{background:#5d6b62}
+.bh-ev--ended .bh-ev__fig img,.bh-ev--full .bh-ev__fig img{filter:brightness(.45)}
+.bh-ev__closed{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-family:"Jost",sans-serif;font-size:22px;letter-spacing:.2em}
+.bh-ev--ended .bh-ev__state,.bh-ev--full .bh-ev__state{display:none}
+.bh-ev__title{margin:0 0 12px!important;font-size:17px!important;line-height:1.6!important;font-weight:500;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.bh-ev__kind{font-size:14px;color:var(--bh-ink-soft,#666)}
+.bh-ev__info{margin:0;padding-right:48px;font-size:13px;line-height:1.8;color:var(--bh-ink-soft,#555)}
+.bh-ev__info div{display:flex;gap:10px}
+.bh-ev__info dt{flex:none;font-weight:500;color:var(--bh-ink,#1c1f20)}
+.bh-ev__info dt::after{content:"："}
+.bh-ev__info dd{margin:0}
+.bh-ev__go{position:absolute;right:0;bottom:2px;width:38px;height:38px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;font-family:"Jost",sans-serif;font-size:14px;transition:background .3s,color .3s}
+.bh-ev__link:hover .bh-ev__go{background:#1c1f20;color:#fff;border-color:#1c1f20}
+
+/* 詳細：右側の縦型予約タブ（スマホは画面下） */
+.bh-evtabs{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:2px}
+.bh-evtabs a{display:block;writing-mode:vertical-rl;text-orientation:upright;padding:22px 13px;background:#1c1f20;color:#fff;text-decoration:none;font-size:13px;letter-spacing:.2em}
+.bh-evtabs a+a{background:#5d6b62}
+.bh-evtabs a:hover{opacity:.85}
+@media (max-width:760px){
+  .bh-evtabs{top:auto;bottom:0;left:0;transform:none;flex-direction:row}
+  .bh-evtabs a{flex:1;writing-mode:horizontal-tb;text-align:center;padding:15px 8px;letter-spacing:.1em}
+  .single-fort_event .footer{padding-bottom:64px}
+}
+.bh-ev__link--fig > *{grid-column:auto!important}.bh-ev__link--fig{grid-template-columns:none!important}

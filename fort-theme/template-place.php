@@ -33,6 +33,7 @@ if ( ! $region ) : /* ---------- /place/：2つの地域の入口 ---------- */ 
 			</div>
 		</div>
 	</section>
+	<?php get_template_part( 'parts/photo-band', null, array( 'offset' => 2 ) ); ?>
 	<?php get_template_part( 'parts/visit-cta', null, array( 'from' => 'place' ) ); ?>
 <?php else : /* ---------- 地域のページ ---------- */
 	$st    = $studios[ $region ];

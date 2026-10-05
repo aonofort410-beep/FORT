@@ -15,6 +15,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<h1 class="bh-pagehead__title">家づくりの流れ</h1>
 		</div>
 	</header>
+	<figure class="bh-pagephoto"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero-2.jpg' ); ?>" alt="" fetchpriority="high" decoding="async" style="object-position:50% 50%"></figure>
 
     <section class="section">
       <div class="container">
@@ -77,6 +78,7 @@ $img = get_template_directory_uri() . '/assets/images/';
       </div>
     </section>
 
+    <?php get_template_part( 'parts/photo-band', null, array( 'offset' => 6 ) ); ?>
     <section class="reserve section" id="reserve">
       <div class="reserve__bg">
         <img src="<?php echo $img; ?>hero.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">

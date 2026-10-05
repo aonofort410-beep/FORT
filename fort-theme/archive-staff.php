@@ -33,6 +33,7 @@ $words = array(
 			<p class="st-head__lead">堅固性（FORT）・快適性（comFORT）・企業努力（efFORT）・資産価値（FORTune）。この4つの想いを胸に、営業・設計・工務の各コーディネーターと総務が、ひとつのチームとなって理想の住まいをかたちにします。</p>
 		</div>
 	</header>
+	<figure class="bh-pagephoto"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/studio-fukuyama.jpg' ); ?>" alt="" fetchpriority="high" decoding="async" style="object-position:50% 50%"></figure>
 
 	<section class="st-points">
 		<div class="bh-wrap">
@@ -95,5 +96,6 @@ $words = array(
 		<div class="st-modal__inner" data-st-body></div>
 	</dialog>
 
+	<?php get_template_part( 'parts/photo-band', null, array( 'offset' => 7, 'title' => 'このチームで、つくっています。' ) ); ?>
 	<?php get_template_part( 'parts/visit-cta', null, array( 'from' => 'staff', 'title' => 'チームに、<br>会いに来てください。' ) ); ?>
 <?php get_footer(); ?>

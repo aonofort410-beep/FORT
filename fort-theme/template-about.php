@@ -28,6 +28,8 @@ $studios = fort_studios();
 		</div>
 	</section>
 
+	<?php get_template_part( 'parts/photo-band', null, array( 'offset' => 0, 'title' => '十人十色の暮らしを、かたちに。' ) ); ?>
+
 	<section class="bh-balance">
 		<div class="bh-wrap">
 			<p class="bh-label">OUR WAY</p>

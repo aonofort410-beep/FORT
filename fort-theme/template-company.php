@@ -16,6 +16,7 @@ $img = get_template_directory_uri() . '/assets/images/';
 			<h1 class="bh-pagehead__title">会社概要</h1>
 		</div>
 	</header>
+	<figure class="bh-pagephoto"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/studio-okayama.jpg' ); ?>" alt="" fetchpriority="high" decoding="async" style="object-position:50% 50%"></figure>
 
     <!-- 会社情報テーブル -->
     <section class="section section--gray">
@@ -84,6 +85,7 @@ $img = get_template_directory_uri() . '/assets/images/';
     </section>
 
     <!-- CTA -->
+    <?php get_template_part( 'parts/photo-band', null, array( 'offset' => 9 ) ); ?>
     <section class="reserve section" id="reserve">
       <div class="reserve__bg">
         <img src="<?php echo $img; ?>hero.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">

@@ -16,6 +16,7 @@ $tel_f = fort_opt( 'fort_tel_fukuyama', '084-982-7404' );
 			<p class="bh-pagehead__lead"><span class="bh-nb">家づくりのご相談・ご質問など、お気軽にどうぞ。</span><span class="bh-nb">担当者より折り返しご連絡いたします。</span></p>
 		</div>
 	</header>
+	<figure class="bh-pagephoto"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/perf-interior.jpg' ); ?>" alt="" fetchpriority="high" decoding="async" style="object-position:50% 60%"></figure>
 
 	<section class="bh-cq-ways">
 		<div class="bh-wrap">

@@ -83,17 +83,29 @@ function fort_equipment_table() {
 	);
 }
 
-/** 性能グレード（STANDARD / PLUS）。[項目, STANDARD, PLUS] */
+/** 性能：FORTの考え方と最高基準・実績。[項目, 考え方, 最高基準・実績, 構造・性能ページの章ID] */
 function fort_performance_grades() {
 	return array(
-		array( '耐震性能', '耐震等級3（許容応力度計算）', "耐震等級3（許容応力度計算）\n制振ダンパー" ),
-		array( '断熱性能（UA値）', '0.46 以下', '0.34 以下' ),
-		array( '断熱等級', '6', '6' ),
-		array( '気密性能（C値）', '0.5 以下（全棟実測）', '0.2 以下（全棟実測）' ),
-		array( '換気システム', '第一種換気（熱交換）', '第一種換気（熱交換）' ),
-		array( '窓', "APW330\n樹脂サッシ／ペアガラス", "APW430\n樹脂サッシ／トリプルガラス" ),
-		array( '保証・点検', "構造躯体・防水 20年保証（最長60年）\n設備10年保証／定期点検", "構造躯体・防水 20年保証（最長60年）\n設備10年保証／定期点検" ),
+		array( '耐震', '建物・間取り・予算に合わせて設計', '耐震等級3まで対応', 'structure' ),
+		array( '構造計算', '必要に応じて選択', '許容応力度計算 対応', 'structure' ),
+		array( '制振', '求める安心に合わせて選択', 'evoltz 対応', 'damping' ),
+		array( '断熱', 'UA値0.46以下を基準に設計', 'UA値0.34以下まで対応', 'insulation' ),
+		array( '気密', '<b>C値0.5以下</b>を基準', '現在の実測平均 C値0.2以下', 'airtight' ),
+		array( '窓', '方角・開口・デザインに合わせて選定', 'APW430等まで対応', 'window' ),
+		array( '換気', '暮らし・空調計画に合わせて選択', '第一種熱交換換気まで対応', 'ventilation' ),
 	);
+}
+
+/** 性能の表（構造・性能ページ／HOUSEページ共通） */
+function fort_performance_table( $link = '' ) {
+	ob_start(); ?>
+	<div class="pf-std__table" role="table" aria-label="FORTの考え方と最高基準・実績">
+		<div class="pf-std__row pf-std__row--head" role="row"><span role="columnheader"></span><span role="columnheader">FORTの考え方</span><span role="columnheader">最高基準・実績</span></div>
+		<?php foreach ( fort_performance_grades() as $r ) : ?>
+		<a class="pf-std__row" role="row" href="<?php echo esc_url( $link ) . '#' . esc_attr( $r[3] ); ?>"><b role="rowheader"><?php echo esc_html( $r[0] ); ?></b><span role="cell" data-h="FORTの考え方"><?php echo wp_kses( $r[1], array( 'b' => array() ) ); ?></span><strong role="cell" data-h="最高基準・実績"><?php echo esc_html( $r[2] ); ?></strong></a>
+		<?php endforeach; ?>
+	</div>
+	<?php return ob_get_clean();
 }
 
 /** 改行入りの文字列を安全に表示 */

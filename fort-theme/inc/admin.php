@@ -123,6 +123,7 @@ function fort_settings_fields() {
 		'gallery' => array(
 			'hero_pc' => 'トップのスライドショー（PC・iPad用／横長の写真）',
 			'hero_sp' => 'トップのスライドショー（スマホ用／縦長の写真・PCと同じ順番で）',
+			'life_photos' => '各ページに流れる「デザイン・暮らし」の写真（何枚でも）',
 		),
 		'image' => array(
 			'studio_okayama'  => '岡山スタジオの写真',
@@ -130,6 +131,11 @@ function fort_settings_fields() {
 			'house_design'    => 'FORT DESIGN の写真',
 			'house_pro'       => 'FORT PRO の写真',
 			'house_style'     => 'FORT STYLE の写真',
+			'maker_evoltz'    => 'メーカー画像：制振ダンパー evoltz［エヴォルツ］',
+			'maker_airsave'   => 'メーカー画像：第一種換気 キムラ エアセーブ',
+			'maker_urethane'  => 'メーカー画像：断熱材 発泡ウレタン',
+			'maker_apw'       => 'メーカー画像：YKK AP APW330／APW430',
+			'maker_jio'       => 'メーカー画像：JIO（ロゴ・検査の様子など）',
 		),
 	);
 }
@@ -152,14 +158,36 @@ function fort_settings_page() {
 	echo '<p>サイト全体で使う写真と文字です。空欄の項目は、テーマに入っている写真・文字がそのまま使われます。</p>';
 	echo '<form method="post">';
 	wp_nonce_field( 'fort_settings', 'fort_settings_nonce' );
-	echo '<h2>トップのスライドショー</h2>';
+	echo '<h2>スライドショー・写真</h2>';
 	foreach ( $f['gallery'] as $k => $label ) fort_media_picker( $k, $s[ $k ] ?? '', true, $label );
 	echo '<h2>キャッチコピー・電話番号</h2><table class="form-table">';
 	foreach ( $f['text'] as $k => $v ) {
 		echo '<tr><th><label for="' . esc_attr( $k ) . '">' . esc_html( $v[0] ) . '</label></th><td><input class="regular-text" id="' . esc_attr( $k ) . '" name="' . esc_attr( $k ) . '" value="' . esc_attr( $s[ $k ] ?? '' ) . '" placeholder="' . esc_attr( $v[1] ) . '"></td></tr>';
 	}
-	echo '</table><h2>スタジオ・商品の写真</h2>';
+	echo '</table><h2>スタジオ・商品・メーカーの写真</h2><p>メーカー画像は、各メーカーから提供・使用許可を受けた画像を入れてください。</p>';
 	foreach ( $f['image'] as $k => $label ) fort_media_picker( $k, $s[ $k ] ?? '', false, $label );
 	submit_button( '保存する' );
 	echo '</form></div>';
+}
+
+/** メーカー画像：FORT 設定 → テーマ同梱 assets/images/maker/<key>.(jpg|png|webp) → 空 */
+function fort_maker_img( $key ) {
+	$u = fort_setting_img( 'maker_' . $key, 'large' );
+	if ( $u ) return $u;
+	foreach ( array( 'jpg', 'png', 'webp' ) as $ext ) {
+		if ( file_exists( get_template_directory() . '/assets/images/maker/' . $key . '.' . $ext ) ) return get_template_directory_uri() . '/assets/images/maker/' . $key . '.' . $ext;
+	}
+	return '';
+}
+
+/** 各ページに流す写真：FORT 設定 → 暮らし写真（life-*.jpg）→ テーマ同梱の住まい写真 */
+function fort_band_photos() {
+	$out = array();
+	foreach ( fort_ids( fort_setting( 'life_photos' ) ) as $id ) { $u = wp_get_attachment_image_url( $id, 'fort-card' ); if ( $u ) $out[] = $u; }
+	if ( ! $out && function_exists( 'fort_life_photos' ) ) $out = fort_life_photos();
+	if ( ! $out ) {
+		$base = get_template_directory_uri() . '/assets/images/';
+		foreach ( array( 'hero-1.jpg', 'pro/persp-a.jpg', 'hero-3.jpg', 'house-design.jpg', 'hero-2.jpg', 'studio-okayama.jpg', 'pro/persp-c.jpg', 'hero-4.jpg', 'mh-fukuyama-shimokamo.jpg', 'perf-interior.jpg', 'hero-5.jpg', 'house-pro.jpg', 'studio-fukuyama.jpg', 'pro/persp-e.jpg' ) as $f ) $out[] = $base . $f;
+	}
+	return $out;
 }

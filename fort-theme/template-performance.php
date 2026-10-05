@@ -29,20 +29,11 @@ $chapter = function ( $id, $no, $en, $ja, $photo, $pos, $title, $body, $hl, $sid
 				<div class="pf-ch__body"><?php echo $body; ?></div>
 				<?php if ( $hl ) : ?><div class="pf-hl"><?php foreach ( $hl as $h ) : ?><div class="pf-hl__item"><p class="pf-hl__label"><?php echo esc_html( $h[0] ); ?></p><p class="pf-hl__val"><?php echo $h[1]; ?></p></div><?php endforeach; ?></div><?php endif; ?>
 			</div>
-			<figure class="pf-ch__fig"><img src="<?php echo esc_url( $img . $side ); ?>" alt="" loading="lazy" decoding="async"></figure>
+			<figure class="pf-ch__fig<?php echo 0 === strpos( $side, 'http' ) ? ' pf-ch__fig--maker' : ''; ?>"><img src="<?php echo esc_url( 0 === strpos( $side, 'http' ) ? $side : $img . $side ); ?>" alt="" loading="lazy" decoding="async"></figure>
 		</div>
 	</section>
 <?php };
-$contents = array( 'structure' => '構造・耐震', 'damping' => '制振', 'insulation' => '断熱', 'airtight' => '気密', 'window' => '窓', 'ventilation' => '換気', 'support' => '保証・アフターサポート' );
-$table = array(
-	array( '耐震', '建物・間取り・予算に合わせて設計', '耐震等級3まで対応', 'structure' ),
-	array( '構造計算', '必要に応じて選択', '許容応力度計算 対応', 'structure' ),
-	array( '制振', '求める安心に合わせて選択', 'evoltz 対応', 'damping' ),
-	array( '断熱', 'UA値0.46以下を基準に設計', 'UA値0.34以下まで対応', 'insulation' ),
-	array( '気密', '<b>C値0.5以下</b>を基準', '現在の実測平均 C値0.2以下', 'airtight' ),
-	array( '窓', '方角・開口・デザインに合わせて選定', 'APW430等まで対応', 'window' ),
-	array( '換気', '暮らし・空調計画に合わせて選択', '第一種熱交換換気まで対応', 'ventilation' ),
-);
+$contents = array( 'structure' => '構造・耐震', 'damping' => '制振', 'insulation' => '断熱', 'airtight' => '気密', 'window' => '窓', 'ventilation' => '換気', 'spec' => '採用部材', 'support' => '保証・検査' );
 $p = function ( $t ) { return '<p>' . implode( '</p><p>', array_map( function ( $x ) { return str_replace( "\n", '<br>', $x ); }, $t ) ) . '</p>'; };
 ?>
 	<header class="pf-hero">
@@ -80,12 +71,7 @@ $p = function ( $t ) { return '<p>' . implode( '</p><p>', array_map( function ( 
 				<h2 class="bh-head__title"><span class="bh-nb">基準を持って、</span><span class="bh-nb">その先は想いで選ぶ。</span></h2>
 				<p class="bh-eq__lead">すべてを最高性能にすることが、すべての家族にとっての正解ではありません。<br>FORTでは、基本となる性能を持ちながら、構造・断熱・窓・換気・制振まで、一邸ごとに必要な性能を選択できます。</p>
 			</header>
-			<div class="pf-std__table" role="table" aria-label="FORTの考え方と最高基準・実績">
-				<div class="pf-std__row pf-std__row--head" role="row"><span role="columnheader"></span><span role="columnheader">FORTの考え方</span><span role="columnheader">最高基準・実績</span></div>
-				<?php foreach ( $table as $r ) : ?>
-				<a class="pf-std__row" role="row" href="#<?php echo esc_attr( $r[3] ); ?>"><b role="rowheader"><?php echo esc_html( $r[0] ); ?></b><span role="cell" data-h="FORTの考え方"><?php echo wp_kses( $r[1], array( 'b' => array() ) ); ?></span><strong role="cell" data-h="最高基準・実績"><?php echo esc_html( $r[2] ); ?></strong></a>
-				<?php endforeach; ?>
-			</div>
+			<?php echo fort_performance_table(); ?>
 			<nav class="pf-toc2" aria-label="このページの内容"><?php $i = 0; foreach ( $contents as $id => $name ) : $i++; ?><a href="#<?php echo esc_attr( $id ); ?>"><span><?php echo esc_html( sprintf( '%02d', $i ) ); ?></span><?php echo esc_html( $name ); ?></a><?php endforeach; ?></nav>
 		</div>
 	</section>
@@ -98,12 +84,12 @@ $p = function ( $t ) { return '<p>' . implode( '</p><p>', array_map( function ( 
 	$chapter( 'damping', '02', 'DAMPING', '制振', 'hero-5.jpg', '50% 50%',
 		'<span class="bh-nb">強くするだけでなく、</span><span class="bh-nb">揺れを抑える。</span>',
 		$p( array( '耐震は、建物そのものの強さを考えること。', 'そしてもう一つ、地震の揺れによって建物が受ける負担を抑えるという考え方があります。', 'FORTでは、希望に応じて木造住宅用制振装置<strong>evoltz［エヴォルツ］</strong>にも対応。', '耐震性能に制振という考え方を加えることで、繰り返す地震への備えをさらに高めることができます。' ) ),
-		array( array( 'OPTION', '制振ダンパー<small>evoltz 対応</small>' ) ), 'house-pro.jpg', true );
+		array( array( 'OPTION', '制振ダンパー<small>evoltz 対応</small>' ) ), fort_maker_img( 'evoltz' ) ?: 'house-pro.jpg', true );
 	$strip( array( 'hero-1.jpg', 'pro/persp-c.jpg', 'studio-fukuyama.jpg' ) );
 	$chapter( 'insulation', '03', 'INSULATION', '断熱', 'hero-3.jpg', '50% 55%',
 		'UA値 0.46 <span class="pf-arrow">→</span> 0.34',
 		$p( array( '断熱性能も、一つの数値だけをすべての家に求めることはしません。', '建築地、間取り、窓の大きさ、日射、空調計画。そして、どこまで室内環境に快適性を求めるのか。', 'それらを考えながら、その家に必要な断熱性能を設計します。', '数字だけを追うのではなく、その性能によって、暮らしがどう変わるのかまで考えます。' ) ),
-		array( array( 'FORT BASE', 'UA値 0.46<small>以下</small>' ), array( 'HIGH PERFORMANCE', 'UA値 0.34<small>以下まで対応</small>' ) ), 'pro/persp-b.jpg' );
+		array( array( 'FORT BASE', 'UA値 0.46<small>以下</small>' ), array( 'HIGH PERFORMANCE', 'UA値 0.34<small>以下まで対応</small>' ) ), fort_maker_img( 'urethane' ) ?: 'pro/persp-b.jpg' );
 	$chapter( 'airtight', '04', 'AIRTIGHTNESS', '気密', 'hero-1.jpg', '50% 50%',
 		'<span class="bh-nb">C値0.5以下。</span><span class="bh-nb">そして、実測平均0.2以下。</span>',
 		$p( array( '気密性能は、カタログ上の性能ではありません。', 'どれだけ丁寧に施工されたかによって変わる、住宅そのものの施工品質です。', 'FORTでは<strong>C値0.5以下</strong>を気密性能の基準としています。そして現在の施工実績では、<strong>実測平均 C値0.2以下</strong>を確保しています。', '設計上の数値だけではなく、実際の建物で測定する。数字で施工品質を確認することも、FORTの性能への考え方です。' ) ),
@@ -112,12 +98,37 @@ $p = function ( $t ) { return '<p>' . implode( '</p><p>', array_map( function ( 
 	$chapter( 'window', '05', 'WINDOW', '窓', 'hero-4.jpg', '50% 50%',
 		'<span class="bh-nb">景色も、デザインも、</span><span class="bh-nb">断熱も。</span>',
 		$p( array( '窓は、断熱性能だけで決めるものではありません。', 'どこから光を入れるのか。どんな景色を切り取るのか。どれくらい大きな窓をつくりたいのか。', 'FORTでは、断熱性能とデザインの両方を考えながら、一邸ごとに窓を選定します。', '性能のために窓を小さくするのではなく、デザインと性能のバランスを設計します。' ) ),
-		array( array( 'PERFORMANCE RANGE', 'APW330等 <span class="pf-arrow">→</span> APW430等<small>まで対応</small>' ) ), 'pro/persp-d.jpg' );
+		array( array( 'PERFORMANCE RANGE', 'APW330等 <span class="pf-arrow">→</span> APW430等<small>まで対応</small>' ) ), fort_maker_img( 'apw' ) ?: 'pro/persp-d.jpg' );
 	$chapter( 'ventilation', '06', 'VENTILATION', '換気', 'hero-5.jpg', '50% 40%',
 		'<span class="bh-nb">換気も、</span><span class="bh-nb">暮らしに合わせて選ぶ。</span>',
 		$p( array( '換気方式についても、一つの設備をすべての住宅に固定するのではなく、', '断熱性能、気密性能、空調計画、暮らし方、ご予算を踏まえてご提案します。', 'より高い省エネルギー性や室内環境を求める場合には、<strong>第一種熱交換換気</strong>にも対応します。' ) ),
-		array( array( '最高基準', '第一種<small>熱交換換気</small>' ) ), 'pro/persp-e.jpg', true );
+		array( array( '最高基準', '第一種<small>熱交換換気</small>' ) ), fort_maker_img( 'airsave' ) ?: 'pro/persp-e.jpg', true );
 	?>
+
+	<!-- SPEC：採用している部材 -->
+	<section class="pf-spec" id="spec">
+		<div class="bh-wrap">
+			<header class="bh-head">
+				<p class="bh-label">SPEC</p>
+				<h2 class="bh-head__title"><span class="bh-nb">性能を支える、</span><span class="bh-nb">部材と設備。</span></h2>
+			</header>
+			<ul class="pf-spec__list">
+				<?php foreach ( array(
+					array( 'evoltz', 'DAMPING', '制振ダンパー', 'evoltz［エヴォルツ］', 'damping' ),
+					array( 'airsave', 'VENTILATION', '第一種換気', 'キムラ エアセーブ', 'ventilation' ),
+					array( 'urethane', 'INSULATION', '断熱材', '発泡ウレタン', 'insulation' ),
+					array( 'apw', 'WINDOW', '窓', 'YKK AP APW330／APW430', 'window' ),
+				) as $m ) : $mi = fort_maker_img( $m[0] ); ?>
+				<li><a href="#<?php echo esc_attr( $m[4] ); ?>">
+					<figure class="pf-spec__fig<?php echo $mi ? '' : ' is-empty'; ?>"><?php if ( $mi ) : ?><img src="<?php echo esc_url( $mi ); ?>" alt="<?php echo esc_attr( $m[3] ); ?>" loading="lazy" decoding="async"><?php else : ?><span><?php echo esc_html( $m[3] ); ?></span><?php endif; ?></figure>
+					<p class="pf-spec__en"><?php echo esc_html( $m[1] ); ?></p>
+					<p class="pf-spec__ja"><?php echo esc_html( $m[2] ); ?></p>
+					<p class="pf-spec__name"><?php echo esc_html( $m[3] ); ?></p>
+				</a></li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</section>
 
 	<!-- FORT PERFORMANCE RANGE -->
 	<section class="pf-range">
@@ -146,9 +157,9 @@ $p = function ( $t ) { return '<p>' . implode( '</p><p>', array_map( function ( 
 
 	<!-- 07 保証 -->
 	<section class="pf-sec" id="support">
-		<?php $band( '07', 'SUPPORT', '保証・アフターサポート', 'studio-okayama.jpg', '50% 60%' ); ?>
+		<?php $band( '08', 'SUPPORT', '保証・アフターサポート', 'studio-okayama.jpg', '50% 60%' ); ?>
 		<div class="bh-wrap pf-sec__grid">
-			<header class="pf-sec__head"><span class="pf-sec__no">07</span><h2>保証・アフターサポート</h2><p class="pf-sec__catch">建てたあとも、ずっと安心を。</p></header>
+			<header class="pf-sec__head"><span class="pf-sec__no">08</span><h2>保証・アフターサポート</h2><p class="pf-sec__catch">建てたあとも、ずっと安心を。</p></header>
 			<div class="pf-sec__body">
 				<div class="pf-point"><p class="pf-point__label">POINT</p><p class="pf-point__main">躯体・防水は最長60年。</p><p class="pf-point__sub">初期保証20年。当社指定の定期点検・メンテナンスを条件に、最長60年まで保証します。</p></div>
 				<p>大切な住まいに、長く安心して暮らしていただくために、充実した保証制度とアフターサポート体制を整えています。構造・防水から地盤・白蟻・設備の保証、定期点検まで、ずっと寄り添います。</p>
@@ -168,6 +179,20 @@ $p = function ( $t ) { return '<p>' . implode( '</p><p>', array_map( function ( 
 					<li><span>白蟻</span><b>保証 10年</b><small>基礎パッキン工法 10年保証＋シロアリ防除施工 5年保証</small></li>
 					<li><span>設備（対象機器）</span><b>保証 10年</b><small>住宅設備機器を保証</small></li>
 				</ul>
+				<div class="pf-jio">
+					<div class="pf-jio__head">
+						<?php $ji = fort_maker_img( 'jio' ); if ( $ji ) : ?><figure class="pf-jio__fig"><img src="<?php echo esc_url( $ji ); ?>" alt="JIO" loading="lazy" decoding="async"></figure><?php endif; ?>
+						<div><p class="pf-jio__label">INSPECTION</p><p class="pf-jio__title">JIO 追加検査を実施</p><p class="pf-jio__sub">必須項目に加えて、工程ごとの検査を追加で行っています。</p></div>
+					</div>
+					<ol class="pf-jio__list">
+						<li><span>01</span>配筋検査<em>必須項目</em></li>
+						<li><span>02</span>基礎型枠検査<em class="is-add">追加検査</em></li>
+						<li><span>03</span>打設後完了検査<em class="is-add">追加検査</em></li>
+						<li><span>04</span>躯体検査<em>必須項目</em></li>
+						<li><span>05</span>二次防水検査<em class="is-add">追加検査</em></li>
+						<li><span>06</span>断熱検査<em class="is-add">追加検査</em></li>
+					</ol>
+				</div>
 				<p class="pf-fine">※ 躯体・防水の保証は、当社指定の定期点検・メンテナンスを実施いただくことが条件となります。※ 地盤補強の保証は、当社が採用する鋼管杭工法の地盤補強工事に対する保証です。※ 白蟻の保証は、基礎パッキン工法（10年）およびシロアリ防除施工（5年）の保証です。※ 設備保証の対象機器・保証内容の詳細は、スタッフまでお問い合わせください。</p>
 				<p class="pf-sub">アフターメンテナンス（定期点検）</p>
 				<ol class="pf-timeline"><li><span class="pf-timeline__no">01</span><b>1<small>年</small></b><span>点検</span></li><li><span class="pf-timeline__no">02</span><b>2<small>年</small></b><span>点検</span></li><li><span class="pf-timeline__no">03</span><b>5<small>年</small></b><span>点検</span></li><li><span class="pf-timeline__no">04</span><b>9<small>年</small>6<small>ヵ月</small></b><span>点検</span></li></ol>

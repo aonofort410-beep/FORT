@@ -608,3 +608,12 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(function(){ imgs[i].classList.remove('is-on'); i=(i+1)%imgs.length; imgs[i].classList.add('is-on'); },6000);
   });
 })();
+
+/* じわっと浮かび上がる（data-fadein） */
+(function(){
+  var els=document.querySelectorAll('[data-fadein]');
+  if(!els.length) return;
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('is-in');}); return; }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } }); },{threshold:.2});
+  els.forEach(function(e){ io.observe(e); });
+})();

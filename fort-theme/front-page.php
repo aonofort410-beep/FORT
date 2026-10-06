@@ -67,6 +67,7 @@ $has_video = file_exists( get_template_directory() . '/assets/images/hero.mp4' )
 	<!-- 02 ABOUT：FORTとは何か -->
 	<section class="bh-about" id="about">
 		<div class="bh-wrap bh-about__grid">
+			<figure class="bh-about__fig" aria-hidden="true"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/perf-interior.jpg' ); ?>" alt="" loading="lazy" decoding="async"><img class="bh-about__fig2" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero-3.jpg' ); ?>" alt="" loading="lazy" decoding="async"></figure>
 			<p class="bh-label">ABOUT</p>
 			<div class="bh-about__body">
 				<h2 class="bh-about__title"><span class="bh-nb">家族の数だけ、</span><span class="bh-nb">想いがある。</span><span class="bh-nb">その想いを、かたちに。</span></h2>

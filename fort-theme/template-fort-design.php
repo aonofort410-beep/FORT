@@ -95,28 +95,38 @@ $title = str_split( 'FORT DESIGN' );
 		</div>
 	</section>
 
-	<!-- DRAWING：スクロールで図面が描かれる -->
-	<section class="dz-draw" aria-label="対話から図面へ">
-		<div class="dz-draw__sticky">
-			<div class="dz-wrap dz-draw__grid">
-				<div class="dz-draw__head">
-					<p class="dz-label">PROCESS</p>
-					<h2 class="dz-draw__title">対話から、<br>一本の線へ。</h2>
-					<ol class="dz-draw__steps dz-glass">
-						<li style="--i:0"><span>HEARING</span>暮らしと理想を、聞かせていただく</li>
-						<li style="--i:1"><span>SITE</span>土地の光・風・眺めを読む</li>
-						<li style="--i:2"><span>DRAWING</span>その家族のためだけの線を引く</li>
-						<li style="--i:3"><span>BUILD</span>図面を、住まいへ</li>
-					</ol>
-				</div>
-				<figure class="dz-draw__plan">
-					<?php // 平面図の線（1本ずつ描かれる）。parts/design-plan.svg は図面画像から取り出した線
-					echo file_get_contents( get_template_directory() . '/parts/design-plan.svg' ); // phpcs:ignore -- テーマ内の固定SVG ?>
-					<img class="dz-plan__detail" src="<?php echo esc_url( $img . 'design-plan.png' ); ?>" alt="FORT DESIGN の平面図" width="1816" height="1946" loading="lazy" decoding="async">
-				</figure>
+	<!-- GALLERY：白背景で写真を大きく -->
+	<section class="dz-gal" aria-label="FORT DESIGN の住まい">
+		<div class="dz-gal__in">
+			<p class="dz-gal__label">GALLERY</p>
+			<p class="dz-gal__title">素材と光と、余白のある暮らし。</p>
+			<div class="dz-gal__grid">
+				<?php foreach ( array( 'hero-3.jpg', 'perf-interior.jpg', 'hero-1.jpg', 'house-design.jpg', 'hero-5.jpg' ) as $i => $g ) : ?>
+				<figure class="dz-gal__fig dz-gal__fig--<?php echo (int) $i; ?>" data-fadein><img src="<?php echo esc_url( 0 === strpos( $g, 'house-' ) ? fort_media( 'design' ) : $img . $g ); ?>" alt="" loading="lazy" decoding="async"></figure>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	</section>
+
+	<!-- PROCESS：色を抜いた図面が、じわっと浮かび上がる -->
+	<section class="dz-plan">
+		<div class="dz-wrap dz-plan__grid">
+			<div class="dz-plan__head">
+				<p class="dz-label">PROCESS</p>
+				<h2 class="dz-draw__title">対話から、<br>一本の線へ。</h2>
+				<ol class="dz-plan__steps">
+					<li><span>HEARING</span>暮らしと理想を、聞かせていただく</li>
+					<li><span>SITE</span>土地の光・風・眺めを読む</li>
+					<li><span>DRAWING</span>その家族のためだけの線を引く</li>
+					<li><span>BUILD</span>図面を、住まいへ</li>
+				</ol>
+			</div>
+			<figure class="dz-plan__fig" data-fadein><img src="<?php echo esc_url( $img . 'design-plan.png' ); ?>" alt="FORT DESIGN の平面図" width="1816" height="1946" loading="lazy" decoding="async"></figure>
+		</div>
+	</section>
+
+	<!-- 全面写真 -->
+	<figure class="dz-full" data-fadein><img src="<?php echo esc_url( $img . 'hero-2.jpg' ); ?>" alt="" loading="lazy" decoding="async"></figure>
 
 	<!-- FOR YOU（他の商品ページと同じ項目） -->
 	<section class="dz-for">
@@ -165,6 +175,8 @@ $title = str_split( 'FORT DESIGN' );
 			</div>
 		</div>
 	</section>
+
+	<?php get_template_part( 'parts/photo-band', null, array( 'offset' => 1 ) ); ?>
 
 	<!-- WORDS -->
 	<section class="dz-words">

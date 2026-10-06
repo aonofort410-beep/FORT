@@ -24,52 +24,68 @@ $img = get_template_directory_uri() . '/assets/images/';
           FORTは、ご相談からお引渡し、そしてその後まで、一つひとつ一緒に進めていきます。
         </p>
 
-        <ol class="flow__list">
-          <li class="flow__step" data-reveal>
-            <span class="flow__num">01</span>
+        <ol class="fl-nav"><li><a href="#step-01"><span>01</span>ご相談・ご来場</a></li><li><a href="#step-02"><span>02</span>プランご提案・お見積り</a></li><li><a href="#step-03"><span>03</span>ご契約</a></li><li><a href="#step-04"><span>04</span>詳細打ち合わせ</a></li><li><a href="#step-05"><span>05</span>着工・施工</a></li><li><a href="#step-06"><span>06</span>完成・お引渡し</a></li><li><a href="#step-07"><span>07</span>アフターサポート</a></li></ol>
+
+        <ol class="flow__list fl-list">
+          <li class="flow__step fl-step" id="step-01" data-fadein>
+            <figure class="fl-step__fig"><img src="<?php echo $img; ?>studio-okayama.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <span class="flow__num"><small>STEP</small>01</span>
             <div class="flow__body">
+              <p class="fl-step__en">CONSULT</p>
               <h2 class="flow__title">ご相談・ご来場</h2>
               <p class="flow__text">見学会やスタジオで、暮らしのご希望・ご予算・お悩みなどをお聞かせください。まずは情報収集だけでも大歓迎です。</p>
             </div>
           </li>
-          <li class="flow__step" data-reveal>
-            <span class="flow__num">02</span>
+          <li class="flow__step fl-step" id="step-02" data-fadein>
+            <figure class="fl-step__fig"><img src="<?php echo $img; ?>pro/plan-a.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <span class="flow__num"><small>STEP</small>02</span>
             <div class="flow__body">
+              <p class="fl-step__en">PLAN</p>
               <h2 class="flow__title">プランご提案・お見積り</h2>
               <p class="flow__text">ご要望をかたちにした間取りプランと、わかりやすいお見積りをご提示。資金計画もあわせてご相談いただけます。</p>
             </div>
           </li>
-          <li class="flow__step" data-reveal>
-            <span class="flow__num">03</span>
+          <li class="flow__step fl-step" id="step-03" data-fadein>
+            <figure class="fl-step__fig"><img src="<?php echo $img; ?>studio-fukuyama.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <span class="flow__num"><small>STEP</small>03</span>
             <div class="flow__body">
+              <p class="fl-step__en">CONTRACT</p>
               <h2 class="flow__title">ご契約</h2>
               <p class="flow__text">プラン・お見積り・スケジュールにご納得いただいたうえで、ご契約。ここから本格的に家づくりが進みます。</p>
             </div>
           </li>
-          <li class="flow__step" data-reveal>
-            <span class="flow__num">04</span>
+          <li class="flow__step fl-step" id="step-04" data-fadein>
+            <figure class="fl-step__fig"><img src="<?php echo $img; ?>pro/persp-b.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <span class="flow__num"><small>STEP</small>04</span>
             <div class="flow__body">
+              <p class="fl-step__en">MEETING</p>
               <h2 class="flow__title">詳細打ち合わせ</h2>
               <p class="flow__text">間取りの最終調整、設備・内装・色決めなど、暮らしの細部まで一緒に決めていきます。じっくりお選びいただけます。</p>
             </div>
           </li>
-          <li class="flow__step" data-reveal>
-            <span class="flow__num">05</span>
+          <li class="flow__step fl-step" id="step-05" data-fadein>
+            <figure class="fl-step__fig"><img src="<?php echo $img; ?>hero-4.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <span class="flow__num"><small>STEP</small>05</span>
             <div class="flow__body">
+              <p class="fl-step__en">BUILD</p>
               <h2 class="flow__title">着工・施工</h2>
               <p class="flow__text">地鎮祭・上棟を経て、いよいよ施工へ。工事中も現場の状況を随時ご報告し、安心して見守っていただけます。</p>
             </div>
           </li>
-          <li class="flow__step" data-reveal>
-            <span class="flow__num">06</span>
+          <li class="flow__step fl-step" id="step-06" data-fadein>
+            <figure class="fl-step__fig"><img src="<?php echo $img; ?>mh-fukuyama-shimokamo.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <span class="flow__num"><small>STEP</small>06</span>
             <div class="flow__body">
+              <p class="fl-step__en">HANDOVER</p>
               <h2 class="flow__title">完成・お引渡し</h2>
               <p class="flow__text">完成検査で仕上がりを確認し、設備の使い方などをご説明のうえお引渡し。新しい暮らしのはじまりです。</p>
             </div>
           </li>
-          <li class="flow__step" data-reveal>
-            <span class="flow__num">07</span>
+          <li class="flow__step fl-step" id="step-07" data-fadein>
+            <figure class="fl-step__fig"><img src="<?php echo $img; ?>perf-interior.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <span class="flow__num"><small>STEP</small>07</span>
             <div class="flow__body">
+              <p class="fl-step__en">SUPPORT</p>
               <h2 class="flow__title">アフターサポート</h2>
               <p class="flow__text">お引渡しはゴールではなくスタート。定期点検やメンテナンスで、住みはじめてからも長く安心をお届けします。</p>
             </div>

@@ -4312,7 +4312,7 @@ body:not(.dz-page) main::before {
     linear-gradient(rgba(28,31,32,.07), rgba(28,31,32,.07)) calc(100% - var(--bh-gutter)) 0 / 1px 100% no-repeat,
     linear-gradient(rgba(28,31,32,.045), rgba(28,31,32,.045)) 50% 0 / 1px 100% no-repeat;
 }
-body:not(.dz-page) main > :is(section, header, div):not(.bh-hero):not(.bh-visit):not(.bh-house):not(.pf-grade):not(.bh-mh):not(.pf-range):not(.pf-std):not(.pf-ch--alt):not(.pf-hero):not(.bh-mhs):not(.bh-evhero):not(.bh-hperf) { background-color: transparent !important; }
+body:not(.dz-page) main > :is(section, header, div):not(.bh-hero):not(.bh-visit):not(.bh-house):not(.pf-grade):not(.bh-mh):not(.pf-range):not(.pf-std):not(.pf-ch--alt):not(.pf-hero):not(.bh-mhs):not(.bh-evhero):not(.bh-hperf):not(.ab-team) { background-color: transparent !important; }
 body.home main > :not(.bh-hero):not(.bh-visit):not(.bh-house):not(.bh-mh):not(.bh-life) { background: transparent !important; }
 
 /* セクションの区切り：細い横線＋左端に小さな四角（基準点） */
@@ -4703,3 +4703,16 @@ dialog.st-modal{position:fixed;inset:0;margin:auto!important;height:fit-content;
   body.home .bh-about__body{grid-column:2}
 }
 @media (max-width:899px){body.home .bh-about{background:#fff!important}}
+/* FLOW 写真つきステップ：配置を固定 */
+.fl-step::before{display:none!important}
+.fl-step{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-areas:"fig num" "fig body";grid-template-rows:auto 1fr}
+.fl-step:nth-child(even){grid-template-areas:"num fig" "body fig"}
+.fl-step__fig{grid-area:fig;order:0!important}
+.fl-step .flow__num{grid-area:num;width:auto!important;height:auto!important;border:0!important;border-radius:0!important;background:none!important;position:static!important;justify-content:flex-start}
+.fl-step .flow__body{grid-area:body}
+@media (max-width:820px){.fl-step,.fl-step:nth-child(even){grid-template-columns:1fr!important;grid-template-areas:"fig" "num" "body"}}
+/* 予約ページ：説明文・パンくずも中央 */
+@media (min-width:900px){
+  :is(.page-template-template-visit,.page-template-template-contact,.page-template-template-request) .bh-pagehead__lead{margin-left:auto;margin-right:auto}
+  :is(.page-template-template-visit,.page-template-template-contact,.page-template-template-request) .bh-pagehead :is(.bh-crumb,.bh-breadcrumb,nav){display:flex;justify-content:center}
+}

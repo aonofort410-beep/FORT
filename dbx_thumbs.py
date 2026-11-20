@@ -20,7 +20,7 @@ import requests
 API = "https://api.dropboxapi.com/2/"
 CONTENT = "https://content.dropboxapi.com/2/"
 EXTS = (".jpg", ".jpeg", ".png", ".heic")
-NG_WORDS = ("掲載NG", "SNS等掲載NG", "SNS掲載禁止", "広告使用は不可")
+NG_WORDS = ("掲載NG", "SNS等掲載NG", "SNS掲載禁止", "広告使用は不可", "内観NG")
 SKIP_DIRS = ("〇見学会用RAW素材",)
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -73,6 +73,9 @@ class Dbx:
             if self.path_root:
                 print("  個人ルートでパスが見つからないため、チームルートで再試行", file=sys.stderr)
                 r = go(True)
+        if r.status_code == 401:
+            # トークン切れ等は続けても全部失敗するので止める（再実行で続きから）
+            sys.exit("認証エラー(401): " + r.text[:120] + "\n新しいトークンで再実行してください。")
         return r
 
     def enable_team_root(self):

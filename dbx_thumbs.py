@@ -27,10 +27,28 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 
 class Dbx:
     def __init__(self, token_file):
-        with open(token_file, encoding="utf-8") as f:
-            self._token = f.read().strip()
+        """token_file は アクセストークン1行 か、app_key=/app_secret=/refresh_token= の3行。
+        リフレッシュトークンの場合は短期トークンをメモリ上でだけ発行して使う。"""
+        with open(token_file, encoding="utf-8-sig") as f:
+            text = f.read().strip()
         self.s = requests.Session()
         self.path_root = None  # None=個人ルート / dict=チームルート
+        self._refresh = None
+        kv = dict(l.split("=", 1) for l in text.splitlines() if "=" in l)
+        if "refresh_token" in kv:
+            self._refresh = {k: kv[k].strip() for k in ("app_key", "app_secret", "refresh_token")}
+            self._renew()
+        else:
+            self._token = text
+
+    def _renew(self):
+        r = self.s.post(API.replace("/2/", "/oauth2/token"),
+                        data={"grant_type": "refresh_token",
+                              "refresh_token": self._refresh["refresh_token"]},
+                        auth=(self._refresh["app_key"], self._refresh["app_secret"]), timeout=60)
+        if r.status_code != 200:
+            sys.exit("トークン更新に失敗: " + r.text[:120])
+        self._token = r.json()["access_token"]
 
     def _headers(self, extra=None, use_root=False):
         h = {"Authorization": "Bearer " + self._token}
@@ -73,6 +91,9 @@ class Dbx:
             if self.path_root:
                 print("  個人ルートでパスが見つからないため、チームルートで再試行", file=sys.stderr)
                 r = go(True)
+        if r.status_code == 401 and self._refresh and "expired" in r.text:
+            self._renew()
+            r = go(self.path_root is not None)
         if r.status_code == 401:
             # トークン切れ等は続けても全部失敗するので止める（再実行で続きから）
             sys.exit("認証エラー(401): " + r.text[:120] + "\n新しいトークンで再実行してください。")

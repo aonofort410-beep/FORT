@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """判定ファイルと一覧インデックスから 写真分類.csv に追記する（重複パスは飛ばす）。
-使い方: python3 append_csv.py エリア "邸フォルダ名"
+使い方: python3 append_csv.py エリア "邸フォルダ名" [--skip-person] [--skip-room 外観]
+  --skip-person : 人物ありの写真はCSVに載せない（人物NG・顔出しNG邸用）
+  --skip-room X : 部屋Xの写真はCSVに載せない（外観SNS NG邸用）
 判定ファイル: judgments/邸フォルダ名.txt  1行1枚「番号 部屋 色味 人物 投稿向き度 ひとこと」
 （旧形式 judgments/邸フォルダ名.json にも対応）
 """
@@ -24,7 +26,13 @@ def load_judgments(house):
     return json.load(open(os.path.join(BASE, "judgments", house + ".json"), encoding="utf-8"))
 
 
-area, house = sys.argv[1], sys.argv[2]
+import argparse
+_ap = argparse.ArgumentParser()
+_ap.add_argument("area"); _ap.add_argument("house")
+_ap.add_argument("--skip-person", action="store_true")
+_ap.add_argument("--skip-room", action="append", default=[])
+_a = _ap.parse_args()
+area, house = _a.area, _a.house
 index = json.load(open(os.path.join(BASE, "sheets", house, "_index.json"), encoding="utf-8"))
 judg = load_judgments(house)
 missing = [str(p["no"]) for p in index if str(p["no"]) not in judg]
@@ -41,7 +49,7 @@ if not new_file:
     with open(CSV, encoding="utf-8-sig", newline="") as f:
         done = {r["Dropboxパス"] for r in csv.DictReader(f)}
 
-added = 0
+added = skipped = 0
 with open(CSV, "a", encoding="utf-8-sig" if new_file else "utf-8", newline="") as f:
     w = csv.writer(f)
     if new_file:
@@ -50,6 +58,9 @@ with open(CSV, "a", encoding="utf-8-sig" if new_file else "utf-8", newline="") a
         if p["path_display"] in done:
             continue
         room, color, person, grade, note = judg[str(p["no"])]
+        if (_a.skip_person and person == "あり") or room in _a.skip_room:
+            skipped += 1
+            continue
         w.writerow([area, house, p["name"], p["path_display"], room, p["縦横"], color, person, grade, note.strip()])
         added += 1
-print(f"追記 {added}行（既存スキップ {len(index) - added}）")
+print(f"追記 {added}行（NGで除外 {skipped}、既存スキップ {len(index) - added - skipped}）")

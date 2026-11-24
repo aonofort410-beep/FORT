@@ -1,0 +1,151 @@
+<title>完成写真 Aセレクト</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 撮影の「コンタクトシート」。邸ごとの帯＋サムネイル格子、上部に絞り込みバー */
+:root{
+  --bg:#F3F3F0; --surface:#FFFFFF; --fg:#1E2321; --muted:#68706C; --line:#DADDD8;
+  --accent:#2F5D50; --accent-ink:#FFFFFF; --chip:#E8EBE6;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#151917; --surface:#1E2421; --fg:#E7EAE6; --muted:#9AA39E; --line:#323A36;
+  --accent:#7FB8A6; --accent-ink:#0F1513; --chip:#28302C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151917; --surface:#1E2421; --fg:#E7EAE6; --muted:#9AA39E; --line:#323A36;
+  --accent:#7FB8A6; --accent-ink:#0F1513; --chip:#28302C; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:14px;line-height:1.6}
+.wrap{max-width:1280px;margin:0 auto;padding-block:24px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:1.6rem;font-weight:700;margin:0;letter-spacing:.02em;text-wrap:balance}
+.lede{color:var(--muted);margin:4px 0 0}
+.stats{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.stats b{font-size:18px;color:var(--fg);font-weight:500;margin-right:4px;font-variant-numeric:tabular-nums}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);
+  border-bottom:1px solid var(--line);margin-top:18px;padding-block:12px;display:flex;flex-direction:column;gap:8px}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.lbl{font-size:11px;color:var(--muted);letter-spacing:.08em;min-width:3.5em}
+button.chip{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);
+  border-radius:999px;padding:3px 11px;cursor:pointer}
+button.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+button.chip:focus-visible,input:focus-visible,button.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+input[type=search]{font:inherit;font-size:13px;padding:5px 10px;border:1px solid var(--line);border-radius:6px;
+  background:var(--surface);color:var(--fg);width:min(260px,100%)}
+.count{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:auto}
+.house{margin-top:28px}
+.hhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:6px}
+.area{font-size:11px;letter-spacing:.06em;padding:1px 8px;border-radius:4px;background:var(--chip);color:var(--muted)}
+.hname{font-weight:700;font-size:15px;min-width:0;overflow-wrap:anywhere}
+.hn{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:12px}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.ph{aspect-ratio:4/3;max-width:100%;background:var(--chip);display:flex;align-items:center;justify-content:center;cursor:zoom-in}
+.ph img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+figcaption{padding:8px 10px 10px;display:flex;flex-direction:column;gap:5px;min-width:0}
+.note{font-weight:500;font-size:13px}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:11px;padding:0 6px;border-radius:3px;background:var(--chip);color:var(--muted)}
+.tag.p{background:transparent;border:1px solid var(--line)}
+.file{display:flex;gap:6px;align-items:center;min-width:0}
+.file code{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}
+button.copy{font:inherit;font-size:11px;border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:4px;padding:0 6px;cursor:pointer;flex:none}
+.empty{color:var(--muted);padding:40px 0;text-align:center}
+dialog{border:none;padding:0;background:transparent;max-width:min(92vw,900px)}
+dialog::backdrop{background:rgba(0,0,0,.72)}
+dialog img{max-width:100%;max-height:80vh;display:block;border-radius:4px}
+dialog p{color:#fff;margin:8px 0 0;font-size:13px;overflow-wrap:anywhere}
+.loading{color:var(--muted);padding:40px 0}
+@media (max-width:480px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.lbl{min-width:auto}}
+@media (prefers-reduced-motion:no-preference){figure{transition:transform .15s}figure:hover{transform:translateY(-2px)}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>完成写真 Aセレクト</h1>
+    <p class="lede">投稿向き度「A：表紙にしたい」と判定した写真を、邸ごとに並べています。サムネイルを押すと拡大、「コピー」でDropboxのパスをコピーできます。</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="bar" role="region" aria-label="絞り込み">
+    <div class="row"><span class="lbl">区分</span><div class="row" id="f-area"></div></div>
+    <div class="row"><span class="lbl">部屋</span><div class="row" id="f-room"></div></div>
+    <div class="row"><span class="lbl">縦横</span><div class="row" id="f-ori"></div>
+      <span class="lbl" style="margin-left:8px">人物</span><div class="row" id="f-per"></div></div>
+    <div class="row"><input type="search" id="q" placeholder="邸名・ひとことで検索" aria-label="邸名・ひとことで検索"><span class="count" id="count"></span></div>
+  </div>
+
+  <main id="list"><p class="loading">写真を読み込んでいます…</p></main>
+</div>
+
+<dialog id="dlg"><img id="dimg" alt=""><p id="dcap"></p></dialog>
+
+<script>
+const AREAS=["福山エリア","岡山エリア","モデルハウス","スタジオ"];
+const ROOMS=["外観","玄関","LDK","キッチン","洗面","浴室","トイレ","寝室","収納","階段","ガレージ","中庭・庭","その他"];
+const ORIS=["横","縦","正方形"], PERS=["あり","なし"];
+const st={area:new Set(),room:new Set(),ori:new Set(),per:new Set(),q:""};
+let DATA=[];
+function chips(el,vals,key){
+  el.innerHTML="";
+  const all=document.createElement("button");all.className="chip";all.textContent="すべて";
+  all.setAttribute("aria-pressed",st[key].size===0);
+  all.onclick=()=>{st[key].clear();chips(el,vals,key);render()};el.append(all);
+  vals.forEach(v=>{const b=document.createElement("button");b.className="chip";b.textContent=v;
+    b.setAttribute("aria-pressed",st[key].has(v));
+    b.onclick=()=>{st[key].has(v)?st[key].delete(v):st[key].add(v);chips(el,vals,key);render()};el.append(b)});
+}
+function tag(t,c){const s=document.createElement("span");s.className="tag"+(c?" "+c:"");s.textContent=t;return s}
+function render(){
+  const q=st.q.trim();
+  const rows=DATA.filter(d=>(!st.area.size||st.area.has(d.a))&&(!st.room.size||st.room.has(d.r))
+    &&(!st.ori.size||st.ori.has(d.o))&&(!st.per.size||st.per.has(d.m))&&(!q||d.h.includes(q)||d.n.includes(q)));
+  const list=document.getElementById("list");list.innerHTML="";
+  const houses=new Map();rows.forEach(d=>{if(!houses.has(d.h))houses.set(d.h,[]);houses.get(d.h).push(d)});
+  document.getElementById("count").textContent=`${rows.length}枚 / ${houses.size}フォルダ`;
+  if(!rows.length){list.innerHTML='<p class="empty">条件に合う写真がありません。絞り込みを減らしてください。</p>';return}
+  houses.forEach((ps,h)=>{
+    const sec=document.createElement("section");sec.className="house";
+    const hd=document.createElement("div");hd.className="hhead";
+    const a=document.createElement("span");a.className="area";a.textContent=ps[0].a;
+    const n=document.createElement("span");n.className="hname";n.textContent=h;
+    const c=document.createElement("span");c.className="hn";c.textContent=`A ${ps.length}枚`;
+    hd.append(a,n,c);sec.append(hd);
+    const g=document.createElement("div");g.className="grid";
+    ps.forEach(d=>{
+      const f=document.createElement("figure");
+      const ph=document.createElement("div");ph.className="ph";ph.tabIndex=0;ph.setAttribute("role","button");
+      ph.setAttribute("aria-label",`${d.n} を拡大`);
+      const im=document.createElement("img");im.loading="lazy";im.alt=d.n;im.src="data:image/jpeg;base64,"+d.i;ph.append(im);
+      const open=()=>{dimg.src=im.src;dimg.alt=d.n;dcap.textContent=`${d.n} ｜ ${d.h} ｜ ${d.f}`;dlg.showModal()};
+      ph.onclick=open;ph.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}};
+      const fc=document.createElement("figcaption");
+      const nt=document.createElement("div");nt.className="note";nt.textContent=d.n;
+      const tg=document.createElement("div");tg.className="tags";
+      tg.append(tag(d.r),tag(d.o),tag(d.c));if(d.m==="あり")tg.append(tag("人物あり","p"));
+      const fl=document.createElement("div");fl.className="file";
+      const cd=document.createElement("code");cd.textContent=d.f;cd.title=d.p;
+      const cp=document.createElement("button");cp.className="copy";cp.textContent="コピー";
+      cp.onclick=async()=>{try{await navigator.clipboard.writeText(d.p);cp.textContent="コピー済み";setTimeout(()=>cp.textContent="コピー",1500)}
+        catch(e){const r=document.createRange();cd.textContent=d.p;r.selectNodeContents(cd);const s=getSelection();s.removeAllRanges();s.addRange(r);cp.textContent="選択しました"}};
+      fl.append(cd,cp);fc.append(nt,tg,fl);f.append(ph,fc);g.append(f);
+    });
+    sec.append(g);list.append(sec);
+  });
+}
+const dlg=document.getElementById("dlg"),dimg=document.getElementById("dimg"),dcap=document.getElementById("dcap");
+dlg.addEventListener("click",()=>dlg.close());
+document.getElementById("q").addEventListener("input",e=>{st.q=e.target.value;render()});
+fetch("data.json").then(r=>r.json()).then(d=>{
+  DATA=d;
+  const st2=document.getElementById("stats");
+  const by=a=>d.filter(x=>x.a===a).length;
+  st2.innerHTML=`<span><b>${d.length}</b>枚</span><span><b>${new Set(d.map(x=>x.h)).size}</b>フォルダ</span>`+
+    AREAS.map(a=>`<span><b>${by(a)}</b>${a}</span>`).join("");
+  chips(document.getElementById("f-area"),AREAS,"area");chips(document.getElementById("f-room"),ROOMS,"room");
+  chips(document.getElementById("f-ori"),ORIS,"ori");chips(document.getElementById("f-per"),PERS,"per");
+  render();
+}).catch(()=>{document.getElementById("list").innerHTML='<p class="empty">写真データを読み込めませんでした。ページを再読み込みしてください。</p>'});
+</script>

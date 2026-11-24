@@ -26,11 +26,21 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 
 
 class Dbx:
-    def __init__(self, token_file):
-        """token_file は アクセストークン1行 か、app_key=/app_secret=/refresh_token= の3行。
+    def __init__(self, token_file=None):
+        """token_file は アクセストークン1行 か、app_key=/app_secret=/refresh_token= の3行（.env 形式も可）。
+        省略時は環境変数 DROPBOX_APP_KEY / DROPBOX_APP_SECRET / DROPBOX_REFRESH_TOKEN を使う。
         リフレッシュトークンの場合は短期トークンをメモリ上でだけ発行して使う。"""
-        with open(token_file, encoding="utf-8-sig") as f:
-            text = f.read().strip()
+        if token_file:
+            with open(token_file, encoding="utf-8-sig") as f:
+                text = f.read().strip()
+        else:
+            text = "\n".join(f"{k}={os.environ.get('DROPBOX_' + k.upper(), '')}"
+                             for k in ("app_key", "app_secret", "refresh_token"))
+            if not os.environ.get("DROPBOX_REFRESH_TOKEN"):
+                sys.exit("DROPBOX_REFRESH_TOKEN が未設定です。.env を用意するか --token-file を指定してください。")
+        text = "\n".join(l.replace("DROPBOX_APP_KEY", "app_key").replace("DROPBOX_APP_SECRET", "app_secret")
+                         .replace("DROPBOX_REFRESH_TOKEN", "refresh_token") for l in text.splitlines()
+                         if l.strip() and not l.lstrip().startswith("#"))
         self.s = requests.Session()
         self.path_root = None  # None=個人ルート / dict=チームルート
         self._refresh = None
@@ -205,12 +215,24 @@ def houses(dbx, area_path):
         print(("NG\t" if ng else "OK\t") + e["path_display"])
 
 
+def load_dotenv(path):
+    """依存ライブラリなしで .env を読み、未設定の環境変数だけ埋める。"""
+    if not os.path.exists(path):
+        return
+    for line in open(path, encoding="utf-8-sig"):
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--token-file", required=True)
+    ap.add_argument("--token-file", help="鍵ファイル。省略時は .env / 環境変数を使う")
     ap.add_argument("cmd", choices=["fetch", "houses"])
     ap.add_argument("path")
     a = ap.parse_args()
+    load_dotenv(os.path.join(BASE, ".env"))
     dbx = Dbx(a.token_file)
     (fetch if a.cmd == "fetch" else houses)(dbx, a.path)
 
